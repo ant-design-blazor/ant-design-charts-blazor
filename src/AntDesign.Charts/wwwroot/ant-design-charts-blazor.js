@@ -1,12 +1,11 @@
 // This file is to show how a library package may provide JavaScript interop features
 // wrapped in a .NET API
 
-window.createChart = (domRef, data) => {
-  console.log(data)
-  const plot = new G2Plot.Line(domRef, {
+window.createChart = (type, domRef, data, options, others) => {
+  const plot = new G2Plot[type](domRef, {
     data,
-    xField: 'year',
-    yField: 'value',
+    ...options,
+    ...others
   });
 
   plot.render();

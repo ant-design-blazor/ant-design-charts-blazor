@@ -10,6 +10,12 @@ namespace AntDesign.Charts
         [Parameter]
         public IEnumerable<TItem> Data { get; set; }
 
+        [Parameter]
+        public string XField { get; set; }
+
+        [Parameter]
+        public string YField { get; set; }
+
         [Inject] private IJSRuntime JS { get; set; }
 
         private ElementReference Ref;
@@ -20,7 +26,11 @@ namespace AntDesign.Charts
 
             if (firstRender)
             {
-                await JS.InvokeVoidAsync("createChart", Ref, Data);
+                await JS.InvokeVoidAsync("createChart", "Line", Ref, Data, new
+                {
+                    xField = XField,
+                    yField = YField,
+                });
             }
         }
     }
