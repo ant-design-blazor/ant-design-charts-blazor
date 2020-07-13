@@ -1,0 +1,85 @@
+﻿@page "/stackedcolumn"
+@using System.Drawing
+
+<h1>Stacked Column Chart</h1>
+
+<StackedColumn Data=data 
+        YField="value" 
+        XField="year" 
+        Color="@color"
+        StackField="type"      
+        Title="@title" 
+        Label="@label"        
+        Description="@description"     
+        Legend="@legend"
+        />
+
+@code{
+
+    string[] color = new string[]
+    {
+           "brown",
+           "gray",
+           "blue",
+    };
+
+    Label label = new Label { Visible = true, Position = "middle" };
+    Title title = new Title { Visible = true, Text = "堆叠柱状图：label自动隐藏" };
+
+    Legend legend = new Legend { Visible = true,  Position= "top-center" };
+    Description description = new Description { Visible = true, Text = "在堆叠柱状图中，如果label的位置被设定为middle，即显示在柱形中间。在对应柱形大小不够摆放label的情况下，label会被自动隐藏。" };
+
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+
+    }
+
+
+
+
+
+    Data[] data = new[] {
+
+        new Data{ Year= "1991", Value= 3,   Type="lon"},
+        new Data{ Year= "1992", Value= 4,   Type="lon"},
+        new Data{ Year= "1993", Value= 3.5, Type="lon"},
+        new Data{ Year= "1994", Value= 5,   Type="lon"},
+        new Data{ Year= "1995", Value= 4.9, Type="lon"},
+        new Data{ Year= "1996", Value= 6,   Type="lon"},
+        new Data{ Year= "1997", Value= 7,   Type="lon"},
+        new Data{ Year= "1998", Value= 9,   Type="lon"},
+        new Data{ Year= "1999", Value= 1,  Type="lon"},
+
+        new Data{ Year= "1991", Value= 312,   Type="Bar"},
+        new Data{ Year= "1992", Value= 3,   Type="Bar"},
+        new Data{ Year= "1993", Value= 3.5, Type="Bar"},
+        new Data{ Year= "1994", Value= 2,   Type="Bar"},
+        new Data{ Year= "1995", Value= 4.9, Type="Bar"},
+        new Data{ Year= "1996", Value= 4,   Type="Bar"},
+        new Data{ Year= "1997", Value= 2,   Type="Bar"},
+        new Data{ Year= "1998", Value= 8,   Type="Bar"},
+        new Data{ Year= "1999", Value= 12,  Type="Bar"},
+
+        new Data{ Year= "1991", Value= 3,   Type="Wiz"},
+        new Data{ Year= "1992", Value= 4,   Type="Wiz"},
+        new Data{ Year= "1993", Value= 1.5, Type="Wiz"},
+        new Data{ Year= "1994", Value= 2,   Type="Wiz"},
+        new Data{ Year= "1995", Value= 4.9, Type="Wiz"},
+        new Data{ Year= "1996", Value= 3,   Type="Wiz"},
+        new Data{ Year= "1997", Value= 7,   Type="Wiz"},
+        new Data{ Year= "1998", Value= 2,   Type="Wiz"},
+        new Data{ Year= "1999", Value= 13,  Type="Wiz"},
+    };
+
+    public class Data
+    {
+        public string Year { get; set; }
+
+        public double Value { get; set; }
+
+        public string Type {get;set;}
+    }
+
+}

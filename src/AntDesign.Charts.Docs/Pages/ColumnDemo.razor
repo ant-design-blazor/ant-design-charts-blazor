@@ -1,0 +1,53 @@
+﻿@page "/column"
+@using System.Drawing
+
+<h1>Column Chart</h1>
+
+<Column Data=data
+    YField="sales"
+    XField="type"     
+    Label="@label"
+    Title="@title"          
+     />
+
+
+
+@code{
+
+
+
+
+    Title title = new Title { Visible = true, Text = "基础柱状图" };
+    Label label = new Label { Visible = true };
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+
+    }
+
+
+
+
+
+    Data[] data = new[] {
+
+    new Data{ Sales= 8,   Type="家具家电"},
+    new Data{ Sales= 12,  Type="粮油副食"},
+    new Data{ Sales= 33,   Type="生鲜水果"},
+    new Data{ Sales= 150,   Type="美容洗护"},
+    new Data{ Sales= 85,   Type="进口食品"},
+    new Data{ Sales= 28,   Type="食品饮料"},
+    new Data{ Sales= 38,   Type="家庭清洁"},
+
+    };
+
+    public class Data
+    {
+
+        public double Sales { get; set; }
+
+        public string Type { get; set; }
+    }
+
+}
