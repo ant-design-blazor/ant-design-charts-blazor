@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AntDesign.Charts.BarConfig" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIBAABAAARSAQAAgEAAAAQAAAAAAAAAAQAAAkAI=</HashCode>
+      <FileName>Components\Bar\BarConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.BarViewConfigLabel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEACADAAABAIAAAAAAFAAAAAAAQDAAggAA=</HashCode>
+      <FileName>Components\Bar\IBarViewConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.ValueAxis" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAEAAAQAIUABAAABAAAAEgQCARAAAAAASACAAAAAA=</HashCode>
+      <FileName>Components\Configs\IValueAxis.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.BaseAxisLine" Collapsed="true">
+    <Position X="15" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Components\Configs\IBaseAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.BaseAxisGrid" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Components\Configs\IBaseAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.BaseAxisGridLine" Collapsed="true">
+    <Position X="11.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\IBaseAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.BaseAxisLabel" Collapsed="true">
+    <Position X="13.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAADAAAAQAAAAAAAEAAAAAQAACAAAgAA=</HashCode>
+      <FileName>Components\Configs\IBaseAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.BaseAxisTitle" Collapsed="true">
+    <Position X="9.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAACAAAgEA=</HashCode>
+      <FileName>Components\Configs\IBaseAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.BaseAxisTickLine" Collapsed="true">
+    <Position X="8" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Components\Configs\IBaseAxis.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.LineStyleS" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABQAAAAAEAMAAAAAAAAACCIAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\LineStyle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.TextStyle" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAAAABwAAAAAECMAQAAAAAEACCIAAIAAgQAAAAABA=</HashCode>
+      <FileName>Components\Configs\ITextStyle.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.CatAxis" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAQAIAABAAAAAAAAAgAAABAAAAAACACAAAAAA=</HashCode>
+      <FileName>Components\Configs\ICatAxis.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.BarLabel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEAAADAAABAIAAAAAAFAAAAAAAQCAAggAA=</HashCode>
+      <FileName>Components\Configs\IBarLabel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.BarAutoLabel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEACADAAABAIAAAAAAFAAAAAAAQDAAggAA=</HashCode>
+      <FileName>Components\Configs\IBarAutoLabel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.ConversionTagOptions" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAIAAAIAAAAAAACAACAAACAAIAEA=</HashCode>
+      <FileName>Components\Configs\IConversionTagOptions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.ArrowOptions" Collapsed="true">
+    <Position X="8" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Components\Configs\ArrowOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.ValueOptions" Collapsed="true">
+    <Position X="8" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Components\Configs\ValueOptions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AntDesign.Charts.Label" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEAAADAAABAIAAAAAAFAAAAAAAQCAAggAA=</HashCode>
+      <FileName>Components\Configs\Label.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.Axis" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAEAAAQAIUABAAABAAAAEgQDARAAAAAASACAAAgAA=</HashCode>
+      <FileName>Components\Configs\IViewConfig.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.Meta" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAIAAAAAAAAAAAAAAAAAAABACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\IMeta.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="AntDesign.Charts.Tooltip" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAAIAAAAAAAAAAAAAAAAIAAAAEAAAAAAEACQAAEAA=</HashCode>
+      <FileName>Components\Configs\ITooltip.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="AntDesign.Charts.IBarViewConfig" Collapsed="true">
+    <Position X="8" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIBAAAAAARCAAAAgEAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Components\Bar\IBarViewConfig.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IGraphicStyle" Collapsed="true">
+    <Position X="5.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABwAAAAAEAMAAAAAAAAACCIAAIAAgAAAAAABA=</HashCode>
+      <FileName>Components\Configs\IGraphicStyle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IValueAxis" Collapsed="true">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAUAAAAABAAAAEAQCARAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\IValueAxis.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IBaseAxis" Collapsed="true">
+    <Position X="1.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAQAIAABAAAAAAAAAgAAABAAAAAACACAAAAAA=</HashCode>
+      <FileName>Components\Configs\IBaseAxis.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.LineStyle" Collapsed="true">
+    <Position X="8" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABQAAAAAEAMAAAAAAAAACCIAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\LineStyle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.ITextStyle" Collapsed="true">
+    <Position X="5.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EQAAAAAAAAAAAAACAAQAAAAAEAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Components\Configs\ITextStyle.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.ICatAxis" Collapsed="true">
+    <Position X="2.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\ICatAxis.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IBarLabel" Collapsed="true">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAABAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\IBarLabel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.ILabel" Collapsed="true">
+    <Position X="1.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEAAADAAABAIAAAAAAFAAAAAAAQCAAggAA=</HashCode>
+      <FileName>Components\Configs\Label.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IBarAutoLabel" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Components\Configs\IBarAutoLabel.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IConversionTagOptions" Collapsed="true">
+    <Position X="9.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAIAAAIAAAAAAACAACAAACAAIAEA=</HashCode>
+      <FileName>Components\Configs\IConversionTagOptions.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IInteractions" Collapsed="true">
+    <Position X="13.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\IInteractions.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IPlotConfig" Collapsed="true">
+    <Position X="9.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAQAQAAAAAAAAQAAAAAAAAAAQAAAgAI=</HashCode>
+      <FileName>Components\Configs\IPlotConfig.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IViewConfig" Collapsed="true">
+    <Position X="15" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAARAAAAAAAAAAgAAMAACAEAAQAAACgCA=</HashCode>
+      <FileName>Components\Configs\IViewConfig.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IDataItem" Collapsed="true">
+    <Position X="11.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\IDataItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.ILooseMap&lt;T&gt;" Collapsed="true">
+    <Position X="15" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\ILooseMap.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.IMeta" Collapsed="true">
+    <Position X="8" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAIAAAAAAAAAAAAAAAAAAABACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Components\Configs\IMeta.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.ITimeAxis" Collapsed="true">
+    <Position X="11.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAACABAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Components\Configs\ITimeAxis.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="AntDesign.Charts.ITooltip" Collapsed="true">
+    <Position X="13.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABCAAIAAAAAAAAAAAAAAAAIAAAAEAAAAAAEACQAAEAA=</HashCode>
+      <FileName>Components\Configs\ITooltip.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

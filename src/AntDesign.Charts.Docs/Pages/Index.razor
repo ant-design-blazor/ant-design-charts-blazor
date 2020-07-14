@@ -6,6 +6,8 @@
 
 <Line Data=data YField="value" XField="year" />
 
+<Bar Data=data YField="value" XField="year" Config="BarConfig" />
+
 @code{
 
     Data[] data = new[] {
@@ -26,4 +28,24 @@
 
         public double Value { get; set; }
     }
+
+    BarConfig BarConfig = new BarConfig()
+    {
+        
+        xAxis = new ValueAxis()
+        {
+            line = new BaseAxisLine()
+            {
+                visible = true,
+                style=new LineStyleS()
+                {
+                    cursor="3231"
+                }
+            },
+            @base=2312,
+            min=12,
+        },
+      
+    };
+
 }
