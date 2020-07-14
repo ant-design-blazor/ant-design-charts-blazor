@@ -1,0 +1,37 @@
+﻿@page "/donut"
+
+
+<h1>Donut Chart</h1>
+
+<Donut Data="@data"
+     AngleField="value"
+     ColorField="type"
+     Title="@title"
+     Label="@label"
+     Radius="0.8" />
+
+
+@code{
+
+    Title title = new Title { Visible = true, Text = "多色饼图" };
+    Label label = new Label { Visible = true, Type = "inner" };
+    Description description = new Description { Visible = true, Text = "多色饼图 description" };
+
+
+    Data[] data = new[] {
+
+    new Data{ Value= 27,   Type="家具家电"},
+    new Data{ Value= 25,  Type="粮油副食"},
+    new Data{ Value= 48,   Type="生鲜水果"},
+    new Data{ Value= 25,  Type="新鲜花"},
+    new Data{ Value= 48,   Type="水果"},
+
+    };
+
+    public class Data
+    {
+
+        public double Value { get; set; }
+        public string Type { get; set; }
+    }
+}

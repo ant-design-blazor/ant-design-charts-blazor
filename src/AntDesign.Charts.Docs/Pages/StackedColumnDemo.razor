@@ -10,24 +10,26 @@
         StackField="type"      
         Title="@title" 
         Label="@label"        
-        Description="@description"     
-        Legend="@legend"
+        Description="@description"         
+        Legend="@legend"       
         />
+
+
 
 @code{
 
     string[] color = new string[]
     {
            "brown",
-           "gray",
-           "blue",
+           "lightgray",
+           "lightblue",          
     };
 
-    Label label = new Label { Visible = true, Position = "middle" };
+    ConnectedArea connectedArea = new ConnectedArea { Visible = true, triggerOn = false };
+    Label label = new Label { Visible = true,  };
     Title title = new Title { Visible = true, Text = "堆叠柱状图：label自动隐藏" };
-
-    Legend legend = new Legend { Visible = true,  Position= "top-center" };
-    Description description = new Description { Visible = true, Text = "在堆叠柱状图中，如果label的位置被设定为middle，即显示在柱形中间。在对应柱形大小不够摆放label的情况下，label会被自动隐藏。" };
+    Legend legend = new Legend { Visible = true, Position = "top-center" };
+    Description description = new Description {Visible = true, Text = "在堆叠柱状图中，如果label的位置被设定为middle，即显示在柱形中间." };
 
 
     protected override Task OnInitializedAsync()
@@ -43,7 +45,7 @@
     Data[] data = new[] {
 
         new Data{ Year= "1991", Value= 3,   Type="lon"},
-        new Data{ Year= "1992", Value= 24,   Type="lon"},
+        new Data{ Year= "1992", Value= 4,   Type="lon"},
         new Data{ Year= "1993", Value= 3.5, Type="lon"},
         new Data{ Year= "1994", Value= 5,   Type="lon"},
         new Data{ Year= "1995", Value= 4.9, Type="lon"},
@@ -52,7 +54,7 @@
         new Data{ Year= "1998", Value= 9,   Type="lon"},
         new Data{ Year= "1999", Value= 1,  Type="lon"},
 
-        new Data{ Year= "1991", Value= 33,   Type="Bar"},
+        new Data{ Year= "1991", Value= 3,   Type="Bar"},
         new Data{ Year= "1992", Value= 3,   Type="Bar"},
         new Data{ Year= "1993", Value= 3.5, Type="Bar"},
         new Data{ Year= "1994", Value= 2,   Type="Bar"},
@@ -69,7 +71,7 @@
         new Data{ Year= "1995", Value= 4.9, Type="Wiz"},
         new Data{ Year= "1996", Value= 3,   Type="Wiz"},
         new Data{ Year= "1997", Value= 7,   Type="Wiz"},
-        new Data{ Year= "1998", Value= 20,   Type="Wiz"},
+        new Data{ Year= "1998", Value= 2,   Type="Wiz"},
         new Data{ Year= "1999", Value= 13,  Type="Wiz"},
     };
 

@@ -6,15 +6,19 @@ namespace AntDesign.Charts
 {
     public class Label
     {
-        public bool Visible { get; set; } 
-        public string Position { get; set; }
+        public bool Visible { get; set; } = false;
+        public string Position { get; set; } = "top";
 
-        public int OffsetX { get; set; } = 6;
-        public int OffsetY { get; set; } = 6;
+        public object Style { get; set; }
 
-        public bool AdjustColor { get; set; } = true;
+        public string Type { get; set; } = "inner";
 
-        public bool AdjustPosition { get; set; } = false;
+        //public int OffsetX { get; set; } = 6;
+        //public int OffsetY { get; set; } = 6;
+
+        //public bool adjustColor { get; set; } = true;
+
+        //public bool adjustPosition { get; set; } = false;
 
 
     }

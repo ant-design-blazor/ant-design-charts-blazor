@@ -8,5 +8,7 @@ namespace AntDesign.Charts
     {
         public bool Visible { get; set; } 
         public string Text { get; set; }
+
+        public string AlignTo { get; set; } = "left";
     }
 }

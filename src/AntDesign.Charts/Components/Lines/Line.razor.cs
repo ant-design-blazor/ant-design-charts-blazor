@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace AntDesign.Charts
@@ -10,11 +11,13 @@ namespace AntDesign.Charts
         [Parameter]
         public IEnumerable<TItem> Data { get; set; }
 
-        [Parameter]
-        public string XField { get; set; }
+        [Parameter] public string XField { get; set; }
 
-        [Parameter]
-        public string YField { get; set; }
+        [Parameter] public string YField { get; set; }
+        [Parameter] public Title Title { get; set; } = new Title();
+        [Parameter] public Description Description { get; set; } = new Description();
+
+        [Parameter] public bool ForceFit { get; set; } = true;
 
         [Inject] private IJSRuntime JS { get; set; }
 
@@ -30,6 +33,11 @@ namespace AntDesign.Charts
                 {
                     xField = XField,
                     yField = YField,
+                    forceFit = ForceFit,
+                    title  = Title,
+                    description = Description,
+                    label = new {visible = true, type = "point"},
+
                 });
             }
         }

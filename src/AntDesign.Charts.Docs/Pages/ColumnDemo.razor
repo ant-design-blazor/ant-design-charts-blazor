@@ -7,7 +7,10 @@
     YField="sales"
     XField="type"     
     Label="@label"
-    Title="@title"          
+    Title="@title"
+    Meta="@meta"
+        OnColumnClick="@OnColumnClick"
+        
      />
 
 
@@ -15,10 +18,15 @@
 @code{
 
 
-
+    object meta = new { type =  new { alias = "类别" }, sales = new { alias = "销售额(万)" } };
 
     Title title = new Title { Visible = true, Text = "基础柱状图" };
-    Label label = new Label { Visible = true };
+    Description description = new Description { Visible=true, Text="指定颜色映射字段(colorField)"};
+    Label label = new Label { Visible = true,  Style = new { fill = "red", fontSize = 12, fontWeight = 600, opacity=0.6  } };
+
+
+
+
 
     protected override Task OnInitializedAsync()
     {
@@ -27,6 +35,10 @@
     }
 
 
+    private void OnColumnClick()
+    {
+        Console.WriteLine("Test");
+    }
 
 
 

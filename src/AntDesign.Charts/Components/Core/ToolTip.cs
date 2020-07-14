@@ -8,5 +8,9 @@ namespace AntDesign.Charts
     {
         public bool Visible { get; set; }
         public int Offset { get; set; }
+
+        public string Fields { get; set; }
+
+        public DomStyles DomStyles { get; set; }
     }
 }

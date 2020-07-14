@@ -1,0 +1,74 @@
+﻿@page "/groupedcolumn"
+
+
+<h1>Column Chart</h1>
+
+<GroupedColumn Data=data
+        YField="value"
+        XField="month"
+        Label="@label"
+        Title="@title" 
+         Description="@description"
+        GroupField="name"
+         />
+
+
+
+@code{ 
+
+
+    Title title = new Title { Visible = true, Text = "基础分组柱状图" };
+    Description description = new Description { Visible = true, Text = "在堆叠柱状图中，如果label的位置被设定为middle，即显示在柱形中间." };
+    Label label = new Label { Visible = true };
+
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+
+    }
+
+
+    private void OnColumnClick()
+    {
+        Console.WriteLine("Test");
+    }
+
+
+
+    Data[] data = new[] {
+
+        new Data{ name = "london",  month= "Apr",   value=18.96},
+        new Data{ name = "london",  month= "May",   value=28.8},
+        new Data{ name = "london",  month= "Jun",   value=39.3},
+        new Data{ name = "london",  month= "Jul",   value=81.4},
+        new Data{ name = "london",  month= "Aug",   value=47},
+
+        new Data{ name = "berlin",  month= "Apr",   value=56.3},
+        new Data{ name = "berlin",  month= "May",   value=81.4},
+        new Data{ name = "berlin",  month= "Jun",   value=81.4},
+        new Data{ name = "berlin",  month= "Jul",   value=81.4},
+        new Data{ name = "berlin",  month= "Aug",   value=81.4},
+
+
+        new Data{ name = "beijing",  month= "Apr",   value=67.4},
+        new Data{ name = "beijing",  month= "May",   value=56.4},
+        new Data{ name = "beijing",  month= "Jun",   value=121.4},
+        new Data{ name = "beijing",  month= "Jul",   value=43.3},
+        new Data{ name = "beijing",  month= "Aug",   value=67.4},
+
+
+
+    };
+
+    public class Data
+    {
+
+        public string name { get; set; }
+
+        public string month { get; set; }
+
+        public double value { get; set; }
+    }
+
+    }
