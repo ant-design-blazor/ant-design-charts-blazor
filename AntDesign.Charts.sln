@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AntDesign.Charts", "src\Ant
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AntDesign.Charts.Docs", "src\AntDesign.Charts.Docs\AntDesign.Charts.Docs.csproj", "{E994DD0D-C3E0-47CA-B584-E0F92E9AB7EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AntDesign.Charts.Docs.WebAssembly", "src\AntDesign.Charts.Docs.WebAssembly\AntDesign.Charts.Docs.WebAssembly.csproj", "{1863ABD1-9C93-4CBC-8645-6FD02394F28B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AntDesign.Charts.Docs.WebAssembly", "src\AntDesign.Charts.Docs.WebAssembly\AntDesign.Charts.Docs.WebAssembly.csproj", "{1863ABD1-9C93-4CBC-8645-6FD02394F28B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
