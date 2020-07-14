@@ -1,34 +1,27 @@
 ﻿@page "/bullet"
 
 
-    <h1>基础bullet图 Chart</h1>
+<h1>子弹图 Chart</h1>
 
 <Bullet Data=data       
         Title="@title"       
         Description="@description"
         RangeMax="100"
         RangeColors="@rangeColors"
-      />
+      >
 
-
-
+</Bullet>
 @code{
     string[] rangeColors = new[] { "red", "yellow", "blue" };
-
     Title title = new Title { Visible = true, Text = "基础bullet图" };
     Description description = new Description { Visible = true, Text = "指定颜色映射字段(colorField)" };
-
-
-
     Data[] data = new[] {
-
     new Data{title= "Statisfied", measures=new[]{83}, targets=new[]{90 }, ranges=new[]{0,0.6,0.9,1} },
      new Data{title= "满意度", measures=new[]{30,40,10,20}, targets=new[]{90 } },
     };
 
     public class Data
     {
-
         public string title { get; set; }
 
         public int[] measures { get; set; }

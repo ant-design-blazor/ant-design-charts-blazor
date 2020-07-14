@@ -14,8 +14,6 @@
         Legend="@legend"       
         />
 
-
-
 @code{
 
     string[] color = new string[]
@@ -30,17 +28,6 @@
     Title title = new Title { Visible = true, Text = "堆叠柱状图：label自动隐藏" };
     Legend legend = new Legend { Visible = true, Position = "top-center" };
     Description description = new Description {Visible = true, Text = "在堆叠柱状图中，如果label的位置被设定为middle，即显示在柱形中间." };
-
-
-    protected override Task OnInitializedAsync()
-    {
-        return base.OnInitializedAsync();
-
-    }
-
-
-
-
 
     Data[] data = new[] {
 

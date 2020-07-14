@@ -11,33 +11,16 @@
          Description="@description"
         GroupField="name"
          />
-
-
-
 @code{ 
-
-
     Title title = new Title { Visible = true, Text = "基础分组柱状图" };
     Description description = new Description { Visible = true, Text = "在堆叠柱状图中，如果label的位置被设定为middle，即显示在柱形中间." };
     Label label = new Label { Visible = true };
-
-
-    protected override Task OnInitializedAsync()
-    {
-        return base.OnInitializedAsync();
-
-    }
-
-
     private void OnColumnClick()
     {
         Console.WriteLine("Test");
     }
 
-
-
     Data[] data = new[] {
-
         new Data{ name = "london",  month= "Apr",   value=18.96},
         new Data{ name = "london",  month= "May",   value=28.8},
         new Data{ name = "london",  month= "Jun",   value=39.3},
@@ -56,9 +39,6 @@
         new Data{ name = "beijing",  month= "Jun",   value=121.4},
         new Data{ name = "beijing",  month= "Jul",   value=43.3},
         new Data{ name = "beijing",  month= "Aug",   value=67.4},
-
-
-
     };
 
     public class Data
