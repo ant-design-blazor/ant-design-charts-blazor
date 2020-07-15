@@ -12,7 +12,7 @@ namespace AntDesign.Charts
         public int? padding { get; set; }//OneOf<int?, int[], string>
         public string xField { get; set; }
         public string yField { get; set; }
-        public string? color { get; set; }//OneOf<string, string[],{}>
+        public string[] color { get; set; }//OneOf<string, string[],{}>
         public Axis xAxis { get; set; }
         public Axis yAxis { get; set; }
         public Label label { get; set; }//OneOf<Label, any>

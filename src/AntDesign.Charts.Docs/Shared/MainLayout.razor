@@ -1,14 +1,11 @@
 ﻿@inherits LayoutComponentBase
-    <TopMenu></TopMenu>
-    <Layout>
-        <Layout>
-            <Sider Style="background-color:white;border-right:1px solid #ccc">
-                <NavMenu></NavMenu>
-            </Sider>
-            <Layout>
-                <Content Style="padding: 24px;margin: 0;background-color:white">
-                    @Body
-                </Content>
-            </Layout>
-        </Layout>
-    </Layout>
+<TopMenu></TopMenu>
+
+<div style="display: flex;flex-direction: row;align-items:stretch">
+    <div style="flex:0 0 auto;width:200px">
+        <NavMenu></NavMenu>
+    </div>
+    <div Style="flex:1 1 auto;padding: 24px;">
+        @Body
+    </div>
+</div>

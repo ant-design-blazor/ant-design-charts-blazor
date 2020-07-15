@@ -28,7 +28,7 @@ namespace AntDesign.Charts
         public int? padding { get;set; }
         public string xField { get;set; }
         public string yField { get;set; }
-        public string color { get;set; }
+        public string[] color { get;set; }
         public Tooltip tooltip { get;set; }
         public Legend legend { get;set; }
         public bool? animation { get;set; }
