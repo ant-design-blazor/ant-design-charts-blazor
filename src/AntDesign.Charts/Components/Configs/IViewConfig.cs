@@ -18,7 +18,10 @@ namespace AntDesign.Charts
         public Label label { get; set; }//OneOf<Label, any>
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
-        public bool? animation { get; set; }// OneOf<Animation, bool?> 
+        /// <summary>
+        /// OneOf<Animation, bool?> 
+        /// </summary>
+        public object animation { get; set; }// OneOf<Animation, bool?> 
         public string theme { get; set; }//OneOf<LooseMap, string>
         public object responsiveTheme { get; set; }// OneOf<{},string>
         public Interactions[] interactions { get; set; }
