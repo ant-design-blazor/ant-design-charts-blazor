@@ -1,15 +1,14 @@
 ﻿@inherits LayoutComponentBase
-
-<div class="sidebar">
-    <NavMenu />
-</div>
-
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://github.com/ant-design-blazor/ant-design-charts-blazor" target="_blank" class="ml-md-auto">Github</a>
-    </div>
-
-    <div class="content px-4">
-        @Body
-    </div>
-</div>
+    <TopMenu></TopMenu>
+    <Layout>
+        <Layout>
+            <Sider Style="background-color:white;border-right:1px solid #ccc">
+                <NavMenu></NavMenu>
+            </Sider>
+            <Layout>
+                <Content Style="padding: 24px;margin: 0;background-color:white">
+                    @Body
+                </Content>
+            </Layout>
+        </Layout>
+    </Layout>

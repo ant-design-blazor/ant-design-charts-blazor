@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net.Http;
 
 namespace AntDesign.Charts.Docs.Server
 {
@@ -21,6 +22,16 @@ namespace AntDesign.Charts.Docs.Server
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAntDesign();
+
+            services.AddTransient(sp => new HttpClient()
+            {
+                DefaultRequestHeaders =
+                {
+                    // Use to call the github API on server side
+                    {"User-Agent","Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36 Edg/81.0.416.68"}
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
