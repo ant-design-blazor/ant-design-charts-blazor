@@ -10,7 +10,7 @@ namespace AntDesign.Charts
     {
         public string colorField { get; set; }
         public int? barSize { get; set; }
-        public IGraphicStyle barStyle { get; set; }
+        public GraphicStyle barStyle { get; set; }
         public ValueAxis xAxis { get; set; }
         public CatAxis yAxis { get; set; }
         public BarViewConfigLabel label { get; set; }
