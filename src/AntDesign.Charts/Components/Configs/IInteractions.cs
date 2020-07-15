@@ -7,6 +7,13 @@ namespace AntDesign.Charts
     public interface IInteractions
     {
         public string type { get; set; }
-        //public IInteractionConfig cfg { get; set; }// [field: string]: any;
+        public object cfg { get; set; }// [field: string]: any;
     }
+
+    public class Interactions : IInteractions
+    {
+        public string type { get; set; }
+        public object cfg { get; set; }
+    }
+
 }

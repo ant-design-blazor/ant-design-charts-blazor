@@ -14,11 +14,11 @@ namespace AntDesign.Charts
         public CatAxis yAxis { get; set; }
         public BarViewConfigLabel label { get; set; }
         public ConversionTagOptions conversionTag { get; set; }
-        public IInteractions[] interactions { get; set; }
+        public Interactions[] interactions { get; set; }
         public string renderer { get; set; }
         public object data { get; set; }
         public ILooseMap<Meta> meta { get; set; }
-        public int? padding { get; set; }
+        public string padding { get; set; }
         public string xField { get; set; }
         public string yField { get; set; }
         public string[] color { get; set; }

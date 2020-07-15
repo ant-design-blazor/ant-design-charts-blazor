@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Line<TItem> : ChartComponentBase<TItem>
+    public partial class Temp<TItem> : ChartComponentBase<TItem>
     {
         [Parameter]
         public BarConfig Config { get; set; }

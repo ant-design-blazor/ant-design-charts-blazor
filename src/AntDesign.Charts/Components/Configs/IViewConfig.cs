@@ -9,7 +9,7 @@ namespace AntDesign.Charts
         public string renderer { get; set; }
         public object data { get; set; }
         public ILooseMap<Meta> meta { get; set; }
-        public int? padding { get; set; }//OneOf<int?, int[], string>
+        public string padding { get; set; }//OneOf<int?, int[], string>
         public string xField { get; set; }
         public string yField { get; set; }
         public string[] color { get; set; }//OneOf<string, string[],{}>
@@ -21,7 +21,7 @@ namespace AntDesign.Charts
         public bool? animation { get; set; }// OneOf<Animation, bool?> 
         public string theme { get; set; }//OneOf<LooseMap, string>
         public object responsiveTheme { get; set; }// OneOf<{},string>
-        public IInteractions[] interactions { get; set; }
+        public Interactions[] interactions { get; set; }
         public bool? responsive { get; set; }
         public Title title { get; set; }
         public Description description { get; set; }
