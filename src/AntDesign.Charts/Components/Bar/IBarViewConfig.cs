@@ -8,7 +8,7 @@ namespace AntDesign.Charts
     {
         public string colorField { get; set; }
         public int? barSize { get; set; }
-        public IGraphicStyle barStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle barStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
         public ValueAxis xAxis { get; set; }
         public CatAxis yAxis { get; set; }
         public BarViewConfigLabel label { get; set; }// OneOf<IBarLabel, IBarAutoLabel>

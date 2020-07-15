@@ -12,7 +12,23 @@
         "title": "堆叠条形图",
         "type": "menuItem",
         "url": "Stacked_Bar_Chart"
+      },
+      {
+        "title": "百分比堆叠条形图",
+        "type": "menuItem",
+        "url": "Percent_Stacked_Bar_Chart"
+      },
+      {
+        "title": "分组条形图",
+        "type": "menuItem",
+        "url": "Grouped_Bar_Chart"
+      },
+      {
+        "title": "区间条形图",
+        "type": "menuItem",
+        "url": "Range_Bar_Chart"
       }
+
     ]
   }
 ]

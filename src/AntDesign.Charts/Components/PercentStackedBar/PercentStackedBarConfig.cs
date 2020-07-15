@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
-    public class StackedBarConfig : IStackedBarViewConfig, IPlotConfig
+    public class PercentStackedBarConfig : IPercentStackedBarLayerConfig, IPlotConfig
     {
         public string stackField { get;set;}
         public string colorField { get;set;}
@@ -33,9 +33,14 @@ namespace AntDesign.Charts
         public GuideLineConfig[] guideLine { get;set;}
         public ViewConfigDefaultState defaultState { get;set;}
         public string name { get;set;}
-        public bool? forceFit { get;set;}
+        public string id { get;set;}
+        public int? x { get;set;}
+        public int? y { get;set;}
         public int? width { get;set;}
         public int? height { get;set;}
+        public object parent { get;set;}
+        public object canvas { get;set;}
+        public bool? forceFit { get;set;}
         public int? pixelRatio { get;set;}
         public bool? localRefresh { get;set;}
         Axis IViewConfig.xAxis { get;set;}
