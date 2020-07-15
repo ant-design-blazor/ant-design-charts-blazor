@@ -13,6 +13,4 @@
   <ItemGroup>
     <ProjectReference Include="..\AntDesign.Charts\AntDesign.Charts.csproj" />
   </ItemGroup>
-
-
 </Project>
