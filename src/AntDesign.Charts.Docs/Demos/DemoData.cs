@@ -21,6 +21,18 @@ namespace AntDesign.Charts.Docs.Demos
         {
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<SalesItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/sales.json").ToString());
+        }   
+        
+        public static async Task<GDPItem[]> GDPAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<GDPItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/GDP.json").ToString());
+        }
+
+        public static async Task<GDPItem[]> EmissionsAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<GDPItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/emissions.json").ToString());
         }
     }
 
@@ -36,6 +48,20 @@ namespace AntDesign.Charts.Docs.Demos
 
         public string 城市 { get; set; }
         public decimal 销售额 { get; set; }
+    }
+
+    public class GDPItem
+    {
+        public string name { get; set; }
+        public string year { get; set; }
+        public decimal gdp { get; set; }
+    }
+
+    public class EmissionsItem
+    {
+        public string year { get; set; }
+        public int value { get; set; }
+        public string category { get; set; }
     }
 
 }

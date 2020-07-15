@@ -8,6 +8,11 @@
         "title": "基础折线图",
         "type": "menuItem",
         "url": "Line_Chart"
+      },
+      {
+        "title": "多折线图",
+        "type": "menuItem",
+        "url": "Multiple_Line_Chart"
       }
 
     ]

@@ -31,7 +31,7 @@ namespace AntDesign.Charts
         public string[] color { get;set; }
         public Tooltip tooltip { get;set; }
         public Legend legend { get;set; }
-        public bool? animation { get;set; }
+        public object animation { get;set; }
         public object responsiveTheme { get;set; }
         public bool? responsive { get;set; }
         public Title title { get;set; }
