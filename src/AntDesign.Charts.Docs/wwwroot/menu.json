@@ -1,0 +1,18 @@
+[
+  {
+    "title": "条形图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础条形图",
+        "type": "menuItem",
+        "url": "Bar_Chart"
+      },
+      {
+        "title": "堆叠条形图",
+        "type": "menuItem",
+        "url": "Stacked_Bar_Chart"
+      }
+    ]
+  }
+]
