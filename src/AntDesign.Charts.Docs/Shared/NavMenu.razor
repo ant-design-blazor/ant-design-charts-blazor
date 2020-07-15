@@ -1,14 +1,67 @@
-﻿<Menu Mode=MenuMode.Inline>
-    <SubMenu Key="sub4" Title="@("条形图")">
-        <MenuItem>
-            <NavLink class="nav-link" href="/Bar_Chart">
-                基础条形图
-            </NavLink>
-        </MenuItem>
-        <MenuItem>
-            <NavLink class="nav-link" href="/Stacked_Bar_Chart">
-                堆叠条形图
-            </NavLink>
-        </MenuItem>
-    </SubMenu>
+﻿<Menu Theme="MenuTheme.Light" Mode="MenuMode.Inline">
+    @menuItemTemplate((MenuItems, 1))
 </Menu>
+
+
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+@code {
+
+    [Parameter]
+    public bool IsCollapsed { get; set; }
+
+    [Parameter]
+    public DemoMenuItem[] MenuItems { get; set; } = { };
+
+    static readonly RenderFragment<(DemoMenuItem[] items, int level)> menuItemTemplate = context =>
+    @<Template>
+        @foreach (var menu in context.items)
+        {
+            if (menu.Type == "menuItem")
+            {
+                <MenuItem>
+                    <MenuLink href="@($"/{menu.Url}")" Match="@NavLinkMatch.All">
+                        <span>@menu.Title</span>
+                        @if (menu.SubTitle != null)
+                        {
+                            <span class="chinese">@menu.SubTitle</span>
+                        }
+                    </MenuLink>
+                </MenuItem>
+            }
+            else if (menu.Type == "subMenu")
+            {
+                <SubMenu Title="@(menu.Title)" IsOpen="true">
+                    @if (menu.Children.Any())
+                    {
+                        @menuItemTemplate((menu.Children, context.level + 1))
+                    }
+                </SubMenu>
+            }
+            else if (menu.Type == "itemGroup")
+            {
+                <MenuItemGroup Title="@menu.Title">
+                    @if (menu.Children.Any())
+                    {
+                        @menuItemTemplate((menu.Children, context.level + 1))
+                    }
+                </MenuItemGroup>
+            }
+        }
+    </Template>;
+
+protected override async Task OnInitializedAsync()
+{
+var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+MenuItems = await HttpClient.GetFromJsonAsync<DemoMenuItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/menu.json").ToString());
+
+
+NavigationManager.LocationChanged += (_, args) =>
+{
+ StateHasChanged();
+};
+StateHasChanged();
+await base.OnInitializedAsync();
+}
+}
