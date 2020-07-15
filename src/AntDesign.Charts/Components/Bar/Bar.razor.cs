@@ -8,19 +8,11 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Bar<TItem> : ChartComponentBase
+    public partial class Bar<TItem> : ChartComponentBase<TItem> 
     {
         [Parameter]
-        public IEnumerable<TItem> Data { get; set; }
-
-        [Parameter]
-        public string XField { get; set; }
-
-        [Parameter]
-        public string YField { get; set; }
-
-        [Parameter]
         public BarConfig Config { get; set; }
+        protected override string ChartType { get; set; } = "Bar";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -29,10 +21,8 @@ namespace AntDesign.Charts
             if (firstRender)
             {
                 if (Config == null) Config = new BarConfig();
-                if (string.IsNullOrWhiteSpace(XField) == false) Config.xField = XField;
-                if (string.IsNullOrWhiteSpace(YField) == false) Config.yField = YField;
-
-                await JS.InvokeVoidAsync("createChart", "Bar", Ref, Data, Config, OtherConfig);
+                SetIViewConfig(Config);
+                await JS.InvokeVoidAsync(CreateChart, ChartType, Ref, Config, OtherConfig);
             }
         }
     }

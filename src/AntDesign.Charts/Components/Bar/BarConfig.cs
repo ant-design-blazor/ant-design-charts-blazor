@@ -23,7 +23,7 @@ namespace AntDesign.Charts
         public int? pixelRatio { get; set; }
         public string theme { get; set; }
         public bool? localRefresh { get; set; }
-        public IDataItem[] data { get;set; }
+        public object data { get;set; }
         public ILooseMap<Meta> meta { get;set; }
         public int? padding { get;set; }
         public string xField { get;set; }

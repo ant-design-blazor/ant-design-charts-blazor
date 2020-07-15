@@ -7,7 +7,7 @@ namespace AntDesign.Charts
     public interface IViewConfig
     {
         public string renderer { get; set; }
-        public IDataItem[] data { get; set; }
+        public object data { get; set; }
         public ILooseMap<Meta> meta { get; set; }
         public int? padding { get; set; }//OneOf<int?, int[], string>
         public string xField { get; set; }

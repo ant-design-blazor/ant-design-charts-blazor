@@ -5,20 +5,11 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Line<TItem> : ComponentBase
+    public partial class Line<TItem> : ChartComponentBase<TItem>
     {
         [Parameter]
-        public IEnumerable<TItem> Data { get; set; }
-
-        [Parameter]
-        public string XField { get; set; }
-
-        [Parameter]
-        public string YField { get; set; }
-
-        [Inject] private IJSRuntime JS { get; set; }
-
-        private ElementReference Ref;
+        public BarConfig Config { get; set; }
+        protected override string ChartType { get; set; } = "Line";
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -26,11 +17,9 @@ namespace AntDesign.Charts
 
             if (firstRender)
             {
-                await JS.InvokeVoidAsync("createChart", "Line", Ref, Data, new
-                {
-                    xField = XField,
-                    yField = YField,
-                });
+                if (Config == null) Config = new BarConfig();
+                SetIViewConfig(Config);
+                await JS.InvokeVoidAsync(CreateChart, ChartType, Ref, Config, OtherConfig);
             }
         }
     }
