@@ -1,4 +1,30 @@
 [
+
+  {
+    "title": "折线图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础折线图",
+        "type": "menuItem",
+        "url": "Line_Chart"
+      }
+
+    ]
+  },
+
+  {
+    "title": "模板",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "模板",
+        "type": "menuItem",
+        "url": "Temp"
+      }
+
+    ]
+  },
   {
     "title": "条形图",
     "type": "subMenu",
