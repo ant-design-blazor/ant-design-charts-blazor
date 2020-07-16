@@ -4,29 +4,27 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
-    public class GroupedBarConfig : IGroupedBarViewConfig, IPlotConfig
+    public class StackedAreaConfig : IStackedAreaLayerConfig, IPlotConfig
     {
-        public string groupField { get; set; }
-        public string colorField { get; set; }
-        public int? barSize { get; set; }
-        public GraphicStyle barStyle { get; set; }
-        public ValueAxis xAxis { get; set; }
-        public CatAxis yAxis { get; set; }
-        public BarViewConfigLabel label { get; set; }
-        public ConversionTagOptions conversionTag { get; set; }
+        public string stackField { get; set; }
+        public StackedAreaLabel label { get; set; }
+        public GraphicStyle areaStyle { get; set; }
+        public string seriesField { get; set; }
+        public ValueCatTimeAxis xAxis { get; set; }
+        public ValueAxis yAxis { get; set; }
+        public AreaViewConfigLine line { get; set; }
+        public AreaViewConfigPoint point { get; set; }
+        public bool? smooth { get; set; }
         public Interaction[] interactions { get; set; }
         public string renderer { get; set; }
         public object data { get; set; }
-        public object meta { get; set; }//ILooseMap<Meta>
+        public object meta { get; set; }
         public string padding { get; set; }
         public string xField { get; set; }
         public string yField { get; set; }
         public string[] color { get; set; }
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
-        /// <summary>
-        /// OneOf<Animation, bool?> 
-        /// </summary>
         public object animation { get; set; }
         public string theme { get; set; }
         public object responsiveTheme { get; set; }
@@ -36,18 +34,21 @@ namespace AntDesign.Charts
         public GuideLineConfig[] guideLine { get; set; }
         public ViewConfigDefaultState defaultState { get; set; }
         public string name { get; set; }
-        public bool? forceFit { get; set; }
+        public string id { get; set; }
+        public int? x { get; set; }
+        public int? y { get; set; }
         public int? width { get; set; }
         public int? height { get; set; }
+        public object parent { get; set; }
+        public object canvas { get; set; }
+        public bool? forceFit { get; set; }
         public int? pixelRatio { get; set; }
         public bool? localRefresh { get; set; }
+        AreaLabel IAreaViewConfig.label { get; set; }
+        Label IViewConfig.label { get; set; }
         Axis IViewConfig.xAxis { get; set; }
         Axis IViewConfig.yAxis { get; set; }
-        Label IViewConfig.label { get; set; }
     }
 
-    public interface IGroupedBarViewConfig : IBarViewConfig
-    {
-        public string groupField { get; set; }
-    }
+    public interface IStackedAreaLayerConfig : IStackedAreaViewConfig, ILayerConfig { }
 }

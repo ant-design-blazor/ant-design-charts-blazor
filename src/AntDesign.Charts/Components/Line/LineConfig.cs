@@ -12,12 +12,12 @@ namespace AntDesign.Charts
         public bool? connectNulls { get; set; }
         public LineStyle lineStyle { get; set; }
         public LineViewConfigPoint point { get; set; }
-        public LineViewConfigxAxis xAxis { get; set; }
+        public ValueCatTimeAxis xAxis { get; set; }
         public ValueAxis yAxis { get; set; }
-        public Interactions[] interactions { get; set; }
+        public Interaction[] interactions { get; set; }
         public string renderer { get; set; }
         public object data { get; set; }
-        public ILooseMap<Meta> meta { get; set; }
+        public object meta { get; set; }//ILooseMap<Meta>
         public string padding { get; set; }//int ,string
         public string xField { get; set; }
         public string yField { get; set; }
@@ -73,9 +73,9 @@ namespace AntDesign.Charts
             visible?: boolean;
           })[];
          */
-        public LineViewConfigxAxis xAxis { get; set; }//OneOf<IValueAxis, ICatAxis, ITimeAxis>
+        public ValueCatTimeAxis xAxis { get; set; }//OneOf<IValueAxis, ICatAxis, ITimeAxis>
         public ValueAxis yAxis { get; set; }
-        public Interactions[] interactions { get; set; }
+        public Interaction[] interactions { get; set; }
         /*
             type LineInteraction =
               | IInteractions
@@ -97,26 +97,4 @@ namespace AntDesign.Charts
         public GraphicStyle style { get; set; }
     }
 
-    public class LineViewConfigxAxis : IValueAxis, ICatAxis, ITimeAxis
-    {
-        public string type { get; set; }
-        public bool? nice { get; set; }
-        public int? min { get; set; }
-        public int? max { get; set; }
-        public int? minLimit { get; set; }
-        public int? maxLimit { get; set; }
-        public int? tickCount { get; set; }
-        public int? tickInterval { get; set; }
-        public int? exponent { get; set; }
-        public int? @base { get; set; }
-        public bool visible { get; set; }
-        public string tickMethod { get; set; }
-        public BaseAxisLine line { get; set; }
-        public BaseAxisGrid grid { get; set; }
-        public BaseAxisLabel label { get; set; }
-        public BaseAxisTitle title { get; set; }
-        public BaseAxisTickLine tickLine { get; set; }
-        public string mask { get; set; }
-        string ITimeAxis.tickInterval { get; set; }
-    }
 }

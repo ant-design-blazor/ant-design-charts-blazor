@@ -13,10 +13,52 @@
         "title": "多折线图",
         "type": "menuItem",
         "url": "Multiple_Line_Chart"
+      },
+      {
+        "title": "标注点",
+        "type": "menuItem",
+        "url": "Marker_Point"
       }
-
     ]
   },
+  {
+    "title": "阶梯折线图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础阶梯图",
+        "type": "menuItem",
+        "url": "Basic_StepLine_Chart"
+      },
+      {
+        "title": "多阶梯折线图",
+        "type": "menuItem",
+        "url": "Multiple_StepLine_Chart"
+      }
+    ]
+  },
+  {
+    "title": "面积图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础面积图",
+        "type": "menuItem",
+        "url": "Area_Chart"
+      },
+      {
+        "title": "百分比堆叠面积图",
+        "type": "menuItem",
+        "url": "Percent_Stacked_Area_Chart"
+      },
+      {
+        "title": "堆叠面积图",
+        "type": "menuItem",
+        "url": "Stacked_Area_Chart"
+      }
+    ]
+  },
+
 
   {
     "title": "模板",

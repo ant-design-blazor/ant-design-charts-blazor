@@ -7,7 +7,7 @@ namespace AntDesign.Charts
     public interface IGraphicStyle
     {
         public string fill { get; set; }
-        public int? fillOpacity { get; set; }
+        public decimal? fillOpacity { get; set; }
         public string stroke { get; set; }
         public int? lineWidth { get; set; }
         public int[] lineDash { get; set; }
@@ -24,7 +24,7 @@ namespace AntDesign.Charts
     public class GraphicStyle : IGraphicStyle
     {
         public string fill { get;set; }
-        public int? fillOpacity { get;set; }
+        public decimal? fillOpacity { get;set; }
         public string stroke { get;set; }
         public int? lineWidth { get;set; }
         public int[] lineDash { get;set; }

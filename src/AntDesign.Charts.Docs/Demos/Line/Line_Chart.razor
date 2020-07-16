@@ -74,7 +74,7 @@
         padding = "auto",
         xField = "Date",
         yField = "scales",
-        xAxis = new LineViewConfigxAxis()
+        xAxis = new ValueCatTimeAxis()
         {
             type = "dateTime",
             tickCount = 5,
@@ -233,7 +233,7 @@
         forceFit = true,
         padding = "auto",
         xField = "城市",
-        xAxis = new LineViewConfigxAxis()
+        xAxis = new ValueCatTimeAxis()
         {
             visible = true,
             label = new BaseAxisLabel()
@@ -249,8 +249,8 @@
                 // 数值格式化为千分位
             },
         },
-        interactions = new Interactions[] {
-       new Interactions()   {
+        interactions = new Interaction[] {
+       new Interaction()   {
             type= "slider",
             cfg=new  {
                 start= 0.1,

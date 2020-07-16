@@ -4,13 +4,13 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
-    public interface IInteractions
+    public interface IInteraction
     {
         public string type { get; set; }
         public object cfg { get; set; }// [field: string]: any;
     }
 
-    public class Interactions : IInteractions
+    public class Interaction : IInteraction
     {
         public string type { get; set; }
         public object cfg { get; set; }

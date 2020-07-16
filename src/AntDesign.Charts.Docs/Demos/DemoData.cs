@@ -21,8 +21,8 @@ namespace AntDesign.Charts.Docs.Demos
         {
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<SalesItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/sales.json").ToString());
-        }   
-        
+        }
+
         public static async Task<GDPItem[]> GDPAsync(NavigationManager NavigationManager, HttpClient HttpClient)
         {
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
@@ -33,6 +33,12 @@ namespace AntDesign.Charts.Docs.Demos
         {
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<GDPItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/emissions.json").ToString());
+        }
+
+        public static async Task<OilItem[]> OilAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<OilItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/oil.json").ToString());
         }
     }
 
@@ -64,4 +70,10 @@ namespace AntDesign.Charts.Docs.Demos
         public string category { get; set; }
     }
 
+    public class OilItem
+    {
+        public string country { get; set; }
+        public int date { get; set; }
+        public decimal value { get; set; }
+    }
 }

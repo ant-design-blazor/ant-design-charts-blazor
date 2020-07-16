@@ -1,0 +1,56 @@
+﻿@page "/Stacked_Area_Chart"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <StackedArea @ref="chart1" TItem="OilItem" Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+@code{
+
+    IChartComponent<OilItem> chart1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var data1 = await DemoData.OilAsync(NavigationManager, HttpClient);
+        chart1.SetData(data1);
+
+        await base.OnInitializedAsync();
+    }
+
+    #region 示例1
+
+
+    StackedAreaConfig config1 = new StackedAreaConfig()
+    {
+        title = new Charts.Title()
+        {
+            visible = true,
+            text = "堆叠面积图",
+        },
+        xField = "date",
+        yField = "value",
+        stackField = "country",
+        color = new string[] { "#6897a7", "#8bc0d6", "#60d7a7", "#dedede", "#fedca9", "#fab36f", "#d96d6f" },
+        xAxis = new ValueCatTimeAxis()
+        {
+            type = "dateTime",
+            tickCount = 5,
+        },
+        legend = new Legend()
+        {
+            visible = true,
+            position = "right-top",
+        },
+        @*responsive = true,*@
+    };
+
+
+    #endregion 示例1
+
+}

@@ -24,7 +24,7 @@ namespace AntDesign.Charts
         public string textAlign { get;set; }
         public string textBaseline { get;set; }
         public string fill { get;set; }
-        public int? fillOpacity { get;set; }
+        public decimal? fillOpacity { get;set; }
         public string stroke { get;set; }
         public int? lineWidth { get;set; }
         public int[] lineDash { get;set; }

@@ -13,10 +13,10 @@ namespace AntDesign.Charts
         public ValueAxis xAxis { get; set; }
         public CatAxis yAxis { get; set; }
         public ConversionTagOptions conversionTag { get; set; }
-        public Interactions[] interactions { get; set; }
+        public Interaction[] interactions { get; set; }
         public string renderer { get; set; }
         public object data { get; set; }
-        public ILooseMap<Meta> meta { get; set; }
+        public object meta { get; set; }//ILooseMap<Meta>
         public string padding { get; set; }
         public string xField { get; set; }
         public string yField { get; set; }

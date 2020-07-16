@@ -13,7 +13,7 @@ namespace AntDesign.Charts
         public CatAxis yAxis { get; set; }
         public BarViewConfigLabel label { get; set; }// OneOf<IBarLabel, IBarAutoLabel>
         public ConversionTagOptions conversionTag { get; set; }
-        public Interactions[] interactions { get; set; }
+        public Interaction[] interactions { get; set; }
     }
 
     public class BarViewConfigLabel : IBarLabel, IBarAutoLabel

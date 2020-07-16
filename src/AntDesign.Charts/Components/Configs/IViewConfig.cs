@@ -8,7 +8,10 @@ namespace AntDesign.Charts
     {
         public string renderer { get; set; }
         public object data { get; set; }
-        public ILooseMap<Meta> meta { get; set; }
+        /// <summary>
+        /// ILooseMap<Meta>
+        /// </summary>
+        public object meta { get; set; }//ILooseMap<Meta>
         public string padding { get; set; }//OneOf<int?, int[], string>
         public string xField { get; set; }
         public string yField { get; set; }
@@ -24,7 +27,7 @@ namespace AntDesign.Charts
         public object animation { get; set; }// OneOf<Animation, bool?> 
         public string theme { get; set; }//OneOf<LooseMap, string>
         public object responsiveTheme { get; set; }// OneOf<{},string>
-        public Interactions[] interactions { get; set; }
+        public Interaction[] interactions { get; set; }
         public bool? responsive { get; set; }
         public Title title { get; set; }
         public Description description { get; set; }
