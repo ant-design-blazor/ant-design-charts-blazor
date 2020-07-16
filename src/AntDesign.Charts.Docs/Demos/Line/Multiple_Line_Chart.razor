@@ -3,16 +3,16 @@
 @inject HttpClient HttpClient
 
 <Tabs>
-    @*<TabPane Key="1">存在问题
+    <TabPane Key="1">
             <Tab>示例1</Tab>
             <ChildContent>
-                <Line Data=data1 Config="config1" />
+                <Line  Data=data1 Config="config1" />
             </ChildContent>
-        </TabPane>*@
+        </TabPane>
     <TabPane Key="2">
         <Tab>示例2</Tab>
         <ChildContent>
-            <Line Data=data2 Config="config2" />
+            <Line @ref="line2" TItem="GDPItem" Config="config2" />
         </ChildContent>
     </TabPane>
     @*<TabPane Key="3">存在问题
@@ -25,9 +25,12 @@
 
 @code{
 
+    IChartComponent<GDPItem> line2;
+
     protected override async Task OnInitializedAsync()
     {
-        data2 = await DemoData.GDPAsync(NavigationManager, HttpClient);
+        var data2 = await DemoData.GDPAsync(NavigationManager, HttpClient);
+        line2.SetData(data2);
         data3 = await DemoData.EmissionsAsync(NavigationManager, HttpClient);
         await base.OnInitializedAsync();
     }
@@ -298,8 +301,6 @@
     #endregion 示例1
 
     #region 示例2
-
-    object[] data2;
 
 
     LineConfig config2 = new LineConfig()
