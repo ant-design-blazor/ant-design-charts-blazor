@@ -8,22 +8,11 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class PercentStackedBar<TItem> : ChartComponentBase<TItem> 
+    public partial class PercentStackedBar<TItem> : ChartComponentBase<TItem, PercentStackedBarConfig>
     {
-        [Parameter]
-        public PercentStackedBarConfig Config { get; set; }
-        protected override string ChartType { get; set; } = "PercentStackedBar";
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        public PercentStackedBar() : base("PercentStackedBar")
         {
-            await base.OnAfterRenderAsync(firstRender);
 
-            if (firstRender)
-            {
-                if (Config == null) Config = new PercentStackedBarConfig();
-                SetIViewConfig(Config);
-                await JS.InvokeVoidAsync(CreateChart, ChartType, Ref, Config, OtherConfig);
-            }
         }
     }
 }

@@ -1,13 +1,18 @@
 // This file is to show how a library package may provide JavaScript interop features
 // wrapped in a .NET API
 
-window.createChart = (type, domRef,  options, others) => {
+window.createChart = (type, domRef, options, others) => {
+    domRef.innerHTML = '';
+
     removeNullItem(options)
     deepObjectMerge(options, others)
+
     console.log(options);
+
     const plot = new G2Plot[type](domRef, options);
     plot.render();
 }
+
 
 //清除没有赋值的项
 
@@ -47,7 +52,7 @@ function removeNullItem(o, arr, i) {
 }
 
 // 深度合并对象
-function deepObjectMerge(source, target) { 
+function deepObjectMerge(source, target) {
     for (var key in target) {
         if (source[key] && source[key].toString() === "[object Object]") {
             deepObjectMerge(source[key], target[key])
