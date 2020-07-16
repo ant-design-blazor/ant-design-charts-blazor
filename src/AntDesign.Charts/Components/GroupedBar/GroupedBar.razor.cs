@@ -8,22 +8,11 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class GroupedBar<TItem> : ChartComponentBase<TItem> 
+    public partial class GroupedBar<TItem> : ChartComponentBase<TItem, GroupedBarConfig>
     {
-        [Parameter]
-        public GroupedBarConfig Config { get; set; }
-        protected override string ChartType { get; set; } = "GroupedBar";
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        public GroupedBar() : base("GroupedBar")
         {
-            await base.OnAfterRenderAsync(firstRender);
 
-            if (firstRender)
-            {
-                if (Config == null) Config = new GroupedBarConfig();
-                SetIViewConfig(Config);
-                await JS.InvokeVoidAsync(CreateChart, ChartType, Ref, Config, OtherConfig);
-            }
         }
     }
 }

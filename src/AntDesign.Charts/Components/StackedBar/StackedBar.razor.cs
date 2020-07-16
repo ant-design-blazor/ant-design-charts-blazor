@@ -7,22 +7,11 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class StackedBar<TItem> : ChartComponentBase<TItem>
+    public partial class StackedBar<TItem> : ChartComponentBase<TItem, StackedBarConfig>
     {
-        [Parameter]
-        public StackedBarConfig Config { get; set; }
-        protected override string ChartType { get; set; } = "StackedBar";
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        public StackedBar() : base("StackedBar")
         {
-            await base.OnAfterRenderAsync(firstRender);
 
-            if (firstRender)
-            {
-                if (Config == null) Config = new StackedBarConfig();
-                SetIViewConfig(Config);
-                await JS.InvokeVoidAsync(CreateChart, ChartType, Ref, Config, OtherConfig);
-            }
         }
     }
 }
