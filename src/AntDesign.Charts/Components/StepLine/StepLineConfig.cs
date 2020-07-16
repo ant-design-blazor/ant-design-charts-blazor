@@ -4,16 +4,16 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
-    public class GroupedBarConfig : IGroupedBarViewConfig, IPlotConfig
+    public class StepLineConfig : IStepLineViewConfig, IPlotConfig
     {
-        public string groupField { get; set; }
-        public string colorField { get; set; }
-        public int? barSize { get; set; }
-        public GraphicStyle barStyle { get; set; }
-        public ValueAxis xAxis { get; set; }
-        public CatAxis yAxis { get; set; }
-        public BarViewConfigLabel label { get; set; }
-        public ConversionTagOptions conversionTag { get; set; }
+        public string step { get; set; }
+        public string seriesField { get; set; }
+        public bool? smooth { get; set; }
+        public bool? connectNulls { get; set; }
+        public LineStyle lineStyle { get; set; }
+        public LineViewConfigPoint point { get; set; }
+        public ValueCatTimeAxis xAxis { get; set; }
+        public ValueAxis yAxis { get; set; }
         public Interaction[] interactions { get; set; }
         public string renderer { get; set; }
         public object data { get; set; }
@@ -22,11 +22,9 @@ namespace AntDesign.Charts
         public string xField { get; set; }
         public string yField { get; set; }
         public string[] color { get; set; }
+        public Label label { get; set; }
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
-        /// <summary>
-        /// OneOf<Animation, bool?> 
-        /// </summary>
         public object animation { get; set; }
         public string theme { get; set; }
         public object responsiveTheme { get; set; }
@@ -43,11 +41,13 @@ namespace AntDesign.Charts
         public bool? localRefresh { get; set; }
         Axis IViewConfig.xAxis { get; set; }
         Axis IViewConfig.yAxis { get; set; }
-        Label IViewConfig.label { get; set; }
     }
 
-    public interface IGroupedBarViewConfig : IBarViewConfig
+    public interface IStepLineViewConfig : ILineViewConfig
     {
-        public string groupField { get; set; }
+        /// <summary>
+        /// 默认为 hv: OneOf<'hv','vh','vhv','hvh'>
+        /// </summary>
+        public string step { get; set; }// OneOf<'hv','vh','vhv','hvh'>
     }
 }
