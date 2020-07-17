@@ -1,0 +1,50 @@
+﻿@page "/Scatter_Chart"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Scatter @ref="line1" TItem="IMDBItem" Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+<Button OnClick="Reader"></Button>
+
+@code{  
+
+    //TODO:散点图存在问题，需要修正
+    IChartComponent<IMDBItem> line1;
+    protected override async Task OnInitializedAsync()
+    {
+        var data1 = await DemoData.IMDBAsync(NavigationManager, HttpClient);
+        line1.SetData(data1);
+
+        await base.OnInitializedAsync();
+    }
+
+    public async void Reader()
+    {
+        await line1.Render();
+    }
+
+    #region 示例1
+
+
+    ScatterConfig config1 = new ScatterConfig()
+    {
+        xField = "Revenue",
+        yField = "Rating",
+        xAxis = new ValueTimeAxis()
+        {
+            visible = true,
+            min = -5,
+        },
+    };
+
+
+    #endregion 示例1
+
+
+}

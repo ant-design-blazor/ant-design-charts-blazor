@@ -6,11 +6,11 @@ namespace AntDesign.Charts
 {
     public class DonutConfig : IDonutViewConfig, IPlotConfig
     {
-        public int? innerRadius { get; set; }
+        public double? innerRadius { get; set; }
         public DonutViewConfigStatistic statistic { get; set; }
         public string angleField { get; set; }
         public string colorField { get; set; }
-        public decimal? radius { get; set; }
+        public double? radius { get; set; }
         public GraphicStyle pieStyle { get; set; }
         public PieLabelConfig label { get; set; }
         public string renderer { get; set; }
@@ -44,7 +44,7 @@ namespace AntDesign.Charts
 
     public interface IDonutViewConfig : IPieViewConfig
     {
-        public int? innerRadius { get; set; }
+        public double? innerRadius { get; set; }
 
         public DonutViewConfigStatistic statistic { get; set; }
     }

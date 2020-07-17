@@ -34,8 +34,6 @@
         </ChildContent>
     </TabPane>
 </Tabs>
-<Button OnClick="AAA">sdfs</Button>
-
 @code{
 
     IChartComponent<FireworksSalesItem> Line1;
@@ -48,12 +46,6 @@
         Line5.AppendRender();
 
         await base.OnInitializedAsync();
-    }
-
-    public async void AAA()
-    {
-        await Line1.Render();
-
     }
 
     #region 示例1
