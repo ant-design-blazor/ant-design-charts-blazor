@@ -1,0 +1,124 @@
+﻿@page "/Grouped Column Chart"
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <GroupedColumn Data=data1 Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+@code{
+
+    #region 示例1
+
+    object[] data1 = new object[] {
+        new  {
+    name= "London",
+    月份= "Jan.",
+    月均降雨量= 18.9,
+  },
+        new  {
+    name= "London",
+    月份= "Feb.",
+    月均降雨量= 28.8,
+  },
+        new  {
+    name= "London",
+    月份= "Mar.",
+    月均降雨量= 39.3,
+  },
+        new  {
+    name= "London",
+    月份= "Apr.",
+    月均降雨量= 81.4,
+  },
+        new  {
+    name= "London",
+    月份= "May",
+    月均降雨量= 47,
+  },
+        new  {
+    name= "London",
+    月份= "Jun.",
+    月均降雨量= 20.3,
+  },
+        new  {
+    name= "London",
+    月份= "Jul.",
+    月均降雨量= 24,
+  },
+        new  {
+    name= "London",
+    月份= "Aug.",
+    月均降雨量= 35.6,
+  },
+        new  {
+    name= "Berlin",
+    月份= "Jan.",
+    月均降雨量= 12.4,
+  },
+        new  {
+    name= "Berlin",
+    月份= "Feb.",
+    月均降雨量= 23.2,
+  },
+        new  {
+    name= "Berlin",
+    月份= "Mar.",
+    月均降雨量= 34.5,
+  },
+        new  {
+    name= "Berlin",
+    月份= "Apr.",
+    月均降雨量= 99.7,
+  },
+        new  {
+    name= "Berlin",
+    月份= "May",
+    月均降雨量= 52.6,
+  },
+        new  {
+    name= "Berlin",
+    月份= "Jun.",
+    月均降雨量= 35.5,
+  },
+        new  {
+    name= "Berlin",
+    月份= "Jul.",
+    月均降雨量= 37.4,
+  },
+        new  {
+    name= "Berlin",
+    月份= "Aug.",
+    月均降雨量= 42.4,
+  },
+};
+
+    GroupedColumnConfig config1 = new GroupedColumnConfig()
+    {
+        title = new Charts.Title()
+        {
+            visible = true,
+            text = "分组柱状图",
+        },
+        forceFit = true,
+        xField = "月份",
+        yField = "月均降雨量",
+        yAxis = new ValueAxis()
+        {
+            min = 0,
+        },
+        label = new ColumnViewConfigLabel()
+        {
+            visible = true,
+        },
+        groupField = "name",
+        color =new string[] { "#1ca9e6", "#f88c24" },
+    };
+
+
+    #endregion 示例1
+
+}

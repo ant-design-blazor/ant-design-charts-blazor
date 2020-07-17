@@ -32,7 +32,7 @@
             }
             else if (menu.Type == "subMenu")
             {
-                <SubMenu Title="@(menu.Title)" IsOpen="true">
+                <SubMenu Title="@(menu.Title)" >
                     @if (menu.Children.Any())
                     {
                         @menuItemTemplate((menu.Children, context.level + 1))

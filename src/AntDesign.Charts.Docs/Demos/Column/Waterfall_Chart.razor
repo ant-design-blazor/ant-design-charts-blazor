@@ -1,0 +1,53 @@
+﻿@page "/Waterfall_Chart"
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Waterfall Data=data1 Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+@code{
+
+    #region 示例1
+
+    object[] data1 = new object[] {
+        new  { type= "日用品", money= 120 },
+        new  { type= "伙食费", money= 900 },
+        new  { type= "交通费", money= 200 },
+        new  { type= "水电费", money= 300 },
+        new  { type= "房租", money= 1200 },
+        new  { type= "商场消费", money= 1000 },
+        new  { type= "应酬红包", money= -2000 },
+};
+
+    WaterfallConfig config1 = new WaterfallConfig()
+    {
+        title = new Charts.Title()
+        {
+            visible = true,
+            text = "每月收支情况（瀑布图）",
+        },
+        forceFit = true,
+        padding = "auto",
+        xField = "type",
+        yField = "money",
+        meta = new
+        {
+            type = new
+            {
+                alias = "类别",
+            },
+            money = new
+            {
+                alias = "金额",
+            },
+        },
+    };
+
+
+    #endregion 示例1
+
+}
