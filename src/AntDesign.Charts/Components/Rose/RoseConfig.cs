@@ -4,13 +4,15 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
-    public class PieConfig : IPieViewConfig, IPlotConfig
+    public class RoseConfig : IRoseViewConfig, IPlotConfig
     {
-        public string angleField { get; set; }
+        public string radiusField { get; set; }
+        public string categoryField { get; set; }
         public string colorField { get; set; }
         public double? radius { get; set; }
-        public GraphicStyle pieStyle { get; set; }
-        public PieLabelConfig label { get; set; }
+        public double? innerRadius { get; set; }
+        public GraphicStyle sectorStyle { get; set; }
+        public RoseLabel label { get; set; }
         public string renderer { get; set; }
         public object data { get; set; }
         public object meta { get; set; }
@@ -40,63 +42,55 @@ namespace AntDesign.Charts
         Label IViewConfig.label { get; set; }
     }
 
-    public interface IPieViewConfig : IViewConfig
+    public interface IRoseViewConfig : IViewConfig
     {
-        public string angleField { get; set; }
+        public string radiusField { get; set; }
+        public string categoryField { get; set; }
         public string colorField { get; set; }
         public double? radius { get; set; }
-        public GraphicStyle pieStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
-        public PieLabelConfig label { get; set; }
+        public double? innerRadius { get; set; }
+        /// <summary>
+        ///  每个扇形切片的样式 
+        /// </summary>
+        public GraphicStyle sectorStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public RoseLabel label { get; set; }
     }
 
-    public interface IPieLabelConfig : ILabel
+    public interface IRoseLabel : ILabel
     {
-        public bool? visible { get; set; }
-        public object formatter { get; set; }//OneOf<(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
         /// <summary>
-        ///  whether 
+        /// OneOf<'outer','inner'>
         /// </summary>
-        public bool? adjustPosition { get; set; }
+        public string type { get; set; }
         /// <summary>
-        ///  allow label overlap 
+        ///  自动调整颜色 
         /// </summary>
-        public bool? allowOverlap { get; set; }
+        public bool? adjustColor { get; set; }
+        /// <summary>
+        ///  自动旋转 
+        /// </summary>
         public bool? autoRotate { get; set; }
-        public int? labelHeight { get; set; }
-        public int? offset { get; set; }// OneOf<int?, string>
-        public int? offsetX { get; set; }
-        public int? offsetY { get; set; }
-        public PieLabelConfigLine line { get; set; }
+
+        /// <summary>
+        /// label的内容，如果不配置，读取scale中的第一个field对应的值  G2 4.0 就这样实现的
+        /// </summary>
+        public string content { get; set; }//string | ((...args: any[]) => string);
+    }
+    public class RoseLabel : IRoseLabel
+    {
+        public string type { get; set; }
+        public bool? adjustColor { get; set; }
+        public bool? autoRotate { get; set; }
+        public string content { get; set; }
+        public bool? visible { get; set; }
+        public int? precision { get; set; }
+        public string suffix { get; set; }
         public TextStyle style { get; set; }
-    }
-
-    public interface PieLabelConfigLine
-    {
-        public bool? visible { get; set; }
-        public bool? smooth { get; set; }
-        public string stroke { get; set; }
-        public int? lineWidth { get; set; }
-    }
-
-    public class PieLabelConfig : IPieLabelConfig
-    {
-        public bool? visible { get; set; }
-        public object formatter { get; set; }
-        public bool? adjustPosition { get; set; }
-        public bool? allowOverlap { get; set; }
-        public bool? autoRotate { get; set; }
-        public int? labelHeight { get; set; }
         public int? offset { get; set; }
         public int? offsetX { get; set; }
         public int? offsetY { get; set; }
-        public PieLabelConfigLine line { get; set; }
-        public TextStyle style { get; set; }
-        public string type { get; set; }
-        public int? precision { get; set; }
-        public string suffix { get; set; }
         public string position { get; set; }
-        public bool? adjustColor { get; set; }
+        public bool? adjustPosition { get; set; }
         public string field { get; set; }
     }
-
 }

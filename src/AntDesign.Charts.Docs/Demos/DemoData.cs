@@ -40,6 +40,12 @@ namespace AntDesign.Charts.Docs.Demos
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<OilItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/oil.json").ToString());
         }
+
+        public static async Task<IMDBItem[]> IMDBAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<IMDBItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/IMDB.json").ToString());
+        }
     }
 
     public class FireworksSalesItem
@@ -75,5 +81,13 @@ namespace AntDesign.Charts.Docs.Demos
         public string country { get; set; }
         public int date { get; set; }
         public decimal value { get; set; }
+    }
+
+    public class IMDBItem
+    {
+        public string Title { get; set; }
+        public string Genre { get; set; }
+        public decimal? Revenue { get; set; }
+        public decimal? Rating { get; set; }
     }
 }
