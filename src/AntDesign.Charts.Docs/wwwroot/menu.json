@@ -169,6 +169,18 @@
       }
     ]
   },
+  {
+    "title": "气泡图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "气泡图",
+        "type": "menuItem",
+        "url": "Bubble_Chart"
+      }
+    ]
+  },
+
 
 
   {
