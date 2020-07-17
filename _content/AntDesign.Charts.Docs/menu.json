@@ -1,0 +1,166 @@
+[
+
+  {
+    "title": "折线图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础折线图",
+        "type": "menuItem",
+        "url": "Line_Chart"
+      },
+      {
+        "title": "多折线图",
+        "type": "menuItem",
+        "url": "Multiple_Line_Chart"
+      },
+      {
+        "title": "标注点",
+        "type": "menuItem",
+        "url": "Marker_Point"
+      }
+    ]
+  },
+  {
+    "title": "阶梯折线图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础阶梯图",
+        "type": "menuItem",
+        "url": "Basic_StepLine_Chart"
+      },
+      {
+        "title": "多阶梯折线图",
+        "type": "menuItem",
+        "url": "Multiple_StepLine_Chart"
+      }
+    ]
+  },
+  {
+    "title": "面积图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础面积图",
+        "type": "menuItem",
+        "url": "Area_Chart"
+      },
+      {
+        "title": "百分比堆叠面积图",
+        "type": "menuItem",
+        "url": "Percent_Stacked_Area_Chart"
+      },
+      {
+        "title": "堆叠面积图",
+        "type": "menuItem",
+        "url": "Stacked_Area_Chart"
+      }
+    ]
+  },
+  {
+    "title": "柱状图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础柱状图",
+        "type": "menuItem",
+        "url": "Column_Chart"
+      },
+      {
+        "title": "堆叠柱状图",
+        "type": "menuItem",
+        "url": "Stacked_Column_Chart"
+      },
+      {
+        "title": "百分比堆叠柱状图",
+        "type": "menuItem",
+        "url": "Percent_Stacked_Column_Chart"
+      },
+      {
+        "title": "分组柱状图",
+        "type": "menuItem",
+        "url": "Grouped_Column_Chart"
+      },
+      {
+        "title": "区间柱状图",
+        "type": "menuItem",
+        "url": "Ranged_Column_Chart"
+      },
+      {
+        "title": "直方图",
+        "type": "menuItem",
+        "url": "Histogram_Chart"
+      },
+      {
+        "title": "瀑布图",
+        "type": "menuItem",
+        "url": "Waterfall_Chart"
+      }
+    ]
+  },
+  {
+    "title": "条形图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础条形图",
+        "type": "menuItem",
+        "url": "Bar_Chart"
+      },
+      {
+        "title": "堆叠条形图",
+        "type": "menuItem",
+        "url": "Stacked_Bar_Chart"
+      },
+      {
+        "title": "百分比堆叠条形图",
+        "type": "menuItem",
+        "url": "Percent_Stacked_Bar_Chart"
+      },
+      {
+        "title": "分组条形图",
+        "type": "menuItem",
+        "url": "Grouped_Bar_Chart"
+      },
+      {
+        "title": "区间条形图",
+        "type": "menuItem",
+        "url": "Range_Bar_Chart"
+      }
+
+    ]
+  },
+  {
+    "title": "饼图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础饼图",
+        "type": "menuItem",
+        "url": "Pie_Chart"
+      },
+      {
+        "title": "环图",
+        "type": "menuItem",
+        "url": "Donut_Chart"
+      }
+    ]
+  },
+
+
+
+
+  {
+    "title": "模板",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "模板",
+        "type": "menuItem",
+        "url": "Temp"
+      }
+
+    ]
+  }
+]
