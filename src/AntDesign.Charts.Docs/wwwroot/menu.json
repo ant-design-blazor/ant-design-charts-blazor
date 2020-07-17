@@ -58,18 +58,45 @@
       }
     ]
   },
-
-
   {
-    "title": "模板",
+    "title": "柱状图",
     "type": "subMenu",
     "children": [
       {
-        "title": "模板",
+        "title": "基础柱状图",
         "type": "menuItem",
-        "url": "Temp"
+        "url": "Column_Chart"
+      },
+      {
+        "title": "堆叠柱状图",
+        "type": "menuItem",
+        "url": "Stacked_Column_Chart"
+      },
+      {
+        "title": "百分比堆叠柱状图",
+        "type": "menuItem",
+        "url": "Percent_Stacked_Column_Chart"
+      },
+      {
+        "title": "分组柱状图",
+        "type": "menuItem",
+        "url": "Grouped_Column_Chart"
+      },
+      {
+        "title": "区间柱状图",
+        "type": "menuItem",
+        "url": "Ranged_Column_Chart"
+      },
+      {
+        "title": "直方图",
+        "type": "menuItem",
+        "url": "Histogram_Chart"
+      },
+      {
+        "title": "瀑布图",
+        "type": "menuItem",
+        "url": "Waterfall_Chart"
       }
-
     ]
   },
   {
@@ -100,6 +127,23 @@
         "title": "区间条形图",
         "type": "menuItem",
         "url": "Range_Bar_Chart"
+      }
+
+    ]
+  },
+
+
+
+
+
+  {
+    "title": "模板",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "模板",
+        "type": "menuItem",
+        "url": "Temp"
       }
 
     ]
