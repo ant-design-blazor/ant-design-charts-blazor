@@ -46,6 +46,12 @@ namespace AntDesign.Charts.Docs.Demos
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<IMDBItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/IMDB.json").ToString());
         }
+
+        public static async Task<SmokingRateItem[]> SmokingRateAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<SmokingRateItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/smoking-rate.json").ToString());
+        }
     }
 
     public class FireworksSalesItem
@@ -89,5 +95,32 @@ namespace AntDesign.Charts.Docs.Demos
         public string Genre { get; set; }
         public decimal? Revenue { get; set; }
         public decimal? Rating { get; set; }
+    }
+
+
+    public class SmokingRateItem
+    {
+        public string iso3 { get; set; }
+        [JsonPropertyName("change in female rate")]
+        public object change_in_female_rate { get; set; }
+        [JsonPropertyName("change in male rate")]
+        public object change_in_male_rate { get; set; }
+        public object female_2000 { get; set; }
+        public object male_2000 { get; set; }
+        public object female_2015 { get; set; }
+        public object male_2015 { get; set; }
+        public string income { get; set; }
+        public int pop { get; set; }
+        public string EN { get; set; }
+        public string DE { get; set; }
+        public string FR { get; set; }
+        public string IT { get; set; }
+        public string ES { get; set; }
+        public string PT { get; set; }
+        public string RU { get; set; }
+        public string ZH { get; set; }
+        public string JA { get; set; }
+        public string AR { get; set; }
+        public string continent { get; set; }
     }
 }
