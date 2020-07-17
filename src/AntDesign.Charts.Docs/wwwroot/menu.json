@@ -131,7 +131,22 @@
 
     ]
   },
-
+  {
+    "title": "饼图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础饼图",
+        "type": "menuItem",
+        "url": "Pie_Chart"
+      },
+      {
+        "title": "环图",
+        "type": "menuItem",
+        "url": "Donut_Chart"
+      }
+    ]
+  },
 
 
 
