@@ -180,8 +180,88 @@
       }
     ]
   },
-
-
+  {
+    "title": "雷达图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础雷达图",
+        "type": "menuItem",
+        "url": "Radar_Chart"
+      }
+    ]
+  },
+  {
+    "title": "热力图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "热力图",
+        "type": "menuItem",
+        "url": "Heatmap_Chart"
+      },
+      {
+        "title": "密度热力图",
+        "type": "menuItem",
+        "url": "DensityHeatmap_Chart"
+      }
+    ]
+  },
+  {
+    "title": "漏斗图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "漏斗图",
+        "type": "menuItem",
+        "url": "Funnel_Chart"
+      }
+    ]
+  },
+  {
+    "title": "树图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "矩形树图",
+        "type": "menuItem",
+        "url": "Treemap_Chart"
+      }
+    ]
+  },
+  {
+    "title": "水波图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "水波图",
+        "type": "menuItem",
+        "url": "Liquid_Chart"
+      }
+    ]
+  },
+  {
+    "title": "仪表盘",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "仪表盘",
+        "type": "menuItem",
+        "url": "Gauge_Chart"
+      }
+    ]
+  },
+  {
+    "title": "子弹图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "子弹图",
+        "type": "menuItem",
+        "url": "Bullet_Chart"
+      }
+    ]
+  },
 
   {
     "title": "模板",

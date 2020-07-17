@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
-  public   interface LineStyle
+    public interface ILineStyle
     {
         public string stroke { get; set; }
         public int? lineWidth { get; set; }
@@ -15,19 +15,19 @@ namespace AntDesign.Charts
         public int? shadowOffsetX { get; set; }
         public int? shadowOffsetY { get; set; }
         public string cursor { get; set; }
-        //  [field: string]: any;
+        // [field: string]: any;
     }
 
-    public class LineStyleS : LineStyle
+    public class LineStyle : ILineStyle
     {
-        public string stroke { get;set; }
-        public int? lineWidth { get;set; }
-        public int[] lineDash { get;set; }
-        public int? lineOpacity { get;set; }
-        public string shadowColor { get;set; }
-        public int? shadowBlur { get;set; }
-        public int? shadowOffsetX { get;set; }
-        public int? shadowOffsetY { get;set; }
-        public string cursor { get;set; }
+        public string stroke { get; set; }
+        public int? lineWidth { get; set; }
+        public int[] lineDash { get; set; }
+        public int? lineOpacity { get; set; }
+        public string shadowColor { get; set; }
+        public int? shadowBlur { get; set; }
+        public int? shadowOffsetX { get; set; }
+        public int? shadowOffsetY { get; set; }
+        public string cursor { get; set; }
     }
 }

@@ -60,8 +60,8 @@ namespace AntDesign.Charts
         public BaseAxisTitle title { get; set; }
         public BaseAxisTickLine tickLine { get; set; }
         public bool? nice { get; set; }
-        public int? min { get; set; }
-        public int? max { get; set; }
+        public double? min { get; set; }
+        public double? max { get; set; }
         public int? minLimit { get; set; }
         public int? maxLimit { get; set; }
         public int? tickCount { get; set; }

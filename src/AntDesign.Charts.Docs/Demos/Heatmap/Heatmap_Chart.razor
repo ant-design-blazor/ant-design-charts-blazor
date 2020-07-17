@@ -1,0 +1,49 @@
+﻿@page "/Heatmap_Chart"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Heatmap @ref="chart1" TItem="BasementProdItem" Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+@code{
+
+    IChartComponent<BasementProdItem> chart1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var data1 = await DemoData.BasementProdAsync(NavigationManager, HttpClient);
+        chart1.SetData(data1);
+
+        await base.OnInitializedAsync();
+    }
+
+    #region 示例1
+
+    HeatmapConfig config1 = new HeatmapConfig()
+    {
+        forceFit = false,
+        width = 650,
+        height = 500,
+        xField = "month_of_Year",
+        yField = "district",
+        colorField = "aqhi",
+        shapeType = "rect",
+        color = new string[] { "#174c83", "#7eb6d4", "#efefeb", "#efa759", "#9b4d16" },
+        meta = new
+        {
+            Month_of_Year = new
+            {
+                type = "cat",
+            },
+        },
+    };
+
+
+    #endregion 示例1
+}
