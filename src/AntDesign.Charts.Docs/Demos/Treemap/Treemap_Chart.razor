@@ -1,0 +1,50 @@
+﻿@page "/Treemap_Chart"
+
+<Text>未完成</Text>
+@*<Tabs>
+        <TabPane Key="1">
+            <Tab>示例1</Tab>
+            <ChildContent>
+                <Treemap Data=data1  Config="config1" />
+            </ChildContent>
+        </TabPane>
+    </Tabs>*@
+
+@code{
+    @*#region 示例1
+
+        object data1 =new {
+            name= "root",
+            children= new object[] {
+                new { name= "分类 1", value= 560 },
+                new { name= "分类 2", value= 500 },
+                new { name= "分类 3", value= 150 },
+                new { name= "分类 4", value= 140 },
+                new { name= "分类 5", value= 115 },
+                new { name= "分类 6", value= 95 },
+                new { name= "分类 7", value= 90 },
+                new { name= "分类 8", value= 75 },
+                new { name= "分类 9", value= 98 },
+                new { name= "分类 10", value= 60 },
+                new { name= "分类 11", value= 45 },
+                new { name= "分类 12", value= 40 },
+                new { name= "分类 13", value= 40 },
+                new { name= "分类 14", value= 35 },
+                new { name= "分类 15", value= 40 },
+                new { name= "分类 16", value= 40 },
+                new { name= "分类 17", value= 40 },
+                new { name= "分类 18", value= 30 },
+                new { name= "分类 19", value= 28 },
+                new { name= "分类 20", value= 16 },
+            },
+            value= 2237,
+        };
+
+        TreemapConfig config1 = new TreemapConfig()
+        {
+            colorField = "name",
+        };
+
+        #endregion 示例1*@
+
+}

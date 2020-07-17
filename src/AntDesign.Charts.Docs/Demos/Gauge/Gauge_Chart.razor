@@ -1,0 +1,40 @@
+﻿@page "/Gauge_Chart"
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Gauge TItem="string" Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+@code{
+    #region 示例1
+
+    GaugeConfig config1 = new GaugeConfig()
+    {
+        title = new Charts.Title()
+        {
+            visible = true,
+            text = "仪表盘",
+        },
+        width = 400,
+        height = 400,
+        value = 64,
+        min = 0,
+        max = 100,
+        range = new double[] { 0, 25, 50, 75, 100 },
+        color = new string[] { "#39B8FF", "#52619B", "#43E089", "#C0EDF3" },
+        statistic = new GaugeStatistic()
+        {
+            visible = true,
+            text = "优",
+            color = "#30bf78",
+        },
+    };
+
+    #endregion 示例1
+
+
+}

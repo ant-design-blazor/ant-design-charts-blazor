@@ -52,6 +52,18 @@ namespace AntDesign.Charts.Docs.Demos
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<SmokingRateItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/smoking-rate.json").ToString());
         }
+
+        public static async Task<BasementProdItem[]> BasementProdAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<BasementProdItem[]>("https://gw.alipayobjects.com/os/basement_prod/a719cd4e-bd40-4878-a4b4-df8a6b531dfe.json");
+        }
+
+        public static async Task<JobpayingItem[]> JobpayingItemAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<JobpayingItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/jobpaying.json").ToString());
+        }
     }
 
     public class FireworksSalesItem
@@ -96,8 +108,6 @@ namespace AntDesign.Charts.Docs.Demos
         public decimal? Revenue { get; set; }
         public decimal? Rating { get; set; }
     }
-
-
     public class SmokingRateItem
     {
         public string iso3 { get; set; }
@@ -122,5 +132,31 @@ namespace AntDesign.Charts.Docs.Demos
         public string JA { get; set; }
         public string AR { get; set; }
         public string continent { get; set; }
+    }
+
+    public class BasementProdItem
+    {
+        [JsonPropertyName("Month of Year")]
+        public object MonthofYear { get; set; }
+        public object Month_of_Year { get { return MonthofYear; } }
+        public object District { get; set; }
+        public object AQHI { get; set; }
+
+    }
+
+    public class JobpayingItem
+    {
+        public object rank { get; set; }
+        public object code { get; set; }
+        public object prob { get; set; }
+        public object average_annual_wage { get; set; }
+        public object education { get; set; }
+        public object occupation { get; set; }
+        public object short_occupation { get; set; }
+        public object len { get; set; }
+        public object probability { get; set; }
+        public object median_ann_wage { get; set; }
+        public object employed_may2016 { get; set; }
+        public object average_ann_wage { get; set; }
     }
 }
