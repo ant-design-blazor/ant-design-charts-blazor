@@ -29,10 +29,10 @@ namespace AntDesign.Charts.Docs.Demos
             return await HttpClient.GetFromJsonAsync<GDPItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/GDP.json").ToString());
         }
 
-        public static async Task<GDPItem[]> EmissionsAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        public static async Task<EmissionsItem[]> EmissionsAsync(NavigationManager NavigationManager, HttpClient HttpClient)
         {
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
-            return await HttpClient.GetFromJsonAsync<GDPItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/emissions.json").ToString());
+            return await HttpClient.GetFromJsonAsync<EmissionsItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/emissions.json").ToString());
         }
 
         public static async Task<OilItem[]> OilAsync(NavigationManager NavigationManager, HttpClient HttpClient)
@@ -114,10 +114,10 @@ namespace AntDesign.Charts.Docs.Demos
 
     public class IMDBItem
     {
-        public string Title { get; set; }
-        public string Genre { get; set; }
-        public decimal? Revenue { get; set; }
-        public decimal? Rating { get; set; }
+        public object Title { get; set; }
+        public object Genre { get; set; }
+        public object Revenue { get; set; }
+        public object Rating { get; set; }
     }
     public class SmokingRateItem
     {
@@ -166,6 +166,7 @@ namespace AntDesign.Charts.Docs.Demos
         public object short_occupation { get; set; }
         public object len { get; set; }
         public object probability { get; set; }
+        public object numbEmployed { get; set; }
         public object median_ann_wage { get; set; }
         public object employed_may2016 { get; set; }
         public object average_ann_wage { get; set; }

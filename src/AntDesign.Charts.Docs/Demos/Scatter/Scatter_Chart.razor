@@ -10,12 +10,11 @@
         </ChildContent>
     </TabPane>
 </Tabs>
-<Button OnClick="Reader"></Button>
 
 @code{  
 
-    //TODO:散点图存在问题，需要修正
     IChartComponent<IMDBItem> line1;
+
     protected override async Task OnInitializedAsync()
     {
         var data1 = await DemoData.IMDBAsync(NavigationManager, HttpClient);
@@ -34,8 +33,8 @@
 
     ScatterConfig config1 = new ScatterConfig()
     {
-        xField = "Revenue",
-        yField = "Rating",
+        xField = "revenue",
+        yField = "rating",
         xAxis = new ValueTimeAxis()
         {
             visible = true,

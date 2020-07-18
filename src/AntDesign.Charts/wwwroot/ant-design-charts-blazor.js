@@ -7,10 +7,12 @@ window.createChart = (type, domRef, options, others) => {
     removeNullItem(options)
     deepObjectMerge(options, others)
 
-    console.log(options);
-
-    const plot = new G2Plot[type](domRef, options);
-    plot.render();
+    try {
+        const plot = new G2Plot[type](domRef, options);
+        plot.render();
+    } catch (err) {
+        console.error(err, options);
+    }
 }
 
 
@@ -67,7 +69,7 @@ window.ccc = (type, domRef, options, others) => {
         xField: 'year',
         yField: ['value', 'count'],
     };
- 
+
     console.log(ss);
 
     const plot = new G2Plot[type](domRef, options);
