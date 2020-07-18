@@ -336,7 +336,7 @@
       {
         "title": "设置图表状态量",
         "type": "menuItem",
-        "url": "Set_Padding"
+        "url": "Set_State"
       },
       {
         "title": "辅助线",
