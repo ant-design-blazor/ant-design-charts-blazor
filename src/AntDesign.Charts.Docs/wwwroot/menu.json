@@ -352,18 +352,5 @@
 
 
     ]
-  },
-
-  {
-    "title": "模板",
-    "type": "subMenu",
-    "children": [
-      {
-        "title": "模板",
-        "type": "menuItem",
-        "url": "Temp"
-      }
-
-    ]
   }
 ]
