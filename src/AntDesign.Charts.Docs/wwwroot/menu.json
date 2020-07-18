@@ -262,6 +262,97 @@
       }
     ]
   },
+  {
+    "title": "日历图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "日历图",
+        "type": "menuItem",
+        "url": "Calendar_Chart"
+      }
+    ]
+  },
+  {
+    "title": "混合图表",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "双折线混合图表",
+        "type": "menuItem",
+        "url": "DualLine_Combo_Chart"
+      },
+      {
+        "title": "柱线混合图表",
+        "type": "menuItem",
+        "url": "Column_line_Combo_Chart"
+      },
+      {
+        "title": "堆叠柱+折线混合图表",
+        "type": "menuItem",
+        "url": "StackedColumn_line_Combo_Chart"
+      },
+      {
+        "title": "分组柱+折线混合图表",
+        "type": "menuItem",
+        "url": "GroupedColumn_line_Combo_Chart"
+      }
+    ]
+  },
+  {
+    "title": "图表通用配置",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "标题与描述",
+        "type": "menuItem",
+        "url": "Title_and_Description"
+      },
+      {
+        "title": "暗黑主题",
+        "type": "menuItem",
+        "url": "Dark_Mode"
+      },
+      {
+        "title": "坐标轴",
+        "type": "menuItem",
+        "url": "Axis"
+      },
+      {
+        "title": "图例",
+        "type": "menuItem",
+        "url": "Legend"
+      },
+      {
+        "title": "图形标签",
+        "type": "menuItem",
+        "url": "Label"
+      },
+      {
+        "title": "设置图表内边距",
+        "type": "menuItem",
+        "url": "Set_Padding"
+      },
+      {
+        "title": "设置图表状态量",
+        "type": "menuItem",
+        "url": "Set_Padding"
+      },
+      {
+        "title": "辅助线",
+        "type": "menuItem",
+        "url": "Guideline"
+      },
+      {
+        "title": "提示信息",
+        "type": "menuItem",
+        "url": "Tooltip"
+      }
+
+
+
+    ]
+  },
 
   {
     "title": "模板",

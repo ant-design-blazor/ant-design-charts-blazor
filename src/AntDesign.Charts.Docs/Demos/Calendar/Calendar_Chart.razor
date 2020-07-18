@@ -1,0 +1,71 @@
+﻿@page "/Calendar_Chart"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Calendar @ref="chart1" TItem="ContributionsItem" Config="config1" OtherConfig="otherConfig1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+@code{
+    IChartComponent<ContributionsItem> chart1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var data1 = await DemoData.ContributionsItemAsync(NavigationManager, HttpClient);
+        chart1.SetData(data1);
+
+        await base.OnInitializedAsync();
+    }
+
+
+    #region 示例1
+
+
+    CalendarConfig config1 = new CalendarConfig()
+    {
+        title = new Charts.Title()
+        {
+            visible = true,
+            text = "GitHub contribution",
+        },
+        description = new Description()
+        {
+            visible = true,
+            text = "853 contributions in the last year.",
+        },
+        width = 650,
+        height = 300,
+        padding = "auto",
+        xAxis = new Axis()
+        {
+            title = new BaseAxisTitle()
+            {
+                text = "月份",
+            },
+        },
+        yAxis = new Axis()
+        {
+            title = null,
+        },
+        label = new Label
+        {
+            visible = true,
+        },
+    };
+
+    object otherConfig1 = new
+    {
+        dateField = "date",
+        valueField = "commits",
+        dateRange = new string[] { "2017-05-01", "2017-10-31" },
+        colors = "#BAE7FF-#1890FF-#0050B3",
+    };
+
+    #endregion 示例1
+
+}

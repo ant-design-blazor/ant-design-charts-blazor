@@ -1,0 +1,50 @@
+﻿@page "/Axis"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Line @ref="chart1" TItem="FertilityItem" Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+@code{
+
+    IChartComponent<FertilityItem> chart1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var data1 = await DemoData.FertilityItemAsync(NavigationManager, HttpClient);
+        chart1.SetData(data1);
+
+        await base.OnInitializedAsync();
+    }
+
+    #region 示例1
+
+    LineConfig config1 = new LineConfig()
+    {
+        title = new Charts.Title()
+        {
+            visible = true,
+            text = "配置坐标轴tick数量",
+        },
+        forceFit = true,
+        padding = "auto",
+        xField = "year",
+        yField = "value",
+        seriesField = "country",
+        xAxis = new ValueCatTimeAxis()
+        {
+            type = "dateTime",
+            tickCount = 5,
+        },
+    };
+
+    #endregion 示例1
+
+
+}
