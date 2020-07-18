@@ -64,6 +64,17 @@ namespace AntDesign.Charts.Docs.Demos
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<JobpayingItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/jobpaying.json").ToString());
         }
+
+        public static async Task<ContributionsItem[]> ContributionsItemAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<ContributionsItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/contributions.json").ToString());
+        }
+
+        public static async Task<FertilityItem[]> FertilityItemAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            return await HttpClient.GetFromJsonAsync<FertilityItem[]>("https://gw.alipayobjects.com/os/antvdemo/assets/data/fertility.json");
+        }
     }
 
     public class FireworksSalesItem
@@ -159,4 +170,22 @@ namespace AntDesign.Charts.Docs.Demos
         public object employed_may2016 { get; set; }
         public object average_ann_wage { get; set; }
     }
+
+    public class ContributionsItem
+    {
+        public object date { get; set; }
+        public object commits { get; set; }
+        public object month { get; set; }
+        public object day { get; set; }
+        public object week { get; set; }
+    }
+
+    public class FertilityItem
+    {
+        public object country { get; set; }
+        public object year { get; set; }
+        public object value { get; set; }
+    }
+
+
 }
