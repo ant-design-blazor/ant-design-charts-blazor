@@ -10,8 +10,4 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.0" />
     <PackageReference Include="OneOf" Version="2.1.151" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\Sparkline\" />
-  </ItemGroup>
 </Project>
