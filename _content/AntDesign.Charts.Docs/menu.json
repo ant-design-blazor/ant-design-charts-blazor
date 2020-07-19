@@ -274,6 +274,17 @@
     ]
   },
   {
+    "title": "迷你图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "迷你图",
+        "type": "menuItem",
+        "url": "Sparkline"
+      }
+    ]
+  },
+  {
     "title": "混合图表",
     "type": "subMenu",
     "children": [
@@ -336,7 +347,7 @@
       {
         "title": "设置图表状态量",
         "type": "menuItem",
-        "url": "Set_Padding"
+        "url": "Set_State"
       },
       {
         "title": "辅助线",
