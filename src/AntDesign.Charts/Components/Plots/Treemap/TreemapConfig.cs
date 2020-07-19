@@ -4,17 +4,16 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
-    public class DonutConfig : IDonutViewConfig, IPlotConfig
+    public class TreemapConfig : ITreemapViewConfig, IPlotConfig
     {
-        public int? innerRadius { get; set; }
-        public DonutViewConfigStatistic statistic { get; set; }
-        public string angleField { get; set; }
-        public string colorField { get; set; }
-        public decimal? radius { get; set; }
-        public GraphicStyle pieStyle { get; set; }
-        public PieLabelConfig label { get; set; }
-        public string renderer { get; set; }
         public object data { get; set; }
+        public int? maxLevel { get; set; }
+        public string colorField { get; set; }
+        public string[] colors { get; set; }
+        public GraphicStyle rectStyle { get; set; }
+        public TreemapLabelConfig label { get; set; }
+        public Interaction[] interactions { get; set; }
+        public string renderer { get; set; }
         public object meta { get; set; }
         public string padding { get; set; }
         public string xField { get; set; }
@@ -27,7 +26,6 @@ namespace AntDesign.Charts
         public object animation { get; set; }
         public string theme { get; set; }
         public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
         public bool? responsive { get; set; }
         public Title title { get; set; }
         public Description description { get; set; }
@@ -42,29 +40,33 @@ namespace AntDesign.Charts
         Label IViewConfig.label { get; set; }
     }
 
-    public interface IDonutViewConfig : IPieViewConfig
+    public interface ITreemapViewConfig : IViewConfig
     {
-        public int? innerRadius { get; set; }
-
-        public DonutViewConfigStatistic statistic { get; set; }
+        public object data { get; set; }
+        public int? maxLevel { get; set; }
+        public string colorField { get; set; }
+        public string[] colors { get; set; }
+        public GraphicStyle rectStyle { get; set; }
+        public TreemapLabelConfig label { get; set; }
+        public Interaction[] interactions { get; set; }//TreemapInteraction
     }
 
-    public class DonutViewConfigStatistic
+    public interface ITreemapLabelConfig
     {
         public bool? visible { get; set; }
-        /// <summary>
-        ///  指标卡 总计值 标签 
-        /// </summary>
-        public string totalLabel { get; set; }
-        /// <summary>
-        ///  触发显示的事件 
-        /// </summary>
-        public string triggerOn { get; set; }// 'mouseenter'
-        /// <summary>
-        ///  触发隐藏的事件 
-        /// </summary>
-        public string triggerOff { get; set; }//'mouseleave'
-        public object content { get; set; }//OneOf<string, DonutStatisticContent>
-        public string htmlContent { get; set; }//(...args: any) => string
+        public string formatter { get; set; }// (...args: any[]) => string
+        public int? offsetX { get; set; }
+        public int? offsetY { get; set; }
+        public object style { get; set; }
     }
+
+    public class TreemapLabelConfig : ITreemapLabelConfig
+    {
+        public bool? visible { get; set; }
+        public string formatter { get; set; }
+        public int? offsetX { get; set; }
+        public int? offsetY { get; set; }
+        public object style { get; set; }
+    }
+
 }

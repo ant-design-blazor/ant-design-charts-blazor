@@ -1,5 +1,4 @@
 [
-
   {
     "title": "折线图",
     "type": "subMenu",
@@ -147,19 +146,221 @@
       }
     ]
   },
-
-
-
-
   {
-    "title": "模板",
+    "title": "玫瑰图",
     "type": "subMenu",
     "children": [
       {
-        "title": "模板",
+        "title": "玫瑰图",
         "type": "menuItem",
-        "url": "Temp"
+        "url": "Rose_Chart"
       }
+
+    ]
+  },
+  {
+    "title": "散点图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "散点图",
+        "type": "menuItem",
+        "url": "Scatter_Chart"
+      }
+    ]
+  },
+  {
+    "title": "气泡图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "气泡图",
+        "type": "menuItem",
+        "url": "Bubble_Chart"
+      }
+    ]
+  },
+  {
+    "title": "雷达图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "基础雷达图",
+        "type": "menuItem",
+        "url": "Radar_Chart"
+      }
+    ]
+  },
+  {
+    "title": "热力图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "热力图",
+        "type": "menuItem",
+        "url": "Heatmap_Chart"
+      },
+      {
+        "title": "密度热力图",
+        "type": "menuItem",
+        "url": "DensityHeatmap_Chart"
+      }
+    ]
+  },
+  {
+    "title": "漏斗图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "漏斗图",
+        "type": "menuItem",
+        "url": "Funnel_Chart"
+      }
+    ]
+  },
+  {
+    "title": "树图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "矩形树图",
+        "type": "menuItem",
+        "url": "Treemap_Chart"
+      }
+    ]
+  },
+  {
+    "title": "水波图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "水波图",
+        "type": "menuItem",
+        "url": "Liquid_Chart"
+      }
+    ]
+  },
+  {
+    "title": "仪表盘",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "仪表盘",
+        "type": "menuItem",
+        "url": "Gauge_Chart"
+      }
+    ]
+  },
+  {
+    "title": "子弹图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "子弹图",
+        "type": "menuItem",
+        "url": "Bullet_Chart"
+      }
+    ]
+  },
+  {
+    "title": "日历图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "日历图",
+        "type": "menuItem",
+        "url": "Calendar_Chart"
+      }
+    ]
+  },
+  {
+    "title": "迷你图",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "迷你图",
+        "type": "menuItem",
+        "url": "Sparkline"
+      }
+    ]
+  },
+  {
+    "title": "混合图表",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "双折线混合图表",
+        "type": "menuItem",
+        "url": "DualLine_Combo_Chart"
+      },
+      {
+        "title": "柱线混合图表",
+        "type": "menuItem",
+        "url": "Column_line_Combo_Chart"
+      },
+      {
+        "title": "堆叠柱+折线混合图表",
+        "type": "menuItem",
+        "url": "StackedColumn_line_Combo_Chart"
+      },
+      {
+        "title": "分组柱+折线混合图表",
+        "type": "menuItem",
+        "url": "GroupedColumn_line_Combo_Chart"
+      }
+    ]
+  },
+  {
+    "title": "图表通用配置",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "标题与描述",
+        "type": "menuItem",
+        "url": "Title_and_Description"
+      },
+      {
+        "title": "暗黑主题",
+        "type": "menuItem",
+        "url": "Dark_Mode"
+      },
+      {
+        "title": "坐标轴",
+        "type": "menuItem",
+        "url": "Axis"
+      },
+      {
+        "title": "图例",
+        "type": "menuItem",
+        "url": "Legend"
+      },
+      {
+        "title": "图形标签",
+        "type": "menuItem",
+        "url": "Label"
+      },
+      {
+        "title": "设置图表内边距",
+        "type": "menuItem",
+        "url": "Set_Padding"
+      },
+      {
+        "title": "设置图表状态量",
+        "type": "menuItem",
+        "url": "Set_State"
+      },
+      {
+        "title": "辅助线",
+        "type": "menuItem",
+        "url": "Guideline"
+      },
+      {
+        "title": "提示信息",
+        "type": "menuItem",
+        "url": "Tooltip"
+      }
+
+
 
     ]
   }

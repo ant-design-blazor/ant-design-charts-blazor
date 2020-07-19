@@ -1,0 +1,30 @@
+﻿@page "/Liquid_Chart"
+
+    <Tabs>
+        <TabPane Key="1">
+            <Tab>示例1</Tab>
+            <ChildContent>
+                <Liquid TItem="string" Config="config1" />
+            </ChildContent>
+        </TabPane>
+    </Tabs>
+
+@code{
+
+    #region 示例1
+
+    LiquidConfig config1 = new LiquidConfig()
+    {
+        title = new Charts.Title()
+        {
+            visible = true,
+            text = "水波图",
+        },
+        min = 0,
+        max = 10000,
+        value = 5639,
+    };
+
+    #endregion 示例1
+
+}

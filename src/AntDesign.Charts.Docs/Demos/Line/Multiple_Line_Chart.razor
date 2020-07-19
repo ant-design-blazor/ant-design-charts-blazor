@@ -4,34 +4,37 @@
 
 <Tabs>
     <TabPane Key="1">
-            <Tab>示例1</Tab>
-            <ChildContent>
-                <Line  Data=data1 Config="config1" />
-            </ChildContent>
-        </TabPane>
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Line Data=data1 Config="config1" />
+        </ChildContent>
+    </TabPane>
     <TabPane Key="2">
         <Tab>示例2</Tab>
         <ChildContent>
             <Line @ref="line2" TItem="GDPItem" Config="config2" />
         </ChildContent>
     </TabPane>
-    @*<TabPane Key="3">存在问题
+    <TabPane Key="3">
         <Tab>示例3</Tab>
         <ChildContent>
-            <Line Data=data3 Config="config3" />
+            <Line @ref="line3" TItem="EmissionsItem" Config="config3" />
         </ChildContent>
-    </TabPane>*@
+    </TabPane>
 </Tabs>
 
 @code{
 
     IChartComponent<GDPItem> line2;
 
+    IChartComponent<EmissionsItem> line3;
+
     protected override async Task OnInitializedAsync()
     {
         var data2 = await DemoData.GDPAsync(NavigationManager, HttpClient);
         line2.SetData(data2);
-        data3 = await DemoData.EmissionsAsync(NavigationManager, HttpClient);
+        var data3 = await DemoData.EmissionsAsync(NavigationManager, HttpClient);
+        line3.SetData(data3);
         await base.OnInitializedAsync();
     }
 
@@ -294,7 +297,7 @@
             position = "right-top",
         },
         seriesField = "type",
-        responsive = true,
+        @*responsive = true,*@
     };
 
 
@@ -357,8 +360,6 @@
 
     #region 示例2
 
-    object[] data3;
-
     LineConfig config3 = new LineConfig()
     {
         title = new Charts.Title()
@@ -382,7 +383,7 @@
                 // 数值格式化为千分位
             },
         },
-        responsive = true,
+        @*responsive = true,*@
     };
 
     #endregion 示例2

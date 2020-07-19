@@ -69,7 +69,7 @@ namespace AntDesign.Charts
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-     
+
             if (firstRender || NeedRedraw == true)
             {
                 NeedRedraw = false;
@@ -84,8 +84,9 @@ namespace AntDesign.Charts
         /// <returns></returns>
         public async Task Render()
         {
-            if (Config == null) Config = new TConfig();
-            SetIViewConfig((IViewConfig)Config);
+            if (Config == null) new TConfig();
+            if (Config is IViewConfig viewConfig)
+                SetIViewConfig(viewConfig);
             await JS.InvokeVoidAsync(CreateChart, ChartType, Ref, Config, OtherConfig);
         }
 
