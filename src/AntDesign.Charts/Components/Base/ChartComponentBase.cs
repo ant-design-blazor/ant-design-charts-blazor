@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public abstract class ChartComponentBase<TItem, TConfig> : ComponentBase, IChartComponent<TItem> where TConfig : class, new()
+    public abstract class ChartComponentBase<TItem, TConfig> : ComponentBase, IChartComponent where TConfig : class, new()
     {
         public ChartComponentBase(string chartType)
         {
@@ -30,10 +30,10 @@ namespace AntDesign.Charts
 
         #region 图表属性
 
-        public IEnumerable<TItem> _Data;
+        public TItem _Data;
 
         [Parameter]
-        public IEnumerable<TItem> Data
+        public TItem Data
         {
             get
             {
@@ -59,7 +59,11 @@ namespace AntDesign.Charts
 
         #endregion 图表属性
 
-        protected void SetIViewConfig(IViewConfig config)
+        /// <summary>
+        /// 设置视图配置，支持重写改写设置方式
+        /// </summary>
+        /// <param name="config"></param>
+        protected virtual void SetIViewConfig(IViewConfig config)
         {
             if (Data != null) config.data = Data;
             if (string.IsNullOrWhiteSpace(XField) == false) config.xField = XField;
@@ -102,9 +106,9 @@ namespace AntDesign.Charts
         /// 设置属性并在下次OnAfterRenderAsync时渲染
         /// </summary>
         /// <param name="data"></param>
-        public void SetData(IEnumerable<TItem> data)
+        public void SetData(object data)
         {
-            Data = data;
+            Data = (TItem)data;
             AppendRender();
         }
     }

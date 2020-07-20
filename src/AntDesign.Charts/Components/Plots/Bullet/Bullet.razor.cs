@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Bullet<TItem> : ChartComponentBase<TItem, BulletConfig>
+    public partial class Bullet<TItem> : ChartComponentBase<IEnumerable<TItem>, BulletConfig>
     {
         public Bullet() : base("Bullet")
         {

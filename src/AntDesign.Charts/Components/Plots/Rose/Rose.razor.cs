@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Rose<TItem> : ChartComponentBase<TItem, RoseConfig>
+    public partial class Rose<TItem> : ChartComponentBase<IEnumerable<TItem>, RoseConfig>
     {
         public Rose() : base("Rose")
         {
