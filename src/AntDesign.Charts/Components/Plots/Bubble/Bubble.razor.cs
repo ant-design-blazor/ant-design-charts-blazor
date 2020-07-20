@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Bubble<TItem> : ChartComponentBase<TItem, BubbleConfig>
+    public partial class Bubble<TItem> : ChartComponentBase<IEnumerable<TItem>, BubbleConfig>
     {
         public Bubble() : base("Bubble")
         {

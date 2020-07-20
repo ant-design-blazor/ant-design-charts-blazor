@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Waterfall<TItem> : ChartComponentBase<TItem, WaterfallConfig>
+    public partial class Waterfall<TItem> : ChartComponentBase<IEnumerable<TItem>, WaterfallConfig>
     {
         public Waterfall() : base("Waterfall")
         {

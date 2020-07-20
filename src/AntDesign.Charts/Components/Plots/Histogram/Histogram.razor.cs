@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Histogram<TItem> : ChartComponentBase<TItem, HistogramConfig>
+    public partial class Histogram<TItem> : ChartComponentBase<IEnumerable<TItem>, HistogramConfig>
     {
         public Histogram() : base("Histogram")
         {

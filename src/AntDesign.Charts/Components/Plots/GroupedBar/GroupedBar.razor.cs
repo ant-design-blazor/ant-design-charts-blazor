@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class GroupedBar<TItem> : ChartComponentBase<TItem, GroupedBarConfig>
+    public partial class GroupedBar<TItem> : ChartComponentBase<IEnumerable<TItem>, GroupedBarConfig>
     {
         public GroupedBar() : base("GroupedBar")
         {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public interface IChartComponent<TItem>
+    public interface IChartComponent
     {
         /// <summary>
         /// 立即渲染
@@ -22,6 +22,6 @@ namespace AntDesign.Charts
         /// 设置数据
         /// </summary>
         /// <param name="data"></param>
-        void SetData(IEnumerable<TItem> data);
+        void SetData(object data);
     }
 }
