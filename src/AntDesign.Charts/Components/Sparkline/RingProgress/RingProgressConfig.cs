@@ -8,7 +8,7 @@ namespace AntDesign.Charts
     public class RingProgressConfig : IRingProgressViewConfig, IPlotConfig
     {
         public GraphicStyle progressStyle { get; set; }
-        public int? percent { get; set; }
+        public double? percent { get; set; }
         public int? size { get; set; }
         public MarkerConfig[] marker { get; set; }
         public int? barSize { get; set; }
