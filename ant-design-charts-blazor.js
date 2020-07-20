@@ -6,7 +6,7 @@ window.createChart = (type, domRef, options, others) => {
 
     removeNullItem(options)
     deepObjectMerge(options, others)
-
+    console.warn(options);
     try {
         const plot = new G2Plot[type](domRef, options);
         plot.render();
