@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class StackedBar<TItem> : ChartComponentBase<TItem, StackedBarConfig>
+    public partial class StackedBar<TItem> : ChartComponentBase<IEnumerable<TItem>, StackedBarConfig>
     {
         public StackedBar() : base("StackedBar")
         {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class DensityHeatmap<TItem> : ChartComponentBase<TItem, DensityHeatmapConfig>
+    public partial class DensityHeatmap<TItem> : ChartComponentBase<IEnumerable<TItem>, DensityHeatmapConfig>
     {
         public DensityHeatmap() : base("DensityHeatmap")
         {

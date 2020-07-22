@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Gauge<TItem> : ChartComponentBase<TItem, GaugeConfig>
+    public partial class Gauge<TItem> : ChartComponentBase<IEnumerable<TItem>, GaugeConfig>
     {
         public Gauge() : base("Gauge")
         {

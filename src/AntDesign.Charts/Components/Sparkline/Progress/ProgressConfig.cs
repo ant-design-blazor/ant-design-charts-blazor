@@ -7,7 +7,7 @@ namespace AntDesign.Charts
     public class ProgressConfig : IProgressViewConfig, IPlotConfig
     {
         public GraphicStyle progressStyle { get; set; }
-        public int? percent { get; set; }
+        public double? percent { get; set; }
         public int? size { get; set; }
         public MarkerConfig[] marker { get; set; }
         public int? barSize { get; set; }
@@ -47,7 +47,7 @@ namespace AntDesign.Charts
     public interface IProgressViewConfig : ITinyViewConfig
     {
         public GraphicStyle progressStyle { get; set; }
-        public int? percent { get; set; }
+        public double? percent { get; set; }
         public int? size { get; set; }
         public MarkerConfig[] marker { get; set; }
         /// <summary>

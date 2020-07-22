@@ -36,8 +36,8 @@
 </Tabs>
 @code{
 
-    IChartComponent<FireworksSalesItem> chart1;
-    IChartComponent<SalesItem> Line5;
+    IChartComponent chart1;
+    IChartComponent Line5;
     protected override async Task OnInitializedAsync()
     {
         var data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);

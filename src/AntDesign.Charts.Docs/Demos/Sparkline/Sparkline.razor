@@ -1,13 +1,16 @@
 ﻿@page "/Sparkline"
-<Table DataSource="datas">
-    <AntDesign.Column @bind-Field="@context.id"></AntDesign.Column>
-    <AntDesign.Column TData="string">
-        <TinyColumn Data="@context.trend" Config="trendConfig"></TinyColumn>
-    </AntDesign.Column>
-    <AntDesign.Column TData="string">
-        <TinyLine Data="@context.times" Config="timesConfig"></TinyLine>
-    </AntDesign.Column>
-</Table>
+    <Table DataSource="datas">
+        <AntDesign.Column @bind-Field="@context.id"></AntDesign.Column>
+        <AntDesign.Column TData="string">
+            <TinyColumn Data="@context.trend" Config="trendConfig"></TinyColumn>
+        </AntDesign.Column>
+        <AntDesign.Column TData="string">
+            <TinyLine Data="@context.times" Config="timesConfig"></TinyLine>
+        </AntDesign.Column>
+        <AntDesign.Column TData="string">
+            <RingProgress Data="@context.load" Config="loadConfig"></RingProgress>
+        </AntDesign.Column>
+    </Table>
 @code{
 
     List<DataItem> datas = new List<DataItem>()
@@ -32,7 +35,7 @@
             {
                 x.times.Add(new DataValue() { index = i.ToString(), value = r.Next(200, 400) });
             }
-            x.load = r.Next(100);
+            x.load = r.NextDouble();
         });
 
         return base.OnInitializedAsync();
@@ -92,7 +95,7 @@
         public string id { get; set; }
         public List<DataValue> times { get; set; } = new List<DataValue>();
         public List<DataValue> trend { get; set; } = new List<DataValue>();
-        public int load { get; set; }
+        public double load { get; set; }
     }
 
     public class DataValue
