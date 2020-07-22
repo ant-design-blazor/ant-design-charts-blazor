@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
@@ -13,7 +15,14 @@ namespace AntDesign.Charts
         /// <summary>
         ///  轴类型，对应scale类型 
         /// </summary>
-        public string type { get; set; }//OneOf<'linear' , 'time' , 'timeCat' , 'cat' , 'pow' , 'log'>
+        public string type { get; set; }//OneOf <'linear' , 'time' , 'timeCat' , 'cat' , 'pow' , 'log'>
+        public static string TypeLinear = "linear";
+        public static string TypeTime = "time";
+        public static string TypeTimeCat = "timeCat";
+        public static string TypeCat = "cat";
+        public static string TypePow = "pow";
+        public static string TypeLog = "log";
+
         /// <summary>
         ///  scale 自定义 tickMethod 
         /// </summary>
@@ -63,12 +72,18 @@ namespace AntDesign.Charts
         /// <summary>
         ///  网格设置交替的颜色，指定一个值则先渲染偶数层，两个值则交替渲染 
         /// </summary>
-        public string[] alternateColor { get; set; }// OneOf<string, string[]>
+        [JsonIgnore]
+        public OneOf<string, string[]> alternateColor { get; set; }// OneOf <string, string[]>
+        [JsonPropertyName("alternateColor")]
+        public object alternateColorMapping => alternateColor.Value;
     }
     public class BaseAxisGridLine
     {
         public LineStyle style { get; set; }// OneOf<LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
-        public string type { get; set; }// OneOf<'line' , 'circle'>
+        public string type { get; set; }// OneOf <'line' , 'circle'>
+
+        public static string TypeLine = "line";
+        public static string TypeCircle = "circle";
     }
 
     /// <summary>
@@ -99,7 +114,10 @@ namespace AntDesign.Charts
         /// <summary>
         /// 默认的 autoHide 策略，或指定自动隐藏策略
         /// </summary>
-        public bool autoHide { get; set; }//OneOf<boolean, string>
+        [JsonIgnore]
+        public OneOf<bool?, string> autoHide { get; set; }//OneOf <boolean, string>
+        [JsonPropertyName("autoHide")]
+        public object autoHideMapping => autoHide.Value;
     }
 
     /// <summary>

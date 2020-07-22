@@ -1,45 +1,50 @@
-﻿@page "/Bar"
-
-<Bar Data=data YField="value" XField="year" Config="BarConfig" />
+﻿@page "/"
+@inject IJSRuntime Js
+@*<Bar Data=data YField="value" XField="year" Config="BarConfig" />*@
 
 @code{
+    @*Data[] data = new[] {
+            new Data{ Year= "1991", Value= 3 },
+            new Data{ Year= "1992", Value= 4 },
+            new Data{ Year= "1993", Value= 3.5 },
+            new Data{ Year= "1994", Value= 5 },
+            new Data{ Year= "1995", Value= 4.9 },
+            new Data{ Year= "1996", Value= 6 },
+            new Data{ Year= "1997", Value= 7 },
+            new Data{ Year= "1998", Value= 9 },
+            new Data{ Year= "1999", Value= 13 },
+        };
 
-    Data[] data = new[] {
-        new Data{ Year= "1991", Value= 3 },
-        new Data{ Year= "1992", Value= 4 },
-        new Data{ Year= "1993", Value= 3.5 },
-        new Data{ Year= "1994", Value= 5 },
-        new Data{ Year= "1995", Value= 4.9 },
-        new Data{ Year= "1996", Value= 6 },
-        new Data{ Year= "1997", Value= 7 },
-        new Data{ Year= "1998", Value= 9 },
-        new Data{ Year= "1999", Value= 13 },
-    };
+        public class Data
+        {
+            public string Year { get; set; }
 
-    public class Data
+            public double Value { get; set; }
+        }*@
+    protected override void OnInitialized()
     {
-        public string Year { get; set; }
-
-        public double Value { get; set; }
+        Js.InvokeVoidAsync("ccc", BarConfig);
     }
 
     BarConfig BarConfig = new BarConfig()
     {
-        
+        A = "sdf",
+        B = new string[] { "a", "b" },
+
         xAxis = new ValueAxis()
         {
             line = new BaseAxisLine()
             {
                 visible = true,
-                style=new LineStyle()
+                style = new LineStyle()
                 {
-                    cursor="3231"
+                    cursor = "3231"
                 }
             },
-            @base=2312,
-            min=12,
+            Base = 2312,
+            min = 12,
         },
-      
+
     };
 
 }

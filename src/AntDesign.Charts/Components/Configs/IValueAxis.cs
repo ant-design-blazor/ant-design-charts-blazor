@@ -7,7 +7,11 @@ namespace AntDesign.Charts
 {
     public interface IValueAxis : IBaseAxis
     {
-        public string type { get; set; }//OneOf<'linear' , 'pow' , 'log'>
+        public string type { get; set; }//OneOf <'linear' , 'pow' , 'log'>
+        public static string TypeLinear = "linear";
+        public static string TypePow = "pow";
+        public static string TypeLog = "log";
+
         /// <summary>
         ///  tick相关配置 
         /// </summary>
@@ -26,7 +30,7 @@ namespace AntDesign.Charts
         ///  log 基数 
         /// </summary>
         [JsonPropertyName("base")]
-        public int? @base { get; set; }
+        public int? Base { get; set; }
 
     }
 
@@ -41,7 +45,8 @@ namespace AntDesign.Charts
         public int? tickCount { get; set; }
         public int? tickInterval { get; set; }
         public int? exponent { get; set; }
-        public int? @base { get; set; }
+        [JsonPropertyName("base")]
+        public int? Base { get; set; }
         public bool visible { get; set; }
         public string tickMethod { get; set; }
         public BaseAxisLine line { get; set; }

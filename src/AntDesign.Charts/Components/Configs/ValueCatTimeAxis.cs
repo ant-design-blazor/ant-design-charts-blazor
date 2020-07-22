@@ -15,7 +15,7 @@ namespace AntDesign.Charts
         public int? tickCount { get; set; }
         public int? tickInterval { get; set; }
         public int? exponent { get; set; }
-        public int? @base { get; set; }
+        public int? Base { get; set; }
         public bool visible { get; set; }
         public string tickMethod { get; set; }
         public BaseAxisLine line { get; set; }

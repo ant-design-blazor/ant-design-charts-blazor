@@ -12,9 +12,6 @@ namespace AntDesign.Charts
         public int? offset { get; set; }
         public ArrowOptions arrow { get; set; }
         public ValueOptions value { get; set; }
-        /// <summary>
-        /// OneOf<Animation, bool?> 
-        /// </summary>
         public object animation { get; set; }//any
         public bool? transpose { get; set; }
     }
@@ -27,9 +24,6 @@ namespace AntDesign.Charts
         public int? offset { get;set; }
         public ArrowOptions arrow { get;set; }
         public ValueOptions value { get;set; }
-        /// <summary>
-        /// OneOf<Animation, bool?> 
-        /// </summary>
         public object animation { get;set; }
         public bool? transpose { get;set; }
     }

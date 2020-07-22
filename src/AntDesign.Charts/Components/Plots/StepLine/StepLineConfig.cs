@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
@@ -26,7 +28,10 @@ namespace AntDesign.Charts
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
         public object animation { get; set; }
-        public string theme { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object themeMapping => theme.Value;
         public object responsiveTheme { get; set; }
         public bool? responsive { get; set; }
         public Title title { get; set; }
@@ -46,8 +51,13 @@ namespace AntDesign.Charts
     public interface IStepLineViewConfig : ILineViewConfig
     {
         /// <summary>
-        /// 默认为 hv: OneOf<'hv','vh','vhv','hvh'>
+        /// 默认为 hv: 'hv','vh','vhv','hvh'
         /// </summary>
-        public string step { get; set; }// OneOf<'hv','vh','vhv','hvh'>
+        public string step { get; set; }// OneOf <'hv','vh','vhv','hvh'>
+        public static string StepHv = "hv";
+        public static string StepVh = "vh";
+        public static string StepVhv = "vhv";
+        public static string StepHvh = "hvh";
+
     }
 }

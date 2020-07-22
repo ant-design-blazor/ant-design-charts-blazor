@@ -10,8 +10,14 @@ namespace AntDesign.Charts
         //  formatter?: (v: any) => string;
         public string[] values { get; set; }
         public int[] range { get; set; }
-        public string type { get; set; }//OneOf<'linear','time','timeCat','cat','pow','log'>
+        public string type { get; set; }//OneOf <'linear','time','timeCat','cat','pow','log'>
 
+        public static string TypeLinear = "linear";
+        public static string TypeTime = "time";
+        public static string TypeTimeCat = "timeCat";
+        public static string TypeCat = "cat";
+        public static string TypePow = "pow";
+        public static string TypeLog = "log";
     }
 
     public class Meta : IMeta

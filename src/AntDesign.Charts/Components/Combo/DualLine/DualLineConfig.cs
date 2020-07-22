@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
@@ -22,7 +24,11 @@ namespace AntDesign.Charts
         public string renderer { get; set; }
         public int? height { get; set; }
         public int? pixelRatio { get; set; }
-        public string theme { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object themeMapping => theme.Value;
+
         public bool? localRefresh { get; set; }
         public string padding { get; set; }
         public string[] color { get; set; }
@@ -45,7 +51,7 @@ namespace AntDesign.Charts
 
     public interface IDualLineViewConfig : IComboViewConfig
     {
-        public ValueCatTimeAxis xAxis { get; set; }//OneOf<IValueAxis, ICatAxis, ITimeAxis>
+        public ValueCatTimeAxis xAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
         public object tooltip { get; set; }
         public LineConfig[] lineConfigs { get; set; }
     }
@@ -93,7 +99,7 @@ namespace AntDesign.Charts
         public int? tickCount { get; set; }
         public int? tickInterval { get; set; }
         public int? exponent { get; set; }
-        public int? @base { get; set; }
+        public int? Base { get; set; }
         public bool visible { get; set; }
         public string tickMethod { get; set; }
         public BaseAxisLine line { get; set; }

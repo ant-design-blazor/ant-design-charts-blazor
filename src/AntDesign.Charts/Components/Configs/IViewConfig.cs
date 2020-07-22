@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -25,7 +26,7 @@ namespace AntDesign.Charts
         /// OneOf<Animation, bool?> 
         /// </summary>
         public object animation { get; set; }// OneOf<Animation, bool?> 
-        public string theme { get; set; }//OneOf<LooseMap, string>
+        public OneOf<string, object> theme { get; set; }//OneOf<LooseMap, string>
         public object responsiveTheme { get; set; }// OneOf<{},string>
         public Interaction[] interactions { get; set; }
         public bool? responsive { get; set; }
@@ -67,7 +68,7 @@ namespace AntDesign.Charts
         public int? tickCount { get; set; }
         public int? tickInterval { get; set; }
         public int? exponent { get; set; }
-        public int? @base { get; set; }
+        public int? Base { get; set; }
         public string mask { get; set; }
         string ITimeAxis.tickInterval { get; set; }
     }

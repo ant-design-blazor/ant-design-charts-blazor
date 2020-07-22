@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
@@ -26,7 +28,10 @@ namespace AntDesign.Charts
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
         public object animation { get; set; }
-        public string theme { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object themeMapping => theme.Value;
         public object responsiveTheme { get; set; }
         public Interaction[] interactions { get; set; }
         public bool? responsive { get; set; }
@@ -118,7 +123,13 @@ namespace AntDesign.Charts
     public interface IBulletAxis
     {
         public bool? visible { get; set; }
-        public string position { get; set; } //OneOf<'before','after'>
+        /// <summary>
+        /// 'before','after'
+        /// </summary>
+        public string position { get; set; } //OneOf <'before','after'>
+        public static string PositionBefore = "before";
+        public static string PositionAfter = "after";
+
         public TextStyle style { get; set; }
         public int? tickCount { get; set; }
         public BulletAxisTickLine tickLine { get; set; }

@@ -1,14 +1,22 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
     public interface IBarLabel : ILabel
     {
-        public string position { get; set; }//OneOf<string,'left','middle','right'>
+        public string position { get; set; }//OneOf <string,'left','middle','right'>
+        public static string PositionLeft = "left";
+        public static string PositionMiddle = "middle";
+        public static string PositionRight = "right";
+
         public bool? adjustPosition { get; set; }
         public bool? adjustColor { get; set; }
+
+
     }
 
     public class BarLabel : IBarLabel
