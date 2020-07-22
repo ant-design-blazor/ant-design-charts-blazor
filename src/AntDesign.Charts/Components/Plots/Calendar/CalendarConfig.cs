@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
@@ -11,7 +13,10 @@ namespace AntDesign.Charts
         public string renderer { get; set; }
         public int? height { get; set; }
         public int? pixelRatio { get; set; }
-        public string theme { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object themeMapping => theme.Value;
         public bool? localRefresh { get; set; }
         public object data { get; set; }
         public object meta { get; set; }

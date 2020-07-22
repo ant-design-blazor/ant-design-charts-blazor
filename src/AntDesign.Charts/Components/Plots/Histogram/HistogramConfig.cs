@@ -1,6 +1,8 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
@@ -24,7 +26,10 @@ namespace AntDesign.Charts
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
         public object animation { get; set; }
-        public string theme { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object themeMapping => theme.Value;
         public object responsiveTheme { get; set; }
         public bool? responsive { get; set; }
         public Title title { get; set; }

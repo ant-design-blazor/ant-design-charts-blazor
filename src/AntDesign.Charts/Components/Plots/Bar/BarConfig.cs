@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
@@ -8,6 +9,19 @@ namespace AntDesign.Charts
 {
     public class BarConfig : IBarViewConfig, IPlotConfig
     {
+        public object _A => A.Value;
+        public object _B => B.Value;
+        public object _C => C.Value;
+
+
+        [JsonIgnore]
+        public OneOf<string, string[]> A { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[]> B { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[]> C { get; set; }
+
+
         public string colorField { get; set; }
         public int? barSize { get; set; }
         public GraphicStyle barStyle { get; set; }
@@ -21,27 +35,30 @@ namespace AntDesign.Charts
         public string renderer { get; set; }
         public int? height { get; set; }
         public int? pixelRatio { get; set; }
-        public string theme { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object themeMapping => theme.Value;
         public bool? localRefresh { get; set; }
-        public object data { get;set; }
+        public object data { get; set; }
         public object meta { get; set; }//ILooseMap<Meta>
-        public string padding { get;set; }
-        public string xField { get;set; }
-        public string yField { get;set; }
-        public string[] color { get;set; }
-        public Tooltip tooltip { get;set; }
-        public Legend legend { get;set; }
-        public object animation { get;set; }
-        public object responsiveTheme { get;set; }
-        public bool? responsive { get;set; }
-        public Title title { get;set; }
-        public Description description { get;set; }
-        public GuideLineConfig[] guideLine { get;set; }
-        public ViewConfigDefaultState defaultState { get;set; }
-        public string name { get;set; }
-        Axis IViewConfig.xAxis { get;set; }
-        Axis IViewConfig.yAxis { get;set; }
-        Label IViewConfig.label { get;set; }
+        public string padding { get; set; }
+        public string xField { get; set; }
+        public string yField { get; set; }
+        public string[] color { get; set; }
+        public Tooltip tooltip { get; set; }
+        public Legend legend { get; set; }
+        public object animation { get; set; }
+        public object responsiveTheme { get; set; }
+        public bool? responsive { get; set; }
+        public Title title { get; set; }
+        public Description description { get; set; }
+        public GuideLineConfig[] guideLine { get; set; }
+        public ViewConfigDefaultState defaultState { get; set; }
+        public string name { get; set; }
+        Axis IViewConfig.xAxis { get; set; }
+        Axis IViewConfig.yAxis { get; set; }
+        Label IViewConfig.label { get; set; }
     }
 
 

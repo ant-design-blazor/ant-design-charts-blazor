@@ -15,7 +15,11 @@ namespace AntDesign.Charts
 
     public class GuideLineConfigText
     {
-        public string position { get; set; }//OneOf<'start','center','end'>
+        public string position { get; set; }//OneOf <'start','center','end'>
+        public static string PositionStart = "start";
+        public static string PositionCenter = "center";
+        public static string PositionEnd = "end";
+
         public string content { get; set; }
         public int? offsetX { get; set; }
         public int? offsetY { get; set; }
