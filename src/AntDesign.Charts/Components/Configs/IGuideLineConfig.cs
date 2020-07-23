@@ -21,8 +21,11 @@ namespace AntDesign.Charts
 
     public class GuideLineConfigText
     {
+        /// <summary>
+        /// 'start','center','end'
+        /// </summary>
         [JsonPropertyName("position")]
-        public string Position { get; set; }//OneOf <'start','center','end'>
+        public string Position { get; set; }
         public static string PositionStart = "start";
         public static string PositionCenter = "center";
         public static string PositionEnd = "end";

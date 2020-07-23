@@ -8,8 +8,16 @@ namespace AntDesign.Charts
 {
     public class StepLineConfig : IStepLineViewConfig, IPlotConfig
     {
+        /// <summary>
+        /// 默认为 hv: 'hv','vh','vhv','hvh'
+        /// </summary>
         [JsonPropertyName("step")]
         public string Step { get; set; }
+        public static string StepHv = "hv";
+        public static string StepVh = "vh";
+        public static string StepVhv = "vhv";
+        public static string StepHvh = "hvh";
+
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
         [JsonPropertyName("smooth")]
@@ -86,11 +94,8 @@ namespace AntDesign.Charts
         /// 默认为 hv: 'hv','vh','vhv','hvh'
         /// </summary>
         [JsonPropertyName("step")]
-        public string Step { get; set; }//OneOf <'hv','vh','vhv','hvh'>
-        public static string StepHv = "hv";
-        public static string StepVh = "vh";
-        public static string StepVhv = "vhv";
-        public static string StepHvh = "hvh";
+        public string Step { get; set; }
+
 
     }
 }

@@ -178,10 +178,7 @@ namespace AntDesign.Charts
         /// 'before','after'
         /// </summary>
         [JsonPropertyName("position")]
-        public string Position { get; set; } //OneOf <'before','after'>
-        public static string PositionBefore = "before";
-        public static string PositionAfter = "after";
-
+        public string Position { get; set; }
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
         [JsonPropertyName("tickCount")]
@@ -226,8 +223,14 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
+        /// <summary>
+        /// 'before','after'
+        /// </summary>
         [JsonPropertyName("position")]
         public string Position { get; set; }
+        public static string PositionBefore = "before";
+        public static string PositionAfter = "after";
+
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
         [JsonPropertyName("tickCount")]

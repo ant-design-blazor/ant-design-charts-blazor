@@ -10,10 +10,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
         [JsonPropertyName("position")]
-        public string Position { get; set; }//OneOf <'outer','inner'>
+        public string Position { get; set; }
                                             //  formatter?: (...args: any[]) => string;
-        public static string PositionOuter = "outer";
-        public static string PositionInner = "inner";
+
 
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
@@ -35,8 +34,13 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
+        /// <summary>
+        /// 'outer','inner'
+        /// </summary>
         [JsonPropertyName("position")]
         public string Position { get; set; }
+        public static string PositionOuter = "outer";
+        public static string PositionInner = "inner";
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
         [JsonPropertyName("offsetY")]
