@@ -159,7 +159,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("color")]
         public string Color { get; set; }
         [JsonPropertyName("style")]
-        public LineStyle Style { get; set; }//OneOf<LineStyle, ((...args: any[]) => LineStyle)>
+        public LineStyle Style { get; set; }//OneOf <LineStyle, ((...args: any[]) => LineStyle)>
     }
 
     public class RadarViewConfigPoint
@@ -173,7 +173,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("color")]
         public string Color { get; set; }
         [JsonPropertyName("style")]
-        public GraphicStyle Style { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle Style { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
     }
 
     public class RadarViewConfigArea
@@ -181,7 +181,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
         [JsonPropertyName("style")]
-        public GraphicStyle Style { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle Style { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
 
     }
 }

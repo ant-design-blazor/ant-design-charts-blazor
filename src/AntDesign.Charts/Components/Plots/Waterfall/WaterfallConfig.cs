@@ -104,7 +104,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("color")]
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("waterfallStyle")]
-        public GraphicStyle WaterfallStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle WaterfallStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
     }
 
     public class WaterfallViewConfigShowTotal

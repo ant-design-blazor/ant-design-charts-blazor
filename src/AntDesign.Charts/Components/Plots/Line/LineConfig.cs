@@ -52,7 +52,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("legend")]
         public Legend Legend { get; set; }
         /// <summary>
-        ///OneOf<Animation, bool?> 
+        /// bool?, Animation, object
         /// </summary>
         [JsonIgnore]
         public OneOf<bool?, Animation, object> Animation { get; set; }
@@ -113,7 +113,7 @@ namespace AntDesign.Charts
         ///  折线extra图形样式 
         /// </summary>
         [JsonPropertyName("lineStyle")]
-        public LineStyle LineStyle { get; set; }//OneOf<LineStyle, ((...args: any[]) => LineStyle)>
+        public LineStyle LineStyle { get; set; }//OneOf <LineStyle, ((...args: any[]) => LineStyle)>
         /// <summary>
         /// 折线数据点图形样式
         /// </summary>
@@ -125,7 +125,7 @@ namespace AntDesign.Charts
           })[];
          */
         [JsonPropertyName("xAxis")]
-        public ValueCatTimeAxis XAxis { get; set; }//OneOf<IValueAxis, ICatAxis, ITimeAxis>
+        public ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
         [JsonPropertyName("yAxis")]
         public ValueAxis YAxis { get; set; }
         [JsonPropertyName("interactions")]

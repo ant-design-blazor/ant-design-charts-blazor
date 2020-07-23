@@ -49,7 +49,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("legend")]
         public Legend Legend { get; set; }
         /// <summary>
-        ///OneOf<Animation, bool?> 
+        /// bool?, Animation, object
         /// </summary>
         [JsonIgnore]
         public OneOf<bool?, Animation, object> Animation { get; set; }

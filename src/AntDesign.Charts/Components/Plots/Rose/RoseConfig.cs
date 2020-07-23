@@ -103,7 +103,7 @@ OneOf<Label, object> IViewConfig.Label { get ; set ; }
         ///  每个扇形切片的样式 
         /// </summary>
         [JsonPropertyName("sectorStyle")]
-        public GraphicStyle SectorStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle SectorStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("label")]
         public RoseLabel Label { get; set; }
     }

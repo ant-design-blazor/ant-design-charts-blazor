@@ -101,7 +101,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("value")]
         public int? Value { get; set; }
         [JsonPropertyName("liquidStyle")]
-        public object LiquidStyle { get; set; }//OneOf<LiquidStyle, ((...args: any[]) => LiquidStyle)>
+        public object LiquidStyle { get; set; }//OneOf <LiquidStyle, ((...args: any[]) => LiquidStyle)>
 
     }
 
