@@ -99,7 +99,7 @@ namespace AntDesign.Charts
         public bool? visible { get; set; }
         public int? size { get; set; }
         public string color { get; set; }
-        public LineStyle style { get; set; }// OneOf<LineStyle, ((...args: any[]) => LineStyle)>
+        public LineStyle style { get; set; }//OneOf<LineStyle, ((...args: any[]) => LineStyle)>
     }
 
     public class RadarViewConfigPoint
@@ -114,7 +114,7 @@ namespace AntDesign.Charts
     public class RadarViewConfigArea
     {
         public bool? visible { get; set; }
-        public GraphicStyle style { get; set; }// OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle style { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
 
     }
 }

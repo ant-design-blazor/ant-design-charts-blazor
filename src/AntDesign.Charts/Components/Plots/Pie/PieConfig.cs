@@ -68,7 +68,7 @@ namespace AntDesign.Charts
         public bool? allowOverlap { get; set; }
         public bool? autoRotate { get; set; }
         public int? labelHeight { get; set; }
-        public int? offset { get; set; }// OneOf<int?, string>
+        public int? offset { get; set; }//OneOf<int?, string>
         public int? offsetX { get; set; }
         public int? offsetY { get; set; }
         public PieLabelConfigLine line { get; set; }

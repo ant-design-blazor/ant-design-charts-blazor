@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
@@ -11,8 +12,9 @@ namespace AntDesign.Charts
         public GraphicStyle barStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
         public ValueAxis xAxis { get; set; }
         public CatAxis yAxis { get; set; }
-        public BarViewConfigLabel label { get; set; }// OneOf<IBarLabel, IBarAutoLabel>
+        public BarViewConfigLabel label { get; set; }//OneOf<IBarLabel, IBarAutoLabel>
         public ConversionTagOptions conversionTag { get; set; }
+        [JsonPropertyName("")]
         public Interaction[] interactions { get; set; }
     }
 

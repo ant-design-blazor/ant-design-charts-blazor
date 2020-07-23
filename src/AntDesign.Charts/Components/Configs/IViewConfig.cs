@@ -23,11 +23,11 @@ namespace AntDesign.Charts
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
         /// <summary>
-        /// OneOf<Animation, bool?> 
+        ///OneOf<Animation, bool?> 
         /// </summary>
-        public object animation { get; set; }// OneOf<Animation, bool?> 
+        public object animation { get; set; }//OneOf<Animation, bool?> 
         public OneOf<string, object> theme { get; set; }//OneOf<LooseMap, string>
-        public object responsiveTheme { get; set; }// OneOf<{},string>
+        public object responsiveTheme { get; set; }//OneOf<{},string>
         public Interaction[] interactions { get; set; }
         public bool? responsive { get; set; }
         public Title title { get; set; }

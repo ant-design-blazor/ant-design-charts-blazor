@@ -10,7 +10,7 @@ namespace AntDesign.Charts
         public string fontFamily { get; set; }
         public int? fontWeight { get; set; }
         public int? lineHeight { get; set; }
-        public string textAlign { get; set; }// OneOf <'center','left','right'> 
+        public string textAlign { get; set; }//OneOf <'center','left','right'> 
         public static string TextAlignCenter = "center";
         public static string TextAlignLeft = "left";
         public static string TextAlignRight = "right";
