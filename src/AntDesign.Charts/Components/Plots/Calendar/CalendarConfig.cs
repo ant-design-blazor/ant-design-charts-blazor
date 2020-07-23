@@ -21,7 +21,7 @@ namespace AntDesign.Charts
         [JsonIgnore]
         public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
-        public object themeMapping => Theme.Value;
+        public object ThemeMapping => Theme.Value;
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
         [JsonPropertyName("data")]
