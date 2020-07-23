@@ -40,9 +40,9 @@ namespace AntDesign.Charts
         /// </summary>
         [JsonPropertyName("animation")]
         public object Animation { get; set; }//OneOf<Animation, bool?>
-        public OneOf<string, object> Theme { get; set; }//OneOf<LooseMap, string>
+        public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("responsiveTheme")]
-        public object ResponsiveTheme { get; set; }//OneOf<{},string>
+        public OneOf<string,object> ResponsiveTheme { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
         [JsonPropertyName("responsive")]

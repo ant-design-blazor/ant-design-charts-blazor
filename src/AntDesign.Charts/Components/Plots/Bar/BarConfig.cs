@@ -60,8 +60,10 @@ namespace AntDesign.Charts
         public Legend Legend { get; set; }
         [JsonPropertyName("animation")]
         public object Animation { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> ResponsiveTheme { get; set; }
         [JsonPropertyName("responsiveTheme")]
-        public object ResponsiveTheme { get; set; }
+        public object ResponsiveThemeMapping => ResponsiveTheme.Value;
         [JsonPropertyName("responsive")]
         public bool? Responsive { get; set; }
         [JsonPropertyName("title")]
