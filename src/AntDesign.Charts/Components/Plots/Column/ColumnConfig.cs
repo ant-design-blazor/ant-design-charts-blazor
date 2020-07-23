@@ -93,7 +93,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("columnSize")]
         public int? ColumnSize { get; set; }
         [JsonPropertyName("columnStyle")]
-        public GraphicStyle ColumnStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle ColumnStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("xAxis")]
         public ICatAxis XAxis { get; set; }
         [JsonPropertyName("yAxis")]
@@ -113,8 +113,15 @@ namespace AntDesign.Charts
 
     public class ColumnViewConfigLabel : IColumnLabel, IColumnAutoLabel
     {
+        /// <summary>
+        /// string,'top','middle','bottom'
+        /// </summary>
         [JsonPropertyName("position")]
         public string Position { get; set; }
+        public static string PositionTop = "top";
+        public static string PositionMiddle = "middle";
+        public static string PositionBottom = "bottom";
+
         [JsonPropertyName("adjustPosition")]
         public bool? AdjustPosition { get; set; }
         [JsonPropertyName("adjustColor")]
@@ -148,7 +155,7 @@ namespace AntDesign.Charts
     public interface IColumnLabel : ILabel
     {
         [JsonPropertyName("position")]
-        public string Position { get; set; }//OneOf<string,'top','middle','bottom'>
+        public string Position { get; set; }
         [JsonPropertyName("adjustPosition")]
         public bool? AdjustPosition { get; set; }
         [JsonPropertyName("adjustColor")]
