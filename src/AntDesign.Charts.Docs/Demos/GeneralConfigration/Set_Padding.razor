@@ -1,4 +1,4 @@
-﻿@page "/Set_Padding"
+@page "/Set_Padding"
 
 <Text>未完成</Text>
     @*<Tabs>
@@ -54,19 +54,19 @@
 
     ColumnConfig config1 = new ColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "手动设置图表内边距",
+            Visible = true,
+            Text = "手动设置图表内边距",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "G2Plot图表默认自动计算图表内边距，但用户可以通过padding配置项手动设置。",
+            Visible = true,
+            Text = "G2Plot图表默认自动计算图表内边距，但用户可以通过padding配置项手动设置。",
         },
-        xField = "year",
-        yField = "value",
-        padding = "[100, 100, 100, 100]",//解决多类型问题
+        XField = "year",
+        YField = "value",
+        Padding = "[100, 100, 100, 100]",//解决多类型问题
     };
 
 
@@ -74,3 +74,4 @@
 
 
 }
+

@@ -1,4 +1,4 @@
-﻿@page "/Area_Chart"
+@page "/Area_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -28,17 +28,17 @@
 
     AreaConfig config1 = new AreaConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "基础面积图",
+            Visible = true,
+            Text = "基础面积图",
         },
-        xField = "Date",
-        yField = "scales",
-        xAxis = new ValueCatTimeAxis()
+        XField = "Date",
+        YField = "scales",
+        XAxis = new ValueCatTimeAxis()
         {
-            type = "dateTime",
-            tickCount = 5,
+            Type = "dateTime",
+            TickCount = 5,
         },
     };
 
@@ -46,3 +46,6 @@
 
 
 }
+
+
+

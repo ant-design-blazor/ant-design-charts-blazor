@@ -1,4 +1,4 @@
-﻿@page "/DensityHeatmap_Chart"
+@page "/DensityHeatmap_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -28,23 +28,23 @@
 
     DensityHeatmapConfig config1 = new DensityHeatmapConfig()
     {
-        xField = "prob",
-        yField = "average_annual_wage",
-        colorField = "numbEmployed",
-        color = new string[] { "#295599", "#3e94c0", "#78c6d0", "#b4d9e4", "#fffef0", "#f9cdac", "#ec7d92", "#bc448c" },
-        radius = 15,
-        intensity = 2,
-        xAxis = new Axis()
+        XField = "prob",
+        YField = "average_annual_wage",
+        ColorField = "numbEmployed",
+        Color = new string[] { "#295599", "#3e94c0", "#78c6d0", "#b4d9e4", "#fffef0", "#f9cdac", "#ec7d92", "#bc448c" },
+        Radius = 15,
+        Intensity = 2,
+        XAxis = new Axis()
         {
-            visible = true,
-            min = -0.05,
-            max = 1.05,
-            nice = false,
+            Visible = true,
+            Min = -0.05,
+            Max = 1.05,
+            Nice = false,
         },
-        yAxis = new Axis()
+        YAxis = new Axis()
         {
-            visible = true,
-            min = -1000,
+            Visible = true,
+            Min = -1000,
         },
     };
 
@@ -52,3 +52,4 @@
     #endregion 示例1
 
 }
+

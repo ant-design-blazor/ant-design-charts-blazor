@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
     public class ValueOptions
     {
-        public bool? visible { get; set; }
-        public object style { get; set; }//any
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("style")]
+        public object Style { get; set; }//any
         //  formatter?: (valueUpper: any, valueLower: any) => string;
     }
 }
+
+

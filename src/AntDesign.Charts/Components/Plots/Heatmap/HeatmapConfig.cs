@@ -1,4 +1,4 @@
-﻿using OneOf;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,94 +8,156 @@ namespace AntDesign.Charts
 {
     public class HeatmapConfig : IHeatmapLayerConfig, IPlotConfig
     {
-        public string sizeField { get; set; }
-        public string colorField { get; set; }
-        public int[] shapeSize { get; set; }
-        public string shapeType { get; set; }
-        public GraphicStyle shapeStyle { get; set; }
-        public string[] color { get; set; }
-        public MatrixLegendConfig legend { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }
-        public Tooltip tooltip { get; set; }
-        public object animation { get; set; }
+[JsonPropertyName("sizeField")]
+public string SizeField { get; set; }
+[JsonPropertyName("colorField")]
+public string ColorField { get; set; }
+[JsonPropertyName("shapeSize")]
+public int[] ShapeSize { get; set; }
+[JsonPropertyName("shapeType")]
+public string ShapeType { get; set; }
+[JsonPropertyName("shapeStyle")]
+public GraphicStyle ShapeStyle { get; set; }
+[JsonPropertyName("color")]
+public string[] Color { get; set; }
+[JsonPropertyName("legend")]
+public MatrixLegendConfig Legend { get; set; }
+[JsonPropertyName("renderer")]
+public string Renderer { get; set; }
+[JsonPropertyName("data")]
+public object Data { get; set; }
+[JsonPropertyName("meta")]
+public object Meta { get; set; }
+[JsonPropertyName("padding")]
+public string Padding { get; set; }
+[JsonPropertyName("xField")]
+public string XField { get; set; }
+[JsonPropertyName("yField")]
+public string YField { get; set; }
+[JsonPropertyName("xAxis")]
+public Axis XAxis { get; set; }
+[JsonPropertyName("yAxis")]
+public Axis YAxis { get; set; }
+[JsonPropertyName("label")]
+public Label Label { get; set; }
+[JsonPropertyName("tooltip")]
+public Tooltip Tooltip { get; set; }
+[JsonPropertyName("animation")]
+public object Animation { get; set; }
         [JsonIgnore]
-        public OneOf<string, object> theme { get; set; }
+        public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
-        public object themeMapping => theme.Value;
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public string id { get; set; }
-        public int? x { get; set; }
-        public int? y { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public object parent { get; set; }
-        public object canvas { get; set; }
-        public bool? forceFit { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
-        Legend IViewConfig.legend { get; set; }
+        public object themeMapping => Theme.Value;
+[JsonPropertyName("responsiveTheme")]
+public object ResponsiveTheme { get; set; }
+[JsonPropertyName("interactions")]
+public Interaction[] Interactions { get; set; }
+[JsonPropertyName("responsive")]
+public bool? Responsive { get; set; }
+[JsonPropertyName("title")]
+public Title Title { get; set; }
+[JsonPropertyName("description")]
+public Description Description { get; set; }
+[JsonPropertyName("guideLine")]
+public GuideLineConfig[] GuideLine { get; set; }
+[JsonPropertyName("defaultState")]
+public ViewConfigDefaultState DefaultState { get; set; }
+[JsonPropertyName("name")]
+public string Name { get; set; }
+[JsonPropertyName("id")]
+public string Id { get; set; }
+[JsonPropertyName("x")]
+public int? X { get; set; }
+[JsonPropertyName("y")]
+public int? Y { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("parent")]
+public object Parent { get; set; }
+[JsonPropertyName("canvas")]
+public object Canvas { get; set; }
+[JsonPropertyName("forceFit")]
+public bool? ForceFit { get; set; }
+[JsonPropertyName("pixelRatio")]
+public int? PixelRatio { get; set; }
+[JsonPropertyName("localRefresh")]
+public bool? LocalRefresh { get; set; }
+        Legend IViewConfig.Legend { get; set; }
     }
 
     public interface IHeatmapLayerConfig : IHeatmapViewConfig, ILayerConfig { }
 
     public interface IHeatmapViewConfig : IViewConfig
     {
-        public string sizeField { get; set; }
-        public string colorField { get; set; }
-        public int[] shapeSize { get; set; }//number[]
-        public string shapeType { get; set; }
-        public GraphicStyle shapeStyle { get; set; }
-        public string[] color { get; set; }
-        public MatrixLegendConfig legend { get; set; }
+[JsonPropertyName("sizeField")]
+public string SizeField { get; set; }
+[JsonPropertyName("colorField")]
+public string ColorField { get; set; }
+[JsonPropertyName("shapeSize")]
+public int[] ShapeSize { get; set; }//number[]
+[JsonPropertyName("shapeType")]
+public string ShapeType { get; set; }
+[JsonPropertyName("shapeStyle")]
+public GraphicStyle ShapeStyle { get; set; }
+[JsonPropertyName("color")]
+public string[] Color { get; set; }
+[JsonPropertyName("legend")]
+public MatrixLegendConfig Legend { get; set; }
     }
 
     public interface IMatrixLegendConfig
     {
-        public bool? visible { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
         /// <summary>
         /// export type LegendPosition =
         ///    | 'left-top'  | 'left-center'  | 'left-bottom'  | 'right-top'  | 'right-center'  | 'right-bottom'  | 'top-left'  | 'top-center'  | 'top-right'  | 'bottom-left'  | 'bottom-center'  | 'bottom-right';
         /// </summary>
-        public string position { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public MatrixLegendConfigText text { get; set; }
-        public LineStyle ticklineStyle { get; set; }
-        public GraphicStyle anchorStyle { get; set; }
-        public string triggerOn { get; set; }
+[JsonPropertyName("position")]
+public string Position { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("text")]
+public MatrixLegendConfigText Text { get; set; }
+[JsonPropertyName("ticklineStyle")]
+public LineStyle TicklineStyle { get; set; }
+[JsonPropertyName("anchorStyle")]
+public GraphicStyle AnchorStyle { get; set; }
+[JsonPropertyName("triggerOn")]
+public string TriggerOn { get; set; }
     }
 
 
     public class MatrixLegendConfigText
     {
-        public TextStyle style { get; set; }
+[JsonPropertyName("style")]
+public TextStyle Style { get; set; }
         //public () => string formatter { get; set; }
     }
 
     public class MatrixLegendConfig : IMatrixLegendConfig
     {
-        public bool? visible { get; set; }
-        public string position { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public MatrixLegendConfigText text { get; set; }
-        public LineStyle ticklineStyle { get; set; }
-        public GraphicStyle anchorStyle { get; set; }
-        public string triggerOn { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("position")]
+public string Position { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("text")]
+public MatrixLegendConfigText Text { get; set; }
+[JsonPropertyName("ticklineStyle")]
+public LineStyle TicklineStyle { get; set; }
+[JsonPropertyName("anchorStyle")]
+public GraphicStyle AnchorStyle { get; set; }
+[JsonPropertyName("triggerOn")]
+public string TriggerOn { get; set; }
     }
 }
+
+

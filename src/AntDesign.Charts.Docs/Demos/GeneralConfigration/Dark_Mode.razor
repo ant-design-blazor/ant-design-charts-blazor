@@ -1,4 +1,4 @@
-﻿@page "/Dark_Mode"
+@page "/Dark_Mode"
 
     <Tabs>
         <TabPane Key="1">
@@ -53,19 +53,19 @@
 
     ColumnConfig config1 = new ColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "设置图表暗黑主题",
+            Visible = true,
+            Text = "设置图表暗黑主题",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "g2plot内置了暗黑主题，可通过theme配置。",
+            Visible = true,
+            Text = "g2plot内置了暗黑主题，可通过theme配置。",
         },
-        theme = "dark",
-        xField = "year",
-        yField = "value",
+        Theme = "dark",
+        XField = "year",
+        YField = "value",
     };
 
 
@@ -73,3 +73,4 @@
 
 
 }
+

@@ -1,4 +1,4 @@
-﻿@page "/Range_Bar_Chart"
+@page "/Range_Bar_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -31,13 +31,13 @@
 
     RangeBarConfig config1 = new RangeBarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "区间条形图",
+            Visible = true,
+            Text = "区间条形图",
         },
-        xField = "values",
-        yField = "type",
+        XField = "values",
+        YField = "type",
     };
 
     #endregion 示例1
@@ -58,33 +58,33 @@
 
     RangeBarConfig config2 = new RangeBarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "为区间条形图配置label样式",
+            Visible = true,
+            Text = "为区间条形图配置label样式",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "使用style配置项配置label整体样式，同时支持通过leftStyle和rightStyle分别配置label样式。",
+            Visible = true,
+            Text = "使用style配置项配置label整体样式，同时支持通过leftStyle和rightStyle分别配置label样式。",
         },
-        xField = "values",
-        yField = "type",
-        color = new string[] { "l(0) 0:#3e5bdb 1:#dd3121" },
-        columnStyle = new
+        XField = "values",
+        YField = "type",
+        Color = new string[] { "l(0) 0:#3e5bdb 1:#dd3121" },
+        ColumnStyle = new
         {
-            fillOpacity = 0.8,
+            FillOpacity = 0.8,
         },
-        label = new RangeBarLabelConfig()
+        Label = new RangeBarLabelConfig()
         {
-            visible = true,
-            leftStyle = new
+            Visible = true,
+            LeftStyle = new
             {
-                fill = "#3e5bdb",
+                Fill = "#3e5bdb",
             },
-            rightStyle = new
+            RightStyle = new
             {
-                fill = "#dd3121",
+                Fill = "#dd3121",
             },
         },
     };
@@ -92,3 +92,4 @@
     #endregion 示例2
 
 }
+

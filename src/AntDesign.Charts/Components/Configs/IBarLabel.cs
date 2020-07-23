@@ -1,4 +1,4 @@
-﻿using OneOf;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,31 +8,49 @@ namespace AntDesign.Charts
 {
     public interface IBarLabel : ILabel
     {
-        public string position { get; set; }//OneOf <string,'left','middle','right'>
+        [JsonPropertyName("position")]
+        public string Position { get; set; }//OneOf <string,'left','middle','right'>
         public static string PositionLeft = "left";
         public static string PositionMiddle = "middle";
         public static string PositionRight = "right";
 
-        public bool? adjustPosition { get; set; }
-        public bool? adjustColor { get; set; }
+        [JsonPropertyName("adjustPosition")]
+        public bool? AdjustPosition { get; set; }
+        [JsonPropertyName("adjustColor")]
+        public bool? AdjustColor { get; set; }
 
 
     }
 
     public class BarLabel : IBarLabel
     {
-        public string position { get; set; }
-        public bool? adjustPosition { get; set; }
-        public bool? adjustColor { get; set; }
-        public bool? visible { get; set; }
-        public string type { get; set; }
-        public int? precision { get; set; }
-        public string suffix { get; set; }
-        public TextStyle style { get; set; }
-        public int? offset { get; set; }
-        public int? offsetX { get; set; }
-        public int? offsetY { get; set; }
-        public bool? autoRotate { get; set; }
-        public string field { get; set; }
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
+        [JsonPropertyName("adjustPosition")]
+        public bool? AdjustPosition { get; set; }
+        [JsonPropertyName("adjustColor")]
+        public bool? AdjustColor { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("precision")]
+        public int? Precision { get; set; }
+        [JsonPropertyName("suffix")]
+        public string Suffix { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("offset")]
+        public int? Offset { get; set; }
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
+        [JsonPropertyName("autoRotate")]
+        public bool? AutoRotate { get; set; }
+        [JsonPropertyName("field")]
+        public string Field { get; set; }
     }
 }
+
+

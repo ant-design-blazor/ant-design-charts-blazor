@@ -1,4 +1,4 @@
-﻿@page "/Legend"
+@page "/Legend"
 
 <Tabs>
     <TabPane Key="1">
@@ -137,23 +137,23 @@
 
     StackedColumnConfig config1 = new StackedColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "指定图例位置",
+            Visible = true,
+            Text = "指定图例位置",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "图例位置支持12个方位，分别为 left-top,left-center,left-bottom,right-top,right-top,right-bottom,top-left,top-center,top-bottom,bottom-left,bottom-center,bottom-right。",
+            Visible = true,
+            Text = "图例位置支持12个方位，分别为 left-top,left-center,left-bottom,right-top,right-top,right-bottom,top-left,top-center,top-bottom,bottom-left,bottom-center,bottom-right。",
         },
-        xField = "time",
-        yField = "value",
-        stackField = "type",
-        legend = new Charts.Legend()
+        XField = "time",
+        YField = "value",
+        StackField = "type",
+        Legend = new Charts.Legend()
         {
-            visible = true,
-            position = "right-center",
+            Visible = true,
+            Position = "right-center",
         },
     };
 
@@ -162,3 +162,4 @@
 
 
 }
+

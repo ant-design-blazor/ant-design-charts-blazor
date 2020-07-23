@@ -1,30 +1,49 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AntDesign.Charts
 {
-   public  interface IConversionTagOptions
+    public interface IConversionTagOptions
     {
-        public bool? visible { get; set; }
-        public int? size { get; set; }
-        public int? spacing { get; set; }
-        public int? offset { get; set; }
-        public ArrowOptions arrow { get; set; }
-        public ValueOptions value { get; set; }
-        public object animation { get; set; }//any
-        public bool? transpose { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("spacing")]
+        public int? Spacing { get; set; }
+        [JsonPropertyName("offset")]
+        public int? Offset { get; set; }
+        [JsonPropertyName("arrow")]
+        public ArrowOptions Arrow { get; set; }
+        [JsonPropertyName("value")]
+        public ValueOptions Value { get; set; }
+        [JsonPropertyName("animation")]
+        public object Animation { get; set; }//any
+        [JsonPropertyName("transpose")]
+        public bool? Transpose { get; set; }
     }
 
     public class ConversionTagOptions : IConversionTagOptions
     {
-        public bool? visible { get;set; }
-        public int? size { get;set; }
-        public int? spacing { get;set; }
-        public int? offset { get;set; }
-        public ArrowOptions arrow { get;set; }
-        public ValueOptions value { get;set; }
-        public object animation { get;set; }
-        public bool? transpose { get;set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("size")]
+public int? Size { get; set; }
+[JsonPropertyName("spacing")]
+public int? Spacing { get; set; }
+[JsonPropertyName("offset")]
+public int? Offset { get; set; }
+[JsonPropertyName("arrow")]
+public ArrowOptions Arrow { get; set; }
+[JsonPropertyName("value")]
+public ValueOptions Value { get; set; }
+[JsonPropertyName("animation")]
+public object Animation { get; set; }
+[JsonPropertyName("transpose")]
+public bool? Transpose { get; set; }
     }
 }
+
+

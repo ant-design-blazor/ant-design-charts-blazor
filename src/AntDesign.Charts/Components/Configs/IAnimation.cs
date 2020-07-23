@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +7,14 @@ namespace AntDesign.Charts
 {
     public interface IAnimation
     {
-        public AnimationCfg appear { get; set; }
-        public AnimationCfg enter { get; set; }
-        public AnimationCfg update { get; set; }
-        public AnimationCfg leave { get; set; }
+        [JsonPropertyName("appear")]
+        public AnimationCfg Appear { get; set; }
+        [JsonPropertyName("enter")]
+        public AnimationCfg Enter { get; set; }
+        [JsonPropertyName("update")]
+        public AnimationCfg Update { get; set; }
+        [JsonPropertyName("leave")]
+        public AnimationCfg Leave { get; set; }
         //  [field: string]: any;
     }
 
@@ -18,22 +23,33 @@ namespace AntDesign.Charts
         /// <summary>
         ///  动画模式，延伸or缩放 
         /// </summary>
-        public string type { get; set; }
-        public int? duration { get; set; }
-        public string easing { get; set; }
-        public int? delay { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("duration")]
+        public int? Duration { get; set; }
+        [JsonPropertyName("easing")]
+        public string Easing { get; set; }
+        [JsonPropertyName("delay")]
+        public int? Delay { get; set; }
         //callback?: (...args: any[]) => void;
         //[field: string]: any;
 
 
-        public string animation { get; set; }//补充
+        [JsonPropertyName("animation")]
+        public string Animation { get; set; }//补充
     }
 
     public class Animation : IAnimation
     {
-        public AnimationCfg appear { get; set; }
-        public AnimationCfg enter { get; set; }
-        public AnimationCfg update { get; set; }
-        public AnimationCfg leave { get; set; }
+        [JsonPropertyName("appear")]
+        public AnimationCfg Appear { get; set; }
+        [JsonPropertyName("enter")]
+        public AnimationCfg Enter { get; set; }
+        [JsonPropertyName("update")]
+        public AnimationCfg Update { get; set; }
+        [JsonPropertyName("leave")]
+        public AnimationCfg Leave { get; set; }
     }
 }
+
+

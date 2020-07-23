@@ -1,4 +1,4 @@
-﻿@page "/Grouped_Column_Chart"
+@page "/Grouped_Column_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -98,27 +98,28 @@
 
     GroupedColumnConfig config1 = new GroupedColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "分组柱状图",
+            Visible = true,
+            Text = "分组柱状图",
         },
-        forceFit = true,
-        xField = "月份",
-        yField = "月均降雨量",
-        yAxis = new ValueAxis()
+        ForceFit = true,
+        XField = "月份",
+        YField = "月均降雨量",
+        YAxis = new ValueAxis()
         {
-            min = 0,
+            Min = 0,
         },
-        label = new ColumnViewConfigLabel()
+        Label = new ColumnViewConfigLabel()
         {
-            visible = true,
+            Visible = true,
         },
-        groupField = "name",
-        color =new string[] { "#1ca9e6", "#f88c24" },
+        GroupField = "name",
+        Color = new string[] { "#1ca9e6", "#f88c24" },
     };
 
 
     #endregion 示例1
 
 }
+

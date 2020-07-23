@@ -1,4 +1,4 @@
-﻿using OneOf;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,110 +8,177 @@ namespace AntDesign.Charts
 {
     public class DensityHeatmapConfig : IDensityHeatmapViewConfig, IPlotConfig
     {
-        public string colorField { get; set; }
-        public int? radius { get; set; }
-        public int? intensity { get; set; }
-        public DensityHeatmapViewConfigPoint point { get; set; }
-        public HeatmapLegendConfig legend { get; set; }
-        public HeatmapBackgroundConfig background { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public string[] color { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }
-        public Tooltip tooltip { get; set; }
-        public object animation { get; set; }
+[JsonPropertyName("colorField")]
+public string ColorField { get; set; }
+[JsonPropertyName("radius")]
+public int? Radius { get; set; }
+[JsonPropertyName("intensity")]
+public int? Intensity { get; set; }
+[JsonPropertyName("point")]
+public DensityHeatmapViewConfigPoint Point { get; set; }
+[JsonPropertyName("legend")]
+public HeatmapLegendConfig Legend { get; set; }
+[JsonPropertyName("background")]
+public HeatmapBackgroundConfig Background { get; set; }
+[JsonPropertyName("renderer")]
+public string Renderer { get; set; }
+[JsonPropertyName("data")]
+public object Data { get; set; }
+[JsonPropertyName("meta")]
+public object Meta { get; set; }
+[JsonPropertyName("padding")]
+public string Padding { get; set; }
+[JsonPropertyName("xField")]
+public string XField { get; set; }
+[JsonPropertyName("yField")]
+public string YField { get; set; }
+[JsonPropertyName("color")]
+public string[] Color { get; set; }
+[JsonPropertyName("xAxis")]
+public Axis XAxis { get; set; }
+[JsonPropertyName("yAxis")]
+public Axis YAxis { get; set; }
+[JsonPropertyName("label")]
+public Label Label { get; set; }
+[JsonPropertyName("tooltip")]
+public Tooltip Tooltip { get; set; }
+[JsonPropertyName("animation")]
+public object Animation { get; set; }
         [JsonIgnore]
-        public OneOf<string, object> theme { get; set; }
+        public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
-        public object themeMapping => theme.Value;
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
-        Legend IViewConfig.legend { get; set; }
+        public object themeMapping => Theme.Value;
+[JsonPropertyName("responsiveTheme")]
+public object ResponsiveTheme { get; set; }
+[JsonPropertyName("interactions")]
+public Interaction[] Interactions { get; set; }
+[JsonPropertyName("responsive")]
+public bool? Responsive { get; set; }
+[JsonPropertyName("title")]
+public Title Title { get; set; }
+[JsonPropertyName("description")]
+public Description Description { get; set; }
+[JsonPropertyName("guideLine")]
+public GuideLineConfig[] GuideLine { get; set; }
+[JsonPropertyName("defaultState")]
+public ViewConfigDefaultState DefaultState { get; set; }
+[JsonPropertyName("name")]
+public string Name { get; set; }
+[JsonPropertyName("forceFit")]
+public bool? ForceFit { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("pixelRatio")]
+public int? PixelRatio { get; set; }
+[JsonPropertyName("localRefresh")]
+public bool? LocalRefresh { get; set; }
+        Legend IViewConfig.Legend { get; set; }
     }
 
     public interface IDensityHeatmapViewConfig : IViewConfig
     {
-        public string colorField { get; set; }
-        public int? radius { get; set; }
-        public int? intensity { get; set; }
-        public DensityHeatmapViewConfigPoint point { get; set; }
-        public HeatmapLegendConfig legend { get; set; }
-        public HeatmapBackgroundConfig background { get; set; }
+[JsonPropertyName("colorField")]
+public string ColorField { get; set; }
+[JsonPropertyName("radius")]
+public int? Radius { get; set; }
+[JsonPropertyName("intensity")]
+public int? Intensity { get; set; }
+[JsonPropertyName("point")]
+public DensityHeatmapViewConfigPoint Point { get; set; }
+[JsonPropertyName("legend")]
+public HeatmapLegendConfig Legend { get; set; }
+[JsonPropertyName("background")]
+public HeatmapBackgroundConfig Background { get; set; }
 
     }
 
     public class DensityHeatmapViewConfigPoint
     {
-        public bool? visible { get; set; }
-        public string shape { get; set; }
-        public int? size { get; set; }
-        public string color { get; set; }
-        public GraphicStyle style { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("shape")]
+public string Shape { get; set; }
+[JsonPropertyName("size")]
+public int? Size { get; set; }
+[JsonPropertyName("color")]
+public string Color { get; set; }
+[JsonPropertyName("style")]
+public GraphicStyle Style { get; set; }
     }
 
     public interface IHeatmapLegendConfig
     {
-        public bool? visible { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
         /// <summary>
         /// export type LegendPosition =
         ///  | 'left-top'  | 'left-center'  | 'left-bottom'  | 'right-top'  | 'right-center'  | 'right-bottom'  | 'top-left'  | 'top-center'  | 'top-right'  | 'bottom-left'  | 'bottom-center'  | 'bottom-right';
         /// </summary>
-        public string position { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public HeatmapLegendConfigText text { get; set; }
-        public object gridlineStyle { get; set; }
-        public string triggerOn { get; set; }
+[JsonPropertyName("position")]
+public string Position { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("text")]
+public HeatmapLegendConfigText Text { get; set; }
+[JsonPropertyName("gridlineStyle")]
+public object GridlineStyle { get; set; }
+[JsonPropertyName("triggerOn")]
+public string TriggerOn { get; set; }
     }
 
     public interface HeatmapLegendConfigText
     {
-        public object style { get; set; }
+[JsonPropertyName("style")]
+public object Style { get; set; }
         //public () => string formatter { get; set; }
     }
 
     public class HeatmapLegendConfig : IHeatmapLegendConfig
     {
-        public bool? visible { get; set; }
-        public string position { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public HeatmapLegendConfigText text { get; set; }
-        public object gridlineStyle { get; set; }
-        public string triggerOn { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("position")]
+public string Position { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("text")]
+public HeatmapLegendConfigText Text { get; set; }
+[JsonPropertyName("gridlineStyle")]
+public object GridlineStyle { get; set; }
+[JsonPropertyName("triggerOn")]
+public string TriggerOn { get; set; }
     }
 
     public interface IHeatmapBackgroundConfig
     {
-        public bool? visible { get; set; }
-        public string type { get; set; }
-        public object value { get; set; }
-        public string src { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("type")]
+public string Type { get; set; }
+[JsonPropertyName("value")]
+public object Value { get; set; }
+[JsonPropertyName("src")]
+public string Src { get; set; }
         //public Function callback { get; set; }
     }
 
     public class HeatmapBackgroundConfig : IHeatmapBackgroundConfig
     {
-        public bool? visible { get; set; }
-        public string type { get; set; }
-        public object value { get; set; }
-        public string src { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("type")]
+public string Type { get; set; }
+[JsonPropertyName("value")]
+public object Value { get; set; }
+[JsonPropertyName("src")]
+public string Src { get; set; }
     }
 }
+
+

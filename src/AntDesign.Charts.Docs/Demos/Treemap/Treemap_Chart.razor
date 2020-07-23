@@ -1,4 +1,4 @@
-﻿@page "/Treemap_Chart"
+@page "/Treemap_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -14,7 +14,7 @@
 
     Data data1 = new Data()
     {
-        name = "root",
+        Name = "root",
         Children = new List<TreemapDataItem> {
                 new TreemapDataItem() { Name= "分类 1", Value= 560 },
                 new TreemapDataItem() { Name= "分类 2", Value= 500 },
@@ -42,7 +42,7 @@
 
     TreemapConfig config1 = new TreemapConfig()
     {
-        colorField = "name",
+        ColorField = "name",
     };
 
     #endregion 示例1
@@ -50,7 +50,7 @@
 
     public class Data : ITreemapData<TreemapDataItem>
     {
-        public string name { get; set; }
+        public string Name { get; set; }
         public IEnumerable<TreemapDataItem> Children { get; set; }
         public int Value { get; set; }
     }
@@ -61,3 +61,4 @@
         public decimal Value { get; set; }
     }
 }
+

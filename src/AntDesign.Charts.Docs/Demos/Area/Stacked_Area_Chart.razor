@@ -1,4 +1,4 @@
-﻿@page "/Stacked_Area_Chart"
+@page "/Stacked_Area_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -28,24 +28,24 @@
 
     StackedAreaConfig config1 = new StackedAreaConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "堆叠面积图",
+            Visible = true,
+            Text = "堆叠面积图",
         },
-        xField = "date",
-        yField = "value",
-        stackField = "country",
-        color = new string[] { "#6897a7", "#8bc0d6", "#60d7a7", "#dedede", "#fedca9", "#fab36f", "#d96d6f" },
-        xAxis = new ValueCatTimeAxis()
+        XField = "date",
+        YField = "value",
+        StackField = "country",
+        Color = new string[] { "#6897a7", "#8bc0d6", "#60d7a7", "#dedede", "#fedca9", "#fab36f", "#d96d6f" },
+        XAxis = new ValueCatTimeAxis()
         {
-            type = "dateTime",
-            tickCount = 5,
+            Type = "dateTime",
+            TickCount = 5,
         },
-        legend = new Legend()
+        Legend = new Legend()
         {
-            visible = true,
-            position = "right-top",
+            Visible = true,
+            Position = "right-top",
         },
         @*responsive = true,*@
     };
@@ -54,3 +54,6 @@
     #endregion 示例1
 
 }
+
+
+

@@ -1,4 +1,4 @@
-﻿using OneOf;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,100 +8,169 @@ namespace AntDesign.Charts
 {
     public class PieConfig : IPieViewConfig, IPlotConfig
     {
-        public string angleField { get; set; }
-        public string colorField { get; set; }
-        public double? radius { get; set; }
-        public GraphicStyle pieStyle { get; set; }
-        public PieLabelConfig label { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public string[] color { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
-        public object animation { get; set; }
+[JsonPropertyName("angleField")]
+public string AngleField { get; set; }
+[JsonPropertyName("colorField")]
+public string ColorField { get; set; }
+[JsonPropertyName("radius")]
+public double? Radius { get; set; }
+[JsonPropertyName("pieStyle")]
+public GraphicStyle PieStyle { get; set; }
+[JsonPropertyName("label")]
+public PieLabelConfig Label { get; set; }
+[JsonPropertyName("renderer")]
+public string Renderer { get; set; }
+[JsonPropertyName("data")]
+public object Data { get; set; }
+[JsonPropertyName("meta")]
+public object Meta { get; set; }
+[JsonPropertyName("padding")]
+public string Padding { get; set; }
+[JsonPropertyName("xField")]
+public string XField { get; set; }
+[JsonPropertyName("yField")]
+public string YField { get; set; }
+[JsonPropertyName("color")]
+public string[] Color { get; set; }
+[JsonPropertyName("xAxis")]
+public Axis XAxis { get; set; }
+[JsonPropertyName("yAxis")]
+public Axis YAxis { get; set; }
+[JsonPropertyName("tooltip")]
+public Tooltip Tooltip { get; set; }
+[JsonPropertyName("legend")]
+public Legend Legend { get; set; }
+[JsonPropertyName("animation")]
+public object Animation { get; set; }
         [JsonIgnore]
-        public OneOf<string, object> theme { get; set; }
+        public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
-        public object themeMapping => theme.Value;
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
-        Label IViewConfig.label { get; set; }
+        public object themeMapping => Theme.Value;
+[JsonPropertyName("responsiveTheme")]
+public object ResponsiveTheme { get; set; }
+[JsonPropertyName("interactions")]
+public Interaction[] Interactions { get; set; }
+[JsonPropertyName("responsive")]
+public bool? Responsive { get; set; }
+[JsonPropertyName("title")]
+public Title Title { get; set; }
+[JsonPropertyName("description")]
+public Description Description { get; set; }
+[JsonPropertyName("guideLine")]
+public GuideLineConfig[] GuideLine { get; set; }
+[JsonPropertyName("defaultState")]
+public ViewConfigDefaultState DefaultState { get; set; }
+[JsonPropertyName("name")]
+public string Name { get; set; }
+[JsonPropertyName("forceFit")]
+public bool? ForceFit { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("pixelRatio")]
+public int? PixelRatio { get; set; }
+[JsonPropertyName("localRefresh")]
+public bool? LocalRefresh { get; set; }
+        Label IViewConfig.Label { get; set; }
     }
 
     public interface IPieViewConfig : IViewConfig
     {
-        public string angleField { get; set; }
-        public string colorField { get; set; }
-        public double? radius { get; set; }
-        public GraphicStyle pieStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
-        public PieLabelConfig label { get; set; }
+[JsonPropertyName("angleField")]
+public string AngleField { get; set; }
+[JsonPropertyName("colorField")]
+public string ColorField { get; set; }
+[JsonPropertyName("radius")]
+public double? Radius { get; set; }
+[JsonPropertyName("pieStyle")]
+public GraphicStyle PieStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+[JsonPropertyName("label")]
+public PieLabelConfig Label { get; set; }
     }
 
     public interface IPieLabelConfig : ILabel
     {
-        public bool? visible { get; set; }
-        public object formatter { get; set; }//OneOf<(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("formatter")]
+public object Formatter { get; set; }//OneOf<(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
         /// <summary>
         ///  whether 
         /// </summary>
-        public bool? adjustPosition { get; set; }
+[JsonPropertyName("adjustPosition")]
+public bool? AdjustPosition { get; set; }
         /// <summary>
         ///  allow label overlap 
         /// </summary>
-        public bool? allowOverlap { get; set; }
-        public bool? autoRotate { get; set; }
-        public int? labelHeight { get; set; }
-        public int? offset { get; set; }//OneOf<int?, string>
-        public int? offsetX { get; set; }
-        public int? offsetY { get; set; }
-        public PieLabelConfigLine line { get; set; }
-        public TextStyle style { get; set; }
+[JsonPropertyName("allowOverlap")]
+public bool? AllowOverlap { get; set; }
+[JsonPropertyName("autoRotate")]
+public bool? AutoRotate { get; set; }
+[JsonPropertyName("labelHeight")]
+public int? LabelHeight { get; set; }
+[JsonPropertyName("offset")]
+public int? Offset { get; set; }//OneOf<int?, string>
+[JsonPropertyName("offsetX")]
+public int? OffsetX { get; set; }
+[JsonPropertyName("offsetY")]
+public int? OffsetY { get; set; }
+[JsonPropertyName("line")]
+public PieLabelConfigLine Line { get; set; }
+[JsonPropertyName("style")]
+public TextStyle Style { get; set; }
     }
 
     public interface PieLabelConfigLine
     {
-        public bool? visible { get; set; }
-        public bool? smooth { get; set; }
-        public string stroke { get; set; }
-        public int? lineWidth { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("smooth")]
+public bool? Smooth { get; set; }
+[JsonPropertyName("stroke")]
+public string Stroke { get; set; }
+[JsonPropertyName("lineWidth")]
+public int? LineWidth { get; set; }
     }
 
     public class PieLabelConfig : IPieLabelConfig
     {
-        public bool? visible { get; set; }
-        public object formatter { get; set; }
-        public bool? adjustPosition { get; set; }
-        public bool? allowOverlap { get; set; }
-        public bool? autoRotate { get; set; }
-        public int? labelHeight { get; set; }
-        public int? offset { get; set; }
-        public int? offsetX { get; set; }
-        public int? offsetY { get; set; }
-        public PieLabelConfigLine line { get; set; }
-        public TextStyle style { get; set; }
-        public string type { get; set; }
-        public int? precision { get; set; }
-        public string suffix { get; set; }
-        public string position { get; set; }
-        public bool? adjustColor { get; set; }
-        public string field { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("formatter")]
+public object Formatter { get; set; }
+[JsonPropertyName("adjustPosition")]
+public bool? AdjustPosition { get; set; }
+[JsonPropertyName("allowOverlap")]
+public bool? AllowOverlap { get; set; }
+[JsonPropertyName("autoRotate")]
+public bool? AutoRotate { get; set; }
+[JsonPropertyName("labelHeight")]
+public int? LabelHeight { get; set; }
+[JsonPropertyName("offset")]
+public int? Offset { get; set; }
+[JsonPropertyName("offsetX")]
+public int? OffsetX { get; set; }
+[JsonPropertyName("offsetY")]
+public int? OffsetY { get; set; }
+[JsonPropertyName("line")]
+public PieLabelConfigLine Line { get; set; }
+[JsonPropertyName("style")]
+public TextStyle Style { get; set; }
+[JsonPropertyName("type")]
+public string Type { get; set; }
+[JsonPropertyName("precision")]
+public int? Precision { get; set; }
+[JsonPropertyName("suffix")]
+public string Suffix { get; set; }
+[JsonPropertyName("position")]
+public string Position { get; set; }
+[JsonPropertyName("adjustColor")]
+public bool? AdjustColor { get; set; }
+[JsonPropertyName("field")]
+public string Field { get; set; }
     }
 
 }
+
+

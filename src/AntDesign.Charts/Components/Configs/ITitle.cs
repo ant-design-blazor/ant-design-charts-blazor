@@ -1,15 +1,20 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AntDesign.Charts
-{ 
-   public interface ITitle
+{
+    public interface ITitle
     {
-        public bool? visible { get; set; }
-        public string text { get; set; }
-        public TextStyle style { get; set; }
-        public string alignTo { get; set; }//OneOf <'left','right','middle'> 
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("alignTo")]
+        public string AlignTo { get; set; }//OneOf <'left','right','middle'>
         public static string AlignToLeft = "left";
         public static string AlignToMiddle = "middle";
         public static string AlignToRight = "right";
@@ -18,9 +23,15 @@ namespace AntDesign.Charts
 
     public class Title : ITitle
     {
-        public bool? visible { get;set; }
-        public string text { get;set; }
-        public TextStyle style { get;set; }
-        public string alignTo { get;set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
+[JsonPropertyName("text")]
+public string Text { get; set; }
+[JsonPropertyName("style")]
+public TextStyle Style { get; set; }
+[JsonPropertyName("alignTo")]
+public string AlignTo { get; set; }
     }
 }
+
+

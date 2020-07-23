@@ -1,4 +1,4 @@
-﻿@page "/Multiple_StepLine_Chart"
+@page "/Multiple_StepLine_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -242,32 +242,32 @@
 
     StepLineConfig config1 = new StepLineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "多阶梯折线图",
+            Visible = true,
+            Text = "多阶梯折线图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "将数据按照某一字段进行分组，用于比对不同类型数据的趋势和变化。",
+            Visible = true,
+            Text = "将数据按照某一字段进行分组，用于比对不同类型数据的趋势和变化。",
         },
-        padding = "auto",
-        forceFit = true,
-        xField = "date",
-        yField = "value",
-        yAxis = new ValueAxis()
+        Padding = "auto",
+        ForceFit = true,
+        XField = "date",
+        YField = "value",
+        YAxis = new ValueAxis()
         {
-            label = new BaseAxisLabel()
+            Label = new BaseAxisLabel()
             {
                 // 数值格式化为千分位
             },
         },
-        legend = new Legend()
+        Legend = new Legend()
         {
-            position = "right-top",
+            Position = "right-top",
         },
-        seriesField = "type",
+        SeriesField = "type",
         @*responsive = true,*@
     };
 

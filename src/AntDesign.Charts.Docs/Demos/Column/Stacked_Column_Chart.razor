@@ -1,4 +1,4 @@
-﻿@page "/Stacked_Column_Chart"
+@page "/Stacked_Column_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -107,21 +107,21 @@
 
     StackedColumnConfig config1 = new StackedColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "堆叠柱状图",
+            Visible = true,
+            Text = "堆叠柱状图",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "year",
-        yField = "value",
-        yAxis = new ValueAxis()
+        ForceFit = true,
+        Padding = "auto",
+        XField = "year",
+        YField = "value",
+        YAxis = new ValueAxis()
         {
-            min = 0,
+            Min = 0,
         },
-        color = new string[] { "#ae331b", "#1a6179" },
-        stackField = "type",
+        Color = new string[] { "#ae331b", "#1a6179" },
+        StackField = "type",
     };
 
 
@@ -129,3 +129,4 @@
 
 
 }
+

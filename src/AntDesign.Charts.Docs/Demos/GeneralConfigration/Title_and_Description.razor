@@ -1,4 +1,4 @@
-﻿@page "/Title_and_Description"
+@page "/Title_and_Description"
 
 <Tabs>
     <TabPane Key="1">
@@ -53,18 +53,18 @@
 
     ColumnConfig config1 = new ColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "图表标题及描述",
+            Visible = true,
+            Text = "图表标题及描述",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "这是一个关于配置图表标题和描述文本内容的demo",
+            Visible = true,
+            Text = "这是一个关于配置图表标题和描述文本内容的demo",
         },
-        xField = "year",
-        yField = "value",
+        XField = "year",
+        YField = "value",
     };
 
 
@@ -72,3 +72,4 @@
 
 
 }
+
