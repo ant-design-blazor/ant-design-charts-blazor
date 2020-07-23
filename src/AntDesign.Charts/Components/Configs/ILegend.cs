@@ -62,24 +62,24 @@ namespace AntDesign.Charts
 
     public class Legend : ILegend
     {
-[JsonPropertyName("visible")]
-public bool? Visible { get; set; }
-[JsonPropertyName("position")]
-public string Position { get; set; }
-[JsonPropertyName("flipPage")]
-public bool? FlipPage { get; set; }
-[JsonPropertyName("offsetX")]
-public int? OffsetX { get; set; }
-[JsonPropertyName("offsetY")]
-public int? OffsetY { get; set; }
-[JsonPropertyName("clickable")]
-public bool? Clickable { get; set; }
-[JsonPropertyName("title")]
-public LegendTitle Title { get; set; }
-[JsonPropertyName("marker")]
-public LegendMarker Marker { get; set; }
-[JsonPropertyName("text")]
-public LegendText Text { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
+        [JsonPropertyName("flipPage")]
+        public bool? FlipPage { get; set; }
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
+        [JsonPropertyName("clickable")]
+        public bool? Clickable { get; set; }
+        [JsonPropertyName("title")]
+        public LegendTitle Title { get; set; }
+        [JsonPropertyName("marker")]
+        public LegendMarker Marker { get; set; }
+        [JsonPropertyName("text")]
+        public LegendText Text { get; set; }
     }
 }
 

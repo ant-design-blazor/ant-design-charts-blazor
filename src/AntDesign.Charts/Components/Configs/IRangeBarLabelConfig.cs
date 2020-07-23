@@ -33,24 +33,24 @@ namespace AntDesign.Charts
 
     public class RangeBarLabelConfig : IRangeBarLabelConfig
     {
-[JsonPropertyName("visible")]
-public bool? Visible { get; set; }
-[JsonPropertyName("position")]
-public string Position { get; set; }
-[JsonPropertyName("offsetX")]
-public int? OffsetX { get; set; }
-[JsonPropertyName("offsetY")]
-public int? OffsetY { get; set; }
-[JsonPropertyName("style")]
-public object Style { get; set; }
-[JsonPropertyName("leftStyle")]
-public object LeftStyle { get; set; }
-[JsonPropertyName("rightStyle")]
-public object RightStyle { get; set; }
-[JsonPropertyName("adjustColor")]
-public bool? AdjustColor { get; set; }
-[JsonPropertyName("adjustPosition")]
-public bool? AdjustPosition { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
+        [JsonPropertyName("style")]
+        public object Style { get; set; }
+        [JsonPropertyName("leftStyle")]
+        public object LeftStyle { get; set; }
+        [JsonPropertyName("rightStyle")]
+        public object RightStyle { get; set; }
+        [JsonPropertyName("adjustColor")]
+        public bool? AdjustColor { get; set; }
+        [JsonPropertyName("adjustPosition")]
+        public bool? AdjustPosition { get; set; }
     }
 }
 

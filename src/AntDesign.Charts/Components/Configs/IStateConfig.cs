@@ -16,10 +16,10 @@ namespace AntDesign.Charts
 
     public class StateConfig : IStateConfig
     {
-[JsonPropertyName("style")]
-public GraphicStyle Style { get; set; }
-[JsonPropertyName("related")]
-public string[] Related { get; set; }
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }
+        [JsonPropertyName("related")]
+        public string[] Related { get; set; }
     }
 }
 

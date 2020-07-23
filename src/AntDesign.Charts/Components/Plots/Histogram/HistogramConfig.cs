@@ -72,12 +72,12 @@ namespace AntDesign.Charts
         public int? PixelRatio { get; set; }
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
-[JsonPropertyName("binField")]
-public string BinField { get; set; }
-[JsonPropertyName("binWidth")]
-public int? BinWidth { get; set; }
-[JsonPropertyName("binNumber")]
-public int? BinNumber { get; set; }
+        [JsonPropertyName("binField")]
+        public string BinField { get; set; }
+        [JsonPropertyName("binWidth")]
+        public int? BinWidth { get; set; }
+        [JsonPropertyName("binNumber")]
+        public int? BinNumber { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
         Label IViewConfig.Label { get; set; }
