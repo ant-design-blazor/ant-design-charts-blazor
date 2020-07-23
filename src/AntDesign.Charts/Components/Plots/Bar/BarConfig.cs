@@ -57,8 +57,10 @@ namespace AntDesign.Charts
         public Tooltip Tooltip { get; set; }
         [JsonPropertyName("legend")]
         public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }
+        public object AnimationMapping => Animation.Value;
         [JsonIgnore]
         public OneOf<string, object> ResponsiveTheme { get; set; }
         [JsonPropertyName("responsiveTheme")]
@@ -77,7 +79,7 @@ namespace AntDesign.Charts
         public string Name { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
-        Label IViewConfig.Label { get; set; }
+        OneOf<Label, object> IViewConfig.Label { get ; set ; }
     }
 
 

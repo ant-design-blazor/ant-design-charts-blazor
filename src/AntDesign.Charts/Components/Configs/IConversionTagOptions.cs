@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using OneOf;
 
 namespace AntDesign.Charts
 {
@@ -20,7 +21,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("value")]
         public ValueOptions Value { get; set; }
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }//any
+        public OneOf<bool?, Animation, object> Animation { get; set; }//any
         [JsonPropertyName("transpose")]
         public bool? Transpose { get; set; }
     }
@@ -40,7 +41,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("value")]
         public ValueOptions Value { get; set; }
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }
+        public OneOf<bool?, Animation, object> Animation { get; set; }
         [JsonPropertyName("transpose")]
         public bool? Transpose { get; set; }
     }

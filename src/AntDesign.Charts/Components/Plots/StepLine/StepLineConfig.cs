@@ -60,8 +60,10 @@ namespace AntDesign.Charts
         public Tooltip Tooltip { get; set; }
         [JsonPropertyName("legend")]
         public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }
+        public object AnimationMapping => Animation.Value;
         [JsonIgnore]
         public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]

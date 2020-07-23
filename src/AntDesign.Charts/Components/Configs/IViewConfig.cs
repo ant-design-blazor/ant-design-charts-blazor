@@ -24,7 +24,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("yField")]
         public string YField { get; set; }
         [JsonPropertyName("color")]
-        public OneOf<string, string[],object> Color { get; set; }
+        public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("xAxis")]
         public Axis XAxis { get; set; }
         [JsonPropertyName("yAxis")]
@@ -39,10 +39,10 @@ namespace AntDesign.Charts
         ///OneOf<Animation, bool?> 
         /// </summary>
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }//OneOf<Animation, bool?>
+        public OneOf<bool?, Animation, object> Animation { get; set; }
         public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("responsiveTheme")]
-        public OneOf<string,object> ResponsiveTheme { get; set; }
+        public OneOf<string, object> ResponsiveTheme { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
         [JsonPropertyName("responsive")]

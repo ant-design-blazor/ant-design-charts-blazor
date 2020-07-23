@@ -48,8 +48,10 @@ namespace AntDesign.Charts
         public Tooltip Tooltip { get; set; }
         [JsonPropertyName("legend")]
         public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }
+        public object AnimationMapping => Animation.Value;
         [JsonIgnore]
         public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
@@ -82,7 +84,7 @@ namespace AntDesign.Charts
         public int? PixelRatio { get; set; }
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
-        Label IViewConfig.Label { get; set; }
+OneOf<Label, object> IViewConfig.Label { get ; set ; }
     }
 
     public interface IRoseViewConfig : IViewConfig
