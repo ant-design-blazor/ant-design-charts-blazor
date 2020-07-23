@@ -19,9 +19,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("columnConfig")]
         public ColumnConfig ColumnConfig { get; set; }
         [JsonPropertyName("title")]
-        public ITitle Title { get; set; }
+        public Title Title { get; set; }
         [JsonPropertyName("description")]
-        public IDescription Description { get; set; }
+        public Description Description { get; set; }
         [JsonPropertyName("data")]
         public object Data { get; set; }
         [JsonPropertyName("meta")]

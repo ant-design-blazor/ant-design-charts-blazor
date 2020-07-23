@@ -17,7 +17,7 @@ namespace AntDesign.Charts
         ///  轴类型，对应scale类型 
         /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; }//OneOf <'linear' , 'time' , 'timeCat' , 'cat' , 'pow' , 'log'>
+        public string Type { get; set; }
         public static string TypeLinear = "linear";
         public static string TypeTime = "time";
         public static string TypeTimeCat = "timeCat";
@@ -93,8 +93,11 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("style")]
         public LineStyle Style { get; set; }//OneOf<LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
+        /// <summary>
+        /// 'line' , 'circle'
+        /// </summary>
         [JsonPropertyName("type")]
-        public string Type { get; set; }//OneOf <'line' , 'circle'>
+        public string Type { get; set; }
 
         public static string TypeLine = "line";
         public static string TypeCircle = "circle";

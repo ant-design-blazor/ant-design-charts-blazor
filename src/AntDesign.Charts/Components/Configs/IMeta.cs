@@ -15,14 +15,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("range")]
         public int[] Range { get; set; }
         [JsonPropertyName("type")]
-        public string Type { get; set; }//OneOf <'linear','time','timeCat','cat','pow','log'>
+        public string Type { get; set; }
 
-        public static string TypeLinear = "linear";
-        public static string TypeTime = "time";
-        public static string TypeTimeCat = "timeCat";
-        public static string TypeCat = "cat";
-        public static string TypePow = "pow";
-        public static string TypeLog = "log";
+
     }
 
     public class Meta : IMeta
@@ -33,8 +28,17 @@ namespace AntDesign.Charts
         public string[] Values { get; set; }
         [JsonPropertyName("range")]
         public int[] Range { get; set; }
+        /// <summary>
+        /// 'linear','time','timeCat','cat','pow','log'
+        /// </summary>
         [JsonPropertyName("type")]
         public string Type { get; set; }
+        public static string TypeLinear = "linear";
+        public static string TypeTime = "time";
+        public static string TypeTimeCat = "timeCat";
+        public static string TypeCat = "cat";
+        public static string TypePow = "pow";
+        public static string TypeLog = "log";
     }
 }
 

@@ -14,12 +14,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
         [JsonPropertyName("alignTo")]
-        public string AlignTo { get; set; }//OneOf <'left','right','middle'>
-
-        public static string AlignToLeft = "left";
-        public static string AlignToMiddle = "middle";
-        public static string AlignToRight = "right";
-
+        public string AlignTo { get; set; }
     }
 
     public class Description : IDescription
@@ -30,8 +25,14 @@ namespace AntDesign.Charts
         public string Text { get; set; }
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
+        /// <summary>
+        /// 'left','right','middle'
+        /// </summary>
         [JsonPropertyName("alignTo")]
         public string AlignTo { get; set; }
+        public static string AlignToLeft = "left";
+        public static string AlignToMiddle = "middle";
+        public static string AlignToRight = "right";
     }
 }
 

@@ -8,10 +8,7 @@ namespace AntDesign.Charts
     public interface IValueAxis : IBaseAxis
     {
         [JsonPropertyName("type")]
-        public string Type { get; set; }//OneOf <'linear' , 'pow' , 'log'>
-        public static string TypeLinear = "linear";
-        public static string TypePow = "pow";
-        public static string TypeLog = "log";
+        public string Type { get; set; }
 
         /// <summary>
         ///  tick相关配置 
@@ -45,8 +42,15 @@ namespace AntDesign.Charts
 
     public class ValueAxis : IValueAxis
     {
+        /// <summary>
+        /// 'linear' , 'pow' , 'log'
+        /// </summary>
         [JsonPropertyName("type")]
         public string Type { get; set; }
+        public static string TypeLinear = "linear";
+        public static string TypePow = "pow";
+        public static string TypeLog = "log";
+
         [JsonPropertyName("nice")]
         public bool? Nice { get; set; }
         [JsonPropertyName("min")]

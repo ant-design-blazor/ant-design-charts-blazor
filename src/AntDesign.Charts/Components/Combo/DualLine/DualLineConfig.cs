@@ -15,9 +15,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("lineConfigs")]
         public LineConfig[] LineConfigs { get; set; }
         [JsonPropertyName("title")]
-        public ITitle Title { get; set; }
+        public Title Title { get; set; }
         [JsonPropertyName("description")]
-        public IDescription Description { get; set; }
+        public Description Description { get; set; }
         [JsonPropertyName("data")]
         public object Data { get; set; }
         [JsonPropertyName("meta")]
@@ -89,9 +89,9 @@ namespace AntDesign.Charts
     public interface IComboViewConfig : IViewConfig
     {
         [JsonPropertyName("title")]
-        public ITitle Title { get; set; }
+        public Title Title { get; set; }
         [JsonPropertyName("description")]
-        public IDescription Description { get; set; }
+        public Description Description { get; set; }
         [JsonPropertyName("data")]
         public object Data { get; set; }//DataItem[][]
         [JsonPropertyName("meta")]

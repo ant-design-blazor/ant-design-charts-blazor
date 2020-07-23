@@ -16,16 +16,10 @@ namespace AntDesign.Charts
         [JsonPropertyName("lineHeight")]
         public int? LineHeight { get; set; }
         [JsonPropertyName("textAlign")]
-        public string TextAlign { get; set; }//OneOf <'center','left','right'>
-        public static string TextAlignCenter = "center";
-        public static string TextAlignLeft = "left";
-        public static string TextAlignRight = "right";
-
+        public string TextAlign { get; set; }
         [JsonPropertyName("textBaseline")]
-        public string TextBaseline { get; set; }//OneOf <'middle','top','bottom'>
-        public static string TextBaselineMiddle = "middle";
-        public static string TextBaselineTop = "top";
-        public static string TextBaselineRight = "right";
+        public string TextBaseline { get; set; }
+
         // [field: string]: any;
         //TODO:
     }
@@ -40,10 +34,23 @@ namespace AntDesign.Charts
         public int? FontWeight { get; set; }
         [JsonPropertyName("lineHeight")]
         public int? LineHeight { get; set; }
+        /// <summary>
+        /// 'center','left','right'
+        /// </summary>
         [JsonPropertyName("textAlign")]
         public string TextAlign { get; set; }
+        public static string TextAlignCenter = "center";
+        public static string TextAlignLeft = "left";
+        public static string TextAlignRight = "right";
+        /// <summary>
+        /// 'middle','top','bottom'
+        /// </summary>
         [JsonPropertyName("textBaseline")]
         public string TextBaseline { get; set; }
+        public static string TextBaselineMiddle = "middle";
+        public static string TextBaselineTop = "top";
+        public static string TextBaselineRight = "right";
+
         [JsonPropertyName("fill")]
         public string Fill { get; set; }
         [JsonPropertyName("fillOpacity")]
