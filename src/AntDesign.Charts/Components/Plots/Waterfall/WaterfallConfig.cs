@@ -14,8 +14,10 @@ namespace AntDesign.Charts
         public WaterfallViewConfigDiffLabel DiffLabel { get; set; }
         [JsonPropertyName("leaderLine")]
         public WaterfallViewConfigLeaderLine LeaderLine { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
-        public object Color { get; set; }
+        public object ColorMapping => Color.Value;
         [JsonPropertyName("waterfallStyle")]
         public GraphicStyle WaterfallStyle { get; set; }
         [JsonPropertyName("renderer")]
@@ -74,7 +76,6 @@ namespace AntDesign.Charts
         public int? PixelRatio { get; set; }
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
-        string[] IViewConfig.Color { get; set; }
     }
 
     public interface IWaterfallViewConfig : IViewConfig
@@ -95,7 +96,7 @@ namespace AntDesign.Charts
         ///    | ((type: string, value: number | null, values: number | number[], index: number) => string);
         /// </summary>
         [JsonPropertyName("color")]
-        public object Color { get; set; }
+        public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("waterfallStyle")]
         public GraphicStyle WaterfallStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
     }

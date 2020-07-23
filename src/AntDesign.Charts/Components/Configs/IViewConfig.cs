@@ -24,7 +24,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("yField")]
         public string YField { get; set; }
         [JsonPropertyName("color")]
-        public string[] Color { get; set; }//OneOf<string, string[],{}>
+        public OneOf<string, string[],object> Color { get; set; }
         [JsonPropertyName("xAxis")]
         public Axis XAxis { get; set; }
         [JsonPropertyName("yAxis")]

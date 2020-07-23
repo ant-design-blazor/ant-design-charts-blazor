@@ -45,7 +45,10 @@ namespace AntDesign.Charts
         [JsonPropertyName("yField")]
         public string YField { get; set; }
         [JsonPropertyName("color")]
-        public string[] Color { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
         [JsonPropertyName("tooltip")]
         public Tooltip Tooltip { get; set; }
         [JsonPropertyName("legend")]

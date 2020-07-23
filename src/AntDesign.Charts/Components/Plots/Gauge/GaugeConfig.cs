@@ -21,7 +21,10 @@ namespace AntDesign.Charts
         [JsonPropertyName("range")]
         public double[] Range { get; set; }
         [JsonPropertyName("color")]
-        public string[] Color { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
         [JsonPropertyName("rangeSize")]
         public int? RangeSize { get; set; }
         [JsonPropertyName("rangeStyle")]
@@ -121,7 +124,10 @@ namespace AntDesign.Charts
         [JsonPropertyName("range")]
         public double[] Range { get; set; }
         [JsonPropertyName("color")]
-        public string[] Color { get; set; }//OneOf<string[], string>
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;//OneOf<string[], string>
         [JsonPropertyName("rangeSize")]
         public int? RangeSize { get; set; }
         [JsonPropertyName("rangeStyle")]

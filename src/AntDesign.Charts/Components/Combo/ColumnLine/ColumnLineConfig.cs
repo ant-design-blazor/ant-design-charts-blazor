@@ -41,7 +41,10 @@ namespace AntDesign.Charts
         [JsonPropertyName("padding")]
         public object PaddingMapping => Padding.Value;
         [JsonPropertyName("color")]
-        public string[] Color { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
         [JsonPropertyName("label")]
         public Label Label { get; set; }
         [JsonPropertyName("animation")]
