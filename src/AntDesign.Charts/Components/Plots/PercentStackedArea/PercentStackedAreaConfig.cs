@@ -55,8 +55,10 @@ namespace AntDesign.Charts
         public Tooltip Tooltip { get; set; }
         [JsonPropertyName("legend")]
         public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }
+        public object AnimationMapping => Animation.Value;
         [JsonIgnore]
         public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
@@ -98,7 +100,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
         AreaLabel IAreaViewConfig.Label { get; set; }
-        Label IViewConfig.Label { get; set; }
+OneOf<Label, object> IViewConfig.Label { get ; set ; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
     }

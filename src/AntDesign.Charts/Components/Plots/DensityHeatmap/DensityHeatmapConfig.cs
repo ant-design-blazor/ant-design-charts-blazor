@@ -48,8 +48,10 @@ namespace AntDesign.Charts
         public object LabelMapping => Label.Value;
         [JsonPropertyName("tooltip")]
         public Tooltip Tooltip { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
         [JsonPropertyName("animation")]
-        public object Animation { get; set; }
+        public object AnimationMapping => Animation.Value;
         [JsonIgnore]
         public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
