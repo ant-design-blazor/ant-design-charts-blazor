@@ -1,4 +1,4 @@
-﻿@page "/Bubble_Chart"
+@page "/Bubble_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -29,20 +29,21 @@
     //smoking-rate
     BubbleConfig config1 = new BubbleConfig()
     {
-        xField = "change in female rate",
-        yField = "change in male rate",
-        sizeField = "pop",
-        pointSize = new int[] { 4, 30 },
-        colorField = new string[] { "continent" },
-        color = new string[] { "#ffd500", "#82cab2", "#193442", "#d18768", "#7e827a" },
-        xAxis = new ValueTimeAxis()
+        XField = "change in female rate",
+        YField = "change in male rate",
+        SizeField = "pop",
+        PointSize = new int[] { 4, 30 },
+        ColorField = new string[] { "continent" },
+        Color = new string[] { "#ffd500", "#82cab2", "#193442", "#d18768", "#7e827a" },
+        XAxis = new ValueTimeAxis()
         {
-            visible = true,
-            max = 5,
-            min = -25,
+            Visible = true,
+            Max = 5,
+            Min = -25,
         },
     };
 
     #endregion 示例1
 
 }
+

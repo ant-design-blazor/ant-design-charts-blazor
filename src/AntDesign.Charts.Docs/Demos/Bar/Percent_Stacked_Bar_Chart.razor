@@ -1,4 +1,4 @@
-﻿@page "/Percent_Stacked_Bar_Chart"
+@page "/Percent_Stacked_Bar_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -122,18 +122,18 @@
 
     PercentStackedBarConfig config1 = new PercentStackedBarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "百分比堆叠条形图",
+            Visible = true,
+            Text = "百分比堆叠条形图",
         },
-        xField = "value",
-        yField = "year",
-        stackField = "country",
-        color = new string[] { "#2582a1", "#f88c24", "#c52125", "#87f4d0" },
-        label = new BarViewConfigLabel
+        XField = "value",
+        YField = "year",
+        StackField = "country",
+        Color = new string[] { "#2582a1", "#f88c24", "#c52125", "#87f4d0" },
+        Label = new BarViewConfigLabel
         {
-            visible = true,
+            Visible = true,
         },
     };
 
@@ -141,3 +141,4 @@
     #endregion 示例1
 
 }
+

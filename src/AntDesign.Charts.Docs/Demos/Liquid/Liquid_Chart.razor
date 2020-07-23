@@ -1,4 +1,4 @@
-﻿@page "/Liquid_Chart"
+@page "/Liquid_Chart"
 
     <Tabs>
         <TabPane Key="1">
@@ -15,16 +15,17 @@
 
     LiquidConfig config1 = new LiquidConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "水波图",
+            Visible = true,
+            Text = "水波图",
         },
-        min = 0,
-        max = 10000,
-        value = 5639,
+        Min = 0,
+        Max = 10000,
+        Value = 5639,
     };
 
     #endregion 示例1
 
 }
+

@@ -1,4 +1,4 @@
-﻿using OneOf;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +11,13 @@ namespace AntDesign.Charts
         /// <summary>
         ///  轴是否需要显示，默认true 
         /// </summary>
-        public bool visible { get; set; }
+        [JsonPropertyName("visible")]
+        public bool Visible { get; set; }
         /// <summary>
         ///  轴类型，对应scale类型 
         /// </summary>
-        public string type { get; set; }//OneOf <'linear' , 'time' , 'timeCat' , 'cat' , 'pow' , 'log'>
+        [JsonPropertyName("type")]
+        public string Type { get; set; }//OneOf <'linear' , 'time' , 'timeCat' , 'cat' , 'pow' , 'log'>
         public static string TypeLinear = "linear";
         public static string TypeTime = "time";
         public static string TypeTimeCat = "timeCat";
@@ -26,27 +28,33 @@ namespace AntDesign.Charts
         /// <summary>
         ///  scale 自定义 tickMethod 
         /// </summary>
-        public string tickMethod { get; set; }//OneOf<string, ((cfg: any) => number[])>
+        [JsonPropertyName("tickMethod")]
+        public string TickMethod { get; set; }//OneOf<string, ((cfg: any) => number[])>
         /// <summary>
         /// 轴位置，默认下和左
         /// </summary>
-        public BaseAxisLine line { get; set; }
+        [JsonPropertyName("line")]
+        public BaseAxisLine Line { get; set; }
         /// <summary>
         /// 网格线
         /// </summary>
-        public BaseAxisGrid grid { get; set; }
+        [JsonPropertyName("grid")]
+        public BaseAxisGrid Grid { get; set; }
         /// <summary>
         /// 标签
         /// </summary>
-        public BaseAxisLabel label { get; set; }
+        [JsonPropertyName("label")]
+        public BaseAxisLabel Label { get; set; }
         /// <summary>
         /// 标题
         /// </summary>
-        public BaseAxisTitle title { get; set; }
+        [JsonPropertyName("title")]
+        public BaseAxisTitle Title { get; set; }
         /// <summary>
         /// 刻度线
         /// </summary>
-        public BaseAxisTickLine tickLine { get; set; }
+        [JsonPropertyName("tickLine")]
+        public BaseAxisTickLine TickLine { get; set; }
     }
 
     /// <summary>
@@ -54,8 +62,10 @@ namespace AntDesign.Charts
     /// </summary>
     public class BaseAxisLine
     {
-        public bool visible { get; set; }
-        public LineStyle style { get; set; }
+        [JsonPropertyName("visible")]
+        public bool Visible { get; set; }
+        [JsonPropertyName("style")]
+        public LineStyle Style { get; set; }
     }
 
     /// <summary>
@@ -66,21 +76,25 @@ namespace AntDesign.Charts
         /// <summary>
         ///  网格线是否显示 
         /// </summary>
-        public bool visible { get; set; }
+        [JsonPropertyName("visible")]
+        public bool Visible { get; set; }
 
-        public BaseAxisGridLine line { get; set; }
+        [JsonPropertyName("line")]
+        public BaseAxisGridLine Line { get; set; }
         /// <summary>
         ///  网格设置交替的颜色，指定一个值则先渲染偶数层，两个值则交替渲染 
         /// </summary>
         [JsonIgnore]
-        public OneOf<string, string[]> alternateColor { get; set; }//OneOf <string, string[]>
+        public OneOf<string, string[]> AlternateColor { get; set; }//OneOf <string, string[]>
         [JsonPropertyName("alternateColor")]
-        public object alternateColorMapping => alternateColor.Value;
+        public object alternateColorMapping => AlternateColor.Value;
     }
     public class BaseAxisGridLine
     {
-        public LineStyle style { get; set; }//OneOf<LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
-        public string type { get; set; }//OneOf <'line' , 'circle'>
+        [JsonPropertyName("style")]
+        public LineStyle Style { get; set; }//OneOf<LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
+        [JsonPropertyName("type")]
+        public string Type { get; set; }//OneOf <'line' , 'circle'>
 
         public static string TypeLine = "line";
         public static string TypeCircle = "circle";
@@ -91,33 +105,40 @@ namespace AntDesign.Charts
     /// </summary>
     public class BaseAxisLabel
     {
-        public bool visible { get; set; }
+        [JsonPropertyName("visible")]
+        public bool Visible { get; set; }
         //formatter?: (name: string, tick: any, index: number) => string;
         /// <summary>
         /// 坐标轴文本距离坐标轴线的距离
         /// </summary>
-        public int? offset { get; set; }
+        [JsonPropertyName("offset")]
+        public int? Offset { get; set; }
         /// <summary>
         /// 在 offset 的基础上，设置坐标轴文本在 x 方向上的偏移量
         /// </summary>
-        public int? offsetX { get; set; }
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
         /// <summary>
         /// 在 offset 的基础上，设置坐标轴文本在 y 方向上的偏移量
         /// </summary>
-        public int? offsetY { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
         /// <summary>
         /// label 文本旋转的角度，使用角度制
         /// </summary>
-        public int? rotate { get; set; }
-        public TextStyle style { get; set; }
-        public bool autoRotate { get; set; }
+        [JsonPropertyName("rotate")]
+        public int? Rotate { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("autoRotate")]
+        public bool AutoRotate { get; set; }
         /// <summary>
         /// 默认的 autoHide 策略，或指定自动隐藏策略
         /// </summary>
         [JsonIgnore]
-        public OneOf<bool?, string> autoHide { get; set; }//OneOf <boolean, string>
+        public OneOf<bool?, string> AutoHide { get; set; }//OneOf <boolean, string>
         [JsonPropertyName("autoHide")]
-        public object autoHideMapping => autoHide.Value;
+        public object autoHideMapping => AutoHide.Value;
     }
 
     /// <summary>
@@ -125,12 +146,18 @@ namespace AntDesign.Charts
     /// </summary>
     public class BaseAxisTitle
     {
-        public bool? visible { get; set; }
-        public bool? autoRotate { get; set; }
-        public string text { get; set; }
-        public int? offset { get; set; }
-        public TextStyle style { get; set; }
-        public int? spacing { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("autoRotate")]
+        public bool? AutoRotate { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+        [JsonPropertyName("offset")]
+        public int? Offset { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("spacing")]
+        public int? Spacing { get; set; }
     }
 
     /// <summary>
@@ -138,9 +165,13 @@ namespace AntDesign.Charts
     /// </summary>
     public class BaseAxisTickLine
     {
-        public bool? visible { get; set; }
-        public LineStyle style { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("style")]
+        public LineStyle Style { get; set; }
     }
 
 
 }
+
+

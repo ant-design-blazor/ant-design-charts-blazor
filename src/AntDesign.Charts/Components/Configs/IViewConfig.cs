@@ -1,4 +1,5 @@
-﻿using OneOf;
+using System.Text.Json.Serialization;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,71 +8,115 @@ namespace AntDesign.Charts
 {
     public interface IViewConfig
     {
-        public string renderer { get; set; }
-        public object data { get; set; }
+        [JsonPropertyName("renderer")]
+        public string Renderer { get; set; }
+        [JsonPropertyName("data")]
+        public object Data { get; set; }
         /// <summary>
         /// ILooseMap<Meta>
         /// </summary>
-        public object meta { get; set; }//ILooseMap<Meta>
-        public string padding { get; set; }//OneOf<int?, int[], string>
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public string[] color { get; set; }//OneOf<string, string[],{}>
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }//OneOf<Label, any>
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }//ILooseMap<Meta>
+        [JsonPropertyName("padding")]
+        public string Padding { get; set; }//OneOf<int?, int[], string>
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string YField { get; set; }
+        [JsonPropertyName("color")]
+        public string[] Color { get; set; }//OneOf<string, string[],{}>
+        [JsonPropertyName("xAxis")]
+        public Axis XAxis { get; set; }
+        [JsonPropertyName("yAxis")]
+        public Axis YAxis { get; set; }
+        [JsonPropertyName("label")]
+        public Label Label { get; set; }//OneOf<Label, any>
+        [JsonPropertyName("tooltip")]
+        public Tooltip Tooltip { get; set; }
+        [JsonPropertyName("legend")]
+        public Legend Legend { get; set; }
         /// <summary>
         ///OneOf<Animation, bool?> 
         /// </summary>
-        public object animation { get; set; }//OneOf<Animation, bool?> 
-        public OneOf<string, object> theme { get; set; }//OneOf<LooseMap, string>
-        public object responsiveTheme { get; set; }//OneOf<{},string>
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
+        [JsonPropertyName("animation")]
+        public object Animation { get; set; }//OneOf<Animation, bool?>
+        public OneOf<string, object> Theme { get; set; }//OneOf<LooseMap, string>
+        [JsonPropertyName("responsiveTheme")]
+        public object ResponsiveTheme { get; set; }//OneOf<{},string>
+        [JsonPropertyName("interactions")]
+        public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("responsive")]
+        public bool? Responsive { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("guideLine")]
+        public GuideLineConfig[] GuideLine { get; set; }
         /*
           events?: {
             [k: string]: ((...args: any[]) => any) | boolean;
           };
          */
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
+        [JsonPropertyName("defaultState")]
+        public ViewConfigDefaultState DefaultState { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 
     public class ViewConfigDefaultState
     {
-        public StateConfig active { get; set; }
-        public StateConfig inActive { get; set; }
-        public StateConfig selected { get; set; }
-        public StateConfig disabled { get; set; }
+        [JsonPropertyName("active")]
+        public StateConfig Active { get; set; }
+        [JsonPropertyName("inActive")]
+        public StateConfig InActive { get; set; }
+        [JsonPropertyName("selected")]
+        public StateConfig Selected { get; set; }
+        [JsonPropertyName("disabled")]
+        public StateConfig Disabled { get; set; }
     }
 
     public class Axis : ICatAxis, IValueAxis, ITimeAxis
     {
-        public string type { get; set; }
-        public bool visible { get; set; }
-        public string tickMethod { get; set; }
-        public BaseAxisLine line { get; set; }
-        public BaseAxisGrid grid { get; set; }
-        public BaseAxisLabel label { get; set; }
-        public BaseAxisTitle title { get; set; }
-        public BaseAxisTickLine tickLine { get; set; }
-        public bool? nice { get; set; }
-        public double? min { get; set; }
-        public double? max { get; set; }
-        public int? minLimit { get; set; }
-        public int? maxLimit { get; set; }
-        public int? tickCount { get; set; }
-        public int? tickInterval { get; set; }
-        public int? exponent { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("visible")]
+        public bool Visible { get; set; }
+        [JsonPropertyName("tickMethod")]
+        public string TickMethod { get; set; }
+        [JsonPropertyName("line")]
+        public BaseAxisLine Line { get; set; }
+        [JsonPropertyName("grid")]
+        public BaseAxisGrid Grid { get; set; }
+        [JsonPropertyName("label")]
+        public BaseAxisLabel Label { get; set; }
+        [JsonPropertyName("title")]
+        public BaseAxisTitle Title { get; set; }
+        [JsonPropertyName("tickLine")]
+        public BaseAxisTickLine TickLine { get; set; }
+        [JsonPropertyName("nice")]
+        public bool? Nice { get; set; }
+        [JsonPropertyName("min")]
+        public double? Min { get; set; }
+        [JsonPropertyName("max")]
+        public double? Max { get; set; }
+        [JsonPropertyName("minLimit")]
+        public int? MinLimit { get; set; }
+        [JsonPropertyName("maxLimit")]
+        public int? MaxLimit { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickInterval")]
+        public int? TickInterval { get; set; }
+        [JsonPropertyName("exponent")]
+        public int? Exponent { get; set; }
         public int? Base { get; set; }
-        public string mask { get; set; }
-        string ITimeAxis.tickInterval { get; set; }
+        [JsonPropertyName("mask")]
+        public string Mask { get; set; }
+        string ITimeAxis.TickInterval { get; set; }
     }
 }
+
+
 
 

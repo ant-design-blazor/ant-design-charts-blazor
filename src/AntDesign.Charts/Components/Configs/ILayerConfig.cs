@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,31 +9,41 @@ namespace AntDesign.Charts
     {        /// <summary>
              ///  @ignore 
              /// </summary>
-        public string id { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
         /// <summary>
         ///  @ignore 
         /// </summary>
-        public int? x { get; set; }
+        [JsonPropertyName("x")]
+        public int? X { get; set; }
         /// <summary>
         ///  @ignore 
         /// </summary>
-        public int? y { get; set; }
+        [JsonPropertyName("y")]
+        public int? Y { get; set; }
         /// <summary>
         ///  layer width 
         /// </summary>
-        public int? width { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
         /// <summary>
         ///  layer height 
         /// </summary>
-        public int? height { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
         /// <summary>
         ///  @ignore 
         /// </summary>
-        public object parent { get; set; }//any
+        [JsonPropertyName("parent")]
+        public object Parent { get; set; }//any
         /// <summary>
         ///  @ignore 
         /// </summary>
-        public object canvas { get; set; }//ICanvas
-        public string name { get; set; }
+        [JsonPropertyName("canvas")]
+        public object Canvas { get; set; }//ICanvas
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 }
+
+

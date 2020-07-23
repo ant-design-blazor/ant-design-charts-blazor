@@ -1,4 +1,4 @@
-﻿@page "/Heatmap_Chart"
+@page "/Heatmap_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -27,19 +27,19 @@
 
     HeatmapConfig config1 = new HeatmapConfig()
     {
-        forceFit = false,
-        width = 650,
-        height = 500,
-        xField = "month_of_Year",
-        yField = "district",
-        colorField = "aqhi",
-        shapeType = "rect",
-        color = new string[] { "#174c83", "#7eb6d4", "#efefeb", "#efa759", "#9b4d16" },
-        meta = new
+        ForceFit = false,
+        Width = 650,
+        Height = 500,
+        XField = "month_of_Year",
+        YField = "district",
+        ColorField = "aqhi",
+        ShapeType = "rect",
+        Color = new string[] { "#174c83", "#7eb6d4", "#efefeb", "#efa759", "#9b4d16" },
+        Meta = new
         {
             Month_of_Year = new
             {
-                type = "cat",
+                Type = "cat",
             },
         },
     };
@@ -47,3 +47,4 @@
 
     #endregion 示例1
 }
+

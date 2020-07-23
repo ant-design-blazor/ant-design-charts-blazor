@@ -1,4 +1,5 @@
-﻿//using System;
+using System.Text.Json.Serialization;
+//using System;
 //using System.Collections.Generic;
 //using System.Text;
 
@@ -9,3 +10,5 @@
 //        //  [field: string]: string | number | number[] | null | undefined;
 //    }
 //}
+
+

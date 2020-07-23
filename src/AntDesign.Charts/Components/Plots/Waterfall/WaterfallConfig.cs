@@ -1,4 +1,4 @@
-﻿using OneOf;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,65 +8,102 @@ namespace AntDesign.Charts
 {
     public class WaterfallConfig : IWaterfallViewConfig, IPlotConfig
     {
-        public WaterfallViewConfigShowTotal showTotal { get; set; }
-        public WaterfallViewConfigDiffLabel diffLabel { get; set; }
-        public WaterfallViewConfigLeaderLine leaderLine { get; set; }
-        public object color { get; set; }
-        public GraphicStyle waterfallStyle { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
-        public object animation { get; set; }
+        [JsonPropertyName("showTotal")]
+        public WaterfallViewConfigShowTotal ShowTotal { get; set; }
+        [JsonPropertyName("diffLabel")]
+        public WaterfallViewConfigDiffLabel DiffLabel { get; set; }
+        [JsonPropertyName("leaderLine")]
+        public WaterfallViewConfigLeaderLine LeaderLine { get; set; }
+        [JsonPropertyName("color")]
+        public object Color { get; set; }
+        [JsonPropertyName("waterfallStyle")]
+        public GraphicStyle WaterfallStyle { get; set; }
+        [JsonPropertyName("renderer")]
+        public string Renderer { get; set; }
+        [JsonPropertyName("data")]
+        public object Data { get; set; }
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }
+        [JsonPropertyName("padding")]
+        public string Padding { get; set; }
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string YField { get; set; }
+        [JsonPropertyName("xAxis")]
+        public Axis XAxis { get; set; }
+        [JsonPropertyName("yAxis")]
+        public Axis YAxis { get; set; }
+        [JsonPropertyName("label")]
+        public Label Label { get; set; }
+        [JsonPropertyName("tooltip")]
+        public Tooltip Tooltip { get; set; }
+        [JsonPropertyName("legend")]
+        public Legend Legend { get; set; }
+        [JsonPropertyName("animation")]
+        public object Animation { get; set; }
         [JsonIgnore]
-        public OneOf<string, object> theme { get; set; }
+        public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
-        public object themeMapping => theme.Value;
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
-        string[] IViewConfig.color { get; set; }
+        public object themeMapping => Theme.Value;
+        [JsonPropertyName("responsiveTheme")]
+        public object ResponsiveTheme { get; set; }
+        [JsonPropertyName("interactions")]
+        public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("responsive")]
+        public bool? Responsive { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("guideLine")]
+        public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("defaultState")]
+        public ViewConfigDefaultState DefaultState { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("forceFit")]
+        public bool? ForceFit { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("pixelRatio")]
+        public int? PixelRatio { get; set; }
+        [JsonPropertyName("localRefresh")]
+        public bool? LocalRefresh { get; set; }
+        string[] IViewConfig.Color { get; set; }
     }
 
     public interface IWaterfallViewConfig : IViewConfig
     {
-        public WaterfallViewConfigShowTotal showTotal { get; set; }
+        [JsonPropertyName("showTotal")]
+        public WaterfallViewConfigShowTotal ShowTotal { get; set; }
         /// <summary>
         /// 差值label
         /// </summary>
-        public WaterfallViewConfigDiffLabel diffLabel { get; set; }
-        public WaterfallViewConfigLeaderLine leaderLine { get; set; }
+        [JsonPropertyName("diffLabel")]
+        public WaterfallViewConfigDiffLabel DiffLabel { get; set; }
+        [JsonPropertyName("leaderLine")]
+        public WaterfallViewConfigLeaderLine LeaderLine { get; set; }
         /// <summary>
         ///   color?:
         ///    | string
         ///    | { rising: string; falling: string; total?: string  }
         ///    | ((type: string, value: number | null, values: number | number[], index: number) => string);
         /// </summary>
-        public object color { get; set; }
-        public GraphicStyle waterfallStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        [JsonPropertyName("color")]
+        public object Color { get; set; }
+        [JsonPropertyName("waterfallStyle")]
+        public GraphicStyle WaterfallStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
     }
 
     public class WaterfallViewConfigShowTotal
     {
-        public bool? visible { get; set; }
-        public string label { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("label")]
+        public string Label { get; set; }
 
     }
 
@@ -75,29 +112,41 @@ namespace AntDesign.Charts
     /// </summary>
     public class WaterfallViewConfigDiffLabel
     {
-        public bool? visible { get; set; }
-        public TextStyle style { get; set; }
-        public DiffLabelcfg formatter { get; set; } //DiffLabelcfg['formatter'] 
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("formatter")]
+        public DiffLabelcfg Formatter { get; set; } //DiffLabelcfg['formatter']
     }
 
     public interface IDiffLabelcfg
     {
-        public object view { get; set; }
-        public string[] fields { get; set; }
+        [JsonPropertyName("view")]
+        public object View { get; set; }
+        [JsonPropertyName("fields")]
+        public string[] Fields { get; set; }
         //public (text: string, item: object, idx: number) => string formatter { get; set; }
-        public TextStyle style { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
     }
 
     public class DiffLabelcfg : IDiffLabelcfg
     {
-        public object view { get; set; }
-        public string[] fields { get; set; }
-        public TextStyle style { get; set; }
+        [JsonPropertyName("view")]
+        public object View { get; set; }
+        [JsonPropertyName("fields")]
+        public string[] Fields { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
     }
 
     public class WaterfallViewConfigLeaderLine
     {
-        public bool? visible { get; set; }
-        public LineStyle style { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("style")]
+        public LineStyle Style { get; set; }
     }
 }
+

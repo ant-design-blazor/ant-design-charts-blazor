@@ -1,4 +1,4 @@
-﻿@page "/Percent_Stacked_Area_Chart"
+@page "/Percent_Stacked_Area_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -123,28 +123,31 @@
 
     PercentStackedAreaConfig config1 = new PercentStackedAreaConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "百分比堆叠面积图",
+            Visible = true,
+            Text = "百分比堆叠面积图",
         },
-        meta = new
+        Meta = new
         {
-            year = new
+            Year = new
             {
-                range = new int[] { 0, 1 },
+                Range = new int[] { 0, 1 },
             },
         },
-        xField = "year",
-        yField = "value",
-        stackField = "country",
-        color = new string[] { "#82d1de", "#cb302d", "#e3ca8c" },
-        areaStyle = new GraphicStyle
+        XField = "year",
+        YField = "value",
+        StackField = "country",
+        Color = new string[] { "#82d1de", "#cb302d", "#e3ca8c" },
+        AreaStyle = new GraphicStyle
         {
-            fillOpacity = 0.7M,
+            FillOpacity = 0.7M,
         },
     };
 
     #endregion 示例1
 
 }
+
+
+

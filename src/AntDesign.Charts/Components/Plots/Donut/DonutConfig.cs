@@ -1,4 +1,4 @@
-﻿using OneOf;
+using OneOf;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,68 +8,110 @@ namespace AntDesign.Charts
 {
     public class DonutConfig : IDonutViewConfig, IPlotConfig
     {
-        public double? innerRadius { get; set; }
-        public DonutViewConfigStatistic statistic { get; set; }
-        public string angleField { get; set; }
-        public string colorField { get; set; }
-        public double? radius { get; set; }
-        public GraphicStyle pieStyle { get; set; }
-        public PieLabelConfig label { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public string[] color { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
-        public object animation { get; set; }
+[JsonPropertyName("innerRadius")]
+public double? InnerRadius { get; set; }
+[JsonPropertyName("statistic")]
+public DonutViewConfigStatistic Statistic { get; set; }
+[JsonPropertyName("angleField")]
+public string AngleField { get; set; }
+[JsonPropertyName("colorField")]
+public string ColorField { get; set; }
+[JsonPropertyName("radius")]
+public double? Radius { get; set; }
+[JsonPropertyName("pieStyle")]
+public GraphicStyle PieStyle { get; set; }
+[JsonPropertyName("label")]
+public PieLabelConfig Label { get; set; }
+[JsonPropertyName("renderer")]
+public string Renderer { get; set; }
+[JsonPropertyName("data")]
+public object Data { get; set; }
+[JsonPropertyName("meta")]
+public object Meta { get; set; }
+[JsonPropertyName("padding")]
+public string Padding { get; set; }
+[JsonPropertyName("xField")]
+public string XField { get; set; }
+[JsonPropertyName("yField")]
+public string YField { get; set; }
+[JsonPropertyName("color")]
+public string[] Color { get; set; }
+[JsonPropertyName("xAxis")]
+public Axis XAxis { get; set; }
+[JsonPropertyName("yAxis")]
+public Axis YAxis { get; set; }
+[JsonPropertyName("tooltip")]
+public Tooltip Tooltip { get; set; }
+[JsonPropertyName("legend")]
+public Legend Legend { get; set; }
+[JsonPropertyName("animation")]
+public object Animation { get; set; }
         [JsonIgnore]
-        public OneOf<string, object> theme { get; set; }
+        public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
-        public object themeMapping => theme.Value;
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
-        Label IViewConfig.label { get; set; }
+        public object themeMapping => Theme.Value;
+[JsonPropertyName("responsiveTheme")]
+public object ResponsiveTheme { get; set; }
+[JsonPropertyName("interactions")]
+public Interaction[] Interactions { get; set; }
+[JsonPropertyName("responsive")]
+public bool? Responsive { get; set; }
+[JsonPropertyName("title")]
+public Title Title { get; set; }
+[JsonPropertyName("description")]
+public Description Description { get; set; }
+[JsonPropertyName("guideLine")]
+public GuideLineConfig[] GuideLine { get; set; }
+[JsonPropertyName("defaultState")]
+public ViewConfigDefaultState DefaultState { get; set; }
+[JsonPropertyName("name")]
+public string Name { get; set; }
+[JsonPropertyName("forceFit")]
+public bool? ForceFit { get; set; }
+[JsonPropertyName("width")]
+public int? Width { get; set; }
+[JsonPropertyName("height")]
+public int? Height { get; set; }
+[JsonPropertyName("pixelRatio")]
+public int? PixelRatio { get; set; }
+[JsonPropertyName("localRefresh")]
+public bool? LocalRefresh { get; set; }
+        Label IViewConfig.Label { get; set; }
     }
 
     public interface IDonutViewConfig : IPieViewConfig
     {
-        public double? innerRadius { get; set; }
+[JsonPropertyName("innerRadius")]
+public double? InnerRadius { get; set; }
 
-        public DonutViewConfigStatistic statistic { get; set; }
+[JsonPropertyName("statistic")]
+public DonutViewConfigStatistic Statistic { get; set; }
     }
 
     public class DonutViewConfigStatistic
     {
-        public bool? visible { get; set; }
+[JsonPropertyName("visible")]
+public bool? Visible { get; set; }
         /// <summary>
         ///  指标卡 总计值 标签 
         /// </summary>
-        public string totalLabel { get; set; }
+[JsonPropertyName("totalLabel")]
+public string TotalLabel { get; set; }
         /// <summary>
         ///  触发显示的事件 
         /// </summary>
-        public string triggerOn { get; set; }// 'mouseenter'
+[JsonPropertyName("triggerOn")]
+public string TriggerOn { get; set; }// 'mouseenter'
         /// <summary>
         ///  触发隐藏的事件 
         /// </summary>
-        public string triggerOff { get; set; }//'mouseleave'
-        public object content { get; set; }//OneOf<string, DonutStatisticContent>
-        public string htmlContent { get; set; }//(...args: any) => string
+[JsonPropertyName("triggerOff")]
+public string TriggerOff { get; set; }//'mouseleave'
+[JsonPropertyName("content")]
+public object Content { get; set; }//OneOf<string, DonutStatisticContent>
+[JsonPropertyName("htmlContent")]
+public string HtmlContent { get; set; }//(...args: any) => string
     }
 }
+
+

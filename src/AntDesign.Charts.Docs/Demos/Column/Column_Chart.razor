@@ -1,4 +1,4 @@
-﻿@page "/Column_Chart"
+@page "/Column_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -50,24 +50,24 @@
 
     ColumnConfig config1 = new ColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "基础柱状图",
+            Visible = true,
+            Text = "基础柱状图",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "type",
-        yField = "sales",
-        meta = new
+        ForceFit = true,
+        Padding = "auto",
+        XField = "type",
+        YField = "sales",
+        Meta = new
         {
-            type = new
+            Type = new
             {
-                alias = "类别",
+                Alias = "类别",
             },
-            sales = new
+            Sales = new
             {
-                alias = "销售额(万)",
+                Alias = "销售额(万)",
             },
         },
     };
@@ -76,3 +76,4 @@
     #endregion 示例1
 
 }
+

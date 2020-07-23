@@ -1,4 +1,4 @@
-﻿@page "/Bar_Chart"
+@page "/Bar_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -41,17 +41,17 @@
 
     BarConfig config1 = new BarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "基础条形图",
+            Visible = true,
+            Text = "基础条形图",
         },
-        forceFit = true,
-        xField = "销售额",
-        yField = "地区",
-        label = new BarViewConfigLabel
+        ForceFit = true,
+        XField = "销售额",
+        YField = "地区",
+        Label = new BarViewConfigLabel
         {
-            visible = true,
+            Visible = true,
 
         },
 
@@ -72,19 +72,19 @@
 
     BarConfig config2 = new BarConfig()
     {
-        title = new Charts.Title
+        Title = new Charts.Title
         {
-            visible = true,
-            text = "基础条形图",
+            Visible = true,
+            Text = "基础条形图",
         },
-        forceFit = true,
+        ForceFit = true,
 
-        xField = "销售额",
-        yField = "地区",
-        label = new BarViewConfigLabel
+        XField = "销售额",
+        YField = "地区",
+        Label = new BarViewConfigLabel
         {
-            visible = true,
-            position = "middle",
+            Visible = true,
+            Position = "middle",
         },
 
     };
@@ -102,26 +102,26 @@
 
     BarConfig config3 = new BarConfig()
     {
-        forceFit = true,
-        title = new Charts.Title
+        ForceFit = true,
+        Title = new Charts.Title
         {
-            visible = true,
-            text = "基础条形图 - 图形标签颜色自适应",
+            Visible = true,
+            Text = "基础条形图 - 图形标签颜色自适应",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "图形标签(label)的adjustColor配置项默认设置为true，位于柱形的内部的label颜色会根据柱形颜色自动调整，保证可读性。",
+            Visible = true,
+            Text = "图形标签(label)的adjustColor配置项默认设置为true，位于柱形的内部的label颜色会根据柱形颜色自动调整，保证可读性。",
         },
-        xField = "sales",
-        yField = "year",
-        colorField = "year",
-        color = new string[] { "#55A6F3", "#CED4DE", "#55A6F3", "#55A6F3", "#55A6F3" },
-        label = new BarViewConfigLabel
+        XField = "sales",
+        YField = "year",
+        ColorField = "year",
+        Color = new string[] { "#55A6F3", "#CED4DE", "#55A6F3", "#55A6F3", "#55A6F3" },
+        Label = new BarViewConfigLabel
         {
-            visible = true,
-            position = "middle", // options= left / middle / right
-            adjustColor = true,
+            Visible = true,
+            Position = "middle", // options= left / middle / right
+            AdjustColor = true,
         },
     };
     #endregion 示例3
@@ -137,22 +137,22 @@
 
     BarConfig config4 = new BarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "基础条形图",
+            Visible = true,
+            Text = "基础条形图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "基础条形图的图形之间添加转化率标签图形，用户希望关注从上到下的数据变化比例",
+            Visible = true,
+            Text = "基础条形图的图形之间添加转化率标签图形，用户希望关注从上到下的数据变化比例",
         },
-        forceFit = true,
-        xField = "pv",
-        yField = "action",
-        conversionTag = new ConversionTagOptions()
+        ForceFit = true,
+        XField = "pv",
+        YField = "action",
+        ConversionTag = new ConversionTagOptions()
         {
-            visible = true,
+            Visible = true,
         },
     };
     #endregion 示例4

@@ -1,4 +1,4 @@
-﻿@page "/Histogram_Chart"
+@page "/Histogram_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -71,24 +71,25 @@
 
     HistogramConfig config1 = new HistogramConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "直方图",
+            Visible = true,
+            Text = "直方图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "通过设置binNumber进行分箱，binNumber决定直方图分箱的区域。",
+            Visible = true,
+            Text = "通过设置binNumber进行分箱，binNumber决定直方图分箱的区域。",
         },
-        forceFit = true,
-        padding = "auto",
-        binField = "value",
-        binNumber = 10,
-        color = new string[] { "#1079a0" },
+        ForceFit = true,
+        Padding = "auto",
+        BinField = "value",
+        BinNumber = 10,
+        Color = new string[] { "#1079a0" },
     };
 
     #endregion 示例1
 
 
 }
+

@@ -1,21 +1,28 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AntDesign.Charts
 {
-    public interface ITextStyle: IGraphicStyle
+    public interface ITextStyle : IGraphicStyle
     {
-        public int? fontSize { get; set; }
-        public string fontFamily { get; set; }
-        public int? fontWeight { get; set; }
-        public int? lineHeight { get; set; }
-        public string textAlign { get; set; }//OneOf <'center','left','right'> 
+        [JsonPropertyName("fontSize")]
+        public int? FontSize { get; set; }
+        [JsonPropertyName("fontFamily")]
+        public string FontFamily { get; set; }
+        [JsonPropertyName("fontWeight")]
+        public int? FontWeight { get; set; }
+        [JsonPropertyName("lineHeight")]
+        public int? LineHeight { get; set; }
+        [JsonPropertyName("textAlign")]
+        public string TextAlign { get; set; }//OneOf <'center','left','right'>
         public static string TextAlignCenter = "center";
         public static string TextAlignLeft = "left";
         public static string TextAlignRight = "right";
 
-        public string textBaseline { get; set; }//OneOf <'middle','top','bottom'>
+        [JsonPropertyName("textBaseline")]
+        public string TextBaseline { get; set; }//OneOf <'middle','top','bottom'>
         public static string TextBaselineMiddle = "middle";
         public static string TextBaselineTop = "top";
         public static string TextBaselineRight = "right";
@@ -25,23 +32,43 @@ namespace AntDesign.Charts
 
     public class TextStyle : ITextStyle
     {
-        public int? fontSize { get;set; }
-        public string fontFamily { get;set; }
-        public int? fontWeight { get;set; }
-        public int? lineHeight { get;set; }
-        public string textAlign { get;set; }
-        public string textBaseline { get;set; }
-        public string fill { get;set; }
-        public decimal? fillOpacity { get;set; }
-        public string stroke { get;set; }
-        public int? lineWidth { get;set; }
-        public int[] lineDash { get;set; }
-        public int? lineOpacity { get;set; }
-        public int? opacity { get;set; }
-        public string shadowColor { get;set; }
-        public int? shadowBlur { get;set; }
-        public int? shadowOffsetX { get;set; }
-        public int? shadowOffsetY { get;set; }
-        public string cursor { get;set; }
+[JsonPropertyName("fontSize")]
+public int? FontSize { get; set; }
+[JsonPropertyName("fontFamily")]
+public string FontFamily { get; set; }
+[JsonPropertyName("fontWeight")]
+public int? FontWeight { get; set; }
+[JsonPropertyName("lineHeight")]
+public int? LineHeight { get; set; }
+[JsonPropertyName("textAlign")]
+public string TextAlign { get; set; }
+[JsonPropertyName("textBaseline")]
+public string TextBaseline { get; set; }
+[JsonPropertyName("fill")]
+public string Fill { get; set; }
+[JsonPropertyName("fillOpacity")]
+public decimal? FillOpacity { get; set; }
+[JsonPropertyName("stroke")]
+public string Stroke { get; set; }
+[JsonPropertyName("lineWidth")]
+public int? LineWidth { get; set; }
+[JsonPropertyName("lineDash")]
+public int[] LineDash { get; set; }
+[JsonPropertyName("lineOpacity")]
+public int? LineOpacity { get; set; }
+[JsonPropertyName("opacity")]
+public int? Opacity { get; set; }
+[JsonPropertyName("shadowColor")]
+public string ShadowColor { get; set; }
+[JsonPropertyName("shadowBlur")]
+public int? ShadowBlur { get; set; }
+[JsonPropertyName("shadowOffsetX")]
+public int? ShadowOffsetX { get; set; }
+[JsonPropertyName("shadowOffsetY")]
+public int? ShadowOffsetY { get; set; }
+[JsonPropertyName("cursor")]
+public string Cursor { get; set; }
     }
 }
+
+

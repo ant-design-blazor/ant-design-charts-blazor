@@ -1,4 +1,4 @@
-﻿@page "/Sparkline"
+@page "/Sparkline"
     <Table DataSource="datas">
         <AntDesign.Column @bind-Field="@context.id"></AntDesign.Column>
         <AntDesign.Column TData="string">
@@ -43,19 +43,19 @@
 
     TinyColumnConfig trendConfig = new TinyColumnConfig()
     {
-        width = 200,
-        height = 50,
-        xField = "index",
-        yField = "value",
-        guideLine = new object[] {
+        Width = 200,
+        Height = 50,
+        XField = "index",
+        YField = "value",
+        GuideLine = new object[] {
             new {
-                type = "median",
-                text = new {
-                    position = "start",
-                    content = "中位数",
-                    style = new {
-                        stroke = "white",
-                        lineWidth = 2,
+                Type = "median",
+                Text = new {
+                    Position = "start",
+                    Content = "中位数",
+                    Style = new {
+                        Stroke = "white",
+                        LineWidth = 2,
                     },
                 },
             },
@@ -64,19 +64,19 @@
 
     TinyLineConfig timesConfig = new TinyLineConfig()
     {
-        width = 200,
-        height = 50,
-        xField = "index",
-        yField = "value",
-        guideLine = new object[] {
+        Width = 200,
+        Height = 50,
+        XField = "index",
+        YField = "value",
+        GuideLine = new object[] {
             new {
-                type = "mean",
-                text = new {
-                    position = "start",
-                    content = "平均值",
-                    style = new {
-                        stroke = "white",
-                        lineWidth = 2,
+                Type = "mean",
+                Text = new {
+                    Position = "start",
+                    Content = "平均值",
+                    Style = new {
+                        Stroke = "white",
+                        LineWidth = 2,
                     },
                 },
             }
@@ -85,8 +85,8 @@
 
     RingProgressConfig loadConfig = new RingProgressConfig()
     {
-        width = 50,
-        height = 50,
+        Width = 50,
+        Height = 50,
 
     };
 
@@ -105,3 +105,4 @@
     }
 
 }
+

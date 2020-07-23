@@ -1,4 +1,4 @@
-﻿@page "/Basic_StepLine_Chart"
+@page "/Basic_StepLine_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -27,24 +27,24 @@
 
     StepLineConfig config1 = new StepLineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "单阶梯折线的基础用法",
+            Visible = true,
+            Text = "单阶梯折线的基础用法",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "最基础简单的阶梯图使用方式，显示一个指标的趋势和变化",
+            Visible = true,
+            Text = "最基础简单的阶梯图使用方式，显示一个指标的趋势和变化",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "Date",
-        yField = "scales",
-        xAxis = new ValueCatTimeAxis()
+        ForceFit = true,
+        Padding = "auto",
+        XField = "Date",
+        YField = "scales",
+        XAxis = new ValueCatTimeAxis()
         {
-            type = "dateTime",
-            tickCount = 5,
+            Type = "dateTime",
+            TickCount = 5,
         },
     };
 
@@ -52,3 +52,4 @@
 
 
 }
+

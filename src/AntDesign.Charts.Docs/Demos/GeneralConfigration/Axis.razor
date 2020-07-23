@@ -1,4 +1,4 @@
-﻿@page "/Axis"
+@page "/Axis"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -27,20 +27,20 @@
 
     LineConfig config1 = new LineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "配置坐标轴tick数量",
+            Visible = true,
+            Text = "配置坐标轴tick数量",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "year",
-        yField = "value",
-        seriesField = "country",
-        xAxis = new ValueCatTimeAxis()
+        ForceFit = true,
+        Padding = "auto",
+        XField = "year",
+        YField = "value",
+        SeriesField = "country",
+        XAxis = new ValueCatTimeAxis()
         {
-            type = "dateTime",
-            tickCount = 5,
+            Type = "dateTime",
+            TickCount = 5,
         },
     };
 
@@ -48,3 +48,4 @@
 
 
 }
+

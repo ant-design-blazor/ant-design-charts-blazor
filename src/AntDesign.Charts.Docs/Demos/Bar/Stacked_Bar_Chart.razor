@@ -1,4 +1,4 @@
-﻿@page "/Stacked_Bar_Chart"
+@page "/Stacked_Bar_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -72,19 +72,19 @@
 
     StackedBarConfig config1 = new StackedBarConfig()
     {
-        forceFit = true,
-        title = new Charts.Title()
+        ForceFit = true,
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "百分比堆叠条形图",
+            Visible = true,
+            Text = "百分比堆叠条形图",
         },
-        yField = "地区",
-        xField = "销售额",
-        label = new BarViewConfigLabel()
+        YField = "地区",
+        XField = "销售额",
+        Label = new BarViewConfigLabel()
         {
-            visible = true,
+            Visible = true,
         },
-        stackField = "细分",
+        StackField = "细分",
     };
 
 
@@ -188,25 +188,25 @@
 
     StackedBarConfig config2 = new StackedBarConfig()
     {
-        forceFit = true,
-        title = new Charts.Title()
+        ForceFit = true,
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "堆叠条形图：label自动隐藏",
+            Visible = true,
+            Text = "堆叠条形图：label自动隐藏",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "在堆叠条形图中，如果label的位置被设定为middle，即显示在条形中间。在对应形状大小不够摆放label的情况下，label会被自动隐藏。",
+            Visible = true,
+            Text = "在堆叠条形图中，如果label的位置被设定为middle，即显示在条形中间。在对应形状大小不够摆放label的情况下，label会被自动隐藏。",
         },
-        yField = "地区",
-        xField = "销售额",
-        stackField = "细分",
-        label = new BarViewConfigLabel()
+        YField = "地区",
+        XField = "销售额",
+        StackField = "细分",
+        Label = new BarViewConfigLabel()
         {
-            offset = 0,
-            visible = true,
-            position = "middle",
+            Offset = 0,
+            Visible = true,
+            Position = "middle",
         },
     };
 

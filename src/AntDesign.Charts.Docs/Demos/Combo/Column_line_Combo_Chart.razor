@@ -1,4 +1,4 @@
-﻿@page "/Column_line_Combo_Chart"
+@page "/Column_line_Combo_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -30,21 +30,22 @@
 
     ColumnLineConfig config1 = new ColumnLineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "柱线混合图",
+            Visible = true,
+            Text = "柱线混合图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "柱线混合图表",
+            Visible = true,
+            Text = "柱线混合图表",
         },
-        xField = "time",
-        yField =new string[] { "value", "count" },
+        XField = "time",
+        YField = new string[] { "value", "count" },
     };
 
 
     #endregion 示例1
 
 }
+

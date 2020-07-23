@@ -1,4 +1,4 @@
-﻿@page "/Donut_Chart"
+@page "/Donut_Chart"
 
     <Tabs>
         <TabPane Key="1">
@@ -41,21 +41,21 @@
 
     DonutConfig config1 = new DonutConfig()
     {
-        forceFit = true,
-        title = new Charts.Title()
+        ForceFit = true,
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "环图",
+            Visible = true,
+            Text = "环图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "环图的外半径决定环图的大小，而内半径决定环图的厚度。",
+            Visible = true,
+            Text = "环图的外半径决定环图的大小，而内半径决定环图的厚度。",
         },
-        radius = 0.8,
-        padding = "auto",
-        angleField = "value",
-        colorField = "type",
+        Radius = 0.8,
+        Padding = "auto",
+        AngleField = "value",
+        ColorField = "type",
     };
 
 
@@ -63,3 +63,4 @@
 
 
 }
+

@@ -1,4 +1,4 @@
-﻿@page "/Percent_Stacked_Column_Chart"
+@page "/Percent_Stacked_Column_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -122,16 +122,16 @@
 
     PercentStackedColumnConfig config1 = new PercentStackedColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "百分比堆叠柱状图",
+            Visible = true,
+            Text = "百分比堆叠柱状图",
         },
-        forceFit = true,
-        xField = "year",
-        yField = "value",
-        stackField = "country",
-        color =new string[] { "#0f759c", "#26a2cb", "#65d1fc" },
+        ForceFit = true,
+        XField = "year",
+        YField = "value",
+        StackField = "country",
+        Color = new string[] { "#0f759c", "#26a2cb", "#65d1fc" },
     };
 
 
@@ -139,3 +139,4 @@
 
 
 }
+

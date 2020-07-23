@@ -1,4 +1,4 @@
-﻿@page "/Guideline"
+@page "/Guideline"
 
 <Tabs>
     <TabPane Key="1">
@@ -53,33 +53,33 @@
 
     ColumnConfig config1 = new ColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "更改图表辅助线样式",
+            Visible = true,
+            Text = "更改图表辅助线样式",
         },
-        xField = "year",
-        yField = "value",
-        guideLine = new GuideLineConfig[]{
+        XField = "year",
+        YField = "value",
+        GuideLine = new GuideLineConfig[]{
             new GuideLineConfig()   {
-            type = "mean", // "max" | "min" | "median" |  "mean"
-            lineStyle =new LineStyle() {
-                stroke = "red",
-                lineDash =new int[] {4, 2 },
+            Type = "mean", // "max" | "min" | "median" |  "mean"
+            LineStyle =new LineStyle() {
+                Stroke = "red",
+                LineDash =new int[] {4, 2 },
             },
-            text =new GuideLineConfigText()
+            Text =new GuideLineConfigText()
             {
-                position= "start",
-                content= "预警线",
-                style= new TextStyle() {
-                    fill= "red",
+                Position= "start",
+                Content= "预警线",
+                Style= new TextStyle() {
+                    Fill= "red",
                 },
             },
+            },
         },
-    },
     };
 
 
     #endregion 示例1
-
 }
+

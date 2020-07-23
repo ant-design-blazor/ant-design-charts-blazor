@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,11 +7,15 @@ namespace AntDesign.Charts
 {
     public interface IMeta
     {
-        public string alias { get; set; }
+        [JsonPropertyName("alias")]
+        public string Alias { get; set; }
         //  formatter?: (v: any) => string;
-        public string[] values { get; set; }
-        public int[] range { get; set; }
-        public string type { get; set; }//OneOf <'linear','time','timeCat','cat','pow','log'>
+        [JsonPropertyName("values")]
+        public string[] Values { get; set; }
+        [JsonPropertyName("range")]
+        public int[] Range { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }//OneOf <'linear','time','timeCat','cat','pow','log'>
 
         public static string TypeLinear = "linear";
         public static string TypeTime = "time";
@@ -22,9 +27,15 @@ namespace AntDesign.Charts
 
     public class Meta : IMeta
     {
-        public string alias { get; set; }
-        public string[] values { get; set; }
-        public int[] range { get; set; }
-        public string type { get; set; }
+        [JsonPropertyName("alias")]
+        public string Alias { get; set; }
+        [JsonPropertyName("values")]
+        public string[] Values { get; set; }
+        [JsonPropertyName("range")]
+        public int[] Range { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
     }
 }
+
+
