@@ -42,7 +42,6 @@ namespace AntDesign.Charts
         public OneOf<int?, string, int[]> Padding { get; set; }
         [JsonPropertyName("padding")]
         public object PaddingMapping => Padding.Value;
-        [JsonPropertyName("color")]
         [JsonIgnore]
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
