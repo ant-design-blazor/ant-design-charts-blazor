@@ -43,12 +43,13 @@ namespace AntDesign.Charts
         [JsonIgnore]
         public OneOf<string, object> Theme { get; set; }
         [JsonPropertyName("theme")]
-        public object themeMapping => Theme.Value;
-
+        public object ThemeMapping => Theme.Value;
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string, int[]> Padding { get; set; }
         [JsonPropertyName("padding")]
-        public string Padding { get; set; }
+        public object PaddingMapping => Padding.Value;
         [JsonPropertyName("color")]
         public string[] Color { get; set; }
         [JsonPropertyName("label")]

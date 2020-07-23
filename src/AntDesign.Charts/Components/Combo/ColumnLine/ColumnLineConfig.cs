@@ -36,8 +36,10 @@ namespace AntDesign.Charts
         public ComboLegendConfig Legend { get; set; }
         [JsonPropertyName("renderer")]
         public string Renderer { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string, int[]> Padding { get; set; }
         [JsonPropertyName("padding")]
-        public string Padding { get; set; }
+        public object PaddingMapping => Padding.Value;
         [JsonPropertyName("color")]
         public string[] Color { get; set; }
         [JsonPropertyName("label")]

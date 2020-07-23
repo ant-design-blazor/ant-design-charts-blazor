@@ -20,7 +20,7 @@ namespace AntDesign.Charts
         public int? Height { get; set; }
         [JsonPropertyName("pixelRatio")]
         public int? PixelRatio { get; set; }
-        public OneOf<string, object> Theme { get; set; }//OneOf<LooseMap, string>   LooseMap: [key: string]: T;
+        public OneOf<string, object> Theme { get; set; }//OneOf <LooseMap, string>   LooseMap: [key: string]: T;
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
     }
