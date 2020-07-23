@@ -37,7 +37,6 @@ namespace AntDesign.Charts
         public string XField { get; set; }
         [JsonPropertyName("yField")]
         public string YField { get; set; }
-        [JsonPropertyName("color")]
         [JsonIgnore]
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]

@@ -18,7 +18,6 @@ namespace AntDesign.Charts
         public string ShapeType { get; set; }
         [JsonPropertyName("shapeStyle")]
         public GraphicStyle ShapeStyle { get; set; }
-        [JsonPropertyName("color")]
         [JsonIgnore]
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
@@ -108,7 +107,6 @@ namespace AntDesign.Charts
         public string ShapeType { get; set; }
         [JsonPropertyName("shapeStyle")]
         public GraphicStyle ShapeStyle { get; set; }
-        [JsonPropertyName("color")]
         [JsonIgnore]
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
