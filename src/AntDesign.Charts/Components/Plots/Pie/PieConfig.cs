@@ -92,7 +92,7 @@ OneOf<Label, object> IViewConfig.Label { get ; set ; }
         [JsonPropertyName("radius")]
         public double? Radius { get; set; }
         [JsonPropertyName("pieStyle")]
-        public GraphicStyle PieStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle PieStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("label")]
         public PieLabelConfig Label { get; set; }
     }
@@ -102,7 +102,7 @@ OneOf<Label, object> IViewConfig.Label { get ; set ; }
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
         [JsonPropertyName("formatter")]
-        public object Formatter { get; set; }//OneOf<(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
+        public object Formatter { get; set; }//OneOf <(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
         /// <summary>
         ///  whether 
         /// </summary>

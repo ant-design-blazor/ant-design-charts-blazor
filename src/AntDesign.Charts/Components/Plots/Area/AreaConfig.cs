@@ -87,11 +87,11 @@ namespace AntDesign.Charts
     public interface IAreaViewConfig : IViewConfig
     {
         [JsonPropertyName("areaStyle")]
-        public GraphicStyle AreaStyle { get; set; }//OneOf<GraphicStyle, ((...args: any) => GraphicStyle)>
+        public GraphicStyle AreaStyle { get; set; }//OneOf <GraphicStyle, ((...args: any) => GraphicStyle)>
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
         [JsonPropertyName("xAxis")]
-        public ValueCatTimeAxis XAxis { get; set; }//OneOf<ICatAxis, ITimeAxis, IValueAxis>
+        public ValueCatTimeAxis XAxis { get; set; }//OneOf <ICatAxis, ITimeAxis, IValueAxis>
         [JsonPropertyName("yAxis")]
         public ValueAxis YAxis { get; set; }
         [JsonPropertyName("line")]

@@ -103,7 +103,7 @@ namespace AntDesign.Charts
         ///  散点样式 
         /// </summary>
         [JsonPropertyName("pointStyle")]
-        public GraphicStyle PointStyle { get; set; }//OneOf<GraphicStyle, ((...args: any) => GraphicStyle)>
+        public GraphicStyle PointStyle { get; set; }//OneOf <GraphicStyle, ((...args: any) => GraphicStyle)>
         /// <summary>
         ///  颜色字段 
         /// </summary>

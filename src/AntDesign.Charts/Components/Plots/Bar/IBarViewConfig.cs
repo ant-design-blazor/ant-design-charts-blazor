@@ -12,7 +12,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("barSize")]
         public int? BarSize { get; set; }
         [JsonPropertyName("barStyle")]
-        public GraphicStyle BarStyle { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        public GraphicStyle BarStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("xAxis")]
         public ValueAxis XAxis { get; set; }
         [JsonPropertyName("yAxis")]
