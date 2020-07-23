@@ -29,7 +29,7 @@ namespace AntDesign.Charts
         ///  scale 自定义 tickMethod 
         /// </summary>
         [JsonPropertyName("tickMethod")]
-        public string TickMethod { get; set; }//OneOf<string, ((cfg: any) => number[])>
+        public string TickMethod { get; set; }//OneOf <string, ((cfg: any) => number[])>
         /// <summary>
         /// 轴位置，默认下和左
         /// </summary>
@@ -92,7 +92,7 @@ namespace AntDesign.Charts
     public class BaseAxisGridLine
     {
         [JsonPropertyName("style")]
-        public LineStyle Style { get; set; }//OneOf<LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
+        public LineStyle Style { get; set; }//OneOf <LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
         /// <summary>
         /// 'line' , 'circle'
         /// </summary>

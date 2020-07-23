@@ -18,7 +18,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("meta")]
         public object Meta { get; set; }//ILooseMap<Meta>
         [JsonPropertyName("padding")]
-        public string Padding { get; set; }//OneOf<int?, int[], string>
+        public OneOf<int?, string, int[]> Padding { get; set; }//
         [JsonPropertyName("xField")]
         public string XField { get; set; }
         [JsonPropertyName("yField")]
