@@ -44,8 +44,10 @@ namespace AntDesign.Charts
         public Axis XAxis { get; set; }
         [JsonPropertyName("yAxis")]
         public Axis YAxis { get; set; }
+        [JsonIgnore]
+        public OneOf<Label, object> Label { get; set; }
         [JsonPropertyName("label")]
-        public Label Label { get; set; }
+        public object LabelMapping => Label.Value;
         [JsonPropertyName("tooltip")]
         public Tooltip Tooltip { get; set; }
         [JsonPropertyName("legend")]
