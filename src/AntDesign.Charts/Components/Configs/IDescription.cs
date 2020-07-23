@@ -24,14 +24,14 @@ namespace AntDesign.Charts
 
     public class Description : IDescription
     {
-[JsonPropertyName("visible")]
-public bool? Visible { get; set; }
-[JsonPropertyName("text")]
-public string Text { get; set; }
-[JsonPropertyName("style")]
-public TextStyle Style { get; set; }
-[JsonPropertyName("alignTo")]
-public string AlignTo { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("alignTo")]
+        public string AlignTo { get; set; }
     }
 }
 

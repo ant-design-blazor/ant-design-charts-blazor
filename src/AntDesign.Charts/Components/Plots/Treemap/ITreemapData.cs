@@ -14,7 +14,7 @@ namespace AntDesign.Charts
         public int Value { get; set; }
     }
 
-   
+
 
 
 }

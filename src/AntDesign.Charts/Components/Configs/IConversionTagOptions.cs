@@ -27,22 +27,22 @@ namespace AntDesign.Charts
 
     public class ConversionTagOptions : IConversionTagOptions
     {
-[JsonPropertyName("visible")]
-public bool? Visible { get; set; }
-[JsonPropertyName("size")]
-public int? Size { get; set; }
-[JsonPropertyName("spacing")]
-public int? Spacing { get; set; }
-[JsonPropertyName("offset")]
-public int? Offset { get; set; }
-[JsonPropertyName("arrow")]
-public ArrowOptions Arrow { get; set; }
-[JsonPropertyName("value")]
-public ValueOptions Value { get; set; }
-[JsonPropertyName("animation")]
-public object Animation { get; set; }
-[JsonPropertyName("transpose")]
-public bool? Transpose { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("spacing")]
+        public int? Spacing { get; set; }
+        [JsonPropertyName("offset")]
+        public int? Offset { get; set; }
+        [JsonPropertyName("arrow")]
+        public ArrowOptions Arrow { get; set; }
+        [JsonPropertyName("value")]
+        public ValueOptions Value { get; set; }
+        [JsonPropertyName("animation")]
+        public object Animation { get; set; }
+        [JsonPropertyName("transpose")]
+        public bool? Transpose { get; set; }
     }
 }
 

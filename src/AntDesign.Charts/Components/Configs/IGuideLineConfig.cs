@@ -39,16 +39,16 @@ namespace AntDesign.Charts
 
     public class GuideLineConfig : IGuideLineConfig
     {
-[JsonPropertyName("type")]
-public string Type { get; set; }
-[JsonPropertyName("start")]
-public object[] Start { get; set; }
-[JsonPropertyName("end")]
-public object[] End { get; set; }
-[JsonPropertyName("lineStyle")]
-public LineStyle LineStyle { get; set; }
-[JsonPropertyName("text")]
-public GuideLineConfigText Text { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("start")]
+        public object[] Start { get; set; }
+        [JsonPropertyName("end")]
+        public object[] End { get; set; }
+        [JsonPropertyName("lineStyle")]
+        public LineStyle LineStyle { get; set; }
+        [JsonPropertyName("text")]
+        public GuideLineConfigText Text { get; set; }
     }
 
 }

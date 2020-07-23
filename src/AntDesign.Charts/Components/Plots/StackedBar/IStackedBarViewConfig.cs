@@ -7,8 +7,8 @@ namespace AntDesign.Charts
 {
     public interface IStackedBarViewConfig : IBarViewConfig
     {
-[JsonPropertyName("stackField")]
-public string StackField { get; set; }
+        [JsonPropertyName("stackField")]
+        public string StackField { get; set; }
     }
 }
 

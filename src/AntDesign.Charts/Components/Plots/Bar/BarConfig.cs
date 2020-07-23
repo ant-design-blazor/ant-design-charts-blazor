@@ -5,19 +5,6 @@ namespace AntDesign.Charts
 {
     public class BarConfig : IBarViewConfig, IPlotConfig
     {
-        public object _A => A.Value;
-        public object _B => B.Value;
-        public object _C => C.Value;
-
-
-        [JsonIgnore]
-        public OneOf<string, string[]> A { get; set; }
-        [JsonIgnore]
-        public OneOf<string, string[]> B { get; set; }
-        [JsonIgnore]
-        public OneOf<string, string[]> C { get; set; }
-
-
         [JsonPropertyName("colorField")]
         public string ColorField { get; set; }
         [JsonPropertyName("barSize")]
