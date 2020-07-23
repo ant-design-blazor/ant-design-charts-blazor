@@ -44,8 +44,10 @@ namespace AntDesign.Charts
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
         public object ColorMapping => Color.Value;
+        [JsonIgnore]
+        public OneOf<Label, object> Label { get; set; }
         [JsonPropertyName("label")]
-        public Label Label { get; set; }
+        public object LabelMapping => Label.Value;
         [JsonPropertyName("animation")]
         public object Animation { get; set; }
         [JsonIgnore]
