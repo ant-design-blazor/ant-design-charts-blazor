@@ -19,7 +19,10 @@ namespace AntDesign.Charts
         [JsonPropertyName("shapeStyle")]
         public GraphicStyle ShapeStyle { get; set; }
         [JsonPropertyName("color")]
-        public string[] Color { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
         [JsonPropertyName("legend")]
         public MatrixLegendConfig Legend { get; set; }
         [JsonPropertyName("renderer")]
@@ -104,7 +107,10 @@ namespace AntDesign.Charts
         [JsonPropertyName("shapeStyle")]
         public GraphicStyle ShapeStyle { get; set; }
         [JsonPropertyName("color")]
-        public string[] Color { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
         [JsonPropertyName("legend")]
         public MatrixLegendConfig Legend { get; set; }
     }
