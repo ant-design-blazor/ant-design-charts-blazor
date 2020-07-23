@@ -26,7 +26,7 @@ namespace AntDesign.Charts
         /// <summary>
         ///  scale 自定义 tickMethod 
         /// </summary>
-        public string tickMethod { get; set; }// OneOf<string, ((cfg: any) => number[])>
+        public string tickMethod { get; set; }//OneOf<string, ((cfg: any) => number[])>
         /// <summary>
         /// 轴位置，默认下和左
         /// </summary>
@@ -73,14 +73,14 @@ namespace AntDesign.Charts
         ///  网格设置交替的颜色，指定一个值则先渲染偶数层，两个值则交替渲染 
         /// </summary>
         [JsonIgnore]
-        public OneOf<string, string[]> alternateColor { get; set; }// OneOf <string, string[]>
+        public OneOf<string, string[]> alternateColor { get; set; }//OneOf <string, string[]>
         [JsonPropertyName("alternateColor")]
         public object alternateColorMapping => alternateColor.Value;
     }
     public class BaseAxisGridLine
     {
-        public LineStyle style { get; set; }// OneOf<LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
-        public string type { get; set; }// OneOf <'line' , 'circle'>
+        public LineStyle style { get; set; }//OneOf<LineStyle, ((text: string, idx: number, count: number) => LineStyle)>
+        public string type { get; set; }//OneOf <'line' , 'circle'>
 
         public static string TypeLine = "line";
         public static string TypeCircle = "circle";

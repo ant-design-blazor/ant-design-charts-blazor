@@ -28,7 +28,7 @@ namespace AntDesign.Charts
         public Tooltip tooltip { get; set; }
         public Legend legend { get; set; }
         /// <summary>
-        /// OneOf<Animation, bool?> 
+        ///OneOf<Animation, bool?> 
         /// </summary>
         public object animation { get; set; }
         [JsonIgnore]

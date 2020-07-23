@@ -88,7 +88,7 @@ namespace AntDesign.Charts
 
     public interface IColumnLabel : ILabel
     {
-        public string position { get; set; }// OneOf<string,'top','middle','bottom'>
+        public string position { get; set; }//OneOf<string,'top','middle','bottom'>
         public bool? adjustPosition { get; set; }
         public bool? adjustColor { get; set; }
     }

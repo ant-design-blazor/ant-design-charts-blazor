@@ -53,7 +53,7 @@ namespace AntDesign.Charts
         /// <summary>
         /// 默认为 hv: 'hv','vh','vhv','hvh'
         /// </summary>
-        public string step { get; set; }// OneOf <'hv','vh','vhv','hvh'>
+        public string step { get; set; }//OneOf <'hv','vh','vhv','hvh'>
         public static string StepHv = "hv";
         public static string StepVh = "vh";
         public static string StepVhv = "vhv";
