@@ -103,7 +103,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("conversionTag")]
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("label")]
-        public ColumnViewConfigLabel Label { get; set; } //OneOf<IColumnLabel, IColumnAutoLabel>
+        public ColumnViewConfigLabel Label { get; set; } //OneOf <IColumnLabel, IColumnAutoLabel>
         /// <summary>
         /// export type ColumnInteraction =
         ///  | { type: 'slider'; cfg: ISliderInteractionConfig }

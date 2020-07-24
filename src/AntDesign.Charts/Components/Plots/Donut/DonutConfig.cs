@@ -116,9 +116,25 @@ namespace AntDesign.Charts
         [JsonPropertyName("triggerOff")]
         public string TriggerOff { get; set; }//'mouseleave'
         [JsonPropertyName("content")]
-        public object Content { get; set; }//OneOf<string, DonutStatisticContent>
+        public OneOf<string, DonutStatisticContent> Content { get; set; }
         [JsonPropertyName("htmlContent")]
         public string HtmlContent { get; set; }//(...args: any) => string
+    }
+
+    public interface IDonutStatisticContent
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
+    }
+
+    public class DonutStatisticContent : IDonutStatisticContent
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
     }
 }
 
