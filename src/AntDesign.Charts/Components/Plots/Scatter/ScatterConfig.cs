@@ -8,8 +8,10 @@ namespace AntDesign.Charts
 {
     public class ScatterConfig : IScatterViewConfig, IPlotConfig
     {
+        [JsonIgnore]
+        public OneOf<int?, int[], object> PointSize { get; set; }
         [JsonPropertyName("pointSize")]
-        public object PointSize { get; set; }
+        public object PointSizeMapping => PointSize.Value;
         [JsonPropertyName("pointStyle")]
         public GraphicStyle PointStyle { get; set; }
         [JsonPropertyName("colorField")]
@@ -94,7 +96,7 @@ namespace AntDesign.Charts
         ///  散点大小 
         /// </summary>
         [JsonPropertyName("pointSize")]
-        public object PointSize { get; set; }//OneOf<int?, object>
+        public OneOf<int?, int[], object> PointSize { get; set; }
     }
 
     public interface IPointViewConfig : IViewConfig

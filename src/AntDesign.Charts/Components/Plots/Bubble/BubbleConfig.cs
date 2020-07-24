@@ -8,8 +8,10 @@ namespace AntDesign.Charts
 {
     public class BubbleConfig : IBubbleViewConfig, IPlotConfig
     {
+        [JsonIgnore]
+        public OneOf<int?, int[], object> PointSize { get; set; }
         [JsonPropertyName("pointSize")]
-        public int[] PointSize { get; set; }
+        public object PointSizeMapping => PointSize.Value;
         [JsonPropertyName("sizeField")]
         public string SizeField { get; set; }
         [JsonPropertyName("pointStyle")]
@@ -86,7 +88,6 @@ namespace AntDesign.Charts
         public int? PixelRatio { get; set; }
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
-        object IScatterViewConfig.PointSize { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
     }
@@ -97,7 +98,7 @@ namespace AntDesign.Charts
         ///  气泡大小 
         /// </summary>
         [JsonPropertyName("pointSize")]
-        public int[] PointSize { get; set; }//[number, number]
+        public OneOf<int?, int[], object> PointSize { get; set; }
         /// <summary>
         ///  气泡大小字段 
         /// </summary>

@@ -120,7 +120,7 @@ OneOf<Label, object> IViewConfig.Label { get ; set ; }
         [JsonIgnore]
         public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public object OffsetMapping => Offset.Value;//OneOf<int?, string>
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
         [JsonPropertyName("offsetY")]
