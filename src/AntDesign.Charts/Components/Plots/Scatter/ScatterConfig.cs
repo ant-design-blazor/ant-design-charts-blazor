@@ -117,12 +117,12 @@ namespace AntDesign.Charts
         ///  x 轴配置 
         /// </summary>
         [JsonPropertyName("xAxis")]
-        public ValueTimeAxis XAxis { get; set; }//OneOf<ITimeAxis, IValueAxis>
+        public ValueTimeAxis XAxis { get; set; }//OneOf <ITimeAxis, IValueAxis>
         /// <summary>
         ///  y 轴配置 
         /// </summary>
         [JsonPropertyName("yAxis")]
-        public ValueTimeAxis YAxis { get; set; }//OneOf<ITimeAxis, IValueAxis>
+        public ValueTimeAxis YAxis { get; set; }//OneOf <ITimeAxis, IValueAxis>
         [JsonPropertyName("quadrant")]
         public QuadrantConfig Quadrant { get; set; }
         [JsonPropertyName("trendline")]
@@ -138,7 +138,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("yBaseline")]
         public int? YBaseline { get; set; }
         [JsonPropertyName("regionStyle")]
-        public object RegionStyle { get; set; }//OneOf<any[], object>
+        public OneOf<object, object[]> RegionStyle { get; set; }
         [JsonPropertyName("lineStyle")]
         public object LineStyle { get; set; }
         [JsonPropertyName("label")]
@@ -153,8 +153,10 @@ namespace AntDesign.Charts
         public int? XBaseline { get; set; }
         [JsonPropertyName("yBaseline")]
         public int? YBaseline { get; set; }
+        [JsonIgnore]
+        public OneOf<object, object[]> RegionStyle { get; set; }
         [JsonPropertyName("regionStyle")]
-        public object RegionStyle { get; set; }
+        public object RegionStyleMapping => RegionStyle.Value;
         [JsonPropertyName("lineStyle")]
         public object LineStyle { get; set; }
         [JsonPropertyName("label")]
