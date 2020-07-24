@@ -14,8 +14,10 @@ namespace AntDesign.Charts
         public int? Size { get; set; }
         [JsonPropertyName("spacing")]
         public int? Spacing { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("arrow")]
         public ArrowOptions Arrow { get; set; }
         [JsonPropertyName("value")]
@@ -34,8 +36,10 @@ namespace AntDesign.Charts
         public int? Size { get; set; }
         [JsonPropertyName("spacing")]
         public int? Spacing { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("arrow")]
         public ArrowOptions Arrow { get; set; }
         [JsonPropertyName("value")]

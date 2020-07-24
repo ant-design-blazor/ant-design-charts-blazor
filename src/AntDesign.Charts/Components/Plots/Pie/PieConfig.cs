@@ -117,8 +117,10 @@ OneOf<Label, object> IViewConfig.Label { get ; set ; }
         public bool? AutoRotate { get; set; }
         [JsonPropertyName("labelHeight")]
         public int? LabelHeight { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }//OneOf<int?, string>
+        public object OffsetMapping => Offset.Value;//OneOf<int?, string>
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
         [JsonPropertyName("offsetY")]
@@ -155,8 +157,10 @@ OneOf<Label, object> IViewConfig.Label { get ; set ; }
         public bool? AutoRotate { get; set; }
         [JsonPropertyName("labelHeight")]
         public int? LabelHeight { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
         [JsonPropertyName("offsetY")]

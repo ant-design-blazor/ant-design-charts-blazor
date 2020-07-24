@@ -153,8 +153,10 @@ OneOf<Label, object> IViewConfig.Label { get ; set ; }
         public string Suffix { get; set; }
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
         [JsonPropertyName("offsetY")]

@@ -114,8 +114,10 @@ namespace AntDesign.Charts
         /// <summary>
         /// 坐标轴文本距离坐标轴线的距离
         /// </summary>
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         /// <summary>
         /// 在 offset 的基础上，设置坐标轴文本在 x 方向上的偏移量
         /// </summary>
@@ -155,8 +157,10 @@ namespace AntDesign.Charts
         public bool? AutoRotate { get; set; }
         [JsonPropertyName("text")]
         public string Text { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
         [JsonPropertyName("spacing")]

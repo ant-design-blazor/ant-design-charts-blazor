@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using OneOf;
 
 namespace AntDesign.Charts
 {
@@ -23,7 +24,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("crosshairs")]
         public object Crosshairs { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("showMarkers")]
         public bool? ShowMarkers { get; set; }
         /*
@@ -63,8 +64,10 @@ namespace AntDesign.Charts
         public bool? ShowCrosshairs { get; set; }
         [JsonPropertyName("crosshairs")]
         public object Crosshairs { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("showMarkers")]
         public bool? ShowMarkers { get; set; }
         [JsonPropertyName("follow")]

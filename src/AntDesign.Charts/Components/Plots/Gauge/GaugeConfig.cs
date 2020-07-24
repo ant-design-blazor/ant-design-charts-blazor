@@ -152,8 +152,10 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("tickCount")]
         public int? TickCount { get; set; }
         [JsonPropertyName("tickLine")]
@@ -189,8 +191,10 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("tickCount")]
         public int? TickCount { get; set; }
         [JsonPropertyName("tickLine")]
