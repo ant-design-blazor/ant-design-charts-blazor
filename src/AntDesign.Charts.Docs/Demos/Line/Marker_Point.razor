@@ -1,4 +1,4 @@
-﻿@page "/Marker_Point"
+@page "/Marker_Point"
 
 <Tabs>
     <TabPane Key="1">
@@ -29,41 +29,41 @@
 
     LineConfig config1 = new LineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "带标注点的折线图",
+            Visible = true,
+            Text = "带标注点的折线图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "在折线图上标注重点的数据，如节假日等",
+            Visible = true,
+            Text = "在折线图上标注重点的数据，如节假日等",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "date",
-        yField = "value",
-        yAxis = new ValueAxis()
+        ForceFit = true,
+        Padding = "auto",
+        XField = "date",
+        YField = "value",
+        YAxis = new ValueAxis()
         {
-            nice = true,
+            Nice = true,
         },
-        label = new Label()
+        Label = new Label()
         {
-            visible = false,
+            Visible = false,
         },
     };
 
     object otherConfig1 = new
     {
-        markerPoints = new object[]
+        MarkerPoints = new object[]
         {
             new{
-                visible = true,
+                Visible = true,
                 data =new object []{new { date = "2019-05-01", value = 4.9 },new  { date = "2019-10-01" } },
-               label = new
+               Label = new
                 {
-                    visible = true,
-                    field = "festival",
+                    Visible = true,
+                    Field = "festival",
                 },
             },
         },
@@ -71,3 +71,4 @@
 
     #endregion 示例1
 }
+

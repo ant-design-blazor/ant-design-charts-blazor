@@ -1,4 +1,4 @@
-﻿@page "/GroupedColumn_line_Combo_Chart"
+@page "/GroupedColumn_line_Combo_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -35,23 +35,24 @@
 
     GroupedColumnLineConfig config1 = new GroupedColumnLineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "分组柱+折线混合图",
-            alignTo = "middle",
+            Visible = true,
+            Text = "分组柱+折线混合图",
+            AlignTo = "middle",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "分组柱+折线混合图表",
-            alignTo = "middle",
+            Visible = true,
+            Text = "分组柱+折线混合图表",
+            AlignTo = "middle",
         },
-        xField = "time",
-        yField = new string[] { "value", "count" },
-        columnGroupField = "type",
+        XField = "time",
+        YField = new string[] { "value", "count" },
+        ColumnGroupField = "type",
     };
 
     #endregion 示例1
 
 }
+

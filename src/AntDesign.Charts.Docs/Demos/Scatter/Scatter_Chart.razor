@@ -1,4 +1,4 @@
-﻿@page "/Scatter_Chart"
+@page "/Scatter_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -33,12 +33,12 @@
 
     ScatterConfig config1 = new ScatterConfig()
     {
-        xField = "revenue",
-        yField = "rating",
-        xAxis = new ValueTimeAxis()
+        XField = "revenue",
+        YField = "rating",
+        XAxis = new ValueTimeAxis()
         {
-            visible = true,
-            min = -5,
+            Visible = true,
+            Min = -5,
         },
     };
 
@@ -47,3 +47,4 @@
 
 
 }
+

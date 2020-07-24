@@ -1,4 +1,4 @@
-﻿@page "/DualLine_Combo_Chart"
+@page "/DualLine_Combo_Chart"
 @inject IJSRuntime JS;
 <Tabs>
         <TabPane Key="1">
@@ -38,22 +38,23 @@
 
     DualLineConfig config1= new DualLineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "双折线图",
+            Visible = true,
+            Text = "双折线图",
         },
 
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "双折线混合图表",
+            Visible = true,
+            Text = "双折线混合图表",
         },
 
-        xField = "year",
-        yField = new string[] { "value", "count" },
+        XField = "year",
+        YField = new string[] { "value", "count" },
     };
 
     #endregion 示例1
 
 }
+

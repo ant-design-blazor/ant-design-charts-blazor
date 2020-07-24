@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -7,47 +7,83 @@ namespace AntDesign.Charts
 {
     public interface IValueAxis : IBaseAxis
     {
-        public string type { get; set; }//OneOf<'linear' , 'pow' , 'log'>
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+
         /// <summary>
         ///  tick相关配置 
         /// </summary>
-        public bool? nice { get; set; }
-        public double? min { get; set; }
-        public double? max { get; set; }
-        public int? minLimit { get; set; }
-        public int? maxLimit { get; set; }
-        public int? tickCount { get; set; }
-        public int? tickInterval { get; set; }
+        [JsonPropertyName("nice")]
+        public bool? Nice { get; set; }
+        [JsonPropertyName("min")]
+        public double? Min { get; set; }
+        [JsonPropertyName("max")]
+        public double? Max { get; set; }
+        [JsonPropertyName("minLimit")]
+        public int? MinLimit { get; set; }
+        [JsonPropertyName("maxLimit")]
+        public int? MaxLimit { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickInterval")]
+        public int? TickInterval { get; set; }
         /// <summary>
         ///  pow 指数 
         /// </summary>
-        public int? exponent { get; set; }
+        [JsonPropertyName("exponent")]
+        public int? Exponent { get; set; }
         /// <summary>
         ///  log 基数 
         /// </summary>
         [JsonPropertyName("base")]
-        public int? @base { get; set; }
+        public int? Base { get; set; }
 
     }
 
     public class ValueAxis : IValueAxis
     {
-        public string type { get; set; }
-        public bool? nice { get; set; }
-        public double? min { get; set; }
-        public double? max { get; set; }
-        public int? minLimit { get; set; }
-        public int? maxLimit { get; set; }
-        public int? tickCount { get; set; }
-        public int? tickInterval { get; set; }
-        public int? exponent { get; set; }
-        public int? @base { get; set; }
-        public bool visible { get; set; }
-        public string tickMethod { get; set; }
-        public BaseAxisLine line { get; set; }
-        public BaseAxisGrid grid { get; set; }
-        public BaseAxisLabel label { get; set; }
-        public BaseAxisTitle title { get; set; }
-        public BaseAxisTickLine tickLine { get; set; }
+        /// <summary>
+        /// 'linear' , 'pow' , 'log'
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        public static string TypeLinear = "linear";
+        public static string TypePow = "pow";
+        public static string TypeLog = "log";
+
+        [JsonPropertyName("nice")]
+        public bool? Nice { get; set; }
+        [JsonPropertyName("min")]
+        public double? Min { get; set; }
+        [JsonPropertyName("max")]
+        public double? Max { get; set; }
+        [JsonPropertyName("minLimit")]
+        public int? MinLimit { get; set; }
+        [JsonPropertyName("maxLimit")]
+        public int? MaxLimit { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickInterval")]
+        public int? TickInterval { get; set; }
+        [JsonPropertyName("exponent")]
+        public int? Exponent { get; set; }
+        [JsonPropertyName("base")]
+        public int? Base { get; set; }
+        [JsonPropertyName("visible")]
+        public bool Visible { get; set; }
+        [JsonPropertyName("tickMethod")]
+        public string TickMethod { get; set; }
+        [JsonPropertyName("line")]
+        public BaseAxisLine Line { get; set; }
+        [JsonPropertyName("grid")]
+        public BaseAxisGrid Grid { get; set; }
+        [JsonPropertyName("label")]
+        public BaseAxisLabel Label { get; set; }
+        [JsonPropertyName("title")]
+        public BaseAxisTitle Title { get; set; }
+        [JsonPropertyName("tickLine")]
+        public BaseAxisTickLine TickLine { get; set; }
     }
 }
+
+

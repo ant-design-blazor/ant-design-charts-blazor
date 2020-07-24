@@ -1,13 +1,19 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AntDesign.Charts
 {
-   public  class ArrowOptions
+    public class ArrowOptions
     {
-        public bool? visible { get; set; }
-        public int? headSize { get; set; }
-        public object style { get; set; }//any
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("headSize")]
+        public int? HeadSize { get; set; }
+        [JsonPropertyName("style")]
+        public object Style { get; set; }//any
     }
 }
+
+

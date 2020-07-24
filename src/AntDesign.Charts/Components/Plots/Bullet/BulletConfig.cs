@@ -1,76 +1,132 @@
-﻿using System;
+using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
     public class BulletConfig : IBulletViewConfig, IPlotConfig
     {
-        public BulletViewConfigData[] data { get; set; }
-        public int? rangeMax { get; set; }
-        public int? measureSize { get; set; }
-        public string[] measureColors { get; set; }
-        public int? rangeSize { get; set; }
-        public string[] rangeColors { get; set; }
-        public int? markerSize { get; set; }
-        public string[] markerColors { get; set; }
-        public string renderer { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public string[] color { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
-        public object animation { get; set; }
-        public string theme { get; set; }
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
-        object IViewConfig.data { get; set; }
+        [JsonPropertyName("data")]
+        public BulletViewConfigData[] Data { get; set; }
+        [JsonPropertyName("rangeMax")]
+        public int? RangeMax { get; set; }
+        [JsonPropertyName("measureSize")]
+        public int? MeasureSize { get; set; }
+        [JsonPropertyName("measureColors")]
+        public string[] MeasureColors { get; set; }
+        [JsonPropertyName("rangeSize")]
+        public int? RangeSize { get; set; }
+        [JsonPropertyName("rangeColors")]
+        public string[] RangeColors { get; set; }
+        [JsonPropertyName("markerSize")]
+        public int? MarkerSize { get; set; }
+        [JsonPropertyName("markerColors")]
+        public string[] MarkerColors { get; set; }
+        [JsonPropertyName("renderer")]
+        public string Renderer { get; set; }
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string, int[]> Padding { get; set; }
+        [JsonPropertyName("padding")]
+        public object PaddingMapping => Padding.Value;
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string YField { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
+        [JsonPropertyName("xAxis")]
+        public Axis XAxis { get; set; }
+        [JsonPropertyName("yAxis")]
+        public Axis YAxis { get; set; }
+        [JsonIgnore]
+        public OneOf<Label, object> Label { get; set; }
+        [JsonPropertyName("label")]
+        public object LabelMapping => Label.Value;
+        [JsonPropertyName("tooltip")]
+        public Tooltip Tooltip { get; set; }
+        [JsonPropertyName("legend")]
+        public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
+        [JsonPropertyName("animation")]
+        public object AnimationMapping => Animation.Value;
+        [JsonIgnore]
+        public OneOf<string, object> Theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object ThemeMapping => Theme.Value;
+        [JsonIgnore]
+        public OneOf<string, object> ResponsiveTheme { get; set; }
+        [JsonPropertyName("responsiveTheme")]
+        public object ResponsiveThemeMapping => ResponsiveTheme.Value;
+        [JsonPropertyName("interactions")]
+        public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("responsive")]
+        public bool? Responsive { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("guideLine")]
+        public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("defaultState")]
+        public ViewConfigDefaultState DefaultState { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("forceFit")]
+        public bool? ForceFit { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("pixelRatio")]
+        public int? PixelRatio { get; set; }
+        [JsonPropertyName("localRefresh")]
+        public bool? LocalRefresh { get; set; }
+        object IViewConfig.Data { get; set; }
     }
 
     public interface IBulletViewConfig : IViewConfig
     {
-        public BulletViewConfigData[] data { get; set; }
+        [JsonPropertyName("data")]
+        public BulletViewConfigData[] Data { get; set; }
         /// <summary>
         ///  进度条的色条范围区间的最大值 
         /// </summary>
-        public int? rangeMax { get; set; }
+        [JsonPropertyName("rangeMax")]
+        public int? RangeMax { get; set; }
         /// <summary>
         ///  实际进度条大小设置 
         /// </summary>
-        public int? measureSize { get; set; }
-        public string[] measureColors { get; set; }
+        [JsonPropertyName("measureSize")]
+        public int? MeasureSize { get; set; }
+        [JsonPropertyName("measureColors")]
+        public string[] MeasureColors { get; set; }
         /// <summary>
         ///  区间背景条大小设置。ratio number, relative to measureSize 
         /// </summary>
-        public int? rangeSize { get; set; }
+        [JsonPropertyName("rangeSize")]
+        public int? RangeSize { get; set; }
         /// <summary>
         ///  进度条背景颜色 
         /// </summary>
-        public string[] rangeColors { get; set; }
+        [JsonPropertyName("rangeColors")]
+        public string[] RangeColors { get; set; }
         /// <summary>
         ///  目标值 marker 大小设置。ratio number, relative to measureSize 
         /// </summary>
-        public int? markerSize { get; set; }
+        [JsonPropertyName("markerSize")]
+        public int? MarkerSize { get; set; }
         /// <summary>
         ///  marker 的填充色 
         /// </summary>
-        public string[] markerColors { get; set; }
+        [JsonPropertyName("markerColors")]
+        public string[] MarkerColors { get; set; }
     }
 
     public class BulletViewConfigData
@@ -78,26 +134,33 @@ namespace AntDesign.Charts
         /// <summary>
         ///  子弹图标题 
         /// </summary>
-        public string title { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
         /// <summary>
         ///  进度值，array类型。支持阶段性的进度值（即堆叠） 
         /// </summary>
-        public int[] measures { get; set; }
+        [JsonPropertyName("measures")]
+        public int[] Measures { get; set; }
         /// <summary>
         ///  进度条的色条范围区间，相对数值：[0, 1] 
         /// </summary>
-        public int[] ranges { get; set; }
+        [JsonPropertyName("ranges")]
+        public int[] Ranges { get; set; }
         /// <summary>
         ///  目标值，array类型。支持多目标设置 
         /// </summary>
-        public int[] targets { get; set; }
+        [JsonPropertyName("targets")]
+        public int[] Targets { get; set; }
 
-        public BulletViewConfigMarkerStyle markerStyle { get; set; }
+        [JsonPropertyName("markerStyle")]
+        public BulletViewConfigMarkerStyle MarkerStyle { get; set; }
         /// <summary>
         ///  进度条刻度轴设置 
         /// </summary>
-        public BulletAxis axis { get; set; }
-        public string stackField { get; set; }
+        [JsonPropertyName("axis")]
+        public BulletAxis Axis { get; set; }
+        [JsonPropertyName("stackField")]
+        public string StackField { get; set; }
     }
 
     public class BulletViewConfigMarkerStyle
@@ -105,11 +168,13 @@ namespace AntDesign.Charts
         /// <summary>
         ///  marker 的宽度，default: 1 
         /// </summary>
-        public int? width { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
         /// <summary>
         ///  marker 的填充色, 若存在 markerColors, 优先取 markerColors 
         /// </summary>
-        public string fill { get; set; }
+        [JsonPropertyName("fill")]
+        public string Fill { get; set; }
         /*   
          [k: string]: any;
          */
@@ -117,40 +182,74 @@ namespace AntDesign.Charts
 
     public interface IBulletAxis
     {
-        public bool? visible { get; set; }
-        public string position { get; set; } //OneOf<'before','after'>
-        public TextStyle style { get; set; }
-        public int? tickCount { get; set; }
-        public BulletAxisTickLine tickLine { get; set; }
-        public string formatter { get; set; }//(text: string, idx: number) => string
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        /// <summary>
+        /// 'before','after'
+        /// </summary>
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickLine")]
+        public BulletAxisTickLine TickLine { get; set; }
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }//(text: string, idx: number) => string
     }
 
     public interface IBulletAxisTickLine : ILineStyle
     {
-        public bool? visible { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
     }
 
     public class BulletAxisTickLine : IBulletAxisTickLine
     {
-        public bool? visible { get; set; }
-        public string stroke { get; set; }
-        public int? lineWidth { get; set; }
-        public int[] lineDash { get; set; }
-        public int? lineOpacity { get; set; }
-        public string shadowColor { get; set; }
-        public int? shadowBlur { get; set; }
-        public int? shadowOffsetX { get; set; }
-        public int? shadowOffsetY { get; set; }
-        public string cursor { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("stroke")]
+        public string Stroke { get; set; }
+        [JsonPropertyName("lineWidth")]
+        public int? LineWidth { get; set; }
+        [JsonPropertyName("lineDash")]
+        public int[] LineDash { get; set; }
+        [JsonPropertyName("lineOpacity")]
+        public int? LineOpacity { get; set; }
+        [JsonPropertyName("shadowColor")]
+        public string ShadowColor { get; set; }
+        [JsonPropertyName("shadowBlur")]
+        public int? ShadowBlur { get; set; }
+        [JsonPropertyName("shadowOffsetX")]
+        public int? ShadowOffsetX { get; set; }
+        [JsonPropertyName("shadowOffsetY")]
+        public int? ShadowOffsetY { get; set; }
+        [JsonPropertyName("cursor")]
+        public string Cursor { get; set; }
     }
 
     public class BulletAxis : IBulletAxis
     {
-        public bool? visible { get; set; }
-        public string position { get; set; }
-        public TextStyle style { get; set; }
-        public int? tickCount { get; set; }
-        public BulletAxisTickLine tickLine { get; set; }
-        public string formatter { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        /// <summary>
+        /// 'before','after'
+        /// </summary>
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
+        public static string PositionBefore = "before";
+        public static string PositionAfter = "after";
+
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickLine")]
+        public BulletAxisTickLine TickLine { get; set; }
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
     }
 }
+
+

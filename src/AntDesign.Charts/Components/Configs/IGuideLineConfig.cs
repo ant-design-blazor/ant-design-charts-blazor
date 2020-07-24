@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,29 +7,53 @@ namespace AntDesign.Charts
 {
     public interface IGuideLineConfig
     {
-        public string type { get; set; }
-        public object[] start { get; set; }//any[]
-        public object[] end { get; set; }//any[]
-        public LineStyle lineStyle { get; set; }
-        public GuideLineConfigText text { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("start")]
+        public object[] Start { get; set; }//any[]
+        [JsonPropertyName("end")]
+        public object[] End { get; set; }//any[]
+        [JsonPropertyName("lineStyle")]
+        public LineStyle LineStyle { get; set; }
+        [JsonPropertyName("text")]
+        public GuideLineConfigText Text { get; set; }
     }
 
     public class GuideLineConfigText
     {
-        public string position { get; set; }//OneOf<'start','center','end'>
-        public string content { get; set; }
-        public int? offsetX { get; set; }
-        public int? offsetY { get; set; }
-        public TextStyle style { get; set; }
+        /// <summary>
+        /// 'start','center','end'
+        /// </summary>
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
+        public static string PositionStart = "start";
+        public static string PositionCenter = "center";
+        public static string PositionEnd = "end";
+
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
     }
 
     public class GuideLineConfig : IGuideLineConfig
     {
-        public string type {get;set;}
-        public object[] start {get;set;}
-        public object[] end {get;set;}
-        public LineStyle lineStyle {get;set;}
-        public GuideLineConfigText text {get;set;}
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("start")]
+        public object[] Start { get; set; }
+        [JsonPropertyName("end")]
+        public object[] End { get; set; }
+        [JsonPropertyName("lineStyle")]
+        public LineStyle LineStyle { get; set; }
+        [JsonPropertyName("text")]
+        public GuideLineConfigText Text { get; set; }
     }
 
 }
+
+

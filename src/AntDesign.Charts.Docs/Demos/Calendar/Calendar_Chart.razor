@@ -1,4 +1,4 @@
-﻿@page "/Calendar_Chart"
+@page "/Calendar_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -28,44 +28,45 @@
 
     CalendarConfig config1 = new CalendarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "GitHub contribution",
+            Visible = true,
+            Text = "GitHub contribution",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "853 contributions in the last year.",
+            Visible = true,
+            Text = "853 contributions in the last year.",
         },
-        width = 650,
-        height = 300,
-        padding = "auto",
-        xAxis = new Axis()
+        Width = 650,
+        Height = 300,
+        Padding = "auto",
+        XAxis = new Axis()
         {
-            title = new BaseAxisTitle()
+            Title = new BaseAxisTitle()
             {
-                text = "月份",
+                Text = "月份",
             },
         },
-        yAxis = new Axis()
+        YAxis = new Axis()
         {
-            title = null,
+            Title = null,
         },
-        label = new Label
+        Label = new Label
         {
-            visible = true,
+            Visible = true,
         },
     };
 
     object otherConfig1 = new
     {
-        dateField = "date",
-        valueField = "commits",
-        dateRange = new string[] { "2017-05-01", "2017-10-31" },
-        colors = "#BAE7FF-#1890FF-#0050B3",
+        DateField = "date",
+        ValueField = "commits",
+        DateRange = new string[] { "2017-05-01", "2017-10-31" },
+        Colors = "#BAE7FF-#1890FF-#0050B3",
     };
 
     #endregion 示例1
 
 }
+

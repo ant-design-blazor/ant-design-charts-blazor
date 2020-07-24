@@ -1,4 +1,4 @@
-﻿@page "/Line_Chart"
+@page "/Line_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
@@ -52,24 +52,24 @@
 
     LineConfig config1 = new LineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "单折线图的基础用法",
+            Visible = true,
+            Text = "单折线图的基础用法",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "最基础简单的折线图使用方式，显示一个指标的趋势",
+            Visible = true,
+            Text = "最基础简单的折线图使用方式，显示一个指标的趋势",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "Date",
-        yField = "scales",
-        xAxis = new ValueCatTimeAxis()
+        ForceFit = true,
+        Padding = "auto",
+        XField = "Date",
+        YField = "scales",
+        XAxis = new ValueCatTimeAxis()
         {
-            type = "dateTime",
-            tickCount = 5,
+            Type = "dateTime",
+            TickCount = 5,
         }
     };
 
@@ -91,21 +91,21 @@
 
     LineConfig config2 = new LineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "曲线折线图",
+            Visible = true,
+            Text = "曲线折线图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "用平滑的曲线代替折线。",
+            Visible = true,
+            Text = "用平滑的曲线代替折线。",
         },
-        padding = "auto",
-        forceFit = true,
-        xField = "year",
-        yField = "value",
-        smooth = true,
+        Padding = "auto",
+        ForceFit = true,
+        XField = "year",
+        YField = "value",
+        Smooth = true,
     };
 
 
@@ -127,28 +127,28 @@
 
     LineConfig config3 = new LineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "带数据点的折线图",
+            Visible = true,
+            Text = "带数据点的折线图",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "将折线图上的每一个数据点显示出来，作为辅助阅读。",
+            Visible = true,
+            Text = "将折线图上的每一个数据点显示出来，作为辅助阅读。",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "year",
-        yField = "value",
-        point = new LineViewConfigPoint()
+        ForceFit = true,
+        Padding = "auto",
+        XField = "year",
+        YField = "value",
+        Point = new LineViewConfigPoint()
         {
-            visible = true,
+            Visible = true,
         },
-        label = new Label()
+        Label = new Label()
         {
-            visible = true,
-            type = "point",
+            Visible = true,
+            Type = "point",
         },
     };
 
@@ -171,35 +171,35 @@
 
     LineConfig config4 = new LineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "配置折线数据点样式",
+            Visible = true,
+            Text = "配置折线数据点样式",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "自定义配置趋势线上数据点的样式",
+            Visible = true,
+            Text = "自定义配置趋势线上数据点的样式",
         },
-        padding = "auto",
-        forceFit = true,
-        xField = "year",
-        yField = "value",
-        label = new Label()
+        Padding = "auto",
+        ForceFit = true,
+        XField = "year",
+        YField = "value",
+        Label = new Label()
         {
-            visible = true,
-            type = "point",
+            Visible = true,
+            Type = "point",
         },
-        point = new LineViewConfigPoint()
+        Point = new LineViewConfigPoint()
         {
-            visible = true,
-            size = 5,
-            shape = "diamond",
-            style = new GraphicStyle()
+            Visible = true,
+            Size = 5,
+            Shape = "diamond",
+            Style = new GraphicStyle()
             {
-                fill = "white",
-                stroke = "#2593fc",
-                lineWidth = 2,
+                Fill = "white",
+                Stroke = "#2593fc",
+                LineWidth = 2,
             },
         },
     };
@@ -212,39 +212,39 @@
 
     LineConfig config5 = new LineConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "为折线添加缩略轴交互",
+            Visible = true,
+            Text = "为折线添加缩略轴交互",
         },
-        description = new Description()
+        Description = new Description()
         {
-            visible = true,
-            text = "缩略轴 (slider) 交互适用于折线数据较多，用户希望关注数据集中某个特殊区间的场景。",
+            Visible = true,
+            Text = "缩略轴 (slider) 交互适用于折线数据较多，用户希望关注数据集中某个特殊区间的场景。",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "城市",
-        xAxis = new ValueCatTimeAxis()
+        ForceFit = true,
+        Padding = "auto",
+        XField = "城市",
+        XAxis = new ValueCatTimeAxis()
         {
-            visible = true,
-            label = new BaseAxisLabel()
+            Visible = true,
+            Label = new BaseAxisLabel()
             {
-                autoHide = true,
+                AutoHide = true,
             },
         },
-        yField = "销售额",
-        yAxis = new ValueAxis()
+        YField = "销售额",
+        YAxis = new ValueAxis()
         {
-            label = new BaseAxisLabel()
+            Label = new BaseAxisLabel()
             {
                 // 数值格式化为千分位
             },
         },
-        interactions = new Interaction[] {
+        Interactions = new Interaction[] {
        new Interaction()   {
-            type= "slider",
-            cfg=new  {
+            Type= "slider",
+            Cfg=new  {
                 start= 0.1,
                 end= 0.2,
             },
@@ -255,3 +255,4 @@
 
     #endregion 示例5
 }
+

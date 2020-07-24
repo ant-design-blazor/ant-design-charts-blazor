@@ -1,4 +1,4 @@
-﻿@page "/Ranged_Column_Chart"
+@page "/Ranged_Column_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -26,16 +26,17 @@
 
     RangeColumnConfig config1 = new RangeColumnConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "区间柱状图",
+            Visible = true,
+            Text = "区间柱状图",
         },
-        xField = "type",
-        yField = "values",
+        XField = "type",
+        YField = "values",
     };
 
     #endregion 示例1
 
 
 }
+

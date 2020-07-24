@@ -1,19 +1,26 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace AntDesign.Charts
-{ 
-   public  interface IStateConfig
+{
+    public interface IStateConfig
     {
         //  condition: () => any | StateCondition;
-        public GraphicStyle style { get; set; }
-        public string[] related { get; set; }
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }
+        [JsonPropertyName("related")]
+        public string[] Related { get; set; }
     }
 
     public class StateConfig : IStateConfig
     {
-        public GraphicStyle style { get;set;}
-        public string[] related { get;set;}
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }
+        [JsonPropertyName("related")]
+        public string[] Related { get; set; }
     }
 }
+
+

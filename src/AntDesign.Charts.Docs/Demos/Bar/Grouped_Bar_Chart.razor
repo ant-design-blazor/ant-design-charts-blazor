@@ -1,4 +1,4 @@
-﻿@page "/Grouped_Bar_Chart"
+@page "/Grouped_Bar_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -67,16 +67,16 @@
 
     GroupedBarConfig config1 = new GroupedBarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "分组条形图",
+            Visible = true,
+            Text = "分组条形图",
         },
-        xField = "value",
-        yField = "label",
-        groupField = "type",
-        color = new string[] { "#1383ab", "#c52125" },
-        label = new BarViewConfigLabel
+        XField = "value",
+        YField = "label",
+        GroupField = "type",
+        Color = new string[] { "#1383ab", "#c52125" },
+        Label = new BarViewConfigLabel
         {
 
         },
@@ -86,3 +86,4 @@
 
 
 }
+

@@ -1,4 +1,5 @@
-﻿using System;
+using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -7,113 +8,211 @@ namespace AntDesign.Charts
 {
     public class GaugeConfig : IGaugeLayerConfig, IPlotConfig
     {
-        public int? startAngle { get; set; }
-        public int? endAngle { get; set; }
-        public int? min { get; set; }
-        public int? max { get; set; }
-        public int? value { get; set; }
-        public double[] range { get; set; }
-        public string[] color { get; set; }
-        public int? rangeSize { get; set; }
-        public GraphicStyle rangeStyle { get; set; }
-        public GraphicStyle rangeBackgroundStyle { get; set; }
-        public string format { get; set; }
-        public GaugeAxis axis { get; set; }
-        public GaugePivot pivot { get; set; }
-        public GaugeStatistic statistic { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
-        public object animation { get; set; }
-        public string theme { get; set; }
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public string id { get; set; }
-        public int? x { get; set; }
-        public int? y { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public object parent { get; set; }
-        public object canvas { get; set; }
-        public bool? forceFit { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
+        [JsonPropertyName("startAngle")]
+        public int? StartAngle { get; set; }
+        [JsonPropertyName("endAngle")]
+        public int? EndAngle { get; set; }
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+        [JsonPropertyName("value")]
+        public int? Value { get; set; }
+        [JsonPropertyName("range")]
+        public double[] Range { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
+        [JsonPropertyName("rangeSize")]
+        public int? RangeSize { get; set; }
+        [JsonPropertyName("rangeStyle")]
+        public GraphicStyle RangeStyle { get; set; }
+        [JsonPropertyName("rangeBackgroundStyle")]
+        public GraphicStyle RangeBackgroundStyle { get; set; }
+        [JsonPropertyName("format")]
+        public string Format { get; set; }
+        [JsonPropertyName("axis")]
+        public GaugeAxis Axis { get; set; }
+        [JsonPropertyName("pivot")]
+        public GaugePivot Pivot { get; set; }
+        [JsonPropertyName("statistic")]
+        public GaugeStatistic Statistic { get; set; }
+        [JsonPropertyName("renderer")]
+        public string Renderer { get; set; }
+        [JsonPropertyName("data")]
+        public object Data { get; set; }
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string, int[]> Padding { get; set; }
+        [JsonPropertyName("padding")]
+        public object PaddingMapping => Padding.Value;
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string YField { get; set; }
+        [JsonPropertyName("xAxis")]
+        public Axis XAxis { get; set; }
+        [JsonPropertyName("yAxis")]
+        public Axis YAxis { get; set; }
+        [JsonIgnore]
+        public OneOf<Label, object> Label { get; set; }
+        [JsonPropertyName("label")]
+        public object LabelMapping => Label.Value;
+        [JsonPropertyName("tooltip")]
+        public Tooltip Tooltip { get; set; }
+        [JsonPropertyName("legend")]
+        public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
+        [JsonPropertyName("animation")]
+        public object AnimationMapping => Animation.Value;
+        [JsonIgnore]
+        public OneOf<string, object> Theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object ThemeMapping => Theme.Value;
+        [JsonIgnore]
+        public OneOf<string, object> ResponsiveTheme { get; set; }
+        [JsonPropertyName("responsiveTheme")]
+        public object ResponsiveThemeMapping => ResponsiveTheme.Value;
+        [JsonPropertyName("interactions")]
+        public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("responsive")]
+        public bool? Responsive { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("guideLine")]
+        public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("defaultState")]
+        public ViewConfigDefaultState DefaultState { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+        [JsonPropertyName("x")]
+        public int? X { get; set; }
+        [JsonPropertyName("y")]
+        public int? Y { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("parent")]
+        public object Parent { get; set; }
+        [JsonPropertyName("canvas")]
+        public object Canvas { get; set; }
+        [JsonPropertyName("forceFit")]
+        public bool? ForceFit { get; set; }
+        [JsonPropertyName("pixelRatio")]
+        public int? PixelRatio { get; set; }
+        [JsonPropertyName("localRefresh")]
+        public bool? LocalRefresh { get; set; }
     }
 
     public interface IGaugeLayerConfig : GaugeViewConfig, ILayerConfig { }
 
     public interface GaugeViewConfig : IViewConfig
     {
-        public int? startAngle { get; set; }
-        public int? endAngle { get; set; }
-        public int? min { get; set; }
-        public int? max { get; set; }
-        public int? value { get; set; }
-        public double[] range { get; set; }
-        public string[] color { get; set; }//OneOf<string[], string>
-        public int? rangeSize { get; set; }
-        public GraphicStyle rangeStyle { get; set; }
-        public GraphicStyle rangeBackgroundStyle { get; set; }
-        public string format { get; set; }//(...args: any[]) => string
-        public GaugeAxis axis { get; set; }
-        public GaugePivot pivot { get; set; }
-        public GaugeStatistic statistic { get; set; }
+        [JsonPropertyName("startAngle")]
+        public int? StartAngle { get; set; }
+        [JsonPropertyName("endAngle")]
+        public int? EndAngle { get; set; }
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+        [JsonPropertyName("value")]
+        public int? Value { get; set; }
+        [JsonPropertyName("range")]
+        public double[] Range { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
+        [JsonPropertyName("rangeSize")]
+        public int? RangeSize { get; set; }
+        [JsonPropertyName("rangeStyle")]
+        public GraphicStyle RangeStyle { get; set; }
+        [JsonPropertyName("rangeBackgroundStyle")]
+        public GraphicStyle RangeBackgroundStyle { get; set; }
+        [JsonPropertyName("format")]
+        public string Format { get; set; }//(...args: any[]) => string
+        [JsonPropertyName("axis")]
+        public GaugeAxis Axis { get; set; }
+        [JsonPropertyName("pivot")]
+        public GaugePivot Pivot { get; set; }
+        [JsonPropertyName("statistic")]
+        public GaugeStatistic Statistic { get; set; }
     }
 
     public interface IGaugeAxis
     {
-        public bool? visible { get; set; }
-        public int? offset { get; set; }
-        public int? tickCount { get; set; }
-        public GaugeAxisTickLine tickLine { get; set; }
-        public GaugeAxisLabel label { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
+        [JsonPropertyName("offset")]
+        public object OffsetMapping => Offset.Value;
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickLine")]
+        public GaugeAxisTickLine TickLine { get; set; }
+        [JsonPropertyName("label")]
+        public GaugeAxisLabel Label { get; set; }
 
     }
 
     public class GaugeAxisTickLine
     {
-        public bool? visible { get; set; }
-        public int? length { get; set; }
-        public int? thickness { get; set; }
-        public LineStyle style { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("length")]
+        public int? Length { get; set; }
+        [JsonPropertyName("thickness")]
+        public int? Thickness { get; set; }
+        [JsonPropertyName("style")]
+        public LineStyle Style { get; set; }
     }
 
     public class GaugeAxisLabel
     {
-        public bool? visible { get; set; }
-        public TextStyle style { get; set; }
-        public string formatter { get; set; }//() => string
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }//() => string
     }
 
     public class GaugeAxis : IGaugeAxis
     {
-        public bool? visible { get; set; }
-        public int? offset { get; set; }
-        public int? tickCount { get; set; }
-        public GaugeAxisTickLine tickLine { get; set; }
-        public GaugeAxisLabel label { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
+        [JsonPropertyName("offset")]
+        public object OffsetMapping => Offset.Value;
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickLine")]
+        public GaugeAxisTickLine TickLine { get; set; }
+        [JsonPropertyName("label")]
+        public GaugeAxisLabel Label { get; set; }
     }
 
     public interface IGaugePivot
     {
-        public bool? visible { get; set; }
-        public int? thickness { get; set; }
-        public GaugePivotPointer pointer { get; set; }
-        public GaugePivotPin pin { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("thickness")]
+        public int? Thickness { get; set; }
+        [JsonPropertyName("pointer")]
+        public GaugePivotPointer Pointer { get; set; }
+        [JsonPropertyName("pin")]
+        public GaugePivotPin Pin { get; set; }
         [JsonPropertyName("base")]
         public GaugePivotBase Base { get; set; }
 
@@ -121,48 +220,72 @@ namespace AntDesign.Charts
 
     public class GaugePivotPointer
     {
-        public bool? visible { get; set; }
-        public GraphicStyle style { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }
     }
 
     public class GaugePivotPin
     {
-        public bool? visible { get; set; }
-        public int? size { get; set; }
-        public GraphicStyle style { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }
     }
 
     public class GaugePivotBase
     {
-        public bool? visible { get; set; }
-        public int? size { get; set; }
-        public GraphicStyle style { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }
     }
 
     public class GaugePivot : IGaugePivot
     {
-        public bool? visible { get; set; }
-        public int? thickness { get; set; }
-        public GaugePivotPointer pointer { get; set; }
-        public GaugePivotPin pin { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("thickness")]
+        public int? Thickness { get; set; }
+        [JsonPropertyName("pointer")]
+        public GaugePivotPointer Pointer { get; set; }
+        [JsonPropertyName("pin")]
+        public GaugePivotPin Pin { get; set; }
         public GaugePivotBase Base { get; set; }
     }
 
     public interface IGaugeStatistic
     {
-        public bool? visible { get; set; }
-        public string[] position { get; set; }// [string, string]
-        public int? size { get; set; }
-        public string text { get; set; }
-        public string color { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("position")]
+        public string[] Position { get; set; }// [string, string]
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
     }
 
     public class GaugeStatistic : IGaugeStatistic
     {
-        public bool? visible { get; set; }
-        public string[] position { get; set; }
-        public int? size { get; set; }
-        public string text { get; set; }
-        public string color { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("position")]
+        public string[] Position { get; set; }
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
     }
 }
+
+

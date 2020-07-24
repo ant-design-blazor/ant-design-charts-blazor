@@ -1,48 +1,99 @@
-﻿using System;
+using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
     public class RadarConfig : IRadarViewConfig, IPlotConfig
     {
-        public string angleField { get; set; }
-        public string radiusField { get; set; }
-        public string seriesField { get; set; }
-        public bool? smooth { get; set; }
-        public RadarViewConfigLine line { get; set; }
-        public RadarViewConfigPoint point { get; set; }
-        public RadarViewConfigArea area { get; set; }
-        public CatAxis angleAxis { get; set; }
-        public ValueAxis radiusAxis { get; set; }
-        public int? radius { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public string[] color { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
-        public object animation { get; set; }
-        public string theme { get; set; }
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
+        [JsonPropertyName("angleField")]
+        public string AngleField { get; set; }
+        [JsonPropertyName("radiusField")]
+        public string RadiusField { get; set; }
+        [JsonPropertyName("seriesField")]
+        public string SeriesField { get; set; }
+        [JsonPropertyName("smooth")]
+        public bool? Smooth { get; set; }
+        [JsonPropertyName("line")]
+        public RadarViewConfigLine Line { get; set; }
+        [JsonPropertyName("point")]
+        public RadarViewConfigPoint Point { get; set; }
+        [JsonPropertyName("area")]
+        public RadarViewConfigArea Area { get; set; }
+        [JsonPropertyName("angleAxis")]
+        public CatAxis AngleAxis { get; set; }
+        [JsonPropertyName("radiusAxis")]
+        public ValueAxis RadiusAxis { get; set; }
+        [JsonPropertyName("radius")]
+        public int? Radius { get; set; }
+        [JsonPropertyName("renderer")]
+        public string Renderer { get; set; }
+        [JsonPropertyName("data")]
+        public object Data { get; set; }
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string, int[]> Padding { get; set; }
+        [JsonPropertyName("padding")]
+        public object PaddingMapping => Padding.Value;
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string YField { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
+        [JsonPropertyName("xAxis")]
+        public Axis XAxis { get; set; }
+        [JsonPropertyName("yAxis")]
+        public Axis YAxis { get; set; }
+        [JsonIgnore]
+        public OneOf<Label, object> Label { get; set; }
+        [JsonPropertyName("label")]
+        public object LabelMapping => Label.Value;
+        [JsonPropertyName("tooltip")]
+        public Tooltip Tooltip { get; set; }
+        [JsonPropertyName("legend")]
+        public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
+        [JsonPropertyName("animation")]
+        public object AnimationMapping => Animation.Value;
+        [JsonIgnore]
+        public OneOf<string, object> Theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object ThemeMapping => Theme.Value;
+        [JsonIgnore]
+        public OneOf<string, object> ResponsiveTheme { get; set; }
+        [JsonPropertyName("responsiveTheme")]
+        public object ResponsiveThemeMapping => ResponsiveTheme.Value;
+        [JsonPropertyName("interactions")]
+        public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("responsive")]
+        public bool? Responsive { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("guideLine")]
+        public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("defaultState")]
+        public ViewConfigDefaultState DefaultState { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("forceFit")]
+        public bool? ForceFit { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("pixelRatio")]
+        public int? PixelRatio { get; set; }
+        [JsonPropertyName("localRefresh")]
+        public bool? LocalRefresh { get; set; }
     }
 
     public interface IRadarViewConfig : IViewConfig
@@ -50,66 +101,89 @@ namespace AntDesign.Charts
         /// <summary>
         ///  角度字段 
         /// </summary>
-        public string angleField { get; set; }
+        [JsonPropertyName("angleField")]
+        public string AngleField { get; set; }
         /// <summary>
         ///  径向字段 
         /// </summary>
-        public string radiusField { get; set; }
+        [JsonPropertyName("radiusField")]
+        public string RadiusField { get; set; }
         /// <summary>
         ///  分组字段 
         /// </summary>
-        public string seriesField { get; set; }
+        [JsonPropertyName("seriesField")]
+        public string SeriesField { get; set; }
         /// <summary>
         ///  是否平滑 
         /// </summary>
-        public bool? smooth { get; set; }
+        [JsonPropertyName("smooth")]
+        public bool? Smooth { get; set; }
         /// <summary>
         /// 折线图形样式
         /// </summary>
-        public RadarViewConfigLine line { get; set; }
+        [JsonPropertyName("line")]
+        public RadarViewConfigLine Line { get; set; }
         /// <summary>
         /// 数据点图形样式
         /// </summary>
-        public RadarViewConfigPoint point { get; set; }
+        [JsonPropertyName("point")]
+        public RadarViewConfigPoint Point { get; set; }
         /// <summary>
         /// area图形样式
         /// </summary>
-        public RadarViewConfigArea area { get; set; }
+        [JsonPropertyName("area")]
+        public RadarViewConfigArea Area { get; set; }
         /// <summary>
         ///  角度轴配置 
         /// </summary>
-        public CatAxis angleAxis { get; set; }
+        [JsonPropertyName("angleAxis")]
+        public CatAxis AngleAxis { get; set; }
         /// <summary>
         ///  径向轴配置 
         /// </summary>
-        public ValueAxis radiusAxis { get; set; }
+        [JsonPropertyName("radiusAxis")]
+        public ValueAxis RadiusAxis { get; set; }
         /// <summary>
         ///  雷达图半径 
         /// </summary>
-        public int? radius { get; set; }
+        [JsonPropertyName("radius")]
+        public int? Radius { get; set; }
     }
 
     public class RadarViewConfigLine
     {
-        public bool? visible { get; set; }
-        public int? size { get; set; }
-        public string color { get; set; }
-        public LineStyle style { get; set; }// OneOf<LineStyle, ((...args: any[]) => LineStyle)>
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
+        [JsonPropertyName("style")]
+        public LineStyle Style { get; set; }//OneOf <LineStyle, ((...args: any[]) => LineStyle)>
     }
 
     public class RadarViewConfigPoint
     {
-        public bool? visible { get; set; }
-        public string shape { get; set; }
-        public int? size { get; set; }
-        public string color { get; set; }
-        public GraphicStyle style { get; set; }//OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("shape")]
+        public string Shape { get; set; }
+        [JsonPropertyName("size")]
+        public int? Size { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
     }
 
     public class RadarViewConfigArea
     {
-        public bool? visible { get; set; }
-        public GraphicStyle style { get; set; }// OneOf<GraphicStyle, ((...args: any[]) => GraphicStyle)>
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("style")]
+        public GraphicStyle Style { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
 
     }
 }
+
+

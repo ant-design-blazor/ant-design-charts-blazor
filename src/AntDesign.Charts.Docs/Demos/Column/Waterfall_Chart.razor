@@ -1,4 +1,4 @@
-﻿@page "/Waterfall_Chart"
+@page "/Waterfall_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -25,24 +25,24 @@
 
     WaterfallConfig config1 = new WaterfallConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "每月收支情况（瀑布图）",
+            Visible = true,
+            Text = "每月收支情况（瀑布图）",
         },
-        forceFit = true,
-        padding = "auto",
-        xField = "type",
-        yField = "money",
-        meta = new
+        ForceFit = true,
+        Padding = "auto",
+        XField = "type",
+        YField = "money",
+        Meta = new
         {
-            type = new
+            Type = new
             {
-                alias = "类别",
+                Alias = "类别",
             },
-            money = new
+            Money = new
             {
-                alias = "金额",
+                Alias = "金额",
             },
         },
     };
@@ -51,3 +51,4 @@
     #endregion 示例1
 
 }
+

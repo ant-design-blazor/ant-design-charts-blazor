@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,28 +7,55 @@ namespace AntDesign.Charts
 {
     public interface IRangeBarLabelConfig
     {
-        public bool? visible { get; set; }
-        public string position { get; set; }//OneOf<'outer','inner'>
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
                                             //  formatter?: (...args: any[]) => string;
-        public int? offsetX { get; set; }
-        public int? offsetY { get; set; }
-        public object style { get; set; }
-        public object leftStyle { get; set; }
-        public object rightStyle { get; set; }
-        public bool? adjustColor { get; set; }
-        public bool? adjustPosition { get; set; }
+
+
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
+        [JsonPropertyName("style")]
+        public object Style { get; set; }
+        [JsonPropertyName("leftStyle")]
+        public object LeftStyle { get; set; }
+        [JsonPropertyName("rightStyle")]
+        public object RightStyle { get; set; }
+        [JsonPropertyName("adjustColor")]
+        public bool? AdjustColor { get; set; }
+        [JsonPropertyName("adjustPosition")]
+        public bool? AdjustPosition { get; set; }
     }
 
     public class RangeBarLabelConfig : IRangeBarLabelConfig
     {
-        public bool? visible { get;set; }
-        public string position { get;set; }
-        public int? offsetX { get;set; }
-        public int? offsetY { get;set; }
-        public object style { get;set; }
-        public object leftStyle { get;set; }
-        public object rightStyle { get;set; }
-        public bool? adjustColor { get;set; }
-        public bool? adjustPosition { get;set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        /// <summary>
+        /// 'outer','inner'
+        /// </summary>
+        [JsonPropertyName("position")]
+        public string Position { get; set; }
+        public static string PositionOuter = "outer";
+        public static string PositionInner = "inner";
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
+        [JsonPropertyName("style")]
+        public object Style { get; set; }
+        [JsonPropertyName("leftStyle")]
+        public object LeftStyle { get; set; }
+        [JsonPropertyName("rightStyle")]
+        public object RightStyle { get; set; }
+        [JsonPropertyName("adjustColor")]
+        public bool? AdjustColor { get; set; }
+        [JsonPropertyName("adjustPosition")]
+        public bool? AdjustPosition { get; set; }
     }
 }
+
+

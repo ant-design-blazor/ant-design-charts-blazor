@@ -1,74 +1,139 @@
-﻿using System;
+using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
     public class LiquidConfig : ILiquidViewConfig, IPlotConfig
     {
-        public LiquidStatisticStyle statistic { get; set; }
-        public int? liquidSize { get; set; }
-        public int? min { get; set; }
-        public int? max { get; set; }
-        public int? value { get; set; }
-        public object liquidStyle { get; set; }
-        public string renderer { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string padding { get; set; }
-        public string xField { get; set; }
-        public string yField { get; set; }
-        public string[] color { get; set; }
-        public Axis xAxis { get; set; }
-        public Axis yAxis { get; set; }
-        public Label label { get; set; }
-        public Tooltip tooltip { get; set; }
-        public Legend legend { get; set; }
-        public object animation { get; set; }
-        public string theme { get; set; }
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public Title title { get; set; }
-        public Description description { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public bool? localRefresh { get; set; }
+        [JsonPropertyName("statistic")]
+        public LiquidStatisticStyle Statistic { get; set; }
+        [JsonPropertyName("liquidSize")]
+        public int? LiquidSize { get; set; }
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+        [JsonPropertyName("value")]
+        public int? Value { get; set; }
+        [JsonPropertyName("liquidStyle")]
+        public object LiquidStyle { get; set; }
+        [JsonPropertyName("renderer")]
+        public string Renderer { get; set; }
+        [JsonPropertyName("data")]
+        public object Data { get; set; }
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string, int[]> Padding { get; set; }
+        [JsonPropertyName("padding")]
+        public object PaddingMapping => Padding.Value;
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string YField { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
+        [JsonPropertyName("xAxis")]
+        public Axis XAxis { get; set; }
+        [JsonPropertyName("yAxis")]
+        public Axis YAxis { get; set; }
+        [JsonIgnore]
+        public OneOf<Label, object> Label { get; set; }
+        [JsonPropertyName("label")]
+        public object LabelMapping => Label.Value;
+        [JsonPropertyName("tooltip")]
+        public Tooltip Tooltip { get; set; }
+        [JsonPropertyName("legend")]
+        public Legend Legend { get; set; }
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
+        [JsonPropertyName("animation")]
+        public object AnimationMapping => Animation.Value;
+        [JsonIgnore]
+        public OneOf<string, object> Theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object ThemeMapping => Theme.Value;
+        [JsonIgnore]
+        public OneOf<string, object> ResponsiveTheme { get; set; }
+        [JsonPropertyName("responsiveTheme")]
+        public object ResponsiveThemeMapping => ResponsiveTheme.Value;
+        [JsonPropertyName("interactions")]
+        public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("responsive")]
+        public bool? Responsive { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("guideLine")]
+        public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("defaultState")]
+        public ViewConfigDefaultState DefaultState { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        [JsonPropertyName("forceFit")]
+        public bool? ForceFit { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("pixelRatio")]
+        public int? PixelRatio { get; set; }
+        [JsonPropertyName("localRefresh")]
+        public bool? LocalRefresh { get; set; }
     }
 
     public interface ILiquidViewConfig : IViewConfig
     {
-        public LiquidStatisticStyle statistic { get; set; }
-        public int? liquidSize { get; set; }
-        public int? min { get; set; }
-        public int? max { get; set; }
-        public int? value { get; set; }
-        public object liquidStyle { get; set; }//OneOf<LiquidStyle, ((...args: any[]) => LiquidStyle)>
+        [JsonPropertyName("statistic")]
+        public LiquidStatisticStyle Statistic { get; set; }
+        [JsonPropertyName("liquidSize")]
+        public int? LiquidSize { get; set; }
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+        [JsonPropertyName("value")]
+        public int? Value { get; set; }
+        [JsonPropertyName("liquidStyle")]
+        public object LiquidStyle { get; set; }//OneOf <LiquidStyle, ((...args: any[]) => LiquidStyle)>
 
     }
 
     public interface ILiquidStatisticStyle
     {
-        public bool? visible { get; set; }
-        public string formatter { get; set; }//(value) => string 
-        public TextStyle style { get; set; }
-        public bool? adjustColor { get; set; }
-        public string htmlContent { get; set; }//(...args: any) => string
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }//(value) => string
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("adjustColor")]
+        public bool? AdjustColor { get; set; }
+        [JsonPropertyName("htmlContent")]
+        public string HtmlContent { get; set; }//(...args: any) => string
 
     }
 
     public class LiquidStatisticStyle : ILiquidStatisticStyle
     {
-        public bool? visible { get; set; }
-        public string formatter { get; set; }
-        public TextStyle style { get; set; }
-        public bool? adjustColor { get; set; }
-        public string htmlContent { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("adjustColor")]
+        public bool? AdjustColor { get; set; }
+        [JsonPropertyName("htmlContent")]
+        public string HtmlContent { get; set; }
     }
 
 }
+
+

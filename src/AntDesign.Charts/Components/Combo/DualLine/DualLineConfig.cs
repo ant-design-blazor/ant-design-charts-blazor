@@ -1,65 +1,118 @@
-﻿using System;
+using OneOf;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
     public class DualLineConfig : IDualLineViewConfig, IPlotConfig
     {
-        public ValueCatTimeAxis xAxis { get; set; }
-        public object tooltip { get; set; }
-        public LineConfig[] lineConfigs { get; set; }
-        public ITitle title { get; set; }
-        public IDescription description { get; set; }
-        public object data { get; set; }
-        public object meta { get; set; }
-        public string xField { get; set; }
-        public string[] yField { get; set; }
-        public ComboYAxis yAxis { get; set; }
-        public ComboLegendConfig legend { get; set; }
-        public bool? forceFit { get; set; }
-        public int? width { get; set; }
-        public string renderer { get; set; }
-        public int? height { get; set; }
-        public int? pixelRatio { get; set; }
-        public string theme { get; set; }
-        public bool? localRefresh { get; set; }
-        public string padding { get; set; }
-        public string[] color { get; set; }
-        public Label label { get; set; }
-        public object animation { get; set; }
-        public object responsiveTheme { get; set; }
-        public Interaction[] interactions { get; set; }
-        public bool? responsive { get; set; }
-        public GuideLineConfig[] guideLine { get; set; }
-        public ViewConfigDefaultState defaultState { get; set; }
-        public string name { get; set; }
-        string IViewConfig.yField { get; set; }
-        Axis IViewConfig.xAxis { get; set; }
-        Axis IViewConfig.yAxis { get; set; }
-        Tooltip IViewConfig.tooltip { get; set; }
-        Legend IViewConfig.legend { get; set; }
-        Title IViewConfig.title { get; set; }
-        Description IViewConfig.description { get; set; }
+        [JsonPropertyName("xAxis")]
+        public ValueCatTimeAxis XAxis { get; set; }
+        [JsonPropertyName("tooltip")]
+        public object Tooltip { get; set; }
+        [JsonPropertyName("lineConfigs")]
+        public LineConfig[] LineConfigs { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("data")]
+        public object Data { get; set; }
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string[] YField { get; set; }
+        [JsonPropertyName("yAxis")]
+        public ComboYAxis YAxis { get; set; }
+        [JsonPropertyName("legend")]
+        public ComboLegendConfig Legend { get; set; }
+        [JsonPropertyName("forceFit")]
+        public bool? ForceFit { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("renderer")]
+        public string Renderer { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("pixelRatio")]
+        public int? PixelRatio { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> Theme { get; set; }
+        [JsonPropertyName("theme")]
+        public object ThemeMapping => Theme.Value;
+        [JsonPropertyName("localRefresh")]
+        public bool? LocalRefresh { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string, int[]> Padding { get; set; }
+        [JsonPropertyName("padding")]
+        public object PaddingMapping => Padding.Value;
+        [JsonIgnore]
+        public OneOf<string, string[], object> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
+        [JsonIgnore]
+        public OneOf<Label, object> Label { get; set; }
+        [JsonPropertyName("label")]
+        public object LabelMapping => Label.Value;
+        [JsonIgnore]
+        public OneOf<bool?, Animation, object> Animation { get; set; }
+        [JsonPropertyName("animation")]
+        public object AnimationMapping => Animation.Value;
+        [JsonIgnore]
+        public OneOf<string, object> ResponsiveTheme { get; set; }
+        [JsonPropertyName("responsiveTheme")]
+        public object ResponsiveThemeMapping => ResponsiveTheme.Value;
+        [JsonPropertyName("interactions")]
+        public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("responsive")]
+        public bool? Responsive { get; set; }
+        [JsonPropertyName("guideLine")]
+        public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("defaultState")]
+        public ViewConfigDefaultState DefaultState { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+        string IViewConfig.YField { get; set; }
+        Axis IViewConfig.XAxis { get; set; }
+        Axis IViewConfig.YAxis { get; set; }
+        Tooltip IViewConfig.Tooltip { get; set; }
+        Legend IViewConfig.Legend { get; set; }
+        Title IViewConfig.Title { get; set; }
+        Description IViewConfig.Description { get; set; }
     }
 
     public interface IDualLineViewConfig : IComboViewConfig
     {
-        public ValueCatTimeAxis xAxis { get; set; }//OneOf<IValueAxis, ICatAxis, ITimeAxis>
-        public object tooltip { get; set; }
-        public LineConfig[] lineConfigs { get; set; }
+        [JsonPropertyName("xAxis")]
+        public ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
+        [JsonPropertyName("tooltip")]
+        public object Tooltip { get; set; }
+        [JsonPropertyName("lineConfigs")]
+        public LineConfig[] LineConfigs { get; set; }
     }
 
     public interface IComboViewConfig : IViewConfig
     {
-        public ITitle title { get; set; }
-        public IDescription description { get; set; }
-        public object data { get; set; }//DataItem[][]
-        public object meta { get; set; }//LooseMap<Meta>
-        public string xField { get; set; }
-        public string[] yField { get; set; }
-        public ComboYAxis yAxis { get; set; }
-        public ComboLegendConfig legend { get; set; }
+        [JsonPropertyName("title")]
+        public Title Title { get; set; }
+        [JsonPropertyName("description")]
+        public Description Description { get; set; }
+        [JsonPropertyName("data")]
+        public object Data { get; set; }//DataItem[][]
+        [JsonPropertyName("meta")]
+        public object Meta { get; set; }//LooseMap<Meta>
+        [JsonPropertyName("xField")]
+        public string XField { get; set; }
+        [JsonPropertyName("yField")]
+        public string[] YField { get; set; }
+        [JsonPropertyName("yAxis")]
+        public ComboYAxis YAxis { get; set; }
+        [JsonPropertyName("legend")]
+        public ComboLegendConfig Legend { get; set; }
         /*
           events?: {
             [k: string]: ((...args: any[]) => any) | boolean;
@@ -69,72 +122,110 @@ namespace AntDesign.Charts
 
     public interface IComboYAxis
     {
-        public int? max { get; set; }
-        public int? min { get; set; }
-        public int? tickCount { get; set; }
-        public ComboYAxisConfig leftConfig { get; set; }
-        public ComboYAxisConfig rightConfig { get; set; }
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("leftConfig")]
+        public ComboYAxisConfig LeftConfig { get; set; }
+        [JsonPropertyName("rightConfig")]
+        public ComboYAxisConfig RightConfig { get; set; }
     }
 
     public interface IComboYAxisConfig : IValueAxis
     {
-        public bool? colorMapping { get; set; }
+        [JsonPropertyName("colorMapping")]
+        public bool? ColorMapping { get; set; }
     }
 
     public class ComboYAxisConfig : IComboYAxisConfig
     {
-        public bool? colorMapping { get; set; }
-        public string type { get; set; }
-        public bool? nice { get; set; }
-        public double? min { get; set; }
-        public double? max { get; set; }
-        public int? minLimit { get; set; }
-        public int? maxLimit { get; set; }
-        public int? tickCount { get; set; }
-        public int? tickInterval { get; set; }
-        public int? exponent { get; set; }
-        public int? @base { get; set; }
-        public bool visible { get; set; }
-        public string tickMethod { get; set; }
-        public BaseAxisLine line { get; set; }
-        public BaseAxisGrid grid { get; set; }
-        public BaseAxisLabel label { get; set; }
-        public BaseAxisTitle title { get; set; }
-        public BaseAxisTickLine tickLine { get; set; }
+        [JsonPropertyName("colorMapping")]
+        public bool? ColorMapping { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("nice")]
+        public bool? Nice { get; set; }
+        [JsonPropertyName("min")]
+        public double? Min { get; set; }
+        [JsonPropertyName("max")]
+        public double? Max { get; set; }
+        [JsonPropertyName("minLimit")]
+        public int? MinLimit { get; set; }
+        [JsonPropertyName("maxLimit")]
+        public int? MaxLimit { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("tickInterval")]
+        public int? TickInterval { get; set; }
+        [JsonPropertyName("exponent")]
+        public int? Exponent { get; set; }
+        public int? Base { get; set; }
+        [JsonPropertyName("visible")]
+        public bool Visible { get; set; }
+        [JsonPropertyName("tickMethod")]
+        public string TickMethod { get; set; }
+        [JsonPropertyName("line")]
+        public BaseAxisLine Line { get; set; }
+        [JsonPropertyName("grid")]
+        public BaseAxisGrid Grid { get; set; }
+        [JsonPropertyName("label")]
+        public BaseAxisLabel Label { get; set; }
+        [JsonPropertyName("title")]
+        public BaseAxisTitle Title { get; set; }
+        [JsonPropertyName("tickLine")]
+        public BaseAxisTickLine TickLine { get; set; }
     }
 
     public class ComboYAxis : IComboYAxis
     {
-        public int? max { get; set; }
-        public int? min { get; set; }
-        public int? tickCount { get; set; }
-        public ComboYAxisConfig leftConfig { get; set; }
-        public ComboYAxisConfig rightConfig { get; set; }
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+        [JsonPropertyName("tickCount")]
+        public int? TickCount { get; set; }
+        [JsonPropertyName("leftConfig")]
+        public ComboYAxisConfig LeftConfig { get; set; }
+        [JsonPropertyName("rightConfig")]
+        public ComboYAxisConfig RightConfig { get; set; }
     }
 
     public interface IComboLegendConfig
     {
-        public bool? visible { get; set; }
-        public ComboLegendConfigMarker marker { get; set; }
-        public ComboLegendConfigText text { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("marker")]
+        public ComboLegendConfigMarker Marker { get; set; }
+        [JsonPropertyName("text")]
+        public ComboLegendConfigText Text { get; set; }
     }
 
     public class ComboLegendConfigMarker
     {
-        public string symbol { get; set; }
-        public object style { get; set; }
+        [JsonPropertyName("symbol")]
+        public string Symbol { get; set; }
+        [JsonPropertyName("style")]
+        public object Style { get; set; }
 
     }
     public class ComboLegendConfigText
     {
-        public TextStyle style { get; set; }
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
         //public (value: string) => string formatter { get; set; }
     }
 
     public class ComboLegendConfig : IComboLegendConfig
     {
-        public bool? visible { get; set; }
-        public ComboLegendConfigMarker marker { get; set; }
-        public ComboLegendConfigText text { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+        [JsonPropertyName("marker")]
+        public ComboLegendConfigMarker Marker { get; set; }
+        [JsonPropertyName("text")]
+        public ComboLegendConfigText Text { get; set; }
     }
 }
+

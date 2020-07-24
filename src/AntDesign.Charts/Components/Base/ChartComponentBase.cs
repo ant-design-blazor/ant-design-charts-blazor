@@ -65,9 +65,9 @@ namespace AntDesign.Charts
         /// <param name="config"></param>
         protected virtual void SetIViewConfig(IViewConfig config)
         {
-            if (Data != null) config.data = Data;
-            if (string.IsNullOrWhiteSpace(XField) == false) config.xField = XField;
-            if (string.IsNullOrWhiteSpace(YField) == false) config.yField = YField;
+            if (Data != null) config.Data = Data;
+            if (string.IsNullOrWhiteSpace(XField) == false) config.XField = XField;
+            if (string.IsNullOrWhiteSpace(YField) == false) config.YField = YField;
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

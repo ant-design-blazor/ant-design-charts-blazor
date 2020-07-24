@@ -1,4 +1,4 @@
-﻿@page "/Radar_Chart"
+@page "/Radar_Chart"
 
 <Tabs>
     <TabPane Key="1">
@@ -56,27 +56,27 @@
 };
     RadarConfig config1 = new RadarConfig()
     {
-        title = new Charts.Title()
+        Title = new Charts.Title()
         {
-            visible = true,
-            text = "基础雷达图",
+            Visible = true,
+            Text = "基础雷达图",
         },
-        angleField = "item",
-        radiusField = "score",
-        radiusAxis = new ValueAxis()
+        AngleField = "item",
+        RadiusField = "score",
+        RadiusAxis = new ValueAxis()
         {
-            grid = new BaseAxisGrid()
+            Grid = new BaseAxisGrid()
             {
-                alternateColor = new string[] { "rgba(0, 0, 0, 0.04)", null },
+                AlternateColor = new string[] { "rgba(0, 0, 0, 0.04)", null },
             },
         },
-        area = new RadarViewConfigArea()
+        Area = new RadarViewConfigArea()
         {
-            visible = false,
+            Visible = false,
         },
-        point = new RadarViewConfigPoint()
+        Point = new RadarViewConfigPoint()
         {
-            visible = true,
+            Visible = true,
         },
     };
 
@@ -84,3 +84,4 @@
 
 
 }
+

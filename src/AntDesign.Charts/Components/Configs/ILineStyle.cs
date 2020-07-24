@@ -1,4 +1,5 @@
-﻿using System;
+using System.Text.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,28 +7,48 @@ namespace AntDesign.Charts
 {
     public interface ILineStyle
     {
-        public string stroke { get; set; }
-        public int? lineWidth { get; set; }
-        public int[] lineDash { get; set; }
-        public int? lineOpacity { get; set; }
-        public string shadowColor { get; set; }
-        public int? shadowBlur { get; set; }
-        public int? shadowOffsetX { get; set; }
-        public int? shadowOffsetY { get; set; }
-        public string cursor { get; set; }
+        [JsonPropertyName("stroke")]
+        public string Stroke { get; set; }
+        [JsonPropertyName("lineWidth")]
+        public int? LineWidth { get; set; }
+        [JsonPropertyName("lineDash")]
+        public int[] LineDash { get; set; }
+        [JsonPropertyName("lineOpacity")]
+        public int? LineOpacity { get; set; }
+        [JsonPropertyName("shadowColor")]
+        public string ShadowColor { get; set; }
+        [JsonPropertyName("shadowBlur")]
+        public int? ShadowBlur { get; set; }
+        [JsonPropertyName("shadowOffsetX")]
+        public int? ShadowOffsetX { get; set; }
+        [JsonPropertyName("shadowOffsetY")]
+        public int? ShadowOffsetY { get; set; }
+        [JsonPropertyName("cursor")]
+        public string Cursor { get; set; }
         // [field: string]: any;
     }
 
     public class LineStyle : ILineStyle
     {
-        public string stroke { get; set; }
-        public int? lineWidth { get; set; }
-        public int[] lineDash { get; set; }
-        public int? lineOpacity { get; set; }
-        public string shadowColor { get; set; }
-        public int? shadowBlur { get; set; }
-        public int? shadowOffsetX { get; set; }
-        public int? shadowOffsetY { get; set; }
-        public string cursor { get; set; }
+        [JsonPropertyName("stroke")]
+        public string Stroke { get; set; }
+        [JsonPropertyName("lineWidth")]
+        public int? LineWidth { get; set; }
+        [JsonPropertyName("lineDash")]
+        public int[] LineDash { get; set; }
+        [JsonPropertyName("lineOpacity")]
+        public int? LineOpacity { get; set; }
+        [JsonPropertyName("shadowColor")]
+        public string ShadowColor { get; set; }
+        [JsonPropertyName("shadowBlur")]
+        public int? ShadowBlur { get; set; }
+        [JsonPropertyName("shadowOffsetX")]
+        public int? ShadowOffsetX { get; set; }
+        [JsonPropertyName("shadowOffsetY")]
+        public int? ShadowOffsetY { get; set; }
+        [JsonPropertyName("cursor")]
+        public string Cursor { get; set; }
     }
 }
+
+
