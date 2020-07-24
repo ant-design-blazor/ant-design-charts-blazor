@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using OneOf;
 
 namespace AntDesign.Charts
 {
@@ -24,7 +25,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }//OneOf<int?, any>
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
         [JsonPropertyName("offsetY")]
@@ -56,8 +57,10 @@ namespace AntDesign.Charts
         public string Suffix { get; set; }
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, object> Offset { get; set; }
         [JsonPropertyName("offset")]
-        public int? Offset { get; set; }
+        public object OffsetMapping => Offset.Value;
         [JsonPropertyName("offsetX")]
         public int? OffsetX { get; set; }
         [JsonPropertyName("offsetY")]
