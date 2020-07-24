@@ -16,68 +16,15 @@ window.createChart = (type, domRef, options, others) => {
 }
 
 
-window.ccc = (type, domRef, options, others) => {
-    domRef.innerHTML = '';
-    removeNullItem(options)
-    const data1 = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
-    ];
+window.ccc = (options) => {
 
-    const data2 = [
-        { year: '1991', count: 10 },
-        { year: '1992', count: 4 },
-        { year: '1993', count: 5 },
-        { year: '1994', count: 5 },
-        { year: '1995', count: 4.9 },
-        { year: '1996', count: 35 },
-        { year: '1997', count: 7 },
-        { year: '1998', count: 1 },
-        { year: '1999', count: 20 },
-    ];
-
-    const data = [
-        { year: '1991', value: 3 },
-        { year: '1992', value: 4 },
-        { year: '1993', value: 3.5 },
-        { year: '1994', value: 5 },
-        { year: '1995', value: 4.9 },
-        { year: '1996', value: 6 },
-        { year: '1997', value: 7 },
-        { year: '1998', value: 9 },
-        { year: '1999', value: 13 },
-    ];
     console.log(options);
-
-    let ss = {
-        title: {
-            visible: true,
-            text: 'Ë«ÕÛÏßÍ¼',
-        },
-        description: {
-            visible: true,
-            text: 'Ë«ÕÛÏß»ìºÏÍ¼±í',
-        },
-        data: [data1, data2],
-        xField: 'year',
-        yField: ['value', 'count'],
-    };
-
-    console.log(ss);
-
-    const plot = new G2Plot[type](domRef, options);
-    plot.render();
+    removeNullItem(options)
+    console.log(options);
 }
 
 
-//Çå³ıÃ»ÓĞ¸³ÖµµÄÏî
+//æ¸…é™¤æ²¡æœ‰èµ‹å€¼çš„é¡¹
 
 function isEmptyObj(o) {
     for (let attr in o) return !1;
@@ -105,7 +52,7 @@ function proccessObject(o) {
 function removeNullItem(o, arr, i) {
     let s = ({}).toString.call(o);
     if (s == '[object Array]') {
-        if (processArray(o) === true) { //oÒ²ÊÇÊı×é£¬²¢ÇÒÉ¾³ıÍê×ÓÏî£¬´ÓËùÊôÊı×éÖĞÉ¾³ı
+        if (processArray(o) === true) { //oä¹Ÿæ˜¯æ•°ç»„ï¼Œå¹¶ä¸”åˆ é™¤å®Œå­é¡¹ï¼Œä»æ‰€å±æ•°ç»„ä¸­åˆ é™¤
             if (arr) arr.splice(i, 1);
         }
     } else if (s == '[object Object]') {
@@ -114,7 +61,7 @@ function removeNullItem(o, arr, i) {
     }
 }
 
-// Éî¶ÈºÏ²¢¶ÔÏó
+// æ·±åº¦åˆå¹¶å¯¹è±¡
 function deepObjectMerge(source, target) {
     for (var key in target) {
         if (source[key] && source[key].toString() === "[object Object]") {
