@@ -14,8 +14,10 @@ namespace AntDesign.Charts
         public object PointSizeMapping => PointSize.Value;
         [JsonPropertyName("pointStyle")]
         public GraphicStyle PointStyle { get; set; }
+        [JsonIgnore]
+        public OneOf<string, string[]> ColorField { get; set; }
         [JsonPropertyName("colorField")]
-        public string[] ColorField { get; set; }
+        public object ColorFieldMapping => ColorField.Value;
         [JsonPropertyName("xAxis")]
         public ValueTimeAxis XAxis { get; set; }
         [JsonPropertyName("yAxis")]
@@ -110,7 +112,7 @@ namespace AntDesign.Charts
         ///  颜色字段 
         /// </summary>
         [JsonPropertyName("colorField")]
-        public string[] ColorField { get; set; }//OneOf<string, string[]>
+        public OneOf<string, string[]> ColorField { get; set; }
         /// <summary>
         ///  x 轴配置 
         /// </summary>

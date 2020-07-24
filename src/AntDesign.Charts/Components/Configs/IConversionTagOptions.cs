@@ -44,8 +44,10 @@ namespace AntDesign.Charts
         public ArrowOptions Arrow { get; set; }
         [JsonPropertyName("value")]
         public ValueOptions Value { get; set; }
-        [JsonPropertyName("animation")]
+        [JsonIgnore]
         public OneOf<bool?, Animation, object> Animation { get; set; }
+        [JsonPropertyName("animation")]
+        public object AnimationMapping => Animation.Value;
         [JsonPropertyName("transpose")]
         public bool? Transpose { get; set; }
     }
