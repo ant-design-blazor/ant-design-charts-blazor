@@ -19,7 +19,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("yAxis")]
         public CatAxis YAxis { get; set; }
         [JsonPropertyName("label")]
-        public BarViewConfigLabel Label { get; set; }//OneOf<IBarLabel, IBarAutoLabel>
+        public BarViewConfigLabel Label { get; set; }//OneOf <IBarLabel, IBarAutoLabel>
         [JsonPropertyName("conversionTag")]
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("interactions")]
