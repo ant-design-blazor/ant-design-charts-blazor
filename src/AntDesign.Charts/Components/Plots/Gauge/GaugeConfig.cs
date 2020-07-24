@@ -131,7 +131,7 @@ namespace AntDesign.Charts
         [JsonIgnore]
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
-        public object ColorMapping => Color.Value;//OneOf<string[], string>
+        public object ColorMapping => Color.Value;
         [JsonPropertyName("rangeSize")]
         public int? RangeSize { get; set; }
         [JsonPropertyName("rangeStyle")]
