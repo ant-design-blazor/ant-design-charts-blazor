@@ -6,18 +6,19 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <StepLine @ref="@chart1" Config="config1" TItem="FireworksSalesItem" />
+            <StepLine @ref="@chart1" Config="config1" Data="data1" />
         </ChildContent>
     </TabPane>
 </Tabs>
 
 @code{
     IChartComponent chart1;
+    FireworksSalesItem[] data1;
 
     protected override async Task OnInitializedAsync()
     {
-        var data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
-        chart1.SetData(data1);
+        data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
+        await chart1.ChangeData(data1);
 
         await base.OnInitializedAsync();
     }

@@ -7,49 +7,43 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public abstract class ChartComponentBase<TItem, TConfig> : ComponentBase, IChartComponent where TConfig : class, new()
+    public abstract class ChartComponentBase<TItem, TConfig> : ComponentBase, IChartComponent, IDisposable where TConfig : class, new()
     {
-        public ChartComponentBase(string chartType)
+        protected string ChartType { get; set; }
+
+        public ChartComponentBase(string chartType, bool isNoDataRender = false)
         {
             ChartType = chartType;
+            IsNoDataRender = isNoDataRender;
         }
 
-        #region 脚本交互
-
-        protected const string CreateChart = "createChart";
-        protected string ChartType { get; set; }
+        #region JS交互
 
         [Inject]
         protected IJSRuntime JS { get; set; }
 
         protected ElementReference Ref;
 
-        public bool NeedRedraw = false;
+        protected const string InteropCreate = "AntDesignCharts.interop.create";
+        protected const string InteropDestroy = "AntDesignCharts.interop.destroy";
+        protected const string InteropRender = "AntDesignCharts.interop.render";
+        protected const string InteropRepaint = "AntDesignCharts.interop.repaint";
+        protected const string InteropUpdateConfig = "AntDesignCharts.interop.updateConfig";
+        protected const string InteropChangeData = "AntDesignCharts.interop.changeData";
+        protected const string InteropSetActive = "AntDesignCharts.interop.setActive";
+        protected const string InteropSetSelected = "AntDesignCharts.interop.setSelected";
+        protected const string InteropSetDisable = "AntDesignCharts.interop.setDisable";
+        protected const string InteropSetDefault = "AntDesignCharts.interop.setDefault";
 
-        #endregion 脚本交互
+        #endregion
 
         #region 图表属性
 
-        public TItem _Data;
-
         [Parameter]
-        public TItem Data
-        {
-            get
-            {
-                return _Data;
-            }
-            set
-            {
-                _Data = value;
-            }
-        }
+        public TItem Data { get; set; }
 
-        [Parameter]
-        public string XField { get; set; }
-
-        [Parameter]
-        public string YField { get; set; }
+        //设置当Data没有数据时，图表是否允许要进行初始化绘制,为了结局某些图表当没有数据时，绘制会发生异常的问题
+        protected bool IsNoDataRender { get; set; } = false;
 
         [Parameter]
         public TConfig Config { get; set; }
@@ -57,7 +51,31 @@ namespace AntDesign.Charts
         [Parameter]
         public object OtherConfig { get; set; }
 
-        #endregion 图表属性
+        #endregion
+
+        /// <summary>
+        /// 是否更新配置
+        /// </summary>
+        public bool IsUpdateConfig = false;
+
+        /// <summary>
+        /// 是否更新数据
+        /// </summary>
+        public bool IsChangeData = false;
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+
+            if (firstRender)
+            {
+                if (Config == null) new TConfig();
+                if (Config is IViewConfig viewConfig)
+                    SetIViewConfig(viewConfig);
+                await Create();
+                Console.WriteLine("OnAfterRenderAsync:" + Ref.Id);
+            }
+        }
 
         /// <summary>
         /// 设置视图配置，支持重写改写设置方式
@@ -65,51 +83,126 @@ namespace AntDesign.Charts
         /// <param name="config"></param>
         protected virtual void SetIViewConfig(IViewConfig config)
         {
-            if (Data != null) config.Data = Data;
-            if (string.IsNullOrWhiteSpace(XField) == false) config.XField = XField;
-            if (string.IsNullOrWhiteSpace(YField) == false) config.YField = YField;
+            config.Data = Data;
         }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        public async void Dispose()
         {
-            await base.OnAfterRenderAsync(firstRender);
-
-            if (firstRender || NeedRedraw == true)
+            try
             {
-                NeedRedraw = false;
-                //Console.WriteLine(NeedRedraw);
-                await Render();
+                await JS.InvokeVoidAsync(InteropDestroy, Ref.Id);
             }
+            catch (Exception)
+            {
+            }
+
         }
 
         /// <summary>
-        /// 立即渲染图形
+        /// 创建图表控件
+        /// </summary>
+        /// <returns></returns>
+        private async Task Create()
+        {
+            if (Data == null && IsNoDataRender == false) return;
+            await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
+        }
+
+        /// <summary>
+        /// 绘制图表
         /// </summary>
         /// <returns></returns>
         public async Task Render()
         {
-            if (Config == null) new TConfig();
-            if (Config is IViewConfig viewConfig)
-                SetIViewConfig(viewConfig);
-            await JS.InvokeVoidAsync(CreateChart, ChartType, Ref, Config, OtherConfig);
+            await JS.InvokeVoidAsync(InteropRender, Ref.Id);
         }
 
         /// <summary>
-        /// 标记绘制状态，在下次OnAfterRenderAsync时渲染
+        /// 重绘图表
         /// </summary>
-        public void AppendRender()
+        /// <returns></returns>
+        public async Task Repaint()
         {
-            NeedRedraw = true;
+            await JS.InvokeVoidAsync(InteropRepaint, Ref.Id);
         }
 
         /// <summary>
-        /// 设置属性并在下次OnAfterRenderAsync时渲染
+        /// 更新配置
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="otherConfig"></param>
+        /// <param name="all"></param>
+        /// <returns></returns>
+        public async Task UpdateConfig(object config, object otherConfig, bool all = false)
+        {
+            Config = (TConfig)config;
+            OtherConfig = otherConfig;
+            await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
+        }
+        /// <summary>
+        /// 更新数据
         /// </summary>
         /// <param name="data"></param>
-        public void SetData(object data)
+        /// <param name="all"></param>
+        /// <returns></returns>
+        public async Task ChangeData(object data, bool all = false)
         {
-            Data = (TItem)data;
-            AppendRender();
+            if (Data != null || IsNoDataRender == true)
+            {
+                Data = (TItem)data;
+                if (Config is IViewConfig viewConfig)
+                    SetIViewConfig(viewConfig);
+                await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, all);
+            }
+            else
+            {
+                Data = (TItem)data;
+                if (Config is IViewConfig viewConfig)
+                    SetIViewConfig(viewConfig);
+                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
+            }
         }
+        /// <summary>
+        /// 设置激活
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="style"></param>
+        /// <returns></returns>
+        public async Task SetActive(object condition, object style)
+        {
+            await JS.InvokeVoidAsync(InteropSetActive, Ref.Id, condition, style);
+        }
+        /// <summary>
+        /// 设置选中
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="style"></param>
+        /// <returns></returns>
+        public async Task SetSelected(object condition, object style)
+        {
+            await JS.InvokeVoidAsync(InteropSetSelected, Ref.Id, condition, style);
+        }
+        /// <summary>
+        /// 设置禁用
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="style"></param>
+        /// <returns></returns>
+        public async Task SetDisable(object condition, object style)
+        {
+            await JS.InvokeVoidAsync(InteropSetDisable, Ref.Id, condition, style);
+        }
+        /// <summary>
+        /// 设置默认
+        /// </summary>
+        /// <param name="condition"></param>
+        /// <param name="style"></param>
+        /// <returns></returns>
+        public async Task SetDefault(object condition, object style)
+        {
+            await JS.InvokeVoidAsync(InteropSetDisable, Ref.Id, condition, style);
+        }
+
+
     }
 }

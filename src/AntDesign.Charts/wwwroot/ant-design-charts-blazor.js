@@ -1,31 +1,69 @@
 // This file is to show how a library package may provide JavaScript interop features
 // wrapped in a .NET API
 
-window.createChart = (type, domRef, options, others) => {
-    domRef.innerHTML = '';
+window.AntDesignCharts = {
+    interop: {
+        create: (type, domRef, domId, config, others) => {
+            domRef.innerHTML = '';
 
-    removeNullItem(options)
-    deepObjectMerge(options, others)
-    console.warn(options);
-    try {
-        const plot = new G2Plot[type](domRef, options);
-        plot.render();
-    } catch (err) {
-        console.error(err, options);
-    }
-}
-
-
-window.ccc = (options) => {
-
-    console.log(options);
-    removeNullItem(options)
-    console.log(options);
+            removeNullItem(config);
+            deepObjectMerge(config, others);
+            try {
+                const plot = new G2Plot[type](domRef, config);
+                plot.render();
+                window.AntDesignCharts.chartsContainer[domId] = plot;
+                console.log("create:" + domId)
+            } catch (err) {
+                console.error(err, config);
+            }
+        },
+        destroy(domId) {
+            console.log("destroy:" + domId);
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].destroy();
+            delete window.AntDesignCharts.chartsContainer[domId];
+        },
+        render(domId) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].render();
+        },
+        repaint(domId) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].repaint();
+        },
+        updateConfig(domId, config, others, all) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            removeNullItem(config)
+            deepObjectMerge(config, others)
+            window.AntDesignCharts.chartsContainer[domId].updateConfig(config, all);
+            window.AntDesignCharts.chartsContainer[domId].render();
+        },
+        changeData(domId, data, all) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].changeData(data, all);
+        },
+        setActive(domId, condition, style) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].setActive(condition, style);
+        },
+        setSelected(domId, condition, style) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].setSelected(condition, style);
+        },
+        setDisable(domId, condition, style) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].setDisable(condition, style);
+        },
+        setDefault(domId, condition, style) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            window.AntDesignCharts.chartsContainer[domId].setDefault(condition, style);
+        }
+    },
+    chartsContainer: {}
 }
 
 
 //清除没有赋值的项
-
 function isEmptyObj(o) {
     for (let attr in o) return !1;
     return !0

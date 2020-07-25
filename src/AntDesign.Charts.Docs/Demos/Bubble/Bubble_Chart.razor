@@ -6,7 +6,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Bubble @ref="chart1" TItem="SmokingRateItem" Config="config1" />
+            <Bubble @ref="chart1" Data="data1" Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -15,10 +15,12 @@
 
 
     IChartComponent chart1;
+    SmokingRateItem[] data1;
+
     protected override async Task OnInitializedAsync()
     {
-        var data1 = await DemoData.SmokingRateAsync(NavigationManager, HttpClient);
-        chart1.SetData(data1);
+        data1 = await DemoData.SmokingRateAsync(NavigationManager, HttpClient);
+        await chart1.ChangeData(data1);
 
         await base.OnInitializedAsync();
     }

@@ -6,26 +6,22 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Scatter @ref="line1" TItem="IMDBItem" Config="config1" />
+            <Scatter @ref="chart1" Data="data1" Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
 
-@code{  
+@code{
 
-    IChartComponent line1;
+    IChartComponent chart1;
+    IMDBItem[] data1;
 
     protected override async Task OnInitializedAsync()
     {
-        var data1 = await DemoData.IMDBAsync(NavigationManager, HttpClient);
-        line1.SetData(data1);
+        data1 = await DemoData.IMDBAsync(NavigationManager, HttpClient);
+        await chart1.ChangeData(data1);
 
         await base.OnInitializedAsync();
-    }
-
-    public async void Reader()
-    {
-        await line1.Render();
     }
 
     #region 示例1

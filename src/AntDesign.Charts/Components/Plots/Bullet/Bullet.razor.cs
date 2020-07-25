@@ -8,7 +8,7 @@ namespace AntDesign.Charts
 {
     public partial class Bullet<TItem> : ChartComponentBase<IEnumerable<TItem>, BulletConfig>
     {
-        public Bullet() : base("Bullet")
+        public Bullet() : base("Bullet", isNoDataRender: true)
         {
 
         }
