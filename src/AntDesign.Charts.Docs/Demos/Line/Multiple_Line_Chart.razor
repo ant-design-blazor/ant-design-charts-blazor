@@ -12,29 +12,31 @@
     <TabPane Key="2">
         <Tab>示例2</Tab>
         <ChildContent>
-            <Line @ref="line2" TItem="GDPItem" Config="config2" />
+            <Line @ref="chart2" Data="data2" Config="config2" />
         </ChildContent>
     </TabPane>
     <TabPane Key="3">
         <Tab>示例3</Tab>
         <ChildContent>
-            <Line @ref="line3" TItem="EmissionsItem" Config="config3" />
+            <Line @ref="chart3" Data="data3" Config="config3" />
         </ChildContent>
     </TabPane>
 </Tabs>
 
 @code{
 
-    IChartComponent line2;
-
-    IChartComponent line3;
+    IChartComponent chart2;
+    GDPItem[] data2;
+    IChartComponent chart3;
+    EmissionsItem[] data3;
 
     protected override async Task OnInitializedAsync()
     {
-        var data2 = await DemoData.GDPAsync(NavigationManager, HttpClient);
-        line2.SetData(data2);
-        var data3 = await DemoData.EmissionsAsync(NavigationManager, HttpClient);
-        line3.SetData(data3);
+        data2 = await DemoData.GDPAsync(NavigationManager, HttpClient);
+        await chart2.ChangeData(data2);
+
+        data3 = await DemoData.EmissionsAsync(NavigationManager, HttpClient);
+
         await base.OnInitializedAsync();
     }
 

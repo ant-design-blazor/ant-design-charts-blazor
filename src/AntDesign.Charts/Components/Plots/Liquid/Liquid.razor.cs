@@ -8,9 +8,8 @@ namespace AntDesign.Charts
 {
     public partial class Liquid<TItem> : ChartComponentBase<IEnumerable<TItem>, LiquidConfig>
     {
-        public Liquid() : base("Liquid")
+        public Liquid() : base("Liquid",isNoDataRender:true)
         {
-
         }
     }
 }
