@@ -12,13 +12,13 @@ window.AntDesignCharts = {
                 const plot = new G2Plot[type](domRef, config);
                 plot.render();
                 window.AntDesignCharts.chartsContainer[domId] = plot;
-                console.log("create:" + domId)
+                //console.log("create:" + domId)
             } catch (err) {
                 console.error(err, config);
             }
         },
         destroy(domId) {
-            console.log("destroy:" + domId);
+            //console.log("destroy:" + domId);
             if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
             window.AntDesignCharts.chartsContainer[domId].destroy();
             delete window.AntDesignCharts.chartsContainer[domId];
