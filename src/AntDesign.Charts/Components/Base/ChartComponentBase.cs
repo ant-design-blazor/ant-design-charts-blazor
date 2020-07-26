@@ -53,15 +53,17 @@ namespace AntDesign.Charts
 
         #endregion
 
-        /// <summary>
-        /// 是否更新配置
-        /// </summary>
-        public bool IsUpdateConfig = false;
+        #region 图表事件
 
+        [Parameter]
+        public EventCallback<IChartComponent> OnCreateAfter { get; set; }
+
+
+        #endregion
         /// <summary>
-        /// 是否更新数据
+        /// 图表是否已经创建
         /// </summary>
-        public bool IsChangeData = false;
+        private bool IsCreated = false;
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -73,7 +75,6 @@ namespace AntDesign.Charts
                 if (Config is IViewConfig viewConfig)
                     SetIViewConfig(viewConfig);
                 await Create();
-                Console.WriteLine("OnAfterRenderAsync:" + Ref.Id);
             }
         }
 
@@ -106,6 +107,10 @@ namespace AntDesign.Charts
         {
             if (Data == null && IsNoDataRender == false) return;
             await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
+            IsCreated = true;
+
+            if (OnCreateAfter.HasDelegate)
+                await OnCreateAfter.InvokeAsync(this);
         }
 
         /// <summary>
@@ -147,18 +152,17 @@ namespace AntDesign.Charts
         /// <returns></returns>
         public async Task ChangeData(object data, bool all = false)
         {
-            if (Data != null || IsNoDataRender == true)
+            Data = (TItem)data;
+            if (Config is IViewConfig viewConfig)
+                SetIViewConfig(viewConfig);
+            
+            //根据图表是否已经状态决定调用的函数
+            if (IsCreated == true)
             {
-                Data = (TItem)data;
-                if (Config is IViewConfig viewConfig)
-                    SetIViewConfig(viewConfig);
                 await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, all);
             }
             else
             {
-                Data = (TItem)data;
-                if (Config is IViewConfig viewConfig)
-                    SetIViewConfig(viewConfig);
                 await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
             }
         }

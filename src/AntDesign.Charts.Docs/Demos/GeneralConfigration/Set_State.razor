@@ -5,29 +5,12 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <AntDesign.Charts.Column @ref="chart1" Data=data1 Config="config1" />
+            <AntDesign.Charts.Column Data=data1 Config="config1" OnCreateAfter="onCreateAfter1"  />
         </ChildContent>
     </TabPane>
 </Tabs>
 
 @code{
-
-    IChartComponent chart1;
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            chart1.SetActive(new { name = "year", exp = "1994" },
-                             new
-                             {
-                                 FillStyle = "#5AD8A6",
-                                 FillOpacity = 0.8,
-                             });
-        };
-        await base.OnAfterRenderAsync(firstRender);
-
-    }
 
     #region 示例1
 
@@ -86,6 +69,15 @@
         YField = "value",
     };
 
+    public void onCreateAfter1(IChartComponent chart)
+    {
+        chart.SetActive(new { name = "year", exp = "1994" },
+             new
+             {
+                 FillStyle = "#5AD8A6",
+                 FillOpacity = 0.8,
+             });
+    }
 
     #endregion 示例1
 
