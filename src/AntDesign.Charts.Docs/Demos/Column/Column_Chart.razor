@@ -316,6 +316,15 @@
 
 
     #region 示例7
+    object[] data7 = new object[]
+{
+        new{action = "浏览网站", pv=50000},
+        new{action = "放入购物车", pv=35000},
+        new{action = "生成订单", pv=25000},
+        new{action = "支付订单", pv=15000},
+        new{action = "完成交易", pv=8500},
+};
+
     ColumnConfig config7= new ColumnConfig()
     {
         Title = new Charts.Title()
@@ -342,15 +351,6 @@
 
 
     SalesItem[] data5;
-
-    object[] data7 = new object[]
-    {
-        new{action = "浏览网站", pv=50000},
-        new{action = "放入购物车", pv=35000},
-        new{action = "生成订单", pv=25000},
-        new{action = "支付订单", pv=15000},
-        new{action = "完成交易", pv=8500},
-    };
 
     protected override async Task OnInitializedAsync()
     {
