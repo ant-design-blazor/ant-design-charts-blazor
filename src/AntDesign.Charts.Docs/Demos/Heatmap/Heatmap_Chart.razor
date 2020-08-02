@@ -6,7 +6,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Heatmap @ref="chart1" TItem="BasementProdItem" Config="config1" />
+            <Heatmap @ref="chart1" Data="data1" Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -14,11 +14,12 @@
 @code{
 
     IChartComponent chart1;
+    BasementProdItem[] data1;
 
     protected override async Task OnInitializedAsync()
     {
-        var data1 = await DemoData.BasementProdAsync(NavigationManager, HttpClient);
-        chart1.SetData(data1);
+        data1 = await DemoData.BasementProdAsync(NavigationManager, HttpClient);
+        await chart1.ChangeData(data1);
 
         await base.OnInitializedAsync();
     }

@@ -358,6 +358,11 @@
         "title": "提示信息",
         "type": "menuItem",
         "url": "Tooltip"
+      },
+      {
+        "title": "JS交互",
+        "type": "menuItem",
+        "url": "Interop"
       }
 
 

@@ -7,21 +7,21 @@ namespace AntDesign.Charts
 {
     public interface IChartComponent
     {
-        /// <summary>
-        /// 立即渲染
-        /// </summary>
-        /// <returns></returns>
-        Task Render();
+        public Task Render();
 
-        /// <summary>
-        /// 追加渲染，等到下一次渲染是进行重新渲染
-        /// </summary>
-        void AppendRender();
+        public Task Repaint();
 
-        /// <summary>
-        /// 设置数据
-        /// </summary>
-        /// <param name="data"></param>
-        void SetData(object data);
+        public Task UpdateConfig(object config, object otherConfig = null, bool all = false);
+
+        public Task ChangeData(object data, bool all = false);
+
+        public Task SetActive(object condition, object style);
+
+        public Task SetSelected(object condition, object style);
+
+        public Task SetDisable(object condition, object style);
+
+        public Task SetDefault(object condition, object style);
+
     }
 }

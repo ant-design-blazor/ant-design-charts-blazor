@@ -6,7 +6,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Area @ref="chart1" TItem="FireworksSalesItem" Config="config1" />
+            <Area @ref="chart1" Data="data1" Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -14,11 +14,12 @@
 @code{
 
     IChartComponent chart1;
+    FireworksSalesItem[] data1;
 
     protected override async Task OnInitializedAsync()
     {
-        var data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
-        chart1.SetData(data1);
+        data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
+        await chart1.ChangeData(data1);
 
         await base.OnInitializedAsync();
     }
