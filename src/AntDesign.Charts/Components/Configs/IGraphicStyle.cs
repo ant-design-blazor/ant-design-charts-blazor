@@ -20,7 +20,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("lineOpacity")]
         public int? LineOpacity { get; set; }
         [JsonPropertyName("opacity")]
-        public int? Opacity { get; set; }
+        public double? Opacity { get; set; }
         [JsonPropertyName("shadowColor")]
         public string ShadowColor { get; set; }
         [JsonPropertyName("shadowBlur")]
@@ -49,7 +49,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("lineOpacity")]
         public int? LineOpacity { get; set; }
         [JsonPropertyName("opacity")]
-        public int? Opacity { get; set; }
+        public double? Opacity { get; set; }
         [JsonPropertyName("shadowColor")]
         public string ShadowColor { get; set; }
         [JsonPropertyName("shadowBlur")]
