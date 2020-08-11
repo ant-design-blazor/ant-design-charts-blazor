@@ -142,7 +142,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("lineStyle")]
         public object LineStyle { get; set; }
         [JsonPropertyName("label")]
-        public object Label { get; set; }
+        public OneOf<object, Label> Label { get; set; }
     }
 
     public class QuadrantConfig : IQuadrantConfig
@@ -160,7 +160,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("lineStyle")]
         public object LineStyle { get; set; }
         [JsonPropertyName("label")]
-        public object Label { get; set; }
+        public OneOf<object, Label> Label { get; set; }
     }
 
     public interface ITrendlineConfig
