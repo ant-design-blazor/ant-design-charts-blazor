@@ -75,6 +75,18 @@ namespace AntDesign.Charts.Docs.Demos
         {
             return await HttpClient.GetFromJsonAsync<FertilityItem[]>("https://gw.alipayobjects.com/os/antvdemo/assets/data/fertility.json");
         }
+
+        public static async Task<RevenueItem[]> RevenueItemAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<RevenueItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/revenue.json").ToString());
+        }
+
+        public static async Task<LifeExpectanyItem[]> LifeExpectanyItemAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<LifeExpectanyItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/life-expectancy.json").ToString());
+        }
     }
 
     public class FireworksSalesItem
@@ -188,5 +200,39 @@ namespace AntDesign.Charts.Docs.Demos
         public object value { get; set; }
     }
 
+    public class LifeExpectanyItem
+    {
+        public long income { get; set; }
+        public double liftExpectancy { get; set; }
 
+        public long population { get; set; }
+
+        public string country { get; set; }
+
+        public int year { get; set; }
+
+    }
+
+
+    //"UEFA rank": 9,
+    //"country": "Belgium",
+    //"UEFA points*": 38.5,
+    //"Clubs": "0/5",
+    //"Revenue per club[€ m]": 19.7,
+    //"revenueGroup": "€5M to €50M"
+    public class RevenueItem
+    {
+        [JsonPropertyName("UEFA rank")]
+        public int UEFA_rank { get; set; }
+
+        public string country { get; set; }
+        [JsonPropertyName("UEFA points*")]
+        public double UEFA_points { get; set; }
+
+        public string Clubs { get; set; }
+        [JsonPropertyName("URevenue per club[€ m]")]
+        public double Revenue_per_club { get; set; }
+
+        public string revenueGroup { get; set; }
+    }
 }
