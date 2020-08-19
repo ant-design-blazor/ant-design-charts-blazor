@@ -13,11 +13,11 @@ namespace AntDesign.Charts
         [JsonPropertyName("endAngle")]
         public int? EndAngle { get; set; }
         [JsonPropertyName("min")]
-        public int? Min { get; set; }
+        public decimal? Min { get; set; }
         [JsonPropertyName("max")]
-        public int? Max { get; set; }
+        public decimal? Max { get; set; }
         [JsonPropertyName("value")]
-        public int? Value { get; set; }
+        public decimal? Value { get; set; }
         [JsonPropertyName("range")]
         public double[] Range { get; set; }
         [JsonIgnore]
@@ -121,11 +121,11 @@ namespace AntDesign.Charts
         [JsonPropertyName("endAngle")]
         public int? EndAngle { get; set; }
         [JsonPropertyName("min")]
-        public int? Min { get; set; }
+        public decimal? Min { get; set; }
         [JsonPropertyName("max")]
-        public int? Max { get; set; }
+        public decimal? Max { get; set; }
         [JsonPropertyName("value")]
-        public int? Value { get; set; }
+        public decimal? Value { get; set; }
         [JsonPropertyName("range")]
         public double[] Range { get; set; }
         [JsonIgnore]
