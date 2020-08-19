@@ -21,9 +21,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("columnStyle")]
         public GraphicStyle ColumnStyle { get; set; }
         [JsonPropertyName("xAxis")]
-        public ICatAxis XAxis { get; set; }
+        public CatAxis XAxis { get; set; }
         [JsonPropertyName("yAxis")]
-        public IValueAxis YAxis { get; set; }
+        public ValueAxis YAxis { get; set; }
         [JsonPropertyName("conversionTag")]
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("label")]

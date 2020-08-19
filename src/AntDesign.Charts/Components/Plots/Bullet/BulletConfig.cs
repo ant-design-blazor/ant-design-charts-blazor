@@ -11,7 +11,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("data")]
         public BulletViewConfigData[] Data { get; set; }
         [JsonPropertyName("rangeMax")]
-        public int? RangeMax { get; set; }
+        public decimal? RangeMax { get; set; }
         [JsonPropertyName("measureSize")]
         public int? MeasureSize { get; set; }
         [JsonPropertyName("measureColors")]
@@ -99,7 +99,7 @@ namespace AntDesign.Charts
         ///  进度条的色条范围区间的最大值 
         /// </summary>
         [JsonPropertyName("rangeMax")]
-        public int? RangeMax { get; set; }
+        public decimal? RangeMax { get; set; }
         /// <summary>
         ///  实际进度条大小设置 
         /// </summary>
