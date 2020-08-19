@@ -32,6 +32,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("text")]
         public LegendText Text { get; set; }
 
+        [JsonPropertyName("custom")]
+        public bool Custom { get; set; }
+
 
     }
 
@@ -80,6 +83,11 @@ namespace AntDesign.Charts
         public LegendMarker Marker { get; set; }
         [JsonPropertyName("text")]
         public LegendText Text { get; set; }
+
+        [JsonPropertyName("custom")]
+        public bool Custom { get; set; }
+
+
     }
 }
 

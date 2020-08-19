@@ -145,7 +145,7 @@ namespace AntDesign.Charts
         ///  进度条的色条范围区间，相对数值：[0, 1] 
         /// </summary>
         [JsonPropertyName("ranges")]
-        public int[] Ranges { get; set; }
+        public double[] Ranges { get; set; }
         /// <summary>
         ///  目标值，array类型。支持多目标设置 
         /// </summary>

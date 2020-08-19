@@ -9,6 +9,24 @@
             <Bubble @ref="chart1" Data="data1" Config="config1" />
         </ChildContent>
     </TabPane>
+    <TabPane Key="2">
+        <Tab>示例2</Tab>
+        <ChildContent>
+            <Bubble @ref="chart2" Data="data2" Config="config2" />
+        </ChildContent>
+    </TabPane>
+    @*<TabPane Key="3">
+        <Tab>示例3</Tab>
+        <ChildContent>
+            <Bubble @ref="chart3" Data="data3" Config="config3" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="4">
+        <Tab>示例4</Tab>
+        <ChildContent>
+            <Bubble @ref="chart4" Data="data4" Config="config4" />
+        </ChildContent>
+    </TabPane>*@
 </Tabs>
 
 @code{
@@ -17,35 +35,230 @@
     IChartComponent chart1;
     SmokingRateItem[] data1;
 
+    IChartComponent chart2;
+    SmokingRateItem[] data2;
+
+    IChartComponent chart3;
+    RevenueItem[] data3;
+
+    IChartComponent chart4;
+    LifeExpectanyItem[] data4;
+
     protected override async Task OnInitializedAsync()
     {
         data1 = await DemoData.SmokingRateAsync(NavigationManager, HttpClient);
         await chart1.ChangeData(data1);
+
+        data2 = data1;
+        await chart2.ChangeData(data1);
+
+        //var t1 = await DemoData.RevenueItemAsync(NavigationManager, HttpClient);
+        //data3 = await DemoData.RevenueItemAsync(NavigationManager, HttpClient);
+        //await chart3.ChangeData(data3);
+
+        //data4 = await DemoData.LifeExpectanyItemAsync(NavigationManager, HttpClient);
+        //await chart4.ChangeData(data4);
 
         await base.OnInitializedAsync();
     }
 
     #region 示例1
 
-
     //smoking-rate
-    BubbleConfig config1 = new BubbleConfig()
+    readonly BubbleConfig config1 = new BubbleConfig
     {
         XField = "change in female rate",
         YField = "change in male rate",
         SizeField = "pop",
-        PointSize = new int[] { 4, 30 },
-        ColorField = new string[] { "continent" },
-        Color = new string[] { "#ffd500", "#82cab2", "#193442", "#d18768", "#7e827a" },
-        XAxis = new ValueTimeAxis()
+        PointSize = new[] { 4, 30 },
+        ColorField = new[] { "continent" },
+        Color = new[] { "#ffd500", "#82cab2", "#193442", "#d18768", "#7e827a" },
+        XAxis = new ValueTimeAxis
         {
             Visible = true,
             Max = 5,
-            Min = -25,
-        },
+            Min = -25
+        }
     };
 
     #endregion 示例1
 
-}
+    #region 示例2
 
+    //smoking-rate
+    readonly BubbleConfig config2 = new BubbleConfig
+    {
+        XField = "change in female rate",
+        YField = "change in male rate",
+        SizeField = "pop",
+        PointSize = new[] { 4, 30 },
+        ColorField = new[] { "continent" },
+        Color = new[] { "#ffd500", "#82cab2", "#193442", "#d18768", "#7e827a" },
+        PointStyle = new GraphicStyle
+        {
+            Stroke = "#777777",
+            LineWidth = 1,
+            Opacity = 0.8,
+        },
+        XAxis = new ValueTimeAxis
+        {
+            Visible = true,
+            Max = 5,
+            Min = -25
+        },
+        Quadrant = new QuadrantConfig
+        {
+            Visible = true,
+            XBaseline = 0,
+            YBaseline = 0,
+            RegionStyle = new object[]
+                {
+                new {fill= "#d8d0c0", opacity= 0.2},
+                new {fill= "#a3dda1", opacity= 0.1},
+                new {fill= "white", opacity= 0},
+                new {fill="#d8d0c0", opacity=0.2}
+                    },
+            Label = new 
+            {
+                Text = new []
+                    {
+                    "Female decrease,\nmale increase",
+                    "Female & male decrease",
+                    "Female &\n male increase",
+                    "Male decrease,\nfemale increase"
+                },
+            }
+        }
+    };
+
+    #endregion 示例2
+
+    #region 示例3
+
+    //smoking-rate
+    readonly BubbleConfig config3 = new BubbleConfig
+    {
+        XField = "Revenue_per_club",
+        YField = "UEFA_points",
+        SizeField = "UEFA_points",
+        PointSize = new[] { 4, 25 },
+        ColorField = new[] { "revenueGroup" },
+        Color = new[] { "#72302f", "#beb298", "#d18768", "#e3cda1" },  //#72302f', '#beb298', '#d18768', '#e3cda1']
+        PointStyle = new GraphicStyle
+        {
+            Stroke = "#777777",
+            LineWidth = 1,
+            Opacity = 0.9,
+        },
+        XAxis = new ValueTimeAxis
+        {
+            Visible = true,
+            Max = 230,
+            Min = -5,
+            Nice = false,
+        },
+        Trendline = new TrendlineConfig
+        {
+            Visible=true,
+            Type="log",
+        }
+    };
+
+    #endregion 示例3
+
+    #region 示例4
+
+    //smoking-rate
+    readonly BubbleConfig config4 = new BubbleConfig
+    {
+        XField = "income",
+        YField = "lifeExpectancy",
+        SizeField = "population",
+        ColorField = "country",
+        PointSize= new[] {4,80},
+        Color = new[]{
+            "#5B8FF9",
+            "#5AD8A6",
+            "#f03838",
+            "#35d1d1",
+            "#E8684A",
+            "#6DC8EC",
+            "#9270CA",
+            "#FF9D4D",
+            "#F6BD16",
+            "#FF99C3",
+        },
+
+        ForceFit = true,
+
+        PointStyle = new GraphicStyle
+        {
+            Stroke = "#777777",
+            LineWidth = 1,
+            Opacity = 0.8,
+        },
+        XAxis = new ValueTimeAxis
+        {
+            Visible = true,
+            Max = 100000,
+            Min = 300,
+            Nice=false,
+            Type="log",
+            Title= new BaseAxisTitle
+            {
+                Visible=true,
+                Text = "人均收入",
+            }
+        },
+
+        YAxis = new ValueTimeAxis
+        {
+            Visible = true,
+            Max = 100,
+            Min = 0,
+            Title = new BaseAxisTitle
+            {
+                Visible = true,
+                Text = "人均寿命",
+            }
+        },
+
+        Tooltip  = new Charts.Tooltip
+        {
+            Visible=true,
+            ShowTitle = true,
+            TitleField="country",
+            Fields = new[]
+            {
+                "income",
+                "liftExpectany",
+                "population",
+            }
+
+        },
+
+        Label  = new Label
+        {
+            Visible=true,
+            Field="country",
+        },
+
+        Interactions = new Interaction[]
+        {
+            new Interaction
+            {
+                Type="timeline",
+                Cfg = new
+                {
+                    field = "year",
+                    key = "country",
+                    loop = true,
+                }
+            }
+        },
+
+
+    };
+
+    #endregion 示例4
+}
