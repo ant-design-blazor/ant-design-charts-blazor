@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 namespace AntDesign.Charts
 {
     public class BulletConfig : IBulletViewConfig, IPlotConfig
-    {
+    { 
         [JsonPropertyName("data")]
         public BulletViewConfigData[] Data { get; set; }
         [JsonPropertyName("rangeMax")]
