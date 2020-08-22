@@ -57,6 +57,21 @@ window.AntDesignCharts = {
         setDefault(domId, condition, style) {
             if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
             window.AntDesignCharts.chartsContainer[domId].setDefault(condition, style);
+        },
+
+        setEvent(domId, event, dotnetHelper, func) {
+            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+
+            console.log("setEvent");
+            window.AntDesignCharts.chartsContainer[domId].on(event, ev => {
+                let e = {};
+                for (let attr in ev) {
+                    if (typeof ev[attr] !== "function" && typeof ev[attr] !== "object") {
+                        e[attr] = ev[attr];
+                    }
+                }
+                dotnetHelper.invokeMethodAsync(func, e);
+            })
         }
     },
     chartsContainer: {}
