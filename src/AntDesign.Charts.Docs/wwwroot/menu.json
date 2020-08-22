@@ -363,8 +363,12 @@
         "title": "JS交互",
         "type": "menuItem",
         "url": "Interop"
+      },
+      {
+        "title": "事件",
+        "type": "menuItem",
+        "url": "Event"
       }
-
 
 
     ]

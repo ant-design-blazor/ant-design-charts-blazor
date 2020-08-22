@@ -34,6 +34,9 @@ namespace AntDesign.Charts
         protected const string InteropSetSelected = "AntDesignCharts.interop.setSelected";
         protected const string InteropSetDisable = "AntDesignCharts.interop.setDisable";
         protected const string InteropSetDefault = "AntDesignCharts.interop.setDefault";
+        protected const string InteropSetEvent = "AntDesignCharts.interop.setEvent";
+
+        private DotNetObjectReference<ChartComponentBase<TItem, TConfig>> chartRef;
 
         #endregion
 
@@ -58,8 +61,8 @@ namespace AntDesign.Charts
         [Parameter]
         public EventCallback<IChartComponent> OnCreateAfter { get; set; }
 
-
         #endregion
+
         /// <summary>
         /// 图表是否已经创建
         /// </summary>
@@ -74,7 +77,9 @@ namespace AntDesign.Charts
                 if (Config == null) new TConfig();
                 if (Config is IViewConfig viewConfig)
                     SetIViewConfig(viewConfig);
-                await Create();
+
+                if (Data != null || IsNoDataRender == true)
+                    await Create();
             }
         }
 
@@ -92,6 +97,7 @@ namespace AntDesign.Charts
             try
             {
                 await JS.InvokeVoidAsync(InteropDestroy, Ref.Id);
+                chartRef?.Dispose();
             }
             catch (Exception)
             {
@@ -105,13 +111,18 @@ namespace AntDesign.Charts
         /// <returns></returns>
         private async Task Create()
         {
-            if (Data == null && IsNoDataRender == false) return;
             await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
             IsCreated = true;
 
             if (OnCreateAfter.HasDelegate)
                 await OnCreateAfter.InvokeAsync(this);
+            chartRef = DotNetObjectReference.Create(this);
+
+            if (OnTitleClick.HasDelegate)
+                await JS.InvokeVoidAsync(InteropSetEvent, Ref.Id, "title:click", chartRef, nameof(JsTitleClick));
         }
+
+        #region 图表操作
 
         /// <summary>
         /// 绘制图表
@@ -155,7 +166,7 @@ namespace AntDesign.Charts
             Data = (TItem)data;
             if (Config is IViewConfig viewConfig)
                 SetIViewConfig(viewConfig);
-            
+
             //根据图表是否已经状态决定调用的函数
             if (IsCreated == true)
             {
@@ -163,7 +174,8 @@ namespace AntDesign.Charts
             }
             else
             {
-                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
+                await Create();
+                //await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
             }
         }
         /// <summary>
@@ -206,6 +218,23 @@ namespace AntDesign.Charts
         {
             await JS.InvokeVoidAsync(InteropSetDisable, Ref.Id, condition, style);
         }
+
+        #endregion
+
+
+        #region 图表交互事件
+
+        /// <summary>
+        /// 标题点击事件
+        /// </summary>
+        [Parameter]
+        public EventCallback<ChartEvent> OnTitleClick { get; set; }
+
+        [JSInvokable]
+        public async Task JsTitleClick(System.Text.Json.JsonElement ev) { if (OnTitleClick.HasDelegate) await OnTitleClick.InvokeAsync(new ChartEvent(this, ev)); }
+
+
+        #endregion
 
 
     }

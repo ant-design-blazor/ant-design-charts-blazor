@@ -22,6 +22,5 @@ namespace AntDesign.Charts
         public Task SetDisable(object condition, object style);
 
         public Task SetDefault(object condition, object style);
-
     }
 }
