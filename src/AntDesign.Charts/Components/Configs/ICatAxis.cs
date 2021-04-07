@@ -33,6 +33,10 @@ namespace AntDesign.Charts
         public BaseAxisTitle Title { get; set; }
         [JsonPropertyName("tickLine")]
         public BaseAxisTickLine TickLine { get; set; }
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
     }
 }
 
