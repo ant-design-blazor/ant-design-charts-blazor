@@ -33,6 +33,12 @@
             <Bar Data="data5" Config="config5" />
         </ChildContent>
     </TabPane>
+    <TabPane Key="6">
+        <Tab>示例5</Tab>
+        <ChildContent>
+            <Bar Data="data6" Config="config6" />
+        </ChildContent>
+    </TabPane>
 
 </Tabs>
 
@@ -235,6 +241,48 @@
         }
     };
 
-    #endregion 示例4
+    #endregion 示例5
+
+    #region 示例6
+
+    readonly object[] data6 =
+    {
+        new {地区 = "华东", 销售额 = 4684},
+        new {地区 = "中南", 销售额 = 4137},
+        new {地区 = "东北", 销售额 = 2681},
+        new {地区 = "华北", 销售额 = 2447},
+        new {地区 = "西南", 销售额 = 1303},
+        new {地区 = "西北", 销售额 = 815}
+    };
+
+    readonly BarConfig config6 = new BarConfig
+    {
+        Title = new AntDesign.Charts.Title
+        {
+            Visible = true,
+            Text = "基础条形图"
+        },
+        ForceFit = true,
+        XField = "销售额",
+        YField = "地区",
+        Label = new BarViewConfigLabel
+        {
+            Visible = true,
+            Position = "right"
+        },
+        XAxis = new ValueAxis
+        {
+            Visible = false
+        },
+        YAxis = new CatAxis
+        {
+            Visible = true,
+            OffsetX = 35,
+            OffsetY = -20
+        },
+        BarSize = 15,
+    };
+
+    #endregion 示例6
 
 }
