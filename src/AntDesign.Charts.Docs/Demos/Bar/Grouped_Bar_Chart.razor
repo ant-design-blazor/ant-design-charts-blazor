@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <GroupedBar Data=data1 Config="config1" />
+            <Bar Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -65,8 +65,9 @@
   },
 };
 
-    GroupedBarConfig config1 = new GroupedBarConfig()
+    BarConfig config1 = new BarConfig()
     {
+        IsGroup=true,
         Title = new Charts.Title()
         {
             Visible = true,
@@ -74,7 +75,7 @@
         },
         XField = "value",
         YField = "label",
-        GroupField = "type",
+        SeriesField = "type",
         Color = new string[] { "#1383ab", "#c52125" },
         Label = new BarViewConfigLabel
         {

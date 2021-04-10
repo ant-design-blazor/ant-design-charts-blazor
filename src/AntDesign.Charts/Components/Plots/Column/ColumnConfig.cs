@@ -84,6 +84,8 @@ namespace AntDesign.Charts
         Axis IViewConfig.YAxis { get; set; }
         OneOf<Label, object> IViewConfig.Label { get ; set ; }
 
+        [JsonPropertyName("isGroup")]
+        public bool IsGroup { get; set; }
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
     }

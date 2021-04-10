@@ -4,13 +4,13 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <RangeBar Data=data1 Config="config1" />
+            <Bar Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
     <TabPane Key="2">
         <Tab>示例2</Tab>
         <ChildContent>
-            <RangeBar Data=data2 Config="config2" />
+            <Bar Data=data2 Config="config2" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -29,7 +29,7 @@
         new  { type= "分类八", values=new int []{18, 34 } },
 };
 
-    RangeBarConfig config1 = new RangeBarConfig()
+    BarConfig config1 = new BarConfig()
     {
         Title = new Charts.Title()
         {
@@ -56,7 +56,7 @@
         new  { type= "分类八", values=new int []{18, 34 } },
 };
 
-    RangeBarConfig config2 = new RangeBarConfig()
+    BarConfig config2 = new BarConfig()
     {
         Title = new Charts.Title()
         {
@@ -71,22 +71,6 @@
         XField = "values",
         YField = "type",
         Color = new string[] { "l(0) 0:#3e5bdb 1:#dd3121" },
-        ColumnStyle = new
-        {
-            FillOpacity = 0.8,
-        },
-        Label = new RangeBarLabelConfig()
-        {
-            Visible = true,
-            LeftStyle = new
-            {
-                Fill = "#3e5bdb",
-            },
-            RightStyle = new
-            {
-                Fill = "#dd3121",
-            },
-        },
     };
 
     #endregion 示例2

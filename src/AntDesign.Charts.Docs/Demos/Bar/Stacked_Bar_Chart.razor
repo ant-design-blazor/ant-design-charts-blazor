@@ -4,13 +4,13 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <StackedBar Data=data1 Config="config1" />
+            <Bar Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
     <TabPane Key="2">
         <Tab>示例2</Tab>
         <ChildContent>
-            <StackedBar Data=data2 Config="config2" />
+            <Bar Data=data2 Config="config2" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -70,7 +70,7 @@
   },
 };
 
-    StackedBarConfig config1 = new StackedBarConfig()
+    BarConfig config1 = new BarConfig()
     {
         ForceFit = true,
         Title = new Charts.Title()
@@ -84,7 +84,7 @@
         {
             Visible = true,
         },
-        StackField = "细分",
+        SeriesField = "细分",
     };
 
 
@@ -186,7 +186,7 @@
   },
 };
 
-    StackedBarConfig config2 = new StackedBarConfig()
+    BarConfig config2 = new BarConfig()
     {
         ForceFit = true,
         Title = new Charts.Title()
@@ -201,7 +201,7 @@
         },
         YField = "地区",
         XField = "销售额",
-        StackField = "细分",
+        SeriesField = "细分",
         Label = new BarViewConfigLabel()
         {
             Offset = 0,
