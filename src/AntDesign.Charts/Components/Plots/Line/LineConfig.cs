@@ -93,6 +93,16 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("appendPadding")]
         public int? AppendPadding { get; set; }
+
+        /// <summary>
+        /// 默认为 hv: 'hv','vh','vhv','hvh'
+        /// </summary>
+        [JsonPropertyName("stepType")]
+        public string StepType { get; set; }
+        public static string StepTypeHV = "hv";
+        public static string StepTypeVH = "vh";
+        public static string StepTypeVHV = "vhv";
+        public static string StepTypeHVH = "hvh";
     }
 
     public interface ILineViewConfig : IViewConfig

@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <StepLine Data=data1 Config="config1" />
+            <Line Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -240,8 +240,9 @@
   },
 };
 
-    StepLineConfig config1 = new StepLineConfig()
+    LineConfig config1 = new LineConfig()
     {
+        StepType = "hvh",
         Title = new Charts.Title()
         {
             Visible = true,
