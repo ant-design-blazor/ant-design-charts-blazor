@@ -88,6 +88,9 @@ namespace AntDesign.Charts
         public bool IsGroup { get; set; }
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IColumnViewConfig : IViewConfig

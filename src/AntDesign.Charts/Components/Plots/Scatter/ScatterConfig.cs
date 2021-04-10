@@ -93,6 +93,9 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("sizeField")]
         public string SizeField { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IScatterViewConfig : IPointViewConfig

@@ -80,7 +80,13 @@ namespace AntDesign.Charts
         public int? PixelRatio { get; set; }
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
-OneOf<Label, object> IViewConfig.Label { get ; set ; }
+        OneOf<Label, object> IViewConfig.Label { get; set; }
+
+
+        [JsonPropertyName("innerRadius")]
+        public double? InnerRadius { get; set; }
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IPieViewConfig : IViewConfig

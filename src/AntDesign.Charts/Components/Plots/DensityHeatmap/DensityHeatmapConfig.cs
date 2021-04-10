@@ -85,6 +85,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
         Legend IViewConfig.Legend { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IDensityHeatmapViewConfig : IViewConfig

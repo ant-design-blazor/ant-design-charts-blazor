@@ -4,7 +4,7 @@
         <TabPane Key="1">
             <Tab>示例1</Tab>
             <ChildContent>
-                <Donut Data=data1 Config="config1" />
+                <Pie Data=data1 Config="config1" />
             </ChildContent>
         </TabPane>
     </Tabs>
@@ -39,8 +39,10 @@
   },
 };
 
-    DonutConfig config1 = new DonutConfig()
+    PieConfig config1 = new PieConfig()
     {
+        AppendPadding=10,
+        InnerRadius = 0.6,
         ForceFit = true,
         Title = new Charts.Title()
         {

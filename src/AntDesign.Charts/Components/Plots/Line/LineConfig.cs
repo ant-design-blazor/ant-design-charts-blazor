@@ -90,6 +90,9 @@ namespace AntDesign.Charts
         public bool? LocalRefresh { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface ILineViewConfig : IViewConfig

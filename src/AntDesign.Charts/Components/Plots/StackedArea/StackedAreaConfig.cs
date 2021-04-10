@@ -95,9 +95,12 @@ namespace AntDesign.Charts
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
         AreaLabel IAreaViewConfig.Label { get; set; }
-OneOf<Label, object> IViewConfig.Label { get ; set ; }
+        OneOf<Label, object> IViewConfig.Label { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IStackedAreaLayerConfig : IStackedAreaViewConfig, ILayerConfig { }
