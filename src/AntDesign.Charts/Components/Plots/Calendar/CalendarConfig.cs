@@ -74,6 +74,9 @@ namespace AntDesign.Charts
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 }
 

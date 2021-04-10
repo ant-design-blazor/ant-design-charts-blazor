@@ -88,7 +88,10 @@ namespace AntDesign.Charts
         public int? BinNumber { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
-OneOf<Label, object> IViewConfig.Label { get ; set ; }
+        OneOf<Label, object> IViewConfig.Label { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IHistogramViewConfig : IColumnViewConfig

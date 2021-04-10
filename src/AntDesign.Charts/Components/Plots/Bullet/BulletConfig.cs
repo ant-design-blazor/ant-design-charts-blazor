@@ -89,6 +89,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
         object IViewConfig.Data { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IBulletViewConfig : IViewConfig

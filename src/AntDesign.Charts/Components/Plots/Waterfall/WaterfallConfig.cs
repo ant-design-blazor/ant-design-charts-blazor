@@ -82,6 +82,9 @@ namespace AntDesign.Charts
         public int? PixelRatio { get; set; }
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IWaterfallViewConfig : IViewConfig

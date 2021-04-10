@@ -89,6 +89,9 @@ namespace AntDesign.Charts
         Legend IViewConfig.Legend { get; set; }
         Title IViewConfig.Title { get; set; }
         Description IViewConfig.Description { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface IGroupedColumnLineViewConfig : IColumnLineViewConfig

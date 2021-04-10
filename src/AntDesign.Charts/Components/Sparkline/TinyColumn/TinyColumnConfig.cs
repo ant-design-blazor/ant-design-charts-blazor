@@ -89,6 +89,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("localRefresh")]
         public bool? LocalRefresh { get; set; }
         GuideLineConfig[] IViewConfig.GuideLine { get; set; }
+
+        [JsonPropertyName("appendPadding")]
+        public int AppendPadding { get; set; }
     }
 
     public interface ITinyColumnLayerConfig : ITinyColumnViewConfig, ILayerConfig { }
