@@ -263,17 +263,6 @@
     ]
   },
   {
-    "title": "日历图",
-    "type": "subMenu",
-    "children": [
-      {
-        "title": "日历图",
-        "type": "menuItem",
-        "url": "Calendar_Chart"
-      }
-    ]
-  },
-  {
     "title": "迷你图",
     "type": "subMenu",
     "children": [
@@ -320,11 +309,6 @@
         "url": "Legend"
       },
       {
-        "title": "图形标签",
-        "type": "menuItem",
-        "url": "Label"
-      },
-      {
         "title": "设置图表内边距",
         "type": "menuItem",
         "url": "Set_Padding"
@@ -338,11 +322,6 @@
         "title": "辅助线",
         "type": "menuItem",
         "url": "Guideline"
-      },
-      {
-        "title": "提示信息",
-        "type": "menuItem",
-        "url": "Tooltip"
       },
       {
         "title": "JS交互",

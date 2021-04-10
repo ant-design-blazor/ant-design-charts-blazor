@@ -83,7 +83,7 @@ namespace AntDesign.Charts
 
             if (firstRender)
             {
-                if (Config == null) new TConfig();
+                if (Config == null) Config = new TConfig();
                 if (Config is IViewConfig viewConfig)
                     SetIViewConfig(viewConfig);
 

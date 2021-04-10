@@ -8,10 +8,6 @@ namespace AntDesign.Charts
 {
     public class RadarConfig : IRadarViewConfig, IPlotConfig
     {
-        [JsonPropertyName("angleField")]
-        public string AngleField { get; set; }
-        [JsonPropertyName("radiusField")]
-        public string RadiusField { get; set; }
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
         [JsonPropertyName("smooth")]
@@ -101,16 +97,6 @@ namespace AntDesign.Charts
 
     public interface IRadarViewConfig : IViewConfig
     {
-        /// <summary>
-        ///  角度字段 
-        /// </summary>
-        [JsonPropertyName("angleField")]
-        public string AngleField { get; set; }
-        /// <summary>
-        ///  径向字段 
-        /// </summary>
-        [JsonPropertyName("radiusField")]
-        public string RadiusField { get; set; }
         /// <summary>
         ///  分组字段 
         /// </summary>

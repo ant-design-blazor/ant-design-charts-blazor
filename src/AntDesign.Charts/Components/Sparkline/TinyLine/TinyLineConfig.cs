@@ -84,6 +84,10 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("appendPadding")]
         public int? AppendPadding { get; set; }
+
+
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
 
     public interface ITinyLineViewConfig : ITinyViewConfig

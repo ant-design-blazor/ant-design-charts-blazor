@@ -85,7 +85,7 @@ namespace AntDesign.Charts
         OneOf<Label, object> IViewConfig.Label { get ; set ; }
 
         [JsonPropertyName("isGroup")]
-        public bool IsGroup { get; set; }
+        public bool? IsGroup { get; set; }
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
 

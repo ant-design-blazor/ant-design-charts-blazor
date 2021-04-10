@@ -92,6 +92,12 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("appendPadding")]
         public int? AppendPadding { get; set; }
+
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
+        [JsonPropertyName("smooth")]
+        public bool? Smooth { get; set; }
+
     }
 
     public interface ITinyColumnLayerConfig : ITinyColumnViewConfig, ILayerConfig { }
