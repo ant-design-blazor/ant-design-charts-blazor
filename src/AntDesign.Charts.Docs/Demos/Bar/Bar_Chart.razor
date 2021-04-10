@@ -24,7 +24,7 @@
     <TabPane Key="4">
         <Tab>示例4</Tab>
         <ChildContent>
-            <Bar @ref="chart4" Data="data4" TItem="SalesItem" Config="config4" />
+            <Bar Config="config4" OnFirstRender="onChart4_FirstRender" />
         </ChildContent>
     </TabPane>
     <TabPane Key="5">
@@ -46,17 +46,6 @@
 @inject HttpClient HttpClient
 
 @code{
-
-    IChartComponent chart4;
-
-    SalesItem[] data4;
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        data4 = await DemoData.SalesAsync(NavigationManager, HttpClient);
-    }
-
 
 
     #region 示例1
@@ -161,6 +150,14 @@
 
     #region 示例4
 
+    private async Task onChart4_FirstRender(IChartComponent chart)
+    {
+        var data4 = await DemoData.SalesAsync(NavigationManager, HttpClient);
+        await chart.ChangeData(data4);
+    }
+
+
+
     readonly BarConfig config4 = new BarConfig
     {
         ForceFit = true,
@@ -195,7 +192,7 @@
         },
 
         Interactions = new Interaction[]
-        {
+    {
             new Interaction
             {
                 Type="scrollbar",
@@ -204,7 +201,7 @@
                     type ="vertical",
                 }
             }
-                        }
+                                    }
     };
 
     #endregion 示例4
