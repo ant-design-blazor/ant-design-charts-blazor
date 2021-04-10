@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Progress<TItem> : ChartComponentBase<double, ProgressConfig>
+    public partial class Progress : ChartComponentBase<ProgressConfig>
     {
         public Progress() : base("Progress")
         {
@@ -17,7 +17,7 @@ namespace AntDesign.Charts
         {
             base.SetIViewConfig(config);
 
-            ((ProgressConfig)config).Percent = Data;
+            ((ProgressConfig)config).Percent = (double?)Data;
         }
     }
 }

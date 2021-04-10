@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Column<TItem> : ChartComponentBase<IEnumerable<TItem>, ColumnConfig>
+    public partial class Column : ChartComponentBase<ColumnConfig>
     {
         public Column() : base("Column")
         {

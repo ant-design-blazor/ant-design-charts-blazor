@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Liquid<TItem> : ChartComponentBase<IEnumerable<TItem>, LiquidConfig>
+    public partial class Liquid : ChartComponentBase<LiquidConfig>
     {
         public Liquid() : base("Liquid",isNoDataRender:true)
         {

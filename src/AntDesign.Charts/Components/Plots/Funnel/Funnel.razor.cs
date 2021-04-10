@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Funnel<TItem> : ChartComponentBase<IEnumerable<TItem>, FunnelConfig>
+    public partial class Funnel : ChartComponentBase<FunnelConfig>
     {
         public Funnel() : base("Funnel")
         {

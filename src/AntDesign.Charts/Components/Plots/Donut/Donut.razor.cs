@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Donut<TItem> : ChartComponentBase<IEnumerable<TItem>, DonutConfig>
+    public partial class Donut : ChartComponentBase<DonutConfig>
     {
         public Donut() : base("Donut")
         {

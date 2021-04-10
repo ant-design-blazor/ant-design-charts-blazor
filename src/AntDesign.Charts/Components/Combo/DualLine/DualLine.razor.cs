@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class DualLine<TItem> : ChartComponentBase<IEnumerable<TItem>, DualLineConfig>
+    public partial class DualLine : ChartComponentBase<DualLineConfig>
     {
         public DualLine() : base("DualLine")
         {

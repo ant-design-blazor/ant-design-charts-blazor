@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class RangeColumn<TItem> : ChartComponentBase<IEnumerable<TItem>, RangeColumnConfig>
+    public partial class RangeColumn : ChartComponentBase<RangeColumnConfig>
     {
         public RangeColumn() : base("RangeColumn")
         {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class PercentStackedBar<TItem> : ChartComponentBase<IEnumerable<TItem>, PercentStackedBarConfig>
+    public partial class PercentStackedBar : ChartComponentBase<PercentStackedBarConfig>
     {
         public PercentStackedBar() : base("PercentStackedBar")
         {

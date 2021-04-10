@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Heatmap<TItem> : ChartComponentBase<IEnumerable<TItem>, HeatmapConfig>
+    public partial class Heatmap : ChartComponentBase<HeatmapConfig>
     {
         public Heatmap() : base("Heatmap")
         {

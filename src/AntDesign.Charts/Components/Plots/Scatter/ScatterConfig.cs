@@ -90,6 +90,9 @@ namespace AntDesign.Charts
         public bool? LocalRefresh { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
+
+        [JsonPropertyName("sizeField")]
+        public string SizeField { get; set; }
     }
 
     public interface IScatterViewConfig : IPointViewConfig

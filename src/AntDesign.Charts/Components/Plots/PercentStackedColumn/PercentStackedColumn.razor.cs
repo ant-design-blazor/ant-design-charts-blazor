@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class PercentStackedColumn<TItem> : ChartComponentBase<IEnumerable<TItem>, PercentStackedColumnConfig>
+    public partial class PercentStackedColumn : ChartComponentBase<PercentStackedColumnConfig>
     {
         public PercentStackedColumn() : base("PercentStackedColumn")
         {
