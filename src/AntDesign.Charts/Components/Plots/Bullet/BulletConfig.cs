@@ -91,7 +91,7 @@ namespace AntDesign.Charts
         object IViewConfig.Data { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 
     public interface IBulletViewConfig : IViewConfig

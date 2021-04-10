@@ -88,7 +88,7 @@ namespace AntDesign.Charts
         public bool? LocalRefresh { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 
     public interface IFunnelViewConfig : IViewConfig

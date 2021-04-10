@@ -86,7 +86,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("innerRadius")]
         public double? InnerRadius { get; set; }
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 
     public interface IPieViewConfig : IViewConfig
