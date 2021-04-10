@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <PercentStackedColumn Data=data1 Config="config1" />
+            <AntDesign.Charts.Column Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -120,7 +120,7 @@
   },
 };
 
-    PercentStackedColumnConfig config1 = new PercentStackedColumnConfig()
+    ColumnConfig config1 = new ColumnConfig()
     {
         Title = new Charts.Title()
         {
@@ -130,7 +130,7 @@
         ForceFit = true,
         XField = "year",
         YField = "value",
-        StackField = "country",
+        SeriesField = "country",
         Color = new string[] { "#0f759c", "#26a2cb", "#65d1fc" },
     };
 

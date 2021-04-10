@@ -5,7 +5,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <GroupedColumn Data=data1 Config="config1" OnTitleClick="@(e=>AddEvents("OnTitleClick"))" />
+            <AntDesign.Charts.Column Data=data1 Config="config1" OnTitleClick="@(e=>AddEvents("OnTitleClick"))" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -113,7 +113,7 @@
   },
 };
 
-    GroupedColumnConfig config1 = new GroupedColumnConfig()
+    ColumnConfig config1 = new ColumnConfig()
     {
         Title = new Charts.Title()
         {
@@ -131,7 +131,7 @@
         {
             Visible = true,
         },
-        GroupField = "name",
+        SeriesField = "name",
         Color = new string[] { "#1ca9e6", "#f88c24" },
     };
 

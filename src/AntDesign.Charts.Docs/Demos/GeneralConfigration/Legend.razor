@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <StackedColumn Data=data1 Config="config1" />
+            <AntDesign.Charts.Column Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -135,7 +135,7 @@
   },
 };
 
-    StackedColumnConfig config1 = new StackedColumnConfig()
+    ColumnConfig config1 = new ColumnConfig()
     {
         Title = new Charts.Title()
         {
@@ -149,7 +149,7 @@
         },
         XField = "time",
         YField = "value",
-        StackField = "type",
+        SeriesField = "type",
         Legend = new Charts.Legend()
         {
             Visible = true,

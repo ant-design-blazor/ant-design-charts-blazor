@@ -4,12 +4,13 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <StackedColumn Data=data1 Config="config1" />
+            <AntDesign.Charts.Column Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
 
 @code{
+
     #region 示例1
 
     object[] data1 = new object[] {
@@ -105,7 +106,7 @@
   },
 };
 
-    StackedColumnConfig config1 = new StackedColumnConfig()
+    ColumnConfig config1 = new ColumnConfig()
     {
         Title = new Charts.Title()
         {
@@ -121,7 +122,7 @@
             Min = 0,
         },
         Color = new string[] { "#ae331b", "#1a6179" },
-        StackField = "type",
+        SeriesField = "type",
     };
 
 
