@@ -292,21 +292,6 @@
         "title": "双折线混合图表",
         "type": "menuItem",
         "url": "DualLine_Combo_Chart"
-      },
-      {
-        "title": "柱线混合图表",
-        "type": "menuItem",
-        "url": "Column_line_Combo_Chart"
-      },
-      {
-        "title": "堆叠柱+折线混合图表",
-        "type": "menuItem",
-        "url": "StackedColumn_line_Combo_Chart"
-      },
-      {
-        "title": "分组柱+折线混合图表",
-        "type": "menuItem",
-        "url": "GroupedColumn_line_Combo_Chart"
       }
     ]
   },
