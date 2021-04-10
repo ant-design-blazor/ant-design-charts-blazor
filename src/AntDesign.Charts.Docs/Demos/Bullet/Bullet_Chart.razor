@@ -4,13 +4,13 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Bullet TItem="string" Config="config1" />
+            <Bullet Config="config1" />
         </ChildContent>
     </TabPane>
     <TabPane Key="2">
         <Tab>示例2</Tab>
         <ChildContent>
-            <Bullet @ref="chart2" TItem="string" Config="config2" OtherConfig="otherconfig2" />
+            <Bullet @ref="chart2" Config="config2" OtherConfig="otherconfig2" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -30,8 +30,8 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-         base.OnAfterRender(firstRender);
-         return;
+        base.OnAfterRender(firstRender);
+        return;
     }
 
     #region 示例1
@@ -46,7 +46,7 @@
                   Measures = new int[]{83 },
                   Targets = new int[]{90 },
             },
-    },
+        },
         RangeMax = 100,
         Title = new Charts.Title()
         {
@@ -67,7 +67,7 @@
 
     object otherconfig2 = new
     {
-        legend =new
+        legend = new
         {
             custom = true,
             items = new[]

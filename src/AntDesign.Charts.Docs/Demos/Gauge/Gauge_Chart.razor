@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Gauge TItem="string" Config="config1" />
+            <Gauge Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -21,7 +21,7 @@
         },
         Width = 400,
         Height = 400,
-        Value = 64,
+        Percent = (decimal?)0.75,
         Min = 0,
         Max = 100,
         Range = new double[] { 0, 25, 50, 75, 100 },

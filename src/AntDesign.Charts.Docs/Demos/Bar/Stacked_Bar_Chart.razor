@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Bar Data=data1 Config="config1" />
+            <Bar Data=data1 Config="config1"  />
         </ChildContent>
     </TabPane>
     <TabPane Key="2">
@@ -72,7 +72,6 @@
 
     BarConfig config1 = new BarConfig()
     {
-        ForceFit = true,
         Title = new Charts.Title()
         {
             Visible = true,
@@ -83,10 +82,11 @@
         Label = new BarViewConfigLabel()
         {
             Visible = true,
+            Position = "middle",
+
         },
         SeriesField = "细分",
     };
-
 
     #endregion 示例1
 

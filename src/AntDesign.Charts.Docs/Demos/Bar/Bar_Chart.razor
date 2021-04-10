@@ -34,9 +34,9 @@
         </ChildContent>
     </TabPane>
     <TabPane Key="6">
-        <Tab>示例5</Tab>
+        <Tab>示例6</Tab>
         <ChildContent>
-            <Bar Data="data6" Config="config6" />
+            <Bar Data="data6" Config="config6" OtherConfig="otherConfig6" />
         </ChildContent>
     </TabPane>
 
@@ -201,7 +201,7 @@
                     type ="vertical",
                 }
             }
-                                    }
+                                                }
     };
 
     #endregion 示例4
@@ -262,22 +262,35 @@
         ForceFit = true,
         XField = "销售额",
         YField = "地区",
-        Label = new BarViewConfigLabel
+
+
+        Legend = new Legend()
         {
-            Visible = true,
-            Position = "right"
+            Position = "top-left",
         },
-        XAxis = new ValueAxis
-        {
-            Visible = false
+
+        Interactions = new Interaction[] {
+            new Interaction { Type = "active-region", Enable = false }
         },
+
         YAxis = new CatAxis
         {
             Visible = true,
             OffsetX = 35,
-            OffsetY = -20
+            OffsetY = -25
         },
         BarSize = 15,
+    };
+
+    object otherConfig6 = new
+    {
+        BarBackground = new
+        {
+            Style = new
+            {
+                Fill = "rgba(0,0,0,0.1)",
+            },
+        },
     };
 
     #endregion 示例6

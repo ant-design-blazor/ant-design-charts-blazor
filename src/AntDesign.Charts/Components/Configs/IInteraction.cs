@@ -11,6 +11,8 @@ namespace AntDesign.Charts
         public string Type { get; set; }
         [JsonPropertyName("cfg")]
         public object Cfg { get; set; }// [field: string]: any;
+        [JsonPropertyName("enable")]
+        public bool? Enable { get; set; }
     }
 
     public class Interaction : IInteraction
@@ -19,6 +21,8 @@ namespace AntDesign.Charts
         public string Type { get; set; }
         [JsonPropertyName("cfg")]
         public object Cfg { get; set; }
+        [JsonPropertyName("enable")]
+        public bool? Enable { get; set; }
     }
 
 }

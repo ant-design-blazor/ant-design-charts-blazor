@@ -6,26 +6,20 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <DensityHeatmap @ref="chart1" Data="data1" Config="config1" />
+            <DensityHeatmap Config="config1" OnFirstRender="onChart1_FirstRender" />
         </ChildContent>
     </TabPane>
 </Tabs>
 
 @code{
 
-    IChartComponent chart1;
-    JobpayingItem[] data1;
-
-    protected override async Task OnInitializedAsync()
-    {
-         data1 = await DemoData.JobpayingItemAsync(NavigationManager, HttpClient);
-        await chart1.ChangeData(data1);
-
-        await base.OnInitializedAsync();
-    }
-
-
     #region 示例1
+
+    private async Task onChart1_FirstRender(IChartComponent chart)
+    {
+        var data1 = await DemoData.JobpayingItemAsync(NavigationManager, HttpClient);
+        await chart.ChangeData(data1);
+    }
 
     DensityHeatmapConfig config1 = new DensityHeatmapConfig()
     {

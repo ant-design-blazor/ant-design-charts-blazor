@@ -16,8 +16,8 @@ namespace AntDesign.Charts
         public decimal? Min { get; set; }
         [JsonPropertyName("max")]
         public decimal? Max { get; set; }
-        [JsonPropertyName("value")]
-        public decimal? Value { get; set; }
+        [JsonPropertyName("percent")]
+        public decimal? Percent { get; set; }
         [JsonPropertyName("range")]
         public double[] Range { get; set; }
         [JsonIgnore]
@@ -127,8 +127,8 @@ namespace AntDesign.Charts
         public decimal? Min { get; set; }
         [JsonPropertyName("max")]
         public decimal? Max { get; set; }
-        [JsonPropertyName("value")]
-        public decimal? Value { get; set; }
+        [JsonPropertyName("percent")]
+        public decimal? Percent { get; set; }
         [JsonPropertyName("range")]
         public double[] Range { get; set; }
         [JsonIgnore]

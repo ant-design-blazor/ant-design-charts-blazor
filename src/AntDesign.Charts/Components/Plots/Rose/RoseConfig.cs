@@ -8,12 +8,7 @@ namespace AntDesign.Charts
 {
     public class RoseConfig : IRoseViewConfig, IPlotConfig
     {
-        [JsonPropertyName("radiusField")]
-        public string RadiusField { get; set; }
-        [JsonPropertyName("categoryField")]
-        public string CategoryField { get; set; }
-        [JsonPropertyName("colorField")]
-        public string ColorField { get; set; }
+
         [JsonPropertyName("radius")]
         public double? Radius { get; set; }
         [JsonPropertyName("innerRadius")]
@@ -88,16 +83,16 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("appendPadding")]
         public int? AppendPadding { get; set; }
+
+        [JsonPropertyName("seriesField")]
+        public string SeriesField { get; set; }
+
+        [JsonPropertyName("isGroup")]
+        public bool? IsGroup { get; set; }
     }
 
     public interface IRoseViewConfig : IViewConfig
     {
-        [JsonPropertyName("radiusField")]
-        public string RadiusField { get; set; }
-        [JsonPropertyName("categoryField")]
-        public string CategoryField { get; set; }
-        [JsonPropertyName("colorField")]
-        public string ColorField { get; set; }
         [JsonPropertyName("radius")]
         public double? Radius { get; set; }
         [JsonPropertyName("innerRadius")]

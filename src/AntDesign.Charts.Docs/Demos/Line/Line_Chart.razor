@@ -6,7 +6,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Line @ref="@chart1" Data="data1" Config="config1" />
+            <Line Config="config1" OnFirstRender="onChart1_FirstRender" />
         </ChildContent>
     </TabPane>
     <TabPane Key="2">
@@ -36,15 +36,12 @@
 </Tabs>
 @code{
 
-    IChartComponent chart1;
-    FireworksSalesItem[] data1;
     IChartComponent chart5;
     SalesItem[] data5;
 
     protected override async Task OnInitializedAsync()
     {
-        data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
-        await chart1.ChangeData(data1);
+
 
         data5 = await DemoData.SalesAsync(NavigationManager, HttpClient);
 
@@ -52,6 +49,12 @@
     }
 
     #region 示例1
+
+    private async Task onChart1_FirstRender(IChartComponent chart)
+    {
+        var data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
+        await chart.ChangeData(data1);
+    }
 
     LineConfig config1 = new LineConfig()
     {
@@ -69,11 +72,6 @@
         Padding = "auto",
         XField = "Date",
         YField = "scales",
-        XAxis = new ValueCatTimeAxis()
-        {
-            Type = "dateTime",
-            TickCount = 5,
-        }
     };
 
     #endregion 示例1
@@ -144,14 +142,8 @@
         Padding = "auto",
         XField = "year",
         YField = "value",
-        Point = new LineViewConfigPoint()
-        {
+        Label = new Label() {
             Visible = true,
-        },
-        Label = new Label()
-        {
-            Visible = true,
-            Type = "point",
         },
     };
 
@@ -188,11 +180,7 @@
         ForceFit = true,
         XField = "year",
         YField = "value",
-        Label = new Label()
-        {
-            Visible = true,
-            Type = "point",
-        },
+        Label = new Label() { },
         Point = new LineViewConfigPoint()
         {
             Visible = true,
