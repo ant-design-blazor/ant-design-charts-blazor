@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Radar<TItem> : ChartComponentBase<IEnumerable<TItem>, RadarConfig>
+    public partial class Radar : ChartComponentBase<RadarConfig>
     {
         public Radar() : base("Radar")
         {

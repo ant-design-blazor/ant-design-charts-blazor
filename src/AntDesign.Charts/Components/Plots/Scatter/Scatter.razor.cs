@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Scatter<TItem> : ChartComponentBase<IEnumerable<TItem>, ScatterConfig>
+    public partial class Scatter : ChartComponentBase<ScatterConfig>
     {
         public Scatter() : base("Scatter")
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class TinyColumn<TItem> : ChartComponentBase<IEnumerable<TItem>, TinyColumnConfig>
+    public partial class TinyColumn : ChartComponentBase<TinyColumnConfig>
     {
         public TinyColumn() : base("TinyColumn")
         {

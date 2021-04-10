@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public abstract class ChartComponentBase<TItem, TConfig> : ComponentBase, IChartComponent, IDisposable where TConfig : class, new()
+    public abstract class ChartComponentBase<TConfig> : ComponentBase, IChartComponent, IDisposable where TConfig : class, new()
     {
         protected string ChartType { get; set; }
 
@@ -36,16 +36,16 @@ namespace AntDesign.Charts
         protected const string InteropSetDefault = "AntDesignCharts.interop.setDefault";
         protected const string InteropSetEvent = "AntDesignCharts.interop.setEvent";
 
-        private DotNetObjectReference<ChartComponentBase<TItem, TConfig>> chartRef;
+        private DotNetObjectReference<ChartComponentBase<TConfig>> chartRef;
 
         #endregion
 
         #region 图表属性
 
         [Parameter]
-        public TItem Data { get; set; }
+        public object Data { get; set; }
 
-        //设置当Data没有数据时，图表是否允许要进行初始化绘制,为了结局某些图表当没有数据时，绘制会发生异常的问题
+        //设置当Data没有数据时，图表是否允许要进行初始化绘制,为了解决某些图表当没有数据时，绘制会发生异常的问题
         protected bool IsNoDataRender { get; set; } = false;
 
         [Parameter]
@@ -58,8 +58,17 @@ namespace AntDesign.Charts
 
         #region 图表事件
 
+        /// <summary>
+        /// 当图表完成创建后调用
+        /// </summary>
         [Parameter]
         public EventCallback<IChartComponent> OnCreateAfter { get; set; }
+
+        /// <summary>
+        /// 当图表第一次渲染后触发，可用于填充数据等操作
+        /// </summary>
+        [Parameter]
+        public EventCallback<IChartComponent> OnFirstRender { get; set; }
 
         #endregion
 
@@ -80,6 +89,8 @@ namespace AntDesign.Charts
 
                 if (Data != null || IsNoDataRender == true)
                     await Create();
+
+                if (OnFirstRender.HasDelegate) await OnFirstRender.InvokeAsync(this);
             }
         }
 
@@ -163,7 +174,7 @@ namespace AntDesign.Charts
         /// <returns></returns>
         public async Task ChangeData(object data, bool all = false)
         {
-            Data = (TItem)data;
+            Data = data;
             if (Config is IViewConfig viewConfig)
                 SetIViewConfig(viewConfig);
 

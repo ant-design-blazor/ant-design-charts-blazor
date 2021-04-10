@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Bar<TItem> : ChartComponentBase<IEnumerable<TItem>, BarConfig>
+    public partial class Bar : ChartComponentBase<BarConfig>
     {
         public Bar() : base("Bar")
         {

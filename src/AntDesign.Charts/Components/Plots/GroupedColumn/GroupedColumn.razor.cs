@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class GroupedColumn<TItem> : ChartComponentBase<IEnumerable<TItem>, GroupedColumnConfig>
+    public partial class GroupedColumn : ChartComponentBase<GroupedColumnConfig>
     {
         public GroupedColumn() : base("GroupedColumn")
         {

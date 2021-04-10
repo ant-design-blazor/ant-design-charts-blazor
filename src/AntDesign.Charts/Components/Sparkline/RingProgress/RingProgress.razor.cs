@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class RingProgress : ChartComponentBase<double, RingProgressConfig>
+    public partial class RingProgress : ChartComponentBase<RingProgressConfig>
     {
         public RingProgress() : base("RingProgress")
         {
@@ -17,7 +17,7 @@ namespace AntDesign.Charts
         {
             base.SetIViewConfig(config);
 
-            ((RingProgressConfig)config).Percent = Data;
+            ((RingProgressConfig)config).Percent = (double?)Data;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class TinyArea<TItem> : ChartComponentBase<IEnumerable<TItem>, TinyAreaConfig>
+    public partial class TinyArea : ChartComponentBase<TinyAreaConfig>
     {
         public TinyArea() : base("TinyArea")
         {

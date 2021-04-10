@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Line<TItem> : ChartComponentBase<IEnumerable<TItem>, LineConfig>
+    public partial class Line : ChartComponentBase<LineConfig>
     {
         public Line() : base("Line")
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class Calendar<TItem> : ChartComponentBase<IEnumerable<TItem>, CalendarConfig>
+    public partial class Calendar : ChartComponentBase<CalendarConfig>
     {
         public Calendar() : base("Calendar")
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AntDesign.Charts
 {
-    public partial class StepLine<TItem> : ChartComponentBase<IEnumerable<TItem>, StepLineConfig>
+    public partial class StepLine : ChartComponentBase<StepLineConfig>
     {
         public StepLine() : base("StepLine")
         {
