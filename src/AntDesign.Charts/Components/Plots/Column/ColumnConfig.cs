@@ -83,6 +83,9 @@ namespace AntDesign.Charts
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
         OneOf<Label, object> IViewConfig.Label { get ; set ; }
+
+        [JsonPropertyName("seriesField")]
+        public string SeriesField { get; set; }
     }
 
     public interface IColumnViewConfig : IViewConfig

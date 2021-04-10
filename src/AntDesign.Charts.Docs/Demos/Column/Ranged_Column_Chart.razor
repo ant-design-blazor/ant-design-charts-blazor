@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <RangeColumn Data=data1 Config="config1" />
+            <AntDesign.Charts.Column Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -24,7 +24,7 @@
         new  { type= "分类八", values= new int[]{18, 34 } },
 };
 
-    RangeColumnConfig config1 = new RangeColumnConfig()
+    ColumnConfig config1 = new ColumnConfig()
     {
         Title = new Charts.Title()
         {
