@@ -6,26 +6,20 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <Area @ref="chart1" Data="data1" Config="config1" />
+            <Area Config="config1" OtherConfig="otherConfig" OnFirstRender="onChart1_FirstRender" />
         </ChildContent>
     </TabPane>
 </Tabs>
 
 @code{
 
-    IChartComponent chart1;
-    FireworksSalesItem[] data1;
-
-    protected override async Task OnInitializedAsync()
-    {
-        data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
-        await chart1.ChangeData(data1);
-
-        await base.OnInitializedAsync();
-    }
-
-
     #region 示例1
+
+    private async Task onChart1_FirstRender(IChartComponent chart)
+    {
+        var data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
+        await chart.ChangeData(data1);
+    }
 
     AreaConfig config1 = new AreaConfig()
     {
@@ -36,10 +30,13 @@
         },
         XField = "Date",
         YField = "scales",
-        XAxis = new ValueCatTimeAxis()
+    };
+
+    object otherConfig = new
+    {
+        xAxis = new
         {
-            Type = "dateTime",
-            TickCount = 5,
+            range = new object[] { 0, 1 },
         },
     };
 

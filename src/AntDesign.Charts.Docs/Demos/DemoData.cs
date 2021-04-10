@@ -86,6 +86,11 @@ namespace AntDesign.Charts.Docs.Demos
         {
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<LifeExpectanyItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/life-expectancy.json").ToString());
+        }  
+        
+        public static async Task<object> BMWProdAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            return await HttpClient.GetFromJsonAsync<object>("https://gw.alipayobjects.com/os/bmw-prod/b21e7336-0b3e-486c-9070-612ede49284e.json");
         }
     }
 

@@ -85,6 +85,9 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("appendPadding")]
         public int AppendPadding { get; set; }
+
+        [JsonPropertyName("isPercent")]
+        public bool IsPercent { get; set; }
     }
 
     public interface IAreaViewConfig : IViewConfig

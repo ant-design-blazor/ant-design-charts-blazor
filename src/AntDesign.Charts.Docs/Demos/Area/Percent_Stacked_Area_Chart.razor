@@ -4,7 +4,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <PercentStackedArea Data=data1 Config="config1" />
+            <AntDesign.Charts.Area Data=data1 Config="config1" />
         </ChildContent>
     </TabPane>
 
@@ -121,7 +121,7 @@
   },
 };
 
-    PercentStackedAreaConfig config1 = new PercentStackedAreaConfig()
+    AreaConfig config1 = new AreaConfig()
     {
         Title = new Charts.Title()
         {
@@ -137,12 +137,13 @@
         },
         XField = "year",
         YField = "value",
-        StackField = "country",
+        SeriesField = "country",
         Color = new string[] { "#82d1de", "#cb302d", "#e3ca8c" },
         AreaStyle = new GraphicStyle
         {
             FillOpacity = 0.7M,
         },
+        IsPercent = true,
     };
 
     #endregion 示例1

@@ -6,7 +6,7 @@
     <TabPane Key="1">
         <Tab>示例1</Tab>
         <ChildContent>
-            <StackedArea @ref="chart1" Data="data1" Config="config1" />
+            <AntDesign.Charts.Area @ref="chart1" Data="data1" Config="config1" OtherConfig="otherConfig" />
         </ChildContent>
     </TabPane>
 </Tabs>
@@ -27,7 +27,7 @@
     #region 示例1
 
 
-    StackedAreaConfig config1 = new StackedAreaConfig()
+    AreaConfig config1 = new AreaConfig()
     {
         Title = new Charts.Title()
         {
@@ -36,21 +36,24 @@
         },
         XField = "date",
         YField = "value",
-        StackField = "country",
+        SeriesField = "country",
         Color = new string[] { "#6897a7", "#8bc0d6", "#60d7a7", "#dedede", "#fedca9", "#fab36f", "#d96d6f" },
-        XAxis = new ValueCatTimeAxis()
-        {
-            Type = "dateTime",
-            TickCount = 5,
-        },
         Legend = new Legend()
         {
             Visible = true,
             Position = "right-top",
         },
-        @*responsive = true,*@
+        Responsive = true,
     };
 
+
+    object otherConfig = new
+    {
+        xAxis = new
+        {
+            range = new object[] { 0, 1 },
+        },
+    };
 
     #endregion 示例1
 
