@@ -20,7 +20,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("padding")]
         public OneOf<int?, string, int[]> Padding { get; set; }//
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
         [JsonPropertyName("xField")]
         public string XField { get; set; }
         [JsonPropertyName("yField")]

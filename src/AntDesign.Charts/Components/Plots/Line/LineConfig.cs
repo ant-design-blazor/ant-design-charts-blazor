@@ -92,7 +92,7 @@ namespace AntDesign.Charts
         Axis IViewConfig.YAxis { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 
     public interface ILineViewConfig : IViewConfig

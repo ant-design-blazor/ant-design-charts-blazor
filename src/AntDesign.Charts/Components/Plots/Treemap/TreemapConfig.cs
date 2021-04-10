@@ -83,7 +83,7 @@ namespace AntDesign.Charts
         OneOf<Label, object> IViewConfig.Label { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 
     public interface ITreemapViewConfig : IViewConfig

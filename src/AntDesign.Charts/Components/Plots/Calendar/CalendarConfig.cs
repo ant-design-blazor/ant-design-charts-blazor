@@ -76,7 +76,7 @@ namespace AntDesign.Charts
         public string Name { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 }
 

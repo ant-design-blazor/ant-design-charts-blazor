@@ -84,7 +84,7 @@ namespace AntDesign.Charts
         Description IViewConfig.Description { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
 
         [JsonPropertyName("geometryOptions")]
         public object[] GeometryOptions { get; set; }

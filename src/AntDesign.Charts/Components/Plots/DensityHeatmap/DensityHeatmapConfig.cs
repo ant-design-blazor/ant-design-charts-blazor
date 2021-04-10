@@ -87,7 +87,7 @@ namespace AntDesign.Charts
         Legend IViewConfig.Legend { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 
     public interface IDensityHeatmapViewConfig : IViewConfig

@@ -88,7 +88,7 @@ namespace AntDesign.Charts
         public string SeriesField { get; set; }
 
         [JsonPropertyName("appendPadding")]
-        public int AppendPadding { get; set; }
+        public int? AppendPadding { get; set; }
     }
 
 
