@@ -43,6 +43,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("mask")]
         public string Mask { get; set; }
         string ITimeAxis.TickInterval { get; set; }
+
+        [JsonPropertyName("range")]
+        public int[]? Range { get; set; }
     }
 }
 
