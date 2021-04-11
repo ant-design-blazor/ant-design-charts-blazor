@@ -11,7 +11,8 @@ namespace AntDesign.Charts
 
         public Task Repaint();
 
-        public Task UpdateConfig(object config, object otherConfig = null, bool all = false);
+        public Task UpdateChart(object config = null, object otherConfig = null, string jsonConfig = null, string jsConfig = null, bool all = false, object data = null);
+        public Task UpdateConfig(object config = null, object otherConfig = null, bool all = false);
 
         public Task ChangeData(object data, bool all = false);
 
