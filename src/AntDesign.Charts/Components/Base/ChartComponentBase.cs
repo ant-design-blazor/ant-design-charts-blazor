@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace AntDesign.Charts
@@ -50,6 +51,12 @@ namespace AntDesign.Charts
 
         [Parameter]
         public TConfig Config { get; set; }
+
+        [Parameter]
+        public string JsonConfig { get; set; }
+
+        [Parameter]
+        public string JsConfig { get; set; }
 
         [Parameter]
         public object OtherConfig { get; set; }
@@ -122,7 +129,7 @@ namespace AntDesign.Charts
         /// <returns></returns>
         private async Task Create()
         {
-            await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
+            await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, JsonConfig, JsConfig);
             IsCreated = true;
 
             if (OnCreateAfter.HasDelegate)
@@ -154,40 +161,69 @@ namespace AntDesign.Charts
         }
 
         /// <summary>
-        /// 更新配置
+        /// 更新配置和数据
         /// </summary>
         /// <param name="config"></param>
         /// <param name="otherConfig"></param>
         /// <param name="all"></param>
         /// <returns></returns>
-        public async Task UpdateConfig(object config, object otherConfig, bool all = false)
+        public async Task UpdateChart(object config = null, object otherConfig = null, string jsonConfig = null, string jsConfig = null, bool all = false, object data = null)
         {
-            Config = (TConfig)config;
+            if (config != null) Config = (TConfig)config;
+
+            if (Config == null) Config = new TConfig();//如果没有配置，那么构造一个默认配置，用于解决传入数据的问题
+            if (string.IsNullOrWhiteSpace(jsonConfig) == false) JsonConfig = jsonConfig;
+            if (string.IsNullOrWhiteSpace(jsConfig) == false) JsConfig = jsConfig;
             OtherConfig = otherConfig;
-            await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
+
+            if (data != null && Config is IViewConfig viewConfig)
+            {//更新数据
+                Data = data;
+                SetIViewConfig(viewConfig);
+            }
+
+            if (IsCreated == false)
+            {
+                await Create();
+            }
+            else if (config != null || otherConfig != null || string.IsNullOrWhiteSpace(jsonConfig) == false)
+            {
+                //更新接口已经不存在了
+                //await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
+                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, JsonConfig, JsConfig);
+            }
+            else if ((config == null || otherConfig == null || string.IsNullOrWhiteSpace(jsonConfig)) && data != null)
+            {//更新数据
+                await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, all);
+            }
+        }
+
+        /// <summary>
+        /// 仅更新配置
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="otherConfig"></param>
+        /// <param name="all"></param>
+        /// <returns></returns>
+        [Obsolete(message: "请使用UpdateChart代替")]
+        public async Task UpdateConfig(object config = null, object otherConfig = null, bool all = false)
+        {
+            await UpdateChart(config, otherConfig, all: all);
+            //if (Config != null) Config = (TConfig)config;
+            //if (string.IsNullOrWhiteSpace(jsonConfig) == false) JsonConfig = jsonConfig;
+            //OtherConfig = otherConfig;
+            //await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
         }
         /// <summary>
-        /// 更新数据
+        /// 仅更新数据
         /// </summary>
         /// <param name="data"></param>
         /// <param name="all"></param>
         /// <returns></returns>
+        [Obsolete(message: "请使用UpdateChart代替")]
         public async Task ChangeData(object data, bool all = false)
         {
-            Data = data;
-            if (Config is IViewConfig viewConfig)
-                SetIViewConfig(viewConfig);
-
-            //根据图表是否已经状态决定调用的函数
-            if (IsCreated == true)
-            {
-                await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, all);
-            }
-            else
-            {
-                await Create();
-                //await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, Data);
-            }
+            await UpdateChart(data: data, all: all);
         }
         /// <summary>
         /// 设置激活

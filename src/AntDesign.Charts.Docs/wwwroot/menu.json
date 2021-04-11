@@ -1,5 +1,10 @@
 [
   {
+    "title": "快速开始",
+    "type": "menuItem",
+    "url": "Started"
+  },
+  {
     "title": "折线图",
     "type": "subMenu",
     "children": [
