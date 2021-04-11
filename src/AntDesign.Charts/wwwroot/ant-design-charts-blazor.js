@@ -90,6 +90,11 @@ window.AntDesignCharts = {
                 }
                 dotnetHelper.invokeMethodAsync(func, e);
             })
+        },
+
+        getEvalJson(jsCode) {
+            let jsObj = eval("(" + jsCode + ")");
+            return JSON.stringify(jsObj);
         }
     },
     chartsContainer: {}

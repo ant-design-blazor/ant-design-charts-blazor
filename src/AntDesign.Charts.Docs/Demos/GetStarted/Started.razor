@@ -1,4 +1,6 @@
 ﻿@page "/Started"
+@inject IJSRuntime JS
+
 <Row>
     <AntDesign.Col Span="12">
         <AntDesign.Charts.Column @ref="chart" />
@@ -7,13 +9,47 @@
     <AntDesign.Col Span="12">
         <Row>
             <AntDesign.Col Span="12">
-                <Text>配置</Text>
-                @*<TextArea MinRows="25" @bind-Value="@jsonConfig" />*@
-                <TextArea MinRows="25" @bind-Value="@jsConfig" />
+                <Space>
+                    <SpaceItem>
+                        配置格式
+                    </SpaceItem>
+                    <SpaceItem>
+                        <RadioGroup @bind-Value="configType" ButtonStyle="solid">
+                            <Radio RadioButton Value="@("JSON")">JSON</Radio>
+                            <Radio RadioButton Value="@("JavaScript")">JavaScript</Radio>
+                        </RadioGroup>
+                    </SpaceItem>
+
+                </Space>
+                @if (configType == "JavaScript")
+                {
+                    <TextArea MinRows="25" @bind-Value="@jsConfig" />
+                }
+                @if (configType == "JSON")
+                {
+                    <TextArea MinRows="25" @bind-Value="@jsonConfig" />
+                }
             </AntDesign.Col>
             <AntDesign.Col Span="12">
-                <Text>数据</Text>
-                <TextArea MinRows="25" @bind-Value="@jsonData" />
+                <Space>
+                    <SpaceItem>
+                        <Text>数据格式</Text>
+                    </SpaceItem>
+                    <SpaceItem>
+                        <RadioGroup @bind-Value="dataType" ButtonStyle="solid">
+                            <Radio RadioButton Value="@("JSON")">JSON</Radio>
+                            <Radio RadioButton Value="@("JavaScript")">JavaScript</Radio>
+                        </RadioGroup>
+                    </SpaceItem>
+                </Space>
+                @if (dataType == "JavaScript")
+                {
+                    <TextArea MinRows="25" @bind-Value="@jsData" />
+                }
+                @if (dataType == "JSON")
+                {
+                    <TextArea MinRows="25" @bind-Value="@jsonData" />
+                }
             </AntDesign.Col>
         </Row>
         <Divider></Divider>
@@ -39,47 +75,74 @@
 }";
 
     string jsConfig = @" {
-  xField: 'year',
-  yField: 'value',
-  label: {
+xField: 'year',
+yField: 'value',
+label: {
     // 可手动配置 label 数据标签位置
     position: 'middle', // 'top', 'bottom', 'middle',
     // 配置样式
     style: {
-      fill: '#FFFFFF',
-      opacity: 0.6,
+    fill: '#FFFFFF',
+    opacity: 0.6,
     },
-  },
-  xAxis: {
+},
+xAxis: {
     label: {
-      autoHide: true,
-      autoRotate: false,
+        autoHide: true,
+        autoRotate: false,
     },
-  },
+},
 }";
 
     string jsonData = @"[
-    { ""year"": ""1991"", ""value"": 3 },
-    { ""year"": ""1992"", ""value"": 4 },
-    { ""year"": ""1993"", ""value"": 3.5 },
-    { ""year"": ""1994"", ""value"": 5 },
-    { ""year"": ""1995"", ""value"": 4.9 },
-    { ""year"": ""1996"", ""value"": 6 },
-    { ""year"": ""1997"", ""value"": 7 },
-    { ""year"": ""1998"", ""value"": 9 },
-    { ""year"": ""1999"", ""value"": 13 }
+{ ""year"": ""1991"", ""value"": 3 },
+{ ""year"": ""1992"", ""value"": 4 },
+{ ""year"": ""1993"", ""value"": 3.5 },
+{ ""year"": ""1994"", ""value"": 5 },
+{ ""year"": ""1995"", ""value"": 4.9 },
+{ ""year"": ""1996"", ""value"": 6 },
+{ ""year"": ""1997"", ""value"": 7 },
+{ ""year"": ""1998"", ""value"": 9 },
+{ ""year"": ""1999"", ""value"": 13 }
+]";
+
+    string jsData = @"[
+{ year: '1991', value: 3 },
+{ year: '1992', value: 4 },
+{ year: '1993', value: 3.5 },
+{ year: '1994', value: 5 },
+{ year: '1995', value: 4.9 },
+{ year: '1996', value: 6 },
+{ year: '1997', value: 7 },
+{ year: '1998', value: 9 },
+{ year: '1999', value: 13 }
 ]";
 
     IChartComponent chart;
 
+    string configType = "JavaScript";
+    string dataType = "JavaScript";
+
     public async void OnApply()
     {
+        object data;
 
-        var data = System.Text.Json.JsonSerializer.Deserialize<object>
-            (jsonData);
+        if (dataType == "JavaScript")
+        {
+            var jsData = await JS.InvokeAsync<string>("AntDesignCharts.interop.getEvalJson", jsonData);
+            data = System.Text.Json.JsonSerializer.Deserialize<object>(jsData);
+        }
+        else
+        {
+            data = System.Text.Json.JsonSerializer.Deserialize<object>(jsonData);
+        }
 
-        await chart.UpdateChart(jsConfig: jsConfig, data: data);
-        //jsonConfig:jsonConfig
+
+        if (configType == "JavaScript")
+            await chart.UpdateChart(jsConfig: jsConfig, data: data);
+        else
+            await chart.UpdateChart(jsonConfig: jsonConfig, data: data);
+
     }
 
 }
