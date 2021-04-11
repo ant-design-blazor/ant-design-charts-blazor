@@ -163,22 +163,22 @@ namespace AntDesign.Charts
         /// <summary>
         /// 更新配置和数据
         /// </summary>
-        /// <param name="config"></param>
-        /// <param name="otherConfig"></param>
+        /// <param name="csConfig"></param>
+        /// <param name="csOtherConfig"></param>
         /// <param name="all"></param>
         /// <returns></returns>
-        public async Task UpdateChart(object config = null, object otherConfig = null, string jsonConfig = null, string jsConfig = null, bool all = false, object data = null)
+        public async Task UpdateChart(object csConfig = null, object csOtherConfig = null, string jsonConfig = null, string jsConfig = null, bool all = false, object csData = null)
         {
-            if (config != null) Config = (TConfig)config;
+            if (csConfig != null) Config = (TConfig)csConfig;
 
             if (Config == null) Config = new TConfig();//如果没有配置，那么构造一个默认配置，用于解决传入数据的问题
-            if (string.IsNullOrWhiteSpace(jsonConfig) == false) JsonConfig = jsonConfig;
-            if (string.IsNullOrWhiteSpace(jsConfig) == false) JsConfig = jsConfig;
-            OtherConfig = otherConfig;
+            JsonConfig = jsonConfig;
+            JsConfig = jsConfig;
+            OtherConfig = csOtherConfig;
 
-            if (data != null && Config is IViewConfig viewConfig)
+            if (csData != null && Config is IViewConfig viewConfig)
             {//更新数据
-                Data = data;
+                Data = csData;
                 SetIViewConfig(viewConfig);
             }
 
@@ -186,13 +186,13 @@ namespace AntDesign.Charts
             {
                 await Create();
             }
-            else if (config != null || otherConfig != null || string.IsNullOrWhiteSpace(jsonConfig) == false)
+            else if (csConfig != null || csOtherConfig != null || string.IsNullOrWhiteSpace(jsonConfig) == false || string.IsNullOrWhiteSpace(jsConfig) == false)
             {
                 //更新接口已经不存在了
                 //await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
                 await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, JsonConfig, JsConfig);
             }
-            else if ((config == null || otherConfig == null || string.IsNullOrWhiteSpace(jsonConfig)) && data != null)
+            else if ((csConfig == null || csOtherConfig == null || string.IsNullOrWhiteSpace(jsonConfig) || string.IsNullOrWhiteSpace(jsConfig)) && csData != null)
             {//更新数据
                 await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, all);
             }
@@ -223,7 +223,7 @@ namespace AntDesign.Charts
         [Obsolete(message: "请使用UpdateChart代替")]
         public async Task ChangeData(object data, bool all = false)
         {
-            await UpdateChart(data: data, all: all);
+            await UpdateChart(csData: data, all: all);
         }
         /// <summary>
         /// 设置激活
