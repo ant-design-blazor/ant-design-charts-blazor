@@ -1,0 +1,105 @@
+﻿@namespace AntDesign.Charts.Docs
+@inject IJSRuntime JS
+
+<Row>
+
+    <AntDesign.Col Span="12">
+        <Row>
+            <AntDesign.Col Span="12">
+                <Space>
+                    <SpaceItem>
+                        配置格式
+                    </SpaceItem>
+                    <SpaceItem>
+                        <RadioGroup @bind-Value="configType" ButtonStyle="solid">
+                            <Radio RadioButton Value="@("JSON")">JSON</Radio>
+                            <Radio RadioButton Value="@("JavaScript")">JavaScript</Radio>
+                        </RadioGroup>
+                    </SpaceItem>
+
+                </Space>
+                @if (configType == "JavaScript")
+                {
+                    <TextArea MinRows="18" MaxRows="18" @bind-Value="@JsConfig" />
+                }
+                @if (configType == "JSON")
+                {
+                    <TextArea MinRows="18" MaxRows="18" @bind-Value="@JsonConfig" />
+                }
+            </AntDesign.Col>
+            <AntDesign.Col Span="12">
+                <Space>
+                    <SpaceItem>
+                        <Text>数据格式</Text>
+                    </SpaceItem>
+                    <SpaceItem>
+                        <RadioGroup @bind-Value="configType" ButtonStyle="solid">
+                            <Radio RadioButton Value="@("JSON")">JSON</Radio>
+                            <Radio RadioButton Value="@("JavaScript")">JavaScript</Radio>
+                        </RadioGroup>
+                    </SpaceItem>
+                </Space>
+                @if (configType == "JavaScript")
+                {
+                    <TextArea MinRows="18" MaxRows="18" @bind-Value="@JsData" />
+                }
+                @if (configType == "JSON")
+                {
+                    <TextArea MinRows="18" MaxRows="18" @bind-Value="@JsonData" />
+                }
+            </AntDesign.Col>
+        </Row>
+    </AntDesign.Col>
+    <AntDesign.Col Span="12">
+        <Space>
+            <SpaceItem>
+                预览
+            </SpaceItem>
+            <SpaceItem>
+                <Button Type="primary" OnClick="OnApply">应用配置</Button>
+            </SpaceItem>
+        </Space>
+        @ChildContent
+    </AntDesign.Col>
+</Row>
+
+@code{
+
+    [Parameter] public string JsonConfig { get; set; }
+
+    [Parameter] public string JsConfig { get; set; }
+
+    [Parameter] public string JsonData { get; set; }
+
+    [Parameter] public string JsData { get; set; }
+
+    public IChartComponent Chart { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    string configType = "JavaScript";
+    string dataType = "JavaScript";
+
+    public async void OnApply()
+    {
+        object data;
+
+        if (dataType == "JavaScript")
+        {
+            var jsData = await JS.InvokeAsync<string>("AntDesignCharts.interop.getEvalJson", JsonData);
+            data = System.Text.Json.JsonSerializer.Deserialize<object>(jsData);
+        }
+        else
+        {
+            data = System.Text.Json.JsonSerializer.Deserialize<object>(JsonData);
+        }
+
+
+        if (configType == "JavaScript")
+            await Chart.UpdateChart(jsConfig: JsConfig, data: data);
+        else
+            await Chart.UpdateChart(jsonConfig: JsonConfig, data: data);
+
+    }
+
+}

@@ -12,24 +12,39 @@
     <TabPane Key="2">
         <Tab>示例2</Tab>
         <ChildContent>
-            <Scatter Config="config2" OnFirstRender="chart=>Chart2_FirstRender(chart)"/>
+            <Scatter Config="config2" OnFirstRender="chart=>Chart2_FirstRender(chart)" />
         </ChildContent>
     </TabPane>
     @*<TabPane Key="3">
-        <Tab>示例3</Tab>
-        <ChildContent>
-            <Bubble @ref="chart3" Data="data3" Config="config3" />
-        </ChildContent>
-    </TabPane>
-    <TabPane Key="4">
-        <Tab>示例4</Tab>
-        <ChildContent>
-            <Bubble @ref="chart4" Data="data4" Config="config4" />
-        </ChildContent>
-    </TabPane>*@
+            <Tab>示例3</Tab>
+            <ChildContent>
+                <Bubble @ref="chart3" Data="data3" Config="config3" />
+            </ChildContent>
+        </TabPane>
+        <TabPane Key="4">
+            <Tab>示例4</Tab>
+            <ChildContent>
+                <Bubble @ref="chart4" Data="data4" Config="config4" />
+            </ChildContent>
+        </TabPane>*@
 </Tabs>
 
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <Scatter @ref="@chart" />
+</DynamicExample>
+
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
 
     SmokingRateItem[] data1;
 
@@ -112,10 +127,10 @@
                 new {fill= "#a3dda1", opacity= 0.1},
                 new {fill= "white", opacity= 0},
                 new {fill="#d8d0c0", opacity=0.2}
-                },
+                    },
             Label = new
             {
-                Text = new []
+                Text = new[]
                 {
                     "Female decrease,\nmale increase",
                     "Female & male decrease",
@@ -154,8 +169,8 @@
         },
         Trendline = new TrendlineConfig
         {
-            Visible=true,
-            Type="log",
+            Visible = true,
+            Type = "log",
         }
     };
 
@@ -170,7 +185,7 @@
         YField = "lifeExpectancy",
         SizeField = "population",
         ColorField = "country",
-        PointSize= new[] {4,80},
+        PointSize = new[] { 4, 80 },
         Color = new[]{
             "#5B8FF9",
             "#5AD8A6",
@@ -197,11 +212,11 @@
             Visible = true,
             Max = 100000,
             Min = 300,
-            Nice=false,
-            Type="log",
-            Title= new BaseAxisTitle
+            Nice = false,
+            Type = "log",
+            Title = new BaseAxisTitle
             {
-                Visible=true,
+                Visible = true,
                 Text = "人均收入",
             }
         },
@@ -218,11 +233,11 @@
             }
         },
 
-        Tooltip  = new Charts.Tooltip
+        Tooltip = new Charts.Tooltip
         {
-            Visible=true,
+            Visible = true,
             ShowTitle = true,
-            TitleField="country",
+            TitleField = "country",
             Fields = new[]
             {
                 "income",
@@ -232,10 +247,10 @@
 
         },
 
-        Label  = new Label
+        Label = new Label
         {
-            Visible=true,
-            Field="country",
+            Visible = true,
+            Field = "country",
         },
 
         Interactions = new Interaction[]
@@ -250,7 +265,7 @@
                     loop = true,
                 }
             }
-        },
+            },
 
 
     };

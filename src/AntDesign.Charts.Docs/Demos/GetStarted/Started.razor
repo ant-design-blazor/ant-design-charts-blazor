@@ -1,72 +1,21 @@
 ﻿@page "/Started"
 @inject IJSRuntime JS
 
-<Row>
-    <AntDesign.Col Span="12">
-        <AntDesign.Charts.Column @ref="chart" />
+<DynamicExample @ref="@example" JsonConfig="@jsonConfig" JsConfig="@jsConfig"  JsonData="@jsonData" JsData="@jsData">
+    <AntDesign.Charts.Column @ref="@chart"  />
+</DynamicExample>
 
-    </AntDesign.Col>
-    <AntDesign.Col Span="12">
-        <Row>
-            <AntDesign.Col Span="12">
-                <Space>
-                    <SpaceItem>
-                        配置格式
-                    </SpaceItem>
-                    <SpaceItem>
-                        <RadioGroup @bind-Value="configType" ButtonStyle="solid">
-                            <Radio RadioButton Value="@("JSON")">JSON</Radio>
-                            <Radio RadioButton Value="@("JavaScript")">JavaScript</Radio>
-                        </RadioGroup>
-                    </SpaceItem>
-
-                </Space>
-                @if (configType == "JavaScript")
-                {
-                    <TextArea MinRows="25" @bind-Value="@jsConfig" />
-                }
-                @if (configType == "JSON")
-                {
-                    <TextArea MinRows="25" @bind-Value="@jsonConfig" />
-                }
-            </AntDesign.Col>
-            <AntDesign.Col Span="12">
-                <Space>
-                    <SpaceItem>
-                        <Text>数据格式</Text>
-                    </SpaceItem>
-                    <SpaceItem>
-                        <RadioGroup @bind-Value="dataType" ButtonStyle="solid">
-                            <Radio RadioButton Value="@("JSON")">JSON</Radio>
-                            <Radio RadioButton Value="@("JavaScript")">JavaScript</Radio>
-                        </RadioGroup>
-                    </SpaceItem>
-                </Space>
-                @if (dataType == "JavaScript")
-                {
-                    <TextArea MinRows="25" @bind-Value="@jsData" />
-                }
-                @if (dataType == "JSON")
-                {
-                    <TextArea MinRows="25" @bind-Value="@jsonData" />
-                }
-            </AntDesign.Col>
-        </Row>
-        <Divider></Divider>
-        <Space>
-
-            <SpaceItem>
-                <Button Type="primary" OnClick="OnApply">应用</Button>
-            </SpaceItem>
-
-        </Space>
-
-
-
-    </AntDesign.Col>
-</Row>
 
 @code{
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
 
     string jsonConfig = @"{
     ""forceFit"" : ""true"",
@@ -117,32 +66,4 @@ xAxis: {
 { year: '1998', value: 9 },
 { year: '1999', value: 13 }
 ]";
-
-    IChartComponent chart;
-
-    string configType = "JavaScript";
-    string dataType = "JavaScript";
-
-    public async void OnApply()
-    {
-        object data;
-
-        if (dataType == "JavaScript")
-        {
-            var jsData = await JS.InvokeAsync<string>("AntDesignCharts.interop.getEvalJson", jsonData);
-            data = System.Text.Json.JsonSerializer.Deserialize<object>(jsData);
-        }
-        else
-        {
-            data = System.Text.Json.JsonSerializer.Deserialize<object>(jsonData);
-        }
-
-
-        if (configType == "JavaScript")
-            await chart.UpdateChart(jsConfig: jsConfig, data: data);
-        else
-            await chart.UpdateChart(jsonConfig: jsonConfig, data: data);
-
-    }
-
 }

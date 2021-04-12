@@ -1,15 +1,32 @@
 @page "/Liquid_Chart"
 
-    <Tabs>
-        <TabPane Key="1">
-            <Tab>示例1</Tab>
-            <ChildContent>
-                <Liquid Config="config1" />
-            </ChildContent>
-        </TabPane>
-    </Tabs>
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Liquid Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <Liquid @ref="@chart" />
+</DynamicExample>
 
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
+
 
     #region 示例1
 
