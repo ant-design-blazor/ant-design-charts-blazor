@@ -1,8 +1,54 @@
 ﻿@page "/Started"
+@page "/"
+
 @inject IJSRuntime JS
 
-<DynamicExample @ref="@example" JsonConfig="@jsonConfig" JsConfig="@jsConfig"  JsonData="@jsonData" JsData="@jsData">
-    <AntDesign.Charts.Column @ref="@chart"  />
+<Title Level="3">介绍</Title>
+<Paragraph>
+    Ant Design Charts Blazor 图表库基于 G2Plot 开发
+
+</Paragraph>
+
+<Title Level="3">安装</Title>
+<Paragraph>
+    <ul>
+        <li>
+            进入应用的项目文件夹，安装 Nuget 包引用
+        </li>
+    </ul>
+    $ dotnet add package AntDesign.Charts
+    <ul>
+        <li>
+            在 wwwroot/index.html(WebAssembly) 或 Pages/_Host.razor(Server) 中引入静态文件:
+        </li>
+    </ul>
+    @(@"<script type=""text/javascript"" src=""https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js""></script>")
+    @(@"<script src=""_content/AntDesign.Charts/ant-design-charts-blazor.js""></script>")
+    <ul>
+        <li>
+            在 _Imports.razor 中加入命名空间
+        </li>
+    </ul>
+    @(@"@using AntDesign.Charts")
+    <ul>
+        <li>
+            最后就可以在.razor组件中引用啦！
+        </li>
+    </ul>
+</Paragraph>
+
+<Title Level="3">链接</Title>
+<Paragraph>
+    <a href="https://github.com/ant-design-blazor/ant-design-charts-blazor">GitHub</a>
+    <br />
+    <a href="https://blazor.net/">Blazor 官方文档</a>
+    <br />
+    <a href="https://antv-g2plot.gitee.io/zh/examples/gallery">G2Plot 官方文档</a>
+</Paragraph>
+<Title Level="3">动手实验</Title>
+
+<DynamicExample @ref="@example" JsonConfig="@jsonConfig" JsConfig="@jsConfig" JsonData="@jsonData" JsData="@jsData">
+    <AntDesign.Charts.Column @ref="@chart" />
 </DynamicExample>
 
 
@@ -18,28 +64,28 @@
 
 
     string jsonConfig = @"{
-    ""forceFit"" : ""true"",
-    ""xField"" : ""year"",
-    ""yField"" : ""value""
+""forceFit"" : ""true"",
+""xField"" : ""year"",
+""yField"" : ""value""
 }";
 
     string jsConfig = @" {
 xField: 'year',
 yField: 'value',
 label: {
-    // 可手动配置 label 数据标签位置
-    position: 'middle', // 'top', 'bottom', 'middle',
-    // 配置样式
-    style: {
-    fill: '#FFFFFF',
-    opacity: 0.6,
-    },
+// 可手动配置 label 数据标签位置
+position: 'middle', // 'top', 'bottom', 'middle',
+// 配置样式
+style: {
+fill: '#FFFFFF',
+opacity: 0.6,
+},
 },
 xAxis: {
-    label: {
-        autoHide: true,
-        autoRotate: false,
-    },
+label: {
+autoHide: true,
+autoRotate: false,
+},
 },
 }";
 
