@@ -11,7 +11,23 @@
         <RingProgress Data="@context.load" Config="loadConfig"></RingProgress>
     </AntDesign.Column>
 </Table>
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <RingProgress @ref="@chart" />
+</DynamicExample>
+
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
 
     List<DataItem> datas = new List<DataItem>()
 {

@@ -2,52 +2,67 @@
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
-    <Tabs>
-        <TabPane Key="1">
-            <Tab>示例1</Tab>
-            <ChildContent>
-                <AntDesign.Charts.Column Data=data1 Config="config1" />
-            </ChildContent>
-        </TabPane>
-        <TabPane Key="2">
-            <Tab>示例2</Tab>
-            <ChildContent>
-                <AntDesign.Charts.Column Data=data1 Config="config2" />
-            </ChildContent>
-        </TabPane>
-        <TabPane Key="3">
-            <Tab>示例3</Tab>
-            <ChildContent>
-                <AntDesign.Charts.Column Data=data1 Config="config3" />
-            </ChildContent>
-        </TabPane>
-        <TabPane Key="4">
-            <Tab>示例4</Tab>
-            <ChildContent>
-                <AntDesign.Charts.Column Data=data1 Config="config4" />
-            </ChildContent>
-        </TabPane>
-        <TabPane Key="5">
-            <Tab>示例5</Tab>
-            <ChildContent>
-                <AntDesign.Charts.Column Data=data5 Config="config5" />
-            </ChildContent>
-        </TabPane>
-        <TabPane Key="6">
-            <Tab>示例6</Tab>
-            <ChildContent>
-                <AntDesign.Charts.Column Data=data5 Config="config6" />
-            </ChildContent>
-        </TabPane>
-        <TabPane Key="7">
-            <Tab>示例7</Tab>
-            <ChildContent>
-                <AntDesign.Charts.Column Data=data7 Config="config7" />
-            </ChildContent>
-        </TabPane>
-    </Tabs>
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Column Data=data1 Config="config1" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="2">
+        <Tab>示例2</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Column Data=data1 Config="config2" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="3">
+        <Tab>示例3</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Column Data=data1 Config="config3" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="4">
+        <Tab>示例4</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Column Data=data1 Config="config4" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="5">
+        <Tab>示例5</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Column Data=data5 Config="config5" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="6">
+        <Tab>示例6</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Column Data=data5 Config="config6" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="7">
+        <Tab>示例7</Tab>
+        <ChildContent>
+            <AntDesign.Charts.Column Data=data7 Config="config7" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <AntDesign.Charts.Column @ref="@chart" />
+</DynamicExample>
 
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
 
     #region 示例1
     object[] data1 = new object[] {
@@ -267,12 +282,12 @@
                     Type="slider",
                     Cfg = new  { start = 0.4, end = 0.45},
                 },
-    },
+            },
     };
     #endregion
 
     #region 示例6
-    ColumnConfig config6= new ColumnConfig()
+    ColumnConfig config6 = new ColumnConfig()
     {
         Title = new Charts.Title()
         {
@@ -299,9 +314,9 @@
         YAxis = new ValueAxis()
         {
             Visible = true,
-            Label= new BaseAxisLabel()
+            Label = new BaseAxisLabel()
             {
-                Visible=true,
+                Visible = true,
             },
         },
         YField = "销售额",
@@ -310,7 +325,7 @@
                 new Interaction{
                     Type="scrollbar",
                 },
-        },
+                },
     };
     #endregion
 
@@ -323,9 +338,9 @@
         new{action = "生成订单", pv=25000},
         new{action = "支付订单", pv=15000},
         new{action = "完成交易", pv=8500},
-};
+        };
 
-    ColumnConfig config7= new ColumnConfig()
+    ColumnConfig config7 = new ColumnConfig()
     {
         Title = new Charts.Title()
         {
@@ -342,9 +357,9 @@
         Padding = "auto",
         XField = "action",
         YField = "pv",
-        ConversionTag=new ConversionTagOptions()
+        ConversionTag = new ConversionTagOptions()
         {
-            Visible=true,
+            Visible = true,
         },
     };
     #endregion

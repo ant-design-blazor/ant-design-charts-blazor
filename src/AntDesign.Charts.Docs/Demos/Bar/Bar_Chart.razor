@@ -1,4 +1,6 @@
 @page "/Bar_Chart"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
 
 @using Title = AntDesign.Charts.Title
 
@@ -42,10 +44,25 @@
 
 </Tabs>
 
-@inject NavigationManager NavigationManager
-@inject HttpClient HttpClient
+
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <Bar @ref="@chart" />
+</DynamicExample>
 
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
+
 
 
     #region 示例1
@@ -201,7 +218,7 @@
                     type ="vertical",
                 }
             }
-                                                }
+                                                        }
     };
 
     #endregion 示例4

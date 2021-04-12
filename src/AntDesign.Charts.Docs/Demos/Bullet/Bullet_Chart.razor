@@ -15,7 +15,22 @@
     </TabPane>
 </Tabs>
 
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <Bullet @ref="@chart" />
+</DynamicExample>
+
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
 
     IChartComponent chart2;
 
@@ -28,11 +43,6 @@
 
     }
 
-    protected override void OnAfterRender(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-        return;
-    }
 
     #region 示例1
 
@@ -46,7 +56,7 @@
                   Measures = new int[]{83 },
                   Targets = new int[]{90 },
             },
-        },
+            },
         RangeMax = 100,
         Title = new Charts.Title()
         {

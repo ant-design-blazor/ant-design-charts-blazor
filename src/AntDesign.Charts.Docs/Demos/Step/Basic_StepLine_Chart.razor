@@ -11,7 +11,22 @@
     </TabPane>
 </Tabs>
 
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <Line @ref="@chart" />
+</DynamicExample>
+
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
     IChartComponent chart1;
     FireworksSalesItem[] data1;
 
@@ -28,7 +43,7 @@
 
     LineConfig config1 = new LineConfig()
     {
-        StepType= LineConfig.StepTypeHV,
+        StepType = LineConfig.StepTypeHV,
         Title = new Charts.Title()
         {
             Visible = true,

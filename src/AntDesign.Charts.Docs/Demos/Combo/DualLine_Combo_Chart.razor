@@ -8,7 +8,23 @@
         </ChildContent>
     </TabPane>
 </Tabs>
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <DualAxes @ref="@chart" />
+</DynamicExample>
+
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
 
     #region 示例1
 

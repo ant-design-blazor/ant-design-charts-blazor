@@ -34,7 +34,23 @@
         </ChildContent>
     </TabPane>
 </Tabs>
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <Line @ref="@chart" />
+</DynamicExample>
+
 @code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
 
     IChartComponent chart5;
     SalesItem[] data5;
@@ -142,7 +158,8 @@
         Padding = "auto",
         XField = "year",
         YField = "value",
-        Label = new Label() {
+        Label = new Label()
+        {
             Visible = true,
         },
     };
