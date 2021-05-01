@@ -35,7 +35,8 @@ namespace AntDesign.Charts
         [JsonPropertyName("custom")]
         public bool Custom { get; set; }
 
-
+        [JsonPropertyName("selected")]
+        public Dictionary<string, bool> Selected { get; set; }
     }
 
     public class LegendTitle
@@ -87,7 +88,8 @@ namespace AntDesign.Charts
         [JsonPropertyName("custom")]
         public bool Custom { get; set; }
 
-
+        [JsonPropertyName("selected")]
+        public Dictionary<string, bool> Selected { get; set; }
     }
 }
 
