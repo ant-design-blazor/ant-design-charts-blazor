@@ -23,7 +23,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 3.1.300
+          dotnet-version: 5.0.x
 
       - name: Publish Docs 🎉
         run: |
@@ -31,7 +31,7 @@ jobs:
           cp -rf gh-pages/* gh-pages/.nojekyll gh-pages/.spa ./
           cd ../../../
           dotnet build
-          dotnet publish -c Release -o cargo
+          dotnet publish -c Release -o cargo src/AntDesign.Charts.Docs.WebAssembly
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3
