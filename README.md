@@ -21,7 +21,7 @@ English | [简体中文](README-zh_CN.md)
   - Link the static files in `wwwroot/index.html` (WebAssembly) or `Pages/_Host.razor` (Server)
 
   ```html
-  <script src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.js"></script>
+  <script src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
   <script src="_content/AntDesign.Charts/ant-design-charts-blazor.js"></script>
   ```
   
