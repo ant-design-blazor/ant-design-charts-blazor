@@ -1,5 +1,10 @@
 [
   {
+    "title": "快速开始",
+    "type": "menuItem",
+    "url": "Started"
+  },
+  {
     "title": "折线图",
     "type": "subMenu",
     "children": [
@@ -263,17 +268,6 @@
     ]
   },
   {
-    "title": "日历图",
-    "type": "subMenu",
-    "children": [
-      {
-        "title": "日历图",
-        "type": "menuItem",
-        "url": "Calendar_Chart"
-      }
-    ]
-  },
-  {
     "title": "迷你图",
     "type": "subMenu",
     "children": [
@@ -292,21 +286,6 @@
         "title": "双折线混合图表",
         "type": "menuItem",
         "url": "DualLine_Combo_Chart"
-      },
-      {
-        "title": "柱线混合图表",
-        "type": "menuItem",
-        "url": "Column_line_Combo_Chart"
-      },
-      {
-        "title": "堆叠柱+折线混合图表",
-        "type": "menuItem",
-        "url": "StackedColumn_line_Combo_Chart"
-      },
-      {
-        "title": "分组柱+折线混合图表",
-        "type": "menuItem",
-        "url": "GroupedColumn_line_Combo_Chart"
       }
     ]
   },
@@ -335,11 +314,6 @@
         "url": "Legend"
       },
       {
-        "title": "图形标签",
-        "type": "menuItem",
-        "url": "Label"
-      },
-      {
         "title": "设置图表内边距",
         "type": "menuItem",
         "url": "Set_Padding"
@@ -353,11 +327,6 @@
         "title": "辅助线",
         "type": "menuItem",
         "url": "Guideline"
-      },
-      {
-        "title": "提示信息",
-        "type": "menuItem",
-        "url": "Tooltip"
       },
       {
         "title": "JS交互",
