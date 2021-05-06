@@ -31,11 +31,11 @@ namespace AntDesign.Charts
         public LegendMarker Marker { get; set; }
         [JsonPropertyName("text")]
         public LegendText Text { get; set; }
+        [JsonPropertyName("selected")]
+        public Dictionary<string, bool> Selected { get; set; }
 
         [JsonPropertyName("custom")]
         public bool Custom { get; set; }
-
-
     }
 
     public class LegendTitle
@@ -83,11 +83,11 @@ namespace AntDesign.Charts
         public LegendMarker Marker { get; set; }
         [JsonPropertyName("text")]
         public LegendText Text { get; set; }
+        [JsonPropertyName("selected")]
+        public Dictionary<string, bool> Selected { get; set; }
 
         [JsonPropertyName("custom")]
         public bool Custom { get; set; }
-
-
     }
 }
 
