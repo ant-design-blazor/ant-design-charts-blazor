@@ -33,8 +33,6 @@ namespace AntDesign.Charts
         public object Meta { get; set; }//ILooseMap<Meta>
         [JsonIgnore]
         public OneOf<int?, string, int[]> Padding { get; set; }
-        [JsonPropertyName("isStack")]
-        public bool? IsStack { get; set; }
         [JsonPropertyName("padding")]
         public object PaddingMapping => Padding.Value;
         [JsonPropertyName("xField")]
@@ -105,6 +103,8 @@ namespace AntDesign.Charts
         public static string StepTypeVH = "vh";
         public static string StepTypeVHV = "vhv";
         public static string StepTypeHVH = "hvh";
+        [JsonPropertyName("isStack")]
+        public bool? IsStack { get; set; }
     }
 
     public interface ILineViewConfig : IViewConfig
