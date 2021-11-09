@@ -103,6 +103,8 @@ namespace AntDesign.Charts
         public static string StepTypeVH = "vh";
         public static string StepTypeVHV = "vhv";
         public static string StepTypeHVH = "hvh";
+        [JsonPropertyName("isStack")]
+        public bool? IsStack { get; set; }
     }
 
     public interface ILineViewConfig : IViewConfig
