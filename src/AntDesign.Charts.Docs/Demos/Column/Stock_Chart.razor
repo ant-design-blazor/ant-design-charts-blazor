@@ -1,0 +1,92 @@
+@page "/Stock_Chart"
+
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Stock Data=data1 Config="config1" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <Stock @ref="@chart" />
+</DynamicExample>
+
+@code {
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
+
+    #region 示例1
+
+    object[] data1 = new object[] {
+        new  { ts_code= "000001.SH", trade_date= "2020-03-13",close= 2887.4265,open= 2804.2322,high= 2910.8812,low=2799.9841,vol= 366450436,amount= 393019665.2},
+        new  { ts_code= "000001.SH", trade_date= "2020-03-14",close= 2887.4265,open= 2804.2322,high= 2910.8812,low=2799.9841,vol= 366450436,amount= 393019665.2},
+        new  { ts_code= "000001.SH", trade_date= "2020-03-15",close= 2887.4265,open= 2804.2322,high= 2910.8812,low=2799.9841,vol= 366450436,amount= 393019665.2},
+        new  { ts_code= "000001.SH", trade_date= "2020-03-16",close= 2887.4265,open= 2804.2322,high= 2910.8812,low=2799.9841,vol= 366450436,amount= 393019665.2},
+        new  { ts_code= "000001.SH", trade_date= "2020-03-17",close= 2887.4265,open= 2804.2322,high= 2910.8812,low=2799.9841,vol= 366450436,amount= 393019665.2},
+        new  { ts_code= "000001.SH", trade_date= "2020-03-18",close= 2887.4265,open= 2804.2322,high= 2910.8812,low=2799.9841,vol= 366450436,amount= 393019665.2},
+};
+
+    StockConfig config1 = new StockConfig()
+        {
+            Title = new Charts.Title()
+            {
+                Visible = true,
+                Text = "基础蜡烛图",
+            },
+            ForceFit = true,
+            Padding = "auto",
+            XField = "trade_date",
+            YField = new string[4]{"open", "close", "high", "low"},
+            Meta = new
+            {
+                ts_code = new
+                {
+                    Alias = "代號",
+                },
+                trade_date = new
+                {
+                    Alias = "日期",
+                },
+                close = new
+                {
+                    Alias = "收盤價",
+                },
+                open = new
+                {
+                    Alias = "開盤價",
+                },
+                high = new
+                {
+                    Alias = "最高價",
+                },
+                low = new
+                {
+                    Alias = "最低價",
+                },
+                vol = new
+                {
+                    Alias = "成交量",
+                },
+                amount = new
+                {
+                    Alias = "總量",
+                },
+            },
+        };
+
+
+    #endregion 示例1
+
+}
+
