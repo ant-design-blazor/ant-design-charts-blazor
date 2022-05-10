@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
+using AntDesign;
 
 namespace AntDesign.Charts
 {
@@ -93,7 +94,8 @@ namespace AntDesign.Charts
         public string FallingFill { get; set; }
         [JsonPropertyName("columnWidthRatio")]
         public double ColumnWidthRatio { get; set; }
-
+        [JsonPropertyName("slider")]
+        public object Slider { get; set; }
     }
     public interface IStockViewConfig : IViewConfig
     {
@@ -126,6 +128,9 @@ namespace AntDesign.Charts
         /// </summary>
         [JsonPropertyName("columnWidthRatio")]
         public double ColumnWidthRatio { get; set; }
+
+        [JsonPropertyName("slider")]
+        public object Slider { get; set; }
     }
 
     public class StockViewConfigShowTotal
