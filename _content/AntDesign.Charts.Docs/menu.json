@@ -100,6 +100,11 @@
         "title": "瀑布图",
         "type": "menuItem",
         "url": "Waterfall_Chart"
+      },
+      {
+        "title": "股市图",
+        "type": "menuItem",
+        "url": "Stock_Chart"
       }
     ]
   },
