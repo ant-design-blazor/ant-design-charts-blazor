@@ -295,6 +295,17 @@
     ]
   },
   {
+    "title": "更多图表",
+    "type": "subMenu",
+    "children": [
+      {
+        "title": "箱型图",
+        "type": "menuItem",
+        "url": "Box_Chart"
+      }
+    ]
+  },
+  {
     "title": "图表通用配置",
     "type": "subMenu",
     "children": [
