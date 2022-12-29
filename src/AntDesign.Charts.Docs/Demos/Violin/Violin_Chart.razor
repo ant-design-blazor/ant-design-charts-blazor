@@ -1,0 +1,126 @@
+﻿@page "/Violin_Chart"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+@using Tooltip = AntDesign.Charts.Tooltip
+<Tabs>
+    <TabPane Key="1">
+        <Tab>示例1</Tab>
+        <ChildContent>
+            <Violin Data="Data" Config="_config1" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="2">
+        <Tab>示例2</Tab>
+        <ChildContent>
+            <Violin Data="Data" Config="_config2" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="3">
+        <Tab>示例3</Tab>
+        <ChildContent>
+            <Violin Data="Data" Config="_config3" />
+        </ChildContent>
+    </TabPane>
+    <TabPane Key="4">
+        <Tab>示例4</Tab>
+        <ChildContent>
+            <Violin Data="Data" Config="_config4" />
+        </ChildContent>
+    </TabPane>
+</Tabs>
+
+<DynamicExample @ref="@_example">
+    <Violin @ref="@Chart"/>
+</DynamicExample>
+
+@code {
+
+    public IChartComponent Chart;
+    private DynamicExample _example;
+    private object[] Data { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        _example.Chart = Chart;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Data = await DemoData.ViolinDataAsync(NavigationManager, HttpClient);
+        await base.OnInitializedAsync();
+    }
+
+    #region Basic violin plot
+
+    private readonly ViolinConfig _config1 = new ViolinConfig()
+    {
+        Height = 500,
+        XField = "x",
+        YField = "y"
+    };
+
+    #endregion
+
+    #region Grouped violin plot
+
+    private readonly ViolinConfig _config2 = new ViolinConfig()
+    {
+        Height = 500,
+        XField = "x",
+        YField = "y",
+        SeriesField = "species"
+    };
+
+    #endregion
+
+    #region Smooth/Hollow violin plot
+
+    private readonly ViolinConfig _config3 = new ViolinConfig()
+    {
+        Height = 500,
+        XField = "x",
+        YField = "y",
+        Shape = "hollow-smooth"
+    };
+
+    #endregion
+
+    #region Customize tooltip texts
+
+    private readonly ViolinConfig _config4 = new ViolinConfig()
+    {
+        Height = 500,
+        XField = "x",
+        YField = "y",
+        SeriesField = "species",
+        Tooltip = new Tooltip()
+        {
+            Fields = new[] {"species", "high", "q1", "q3", "low"}
+        },
+            Meta = @"{
+      high: {
+        alias: '最大值',
+        formatter: (v) => `${v.toFixed(2)} %`,
+      },
+      low: {
+        alias: '最小值',
+        formatter: (v) => `${v.toFixed(2)} %`,
+      },
+      q1: {
+        alias: '上四分位数',
+        formatter: (v) => `${v.toFixed(2)} %`,
+      },
+      q3: {
+        alias: '下四分位数',
+        formatter: (v) => `${v.toFixed(2)} %`,
+      },
+      species: {
+        alias: '品类',
+      },
+    }"
+    };
+
+    #endregion
+
+}

@@ -97,6 +97,11 @@ namespace AntDesign.Charts.Docs.Demos
         {
             return await HttpClient.GetFromJsonAsync<object[]>("https://gw.alipayobjects.com/os/antfincdn/qtQ9nYfYJe/stock-data.json");
         }
+
+        public static async Task<object[]> ViolinDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            return await HttpClient.GetFromJsonAsync<object[]>("https://gw.alipayobjects.com/os/bmw-prod/6b0a5f1d-5931-42ae-b3ba-3c3cb77d0861.json");
+        }
     }
 
     public class FireworksSalesItem

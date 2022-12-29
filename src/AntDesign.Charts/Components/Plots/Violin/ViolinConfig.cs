@@ -75,8 +75,8 @@ namespace AntDesign.Charts
         public Axis YAxis { get; set; }
         [JsonPropertyName("xField")]
         public string XField { get; set; }
-        [JsonIgnore]
-        string IViewConfig.YField { get; set; }
+        [JsonPropertyName("yField")]
+        public string YField { get; set; }
 
 
         //IViolinViewConfig
