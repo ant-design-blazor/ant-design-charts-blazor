@@ -78,6 +78,8 @@ namespace AntDesign.Charts
         public string XField { get; set; }
         [JsonIgnore]
         string IViewConfig.YField { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
 
 
         //IBoxViewConfig

@@ -89,6 +89,8 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("isGroup")]
         public bool? IsGroup { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
 
     public interface IRoseViewConfig : IViewConfig

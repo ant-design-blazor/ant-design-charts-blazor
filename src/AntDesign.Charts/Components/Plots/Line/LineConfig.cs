@@ -105,6 +105,8 @@ namespace AntDesign.Charts
         public static string StepTypeHVH = "hvh";
         [JsonPropertyName("isStack")]
         public bool? IsStack { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
 
     public interface ILineViewConfig : IViewConfig

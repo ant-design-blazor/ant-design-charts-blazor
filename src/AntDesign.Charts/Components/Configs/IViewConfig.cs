@@ -64,6 +64,8 @@ namespace AntDesign.Charts
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
 
     public class ViewConfigDefaultState

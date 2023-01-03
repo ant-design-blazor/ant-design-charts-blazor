@@ -88,6 +88,8 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("isPercent")]
         public bool IsPercent { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
 
     public interface IAreaViewConfig : IViewConfig

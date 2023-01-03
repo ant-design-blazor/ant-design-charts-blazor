@@ -22,6 +22,8 @@ namespace AntDesign.Charts
         public object ThemeMapping => Theme.Value;
         [JsonPropertyName("width")]
         public int? Width { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
 
 
         //From IViewConfig

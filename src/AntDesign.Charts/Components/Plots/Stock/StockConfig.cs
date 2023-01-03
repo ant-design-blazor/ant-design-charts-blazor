@@ -96,6 +96,8 @@ namespace AntDesign.Charts
         public double ColumnWidthRatio { get; set; }
         [JsonPropertyName("slider")]
         public object Slider { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
     public interface IStockViewConfig : IViewConfig
     {

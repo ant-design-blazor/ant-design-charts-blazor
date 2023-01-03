@@ -88,6 +88,8 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("geometryOptions")]
         public object[] GeometryOptions { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
 
     }
 
