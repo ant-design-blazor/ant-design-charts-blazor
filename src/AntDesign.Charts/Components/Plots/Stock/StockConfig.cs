@@ -73,7 +73,8 @@ namespace AntDesign.Charts
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
-        [JsonPropertyName("forceFit")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("width")]
         public int? Width { get; set; }
@@ -96,6 +97,8 @@ namespace AntDesign.Charts
         public double ColumnWidthRatio { get; set; }
         [JsonPropertyName("slider")]
         public object Slider { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
     public interface IStockViewConfig : IViewConfig
     {

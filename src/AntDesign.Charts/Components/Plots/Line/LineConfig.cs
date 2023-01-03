@@ -78,7 +78,8 @@ namespace AntDesign.Charts
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
         public string Name { get; set; }
-        [JsonPropertyName("forceFit")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("width")]
         public int? Width { get; set; }
@@ -105,6 +106,8 @@ namespace AntDesign.Charts
         public static string StepTypeHVH = "hvh";
         [JsonPropertyName("isStack")]
         public bool? IsStack { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
 
     public interface ILineViewConfig : IViewConfig

@@ -88,7 +88,8 @@ namespace AntDesign.Charts
         public object Parent { get; set; }
         [JsonPropertyName("canvas")]
         public object Canvas { get; set; }
-        [JsonPropertyName("forceFit")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("pixelRatio")]
         public int? PixelRatio { get; set; }
@@ -98,6 +99,8 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("appendPadding")]
         public int? AppendPadding { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
     }
 
     public interface IHeatmapLayerConfig : IHeatmapViewConfig, ILayerConfig { }

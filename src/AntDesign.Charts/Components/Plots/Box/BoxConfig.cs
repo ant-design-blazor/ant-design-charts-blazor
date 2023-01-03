@@ -1,4 +1,5 @@
 ﻿using OneOf;
+using System;
 using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
@@ -6,7 +7,8 @@ namespace AntDesign.Charts
     public class BoxConfig : IBoxViewConfig, IPlotConfig
     {
         //From IPlotConfig
-        [JsonPropertyName("forceFit")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("height")]
         public int? Height { get; set; }
@@ -78,6 +80,8 @@ namespace AntDesign.Charts
         public string XField { get; set; }
         [JsonIgnore]
         string IViewConfig.YField { get; set; }
+        [JsonPropertyName("autoFit")]
+        public bool? AutoFit { get; set; }
 
 
         //IBoxViewConfig
