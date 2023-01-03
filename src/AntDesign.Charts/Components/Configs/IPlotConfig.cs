@@ -10,7 +10,7 @@ namespace AntDesign.Charts
     public interface IPlotConfig
     {
         [JsonIgnore]
-        [JsonPropertyName("forceFit")]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("width")]
         public int? Width { get; set; }

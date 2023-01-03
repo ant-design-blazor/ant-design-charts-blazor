@@ -1,4 +1,5 @@
 using OneOf;
+using System;
 using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
@@ -21,7 +22,8 @@ namespace AntDesign.Charts
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        [JsonPropertyName("forceFit")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("width")]
         public int? Width { get; set; }

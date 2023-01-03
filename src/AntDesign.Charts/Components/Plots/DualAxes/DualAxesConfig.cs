@@ -28,7 +28,8 @@ namespace AntDesign.Charts
         public string XField { get; set; }
         [JsonPropertyName("yField")]
         public string[] YField { get; set; }
-        [JsonPropertyName("forceFit")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("width")]
         public int? Width { get; set; }

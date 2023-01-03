@@ -1,4 +1,5 @@
 ﻿using OneOf;
+using System;
 using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
@@ -6,7 +7,8 @@ namespace AntDesign.Charts
     public class ViolinConfig : IViolinViewConfig, IPlotConfig
     {
         //From IPlotConfig
-        [JsonPropertyName("forceFit")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use autoFit instead")]
         public bool? ForceFit { get; set; }
         [JsonPropertyName("height")]
         public int? Height { get; set; }
