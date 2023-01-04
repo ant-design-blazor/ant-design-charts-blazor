@@ -1,0 +1,355 @@
+﻿@page "/Annotation"
+@inject NavigationManager NavigationManager
+@inject HttpClient HttpClient
+
+<Tabs>
+    <TabPane Key="1" Tab="Sample 1">
+        <AntDesign.Charts.Column Data="_data1" Config="_config1" />
+    </TabPane>
+    <TabPane Key="2" Tab="Sample 2">
+        <AntDesign.Charts.Column Data="_data1" Config="_config2" />
+    </TabPane>
+    <TabPane Key="3" Tab="Sample 3">
+        <Line Config="_config3" OnFirstRender="Chart3Render" />
+    </TabPane>
+    <TabPane Key="4" Tab="Sample 4">
+        <Pie Data="_data1" Config="_config4" />
+    </TabPane>
+    <TabPane Key="5" Tab="Sample 5">
+        <Line Data="_data5" Config="_config5" />
+    </TabPane>
+</Tabs>
+
+@code {
+
+    #region Sample 1
+
+    object[] _data1 = new object[] {
+        new  {
+            type= "分类一",
+            value= 27,
+        },
+        new  {
+            type= "分类二",
+            value= 25,
+        },
+        new  {
+            type= "分类三",
+            value= 18,
+        },
+        new  {
+            type= "分类四",
+            value= 15,
+        },
+        new  {
+            type= "分类五",
+            value= 10,
+        },
+        new  {
+            type= "其它",
+            value= 5,
+        },
+    };
+
+    ColumnConfig _config1 = new ColumnConfig()
+    {
+        Width = 400,
+        Height = 300,
+        AutoFit = false,
+        AppendPadding = 0,
+        YField = "value",
+        XField = "type",
+        Annotation = new IAnnotation[]
+        {
+            new TextAnnotation
+            {
+                Type = Annotation.TypeText,
+                Content = "Hello",
+                //Position Examples: 
+                //Position = new object[]{"42%","10"},
+                //Position = new object[]{"分类三",19},
+                Position = new []{"42%","35%"},
+                Style = new TextStyle
+                {
+                    TextAlign = "center",
+                    Fill = "rgba(0,0,0,0.85)",
+                }
+            }
+        }
+    };
+
+    #endregion
+
+    #region Sample 2
+
+    ColumnConfig _config2 = new ColumnConfig()
+    {
+        Width = 400,
+        Height = 300,
+        AutoFit = false,
+        AppendPadding = 0,
+        YField = "value",
+        XField = "type",
+        Annotation = new IAnnotation[]
+        {
+            new TextAnnotation
+            {
+                Type = Annotation.TypeText,
+                Content = "Hello",
+                Position = new []{"42%","35%"},
+                Style = new TextStyle
+                {
+                    TextAlign = "center",
+                    Fill = "rgba(0,0,0,0.85)",
+                },
+                OffsetY = -8,
+                Background = new AnnotationBackgroundCfg()
+                {
+                    Padding = 4,
+                    Style = new TextStyle()
+                    {
+                        Fill = "rgba(255,0,0,0.25)",
+                        Radius = 4
+                    }
+                }
+            }
+        }
+    };
+
+    #endregion
+
+    #region Sample 3
+
+    LineConfig _config3 = new LineConfig()
+    {
+        XField = "Date",
+        YField = "scales",
+        Padding = "auto",
+        XAxis = new ValueCatTimeAxis()
+        {
+            TickCount = 5
+        },
+        Smooth = true,
+    };
+
+    private async void Chart3Render(IChartComponent chart)
+    {
+        var data3 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
+        await chart.ChangeData(data3);
+
+        var maxValue = data3.Max(c => c.scales);
+        var averageValue = data3.Average(c => c.scales);
+        _config3.Annotation = new[]
+        {
+            new LineAnnotation
+            {
+                Type = Annotation.TypeLine,
+                Start = new object[] { "min", maxValue },
+                End = new object[] { "max", maxValue },
+                Text = new AnnotationTextCfg()
+                {
+                    Content = "最大值",
+                    Position = TextStyle.TextAlignRight,
+                    OffsetY = 18,
+                    Style = new TextStyle()
+                    {
+                        TextAlign = TextStyle.TextAlignRight
+                    }
+                },
+                Style = new TextStyle()
+                {
+                    LineDash = new[] { 4, 4 }
+                }
+            },
+            new LineAnnotation
+            {
+                Type = Annotation.TypeLine,
+                Start = new object[] { "min", averageValue },
+                End = new object[] { "max", averageValue },
+                Text = new AnnotationTextCfg()
+                {
+                    Content = "平均值线",
+                    Position = TextStyle.TextAlignRight,
+                    OffsetY = -6,
+                    Style = new TextStyle()
+                    {
+                        TextAlign = TextStyle.TextAlignRight,
+                        Fill = "lightBlue"
+                    }
+                },
+                Style = new TextStyle()
+                {
+                    LineDash = new[] { 4, 4 },
+                    Stroke = "LightBlue"
+                }
+            }
+    };
+        await chart.UpdateConfig(_config3);
+    }
+    #endregion
+
+    #region Sample 4
+
+    PieConfig _config4 = new PieConfig()
+    {
+        AppendPadding = 10,
+        AngleField = "value",
+        ColorField = "type",
+        Radius = 0.8,
+        InnerRadius = 0.64,
+        Label = new PieLabelConfig
+        {
+            Type = "inner",
+            Offset = "-50%",
+    //todo Content missing
+            Style = new TextStyle()
+            {
+                Fill = "#fff",
+                FontSize = 14,
+                TextAlign = TextStyle.TextAlignCenter
+            }
+        },
+        Statistic = false,
+        Annotation = new[]
+        {
+            new ImageAnnotation
+            {
+                Type = Annotation.TypeImage,
+                Src = "https://gw.alipayobjects.com/mdn/rms_2274c3/afts/img/A*ELYbTIVCgPoAAAAAAAAAAABkARQnAQ",
+                Position = new Object [] { "50%", "50%" },
+                Style = new GraphicStyle
+                {
+                    Width = 50,
+                    Height = 50
+                },
+                OffsetX = -25,
+                OffsetY = 40,
+            }
+        }
+    };
+
+    #endregion
+
+    #region Sample 5
+
+    object[] _data5 = new object[]
+    {
+        new
+        {
+            month = "1",
+            value = 1078,
+        },
+        new
+        {
+            month = "2",
+            value = 1216,
+        },
+        new
+        {
+            month = "3",
+            value = 758,
+        },
+        new
+        {
+            month = "4",
+            value = 623,
+        },
+        new
+        {
+            month = "5",
+            value = 319,
+        },
+        new
+        {
+            month = "6",
+            value = 422,
+        },
+        new
+        {
+            month = "7",
+            value = -4,
+        },
+        new
+        {
+            month = "8",
+            value = -217,
+        },
+        new
+        {
+            month = "9",
+            value = -358,
+        },
+        new
+        {
+            month = "10",
+            value = 1513,
+        },
+        new
+        {
+            month = "11",
+            value = 1388,
+        },
+        new
+        {
+            month = "12",
+            value = 597,
+        },
+    };
+
+    LineConfig _config5 = new LineConfig()
+    {
+        Padding = "auto",
+        XField = "month",
+        YField = "value",
+        Meta = new
+        {
+            value = new
+            {
+                max = 2000,
+                min = -1000
+            },
+            month = new
+            {
+                //formatter = "(val) => `${val} 月`", no C# equivalent yet
+            }
+        },
+        Annotation = new IAnnotation[]
+        {
+            new RegionAnnotation
+            {
+                Type = Annotation.TypeRegion,
+                Start = new[] { "7", "min" },
+                End = new[] { "9", "max" }
+            },
+            new DataMarkerAnnotation()
+            {
+                Type = Annotation.TypeDataMarker,
+                Position = new object[] { "2", 1216 },
+                Text = new AnnotationTextCfg
+                {
+                    Content = "2月份因逢春节水产销售需求旺盛，\n需求大增",
+                    Style = new TextStyle()
+                    {
+                        TextAlign = TextStyle.TextAlignLeft
+                    }
+                },
+                Line = new DataMarkerLineCfg()
+                {
+                    Length = 20,
+                },
+                Point = new DataMarkerPointCfg
+                {
+                    Style = new GraphicStyle()
+                    {
+                        Fill = "#f5222d",
+                        Stroke = "#f5222d"
+                    }
+                },
+                AutoAdjust = false
+            }
+        }
+    };
+
+    #endregion
+
+}

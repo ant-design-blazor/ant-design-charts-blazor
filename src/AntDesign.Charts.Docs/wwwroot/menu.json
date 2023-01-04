@@ -345,9 +345,9 @@
         "url": "Set_State"
       },
       {
-        "title": "辅助线",
+        "title": "数据标签",
         "type": "menuItem",
-        "url": "Guideline"
+        "url": "Annotation"
       },
       {
         "title": "JS交互",

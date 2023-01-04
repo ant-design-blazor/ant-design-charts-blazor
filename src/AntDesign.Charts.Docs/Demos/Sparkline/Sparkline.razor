@@ -60,20 +60,33 @@
     TinyColumnConfig trendConfig = new TinyColumnConfig()
     {
         Width = 200,
-        Height = 50,
+        Height = 60,
         AutoFit = false,
         Smooth = true,
-        GuideLine = new object[] {
-            new {
-                Type = "median",
-                Text = new {
-                    Position = "start",
+        Annotation = new []
+        {
+            new LineAnnotation()
+            {
+                Type = Annotation.TypeLine,
+                Start = new object[] { "min", "median" },
+                End = new object[] { "max", "median" },
+                Text = new AnnotationTextCfg
+                {
                     Content = "中位数",
-                    Style = new {
-                        Stroke = "white",
-                        LineWidth = 2,
-                    },
+                    OffsetY = -2,
+                    Style = new TextStyle()
+                    {
+                        TextAlign = TextStyle.TextAlignLeft,
+                        FontSize = 10,
+                        Fill = "rgba(44, 53, 66, 0.45)",
+                        TextBaseline = TextStyle.TextBaselineBottom
+                    }
                 },
+                Style = new GraphicStyle()
+                {
+                    Stroke = "rgba(0, 0, 0, 0.25)",
+                    LineWidth = 2
+                }
             },
         }
     };
@@ -81,21 +94,34 @@
     TinyLineConfig timesConfig = new TinyLineConfig()
     {
         Width = 200,
-        Height = 50,
+        Height = 60,
         AutoFit = false,
         Smooth = true,
-        GuideLine = new object[] {
-            new {
-                Type = "mean",
-                Text = new {
-                    Position = "start",
+        Annotation = new []
+        {
+            new LineAnnotation()
+            {
+                Type = Annotation.TypeLine,
+                Start = new object[] { "min", "mean" },
+                End = new object[] { "max", "mean" },
+                Text = new AnnotationTextCfg()
+                {
                     Content = "平均值",
-                    Style = new {
-                        Stroke = "white",
-                        LineWidth = 2,
-                    },
+                    OffsetY = -2,
+                    Style = new TextStyle()
+                    {
+                        TextAlign = TextStyle.TextAlignLeft,
+                        FontSize = 10,
+                        Fill = "rgba(44, 53, 66, 0.45)",
+                        TextBaseline = TextStyle.TextBaselineBottom
+                    }
                 },
-            }
+                Style = new GraphicStyle()
+                {
+                    Stroke = "rgba(0, 0, 0, 0.25)",
+                    LineWidth = 2
+                }
+            },
         }
     };
 
