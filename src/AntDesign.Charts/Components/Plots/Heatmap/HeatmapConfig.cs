@@ -106,6 +106,11 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        /// <summary>
+        /// Currently only support "density"
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string HeatMapType { get; set; }
     }
 
     public interface IHeatmapLayerConfig : IHeatmapViewConfig, ILayerConfig { }
@@ -128,6 +133,8 @@ namespace AntDesign.Charts
         public object ColorMapping => Color.Value;
         [JsonPropertyName("legend")]
         public MatrixLegendConfig Legend { get; set; }
+        [JsonPropertyName("type")]
+        public string HeatMapType { get; set; }
     }
 
     public interface IMatrixLegendConfig

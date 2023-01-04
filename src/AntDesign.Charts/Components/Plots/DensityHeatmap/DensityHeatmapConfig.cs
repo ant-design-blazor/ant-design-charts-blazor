@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
+    [Obsolete("No longer supported, use HeatMap Instead")]
     public class DensityHeatmapConfig : IDensityHeatmapViewConfig, IPlotConfig
     {
         [JsonPropertyName("colorField")]
