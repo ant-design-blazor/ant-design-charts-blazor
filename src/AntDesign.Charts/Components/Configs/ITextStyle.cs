@@ -19,6 +19,8 @@ namespace AntDesign.Charts
         public string TextAlign { get; set; }
         [JsonPropertyName("textBaseline")]
         public string TextBaseline { get; set; }
+        [JsonPropertyName("radius")]
+        public double? Radius { get; set; }
 
         // [field: string]: any;
         //TODO:
@@ -50,6 +52,7 @@ namespace AntDesign.Charts
         public static string TextBaselineMiddle = "middle";
         public static string TextBaselineTop = "top";
         public static string TextBaselineRight = "right";
+        public static string TextBaselineBottom = "bottom";
 
         [JsonPropertyName("fill")]
         public string Fill { get; set; }
@@ -75,6 +78,12 @@ namespace AntDesign.Charts
         public int? ShadowOffsetY { get; set; }
         [JsonPropertyName("cursor")]
         public string Cursor { get; set; }
+        [JsonPropertyName("radius")]
+        public double? Radius { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
     }
 }
 

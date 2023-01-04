@@ -39,6 +39,10 @@ namespace AntDesign.Charts
         public int? ShadowOffsetY { get; set; }
         [JsonPropertyName("cursor")]
         public string Cursor { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
     }
 }
 

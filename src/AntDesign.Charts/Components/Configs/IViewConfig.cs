@@ -53,8 +53,11 @@ namespace AntDesign.Charts
         public Title Title { get; set; }
         [JsonPropertyName("description")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("annotations")]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
         /*
           events?: {
             [k: string]: ((...args: any[]) => any) | boolean;

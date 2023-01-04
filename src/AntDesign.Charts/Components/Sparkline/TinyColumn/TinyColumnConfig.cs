@@ -12,8 +12,13 @@ namespace AntDesign.Charts
         public object ColumnStyle { get; set; }
         [JsonPropertyName("indicator")]
         public object Indicator { get; set; }
-        [JsonPropertyName("guideLine")]
-        public object GuideLine { get; set; }
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
+        public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("renderer")]
         public string Renderer { get; set; }
         [JsonPropertyName("data")]
