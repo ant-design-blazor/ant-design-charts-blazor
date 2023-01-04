@@ -3,23 +3,14 @@
 @inject HttpClient HttpClient
 
 <Tabs>
-    <TabPane Key="1">
-        <Tab>示例1</Tab>
-        <ChildContent>
-            <Line Data=data1 Config="config1" />
-        </ChildContent>
+    <TabPane Key="1" Tab="Sample 1">
+        <Line Data=data1 Config="config1" />
     </TabPane>
-    <TabPane Key="2">
-        <Tab>示例2</Tab>
-        <ChildContent>
-            <Line Config="config2" OnFirstRender="onChart2_FirstRender" />
-        </ChildContent>
+    <TabPane Key="2" Tab="Sample 2">
+        <Line Config="config2" OnFirstRender="onChart2_FirstRender" />
     </TabPane>
-    <TabPane Key="3">
-        <Tab>示例3</Tab>
-        <ChildContent>
-            <Line Config="config3" OnFirstRender="onChart3_FirstRender" />
-        </ChildContent>
+    <TabPane Key="3" Tab="Sample 3">
+        <Line Config="config3" OnFirstRender="onChart3_FirstRender" />
     </TabPane>
 </Tabs>
 

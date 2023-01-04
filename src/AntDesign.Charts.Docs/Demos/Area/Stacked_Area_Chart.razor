@@ -2,15 +2,7 @@
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
-<Tabs>
-    <TabPane Key="1">
-        <Tab>示例1</Tab>
-        <ChildContent>
-            <AntDesign.Charts.Area Config="config1" OtherConfig="otherConfig" OnFirstRender="onChart1_FirstRender" />
-        </ChildContent>
-    </TabPane>
-</Tabs>
-
+<AntDesign.Charts.Area Config="config1" OtherConfig="otherConfig" OnFirstRender="onChart1_FirstRender" />
 
 <Divider>动手实验</Divider>
 <DynamicExample @ref="@example">

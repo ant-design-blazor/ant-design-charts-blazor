@@ -1,25 +1,15 @@
 ﻿@page "/Interop"
 
-<Tabs>
-    <TabPane Key="1">
-        <Tab>示例1</Tab>
-        <ChildContent>
-            <AntDesign.Charts.Column @ref="chart1" Data=data1 Config="config1" />
+<AntDesign.Charts.Column @ref="chart1" Data=data1 Config="config1" />
 
-            <Button OnClick="Render">Render</Button>
-            <Button OnClick="Repaint">Repaint</Button>
-            <Button OnClick="UpdateConfig">UpdateConfig</Button>
-            <Button OnClick="ChangeData">ChangeData</Button>
-            <Button OnClick="SetActive">SetActive</Button>
-            <Button OnClick="SetSelected">SetSelected</Button>
-            <Button OnClick="SetDisable">SetDisable</Button>
-            <Button OnClick="SetDefault">SetDefault</Button>
-
-
-        </ChildContent>
-
-    </TabPane>
-</Tabs>
+<Button OnClick="Render">Render</Button>
+<Button OnClick="Repaint">Repaint</Button>
+<Button OnClick="UpdateConfig">UpdateConfig</Button>
+<Button OnClick="ChangeData">ChangeData</Button>
+<Button OnClick="SetActive">SetActive</Button>
+<Button OnClick="SetSelected">SetSelected</Button>
+<Button OnClick="SetDisable">SetDisable</Button>
+<Button OnClick="SetDefault">SetDefault</Button>
 
 @code{
 

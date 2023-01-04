@@ -1,14 +1,7 @@
 ﻿@page "/Event"
 
 
-<Tabs>
-    <TabPane Key="1">
-        <Tab>示例1</Tab>
-        <ChildContent>
-            <AntDesign.Charts.Column Data=data1 Config="config1" OnTitleClick="@(e=>AddEvents("OnTitleClick"))" />
-        </ChildContent>
-    </TabPane>
-</Tabs>
+<AntDesign.Charts.Column Data=data1 Config="config1" OnTitleClick="@(e=>AddEvents("OnTitleClick"))" />
 
 <ul>
     @foreach (var item in events)

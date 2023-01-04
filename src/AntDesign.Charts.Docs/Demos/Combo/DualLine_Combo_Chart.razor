@@ -1,13 +1,7 @@
 @page "/DualLine_Combo_Chart"
 @inject IJSRuntime JS;
-<Tabs>
-    <TabPane Key="1">
-        <Tab>示例1</Tab>
-        <ChildContent>
-            <DualAxes Data="@(new object[] { data1, data2 })" Config="config1" />
-        </ChildContent>
-    </TabPane>
-</Tabs>
+
+<DualAxes Data="@(new object[] { data1, data2 })" Config="config1" />
 
 <Divider>动手实验</Divider>
 <DynamicExample @ref="@example">
