@@ -5,46 +5,25 @@
 @using Title = AntDesign.Charts.Title
 
 <Tabs>
-    <TabPane Key="1">
-        <Tab>示例1</Tab>
-        <ChildContent>
-            <Bar Data="data1" Config="config1" />
-        </ChildContent>
+    <TabPane Key="1" Tab="Sample 1">
+        <Bar Data="data1" Config="config1" />
     </TabPane>
-    <TabPane Key="2">
-        <Tab>示例2</Tab>
-        <ChildContent>
-            <Bar Data="data2" Config="config2" />
-        </ChildContent>
+    <TabPane Key="2" Tab="Sample 2">
+        <Bar Data="data2" Config="config2" />
     </TabPane>
-    <TabPane Key="3">
-        <Tab>示例3</Tab>
-        <ChildContent>
-            <Bar Data="data3" Config="config3" />
-        </ChildContent>
+    <TabPane Key="3" Tab="Sample 3">
+        <Bar Data="data3" Config="config3" />
     </TabPane>
-    <TabPane Key="4">
-        <Tab>示例4</Tab>
-        <ChildContent>
-            <Bar Config="config4" OnFirstRender="onChart4_FirstRender" />
-        </ChildContent>
+    <TabPane Key="4" Tab="Sample 4">
+        <Bar Config="config4" OnFirstRender="onChart4_FirstRender" />
     </TabPane>
-    <TabPane Key="5">
-        <Tab>示例5</Tab>
-        <ChildContent>
-            <Bar Data="data5" Config="config5" />
-        </ChildContent>
+    <TabPane Key="5" Tab="Sample 5">
+        <Bar Data="data5" Config="config5" />
     </TabPane>
-    <TabPane Key="6">
-        <Tab>示例6</Tab>
-        <ChildContent>
-            <Bar Data="data6" Config="config6" OtherConfig="otherConfig6" />
-        </ChildContent>
+    <TabPane Key="6" Tab="Sample 6">
+        <Bar Data="data6" Config="config6" OtherConfig="otherConfig6" />
     </TabPane>
-
 </Tabs>
-
-
 
 <Divider>动手实验</Divider>
 <DynamicExample @ref="@example">
