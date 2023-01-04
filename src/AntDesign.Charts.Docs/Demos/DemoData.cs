@@ -93,15 +93,21 @@ namespace AntDesign.Charts.Docs.Demos
             return await HttpClient.GetFromJsonAsync<object>("https://gw.alipayobjects.com/os/bmw-prod/b21e7336-0b3e-486c-9070-612ede49284e.json");
         }
 
-        public static async Task<StockData[]> StockDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        public static async Task<StockItem[]> StockDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
         {
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
-            return await HttpClient.GetFromJsonAsync<StockData[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/stock-data.json").ToString());
+            return await HttpClient.GetFromJsonAsync<StockItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/stock-data.json").ToString());
         }
 
         public static async Task<object[]> ViolinDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
         {
             return await HttpClient.GetFromJsonAsync<object[]>("https://gw.alipayobjects.com/os/bmw-prod/6b0a5f1d-5931-42ae-b3ba-3c3cb77d0861.json");
+        }
+
+        public static async Task<HeatMapItem[]> HeadMapDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<HeatMapItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/heatmap.json").ToString());
         }
     }
 
@@ -237,7 +243,7 @@ namespace AntDesign.Charts.Docs.Demos
     // "low": 2971.8219,
     // "vol": 315141151,
     // "amount": 381331160.4
-    public class StockData
+    public class StockItem
     {
         public string ts_code { get; set; }
         public string trade_date { get; set; }
@@ -270,5 +276,15 @@ namespace AntDesign.Charts.Docs.Demos
         public double Revenue_per_club { get; set; }
 
         public string revenueGroup { get; set; }
+    }
+
+    // "g": 596,
+    // "l": 320,
+    // "tmp": 718
+    public class HeatMapItem
+    {
+        public int g { get; set; }
+        public int l { get; set; }
+        public int tmp { get; set; }
     }
 }
