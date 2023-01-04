@@ -6,22 +6,22 @@
 
 <Tabs>
     <TabPane Key="1" Tab="Sample 1">
-        <Stock Data=data1 Config="config1" />
+        <Stock OnFirstRender="OnChartRender" Config="config1" />
     </TabPane>
     <TabPane Key="2" Tab="Sample 2">
-        <Stock Data=data2 Config="config2" />
+        <Stock OnFirstRender="OnChartRender" Config="config2" />
     </TabPane>
     <TabPane Key="3" Tab="Sample 3">
-        <Stock Data=data3 Config="config3" />
+        <Stock OnFirstRender="OnChartRender" Config="config3" />
     </TabPane>
     <TabPane Key="4" Tab="Sample 4">
-        <Stock Data=data4 Config="config4" />
+        <Stock OnFirstRender="OnChartRender" Config="config4" />
     </TabPane>
     <TabPane Key="5" Tab="Sample 5">
-        <Stock Data=data5 Config="config5" />
+        <Stock OnFirstRender="OnChartRender" Config="config5" />
     </TabPane>
     <TabPane Key="6" Tab="Sample 6">
-        <Stock Data=data6 Config="config6" />
+        <Stock OnFirstRender="OnChartRender" Config="config6" />
     </TabPane>
 </Tabs>
 
@@ -40,20 +40,13 @@
         example.Chart = chart;
     }
 
-    #region 示例1
-    protected override async Task OnInitializedAsync()
+    private async void OnChartRender(IChartComponent stockChart)
     {
-        data1 = await DemoData.StockDataAsync(NavigationManager, HttpClient);
-        data2 = data1;
-        data3 = data1;
-        data4 = data1;
-        data5 = data1;
-        data6 = data1;
-
-        await base.OnInitializedAsync();
+        var data = await DemoData.StockDataAsync(NavigationManager, HttpClient);
+        await stockChart.ChangeData(data);
     }
 
-    object[] data1 = new object[] { };
+    #region 示例1
 
     StockConfig config1 = new StockConfig()
         {
@@ -71,8 +64,6 @@
     #endregion 示例1
 
     #region 示例2
-
-    object[] data2 = new object[] { };
 
     StockConfig config2 = new StockConfig()
         {
@@ -114,8 +105,6 @@
 
     #region 示例3
 
-    object[] data3 = new object[] { };
-
     StockConfig config3 = new StockConfig()
         {
             Title = new Charts.Title()
@@ -136,8 +125,6 @@
     #endregion 示例3
 
     #region 示例4
-
-    object[] data4 = new object[] { };
 
     StockConfig config4 = new StockConfig()
         {
@@ -182,8 +169,6 @@
     #endregion 示例4
 
     #region 示例5
-
-    object[] data5 = new object[] { };
 
     StockConfig config5 = new StockConfig()
         {
@@ -261,8 +246,6 @@
 
     #region 示例6
 
-    object[] data6 = new object[] { };
-
     StockConfig config6 = new StockConfig()
         {
             Title = new Charts.Title()
@@ -279,5 +262,8 @@
 
 
     #endregion 示例6
+
+
+
 }
 

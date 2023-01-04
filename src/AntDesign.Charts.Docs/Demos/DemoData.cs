@@ -93,9 +93,10 @@ namespace AntDesign.Charts.Docs.Demos
             return await HttpClient.GetFromJsonAsync<object>("https://gw.alipayobjects.com/os/bmw-prod/b21e7336-0b3e-486c-9070-612ede49284e.json");
         }
 
-        public static async Task<object[]> StockDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        public static async Task<StockData[]> StockDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
         {
-            return await HttpClient.GetFromJsonAsync<object[]>("https://gw.alipayobjects.com/os/antfincdn/qtQ9nYfYJe/stock-data.json");
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<StockData[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/stock-data.json").ToString());
         }
 
         public static async Task<object[]> ViolinDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
@@ -226,6 +227,26 @@ namespace AntDesign.Charts.Docs.Demos
 
         public int year { get; set; }
 
+    }
+
+    // "ts_code": "000001.SH",
+    // "trade_date": "2020-02-19",
+    // "close": 2975.4019,
+    // "open": 2979.5223,
+    // "high": 2998.2718,
+    // "low": 2971.8219,
+    // "vol": 315141151,
+    // "amount": 381331160.4
+    public class StockData
+    {
+        public string ts_code { get; set; }
+        public string trade_date { get; set; }
+        public double close { get; set; }
+        public double open { get; set; }
+        public double high { get; set; }
+        public double low { get; set; }
+        public double vol { get; set; }
+        public double amount { get; set; }
     }
 
 
