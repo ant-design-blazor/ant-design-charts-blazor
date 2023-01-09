@@ -41,7 +41,8 @@ namespace AntDesign.Charts
         public object Data { get; set; }
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
         [JsonIgnore]
         [Obsolete("No Longer Supported, use annotation instead")]

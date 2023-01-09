@@ -19,7 +19,8 @@ namespace AntDesign.Charts
         [JsonIgnore]
         [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
         [JsonPropertyName("data")]
         public object Data { get; set; }
@@ -115,7 +116,8 @@ namespace AntDesign.Charts
         [JsonIgnore]
         [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
         [JsonPropertyName("data")]
         public object Data { get; set; }//DataItem[][]
