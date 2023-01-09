@@ -78,7 +78,8 @@ namespace AntDesign.Charts
         public Interaction[] Interactions { get; set; }
         [JsonPropertyName("responsive")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
         [JsonPropertyName("description")]
         public Description Description { get; set; }

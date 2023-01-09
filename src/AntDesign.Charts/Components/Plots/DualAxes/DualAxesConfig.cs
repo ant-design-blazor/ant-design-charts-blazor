@@ -16,7 +16,8 @@ namespace AntDesign.Charts
         public object Tooltip { get; set; }
         [JsonPropertyName("lineConfigs")]
         public LineConfig[] LineConfigs { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
         [JsonPropertyName("description")]
         public Description Description { get; set; }
@@ -111,7 +112,8 @@ namespace AntDesign.Charts
 
     public interface IComboViewConfig : IViewConfig
     {
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
         [JsonPropertyName("description")]
         public Description Description { get; set; }
