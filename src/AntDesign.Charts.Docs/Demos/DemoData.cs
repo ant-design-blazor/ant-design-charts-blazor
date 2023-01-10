@@ -115,6 +115,12 @@ namespace AntDesign.Charts.Docs.Demos
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<TimePeriodItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/timePeriod.json").ToString());
         }
+
+        public static async Task<StackColumnItem[]> StackColumnDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<StackColumnItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/stack-column-data.json").ToString());
+        }
     }
 
     public class FireworksSalesItem
@@ -300,5 +306,15 @@ namespace AntDesign.Charts.Docs.Demos
     {
         public string timePeriod { get; set; }
         public double value { get; set; }
+    }
+
+    //"year": "1991",
+    //"value": 3,
+    //"type": "Bor"
+    public class StackColumnItem
+    {
+        public string year { get; set; }
+        public double value { get; set; }
+        public string type { get; set; }
     }
 }
