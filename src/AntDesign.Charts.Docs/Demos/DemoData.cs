@@ -109,6 +109,12 @@ namespace AntDesign.Charts.Docs.Demos
             var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
             return await HttpClient.GetFromJsonAsync<HeatMapItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/heatmap.json").ToString());
         }
+
+        public static async Task<TimePeriodItem[]> TimePeriodDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<TimePeriodItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/timePeriod.json").ToString());
+        }
     }
 
     public class FireworksSalesItem
@@ -286,5 +292,13 @@ namespace AntDesign.Charts.Docs.Demos
         public int g { get; set; }
         public int l { get; set; }
         public int tmp { get; set; }
+    }
+
+    // "timePeriod": "2007 Q1",
+    // "value": 1.17
+    public class TimePeriodItem
+    {
+        public string timePeriod { get; set; }
+        public double value { get; set; }
     }
 }
