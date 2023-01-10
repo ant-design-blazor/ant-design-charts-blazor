@@ -91,7 +91,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("type")]
         public string Type { get; set; }
         [JsonPropertyName("visible")]
-        public bool Visible { get; set; }
+        public bool? Visible { get; set; }
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
         [JsonPropertyName("line")]

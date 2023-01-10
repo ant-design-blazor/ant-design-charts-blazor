@@ -12,7 +12,7 @@ namespace AntDesign.Charts
         ///  轴是否需要显示，默认true 
         /// </summary>
         [JsonPropertyName("visible")]
-        public bool Visible { get; set; }
+        public bool? Visible { get; set; }
         /// <summary>
         ///  轴类型，对应scale类型 
         /// </summary>

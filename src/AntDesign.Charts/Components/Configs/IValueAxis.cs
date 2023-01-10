@@ -70,7 +70,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("base")]
         public int? Base { get; set; }
         [JsonPropertyName("visible")]
-        public bool Visible { get; set; }
+        public bool? Visible { get; set; }
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
         [JsonPropertyName("line")]

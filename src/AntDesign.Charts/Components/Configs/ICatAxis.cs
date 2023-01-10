@@ -20,7 +20,7 @@ namespace AntDesign.Charts
         public string Type { get; set; }
         public static string TypeCat = "cat";
         [JsonPropertyName("visible")]
-        public bool Visible { get; set; }
+        public bool? Visible { get; set; }
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
         [JsonPropertyName("line")]
