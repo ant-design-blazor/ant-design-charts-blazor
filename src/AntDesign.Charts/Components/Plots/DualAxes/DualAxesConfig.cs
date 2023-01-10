@@ -109,9 +109,7 @@ namespace AntDesign.Charts
     public interface IDualAxesViewConfig : IComboViewConfig
     {
         [JsonPropertyName("xAxis")]
-        public ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
-        [JsonPropertyName("tooltip")]
-        public object Tooltip { get; set; }
+        public new ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
         [JsonPropertyName("lineConfigs")]
         public LineConfig[] LineConfigs { get; set; }
         [JsonPropertyName("scrollbar")]
@@ -122,20 +120,8 @@ namespace AntDesign.Charts
 
     public interface IComboViewConfig : IViewConfig
     {
-        [JsonIgnore]
-        [Obsolete("No longer supported")]
-        public Title Title { get; set; }
-        [JsonIgnore]
-        [Obsolete("No longer supported")]
-        public Description Description { get; set; }
-        [JsonPropertyName("data")]
-        public object Data { get; set; }//DataItem[][]
-        [JsonPropertyName("meta")]
-        public object Meta { get; set; }//LooseMap<Meta>
-        [JsonPropertyName("xField")]
-        public string XField { get; set; }
         [JsonPropertyName("yField")]
-        public string[] YField { get; set; }
+        public new string[] YField { get; set; }
     }
 
 

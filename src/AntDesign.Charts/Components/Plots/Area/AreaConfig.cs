@@ -114,9 +114,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
         [JsonPropertyName("xAxis")]
-        public ValueCatTimeAxis XAxis { get; set; }//OneOf <ICatAxis, ITimeAxis, IValueAxis>
+        public new ValueCatTimeAxis XAxis { get; set; }//OneOf <ICatAxis, ITimeAxis, IValueAxis>
         [JsonPropertyName("yAxis")]
-        public ValueAxis YAxis { get; set; }
+        public new ValueAxis YAxis { get; set; }
         [JsonPropertyName("line")]
         public AreaViewConfigLine Line { get; set; }
         [JsonPropertyName("point")]
@@ -127,11 +127,8 @@ namespace AntDesign.Charts
         public IScrollbar Scrollbar { get; set; }
         [JsonPropertyName("slider")]
         public ISlider Slider { get; set; }
-        [JsonPropertyName("interactions")]
-        public Interaction[] Interactions { get; set; }
-
         [JsonPropertyName("label")]
-        public AreaLabel Label { get; set; }
+        public new AreaLabel Label { get; set; }
 
     }
 
@@ -167,14 +164,10 @@ namespace AntDesign.Charts
 
     public interface IAreaPointLabel : ILabel
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }//'area-point'
     }
 
     public interface IAreaPointAutoLabel : ILabel
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }//'area-point-auto'
         /// <summary>
         ///  area-point-auto 暗色配置 
         /// </summary>

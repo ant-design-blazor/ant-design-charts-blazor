@@ -7,9 +7,6 @@ namespace AntDesign.Charts
 {
     public interface IValueAxis : IBaseAxis
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
         /// <summary>
         ///  tick相关配置 
         /// </summary>

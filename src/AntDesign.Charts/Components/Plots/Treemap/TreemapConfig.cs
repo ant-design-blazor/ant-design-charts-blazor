@@ -99,8 +99,6 @@ namespace AntDesign.Charts
 
     public interface ITreemapViewConfig : IViewConfig
     {
-        [JsonPropertyName("data")]
-        public object Data { get; set; }
         [JsonPropertyName("maxLevel")]
         public int? MaxLevel { get; set; }
         [JsonPropertyName("colorField")]
@@ -110,9 +108,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("rectStyle")]
         public GraphicStyle RectStyle { get; set; }
         [JsonPropertyName("label")]
-        public TreemapLabelConfig Label { get; set; }
-        [JsonPropertyName("interactions")]
-        public Interaction[] Interactions { get; set; }//TreemapInteraction
+        public new TreemapLabelConfig Label { get; set; }
     }
 
     public interface ITreemapLabelConfig

@@ -8,18 +8,9 @@ namespace AntDesign.Charts
 {
     public interface IBarLabel : ILabel
     {
-        [JsonPropertyName("position")]
-        public string Position { get; set; }//OneOf <string,'left','middle','right'>
         public static string PositionLeft = "left";
         public static string PositionMiddle = "middle";
         public static string PositionRight = "right";
-
-        [JsonPropertyName("adjustPosition")]
-        public bool? AdjustPosition { get; set; }
-        [JsonPropertyName("adjustColor")]
-        public bool? AdjustColor { get; set; }
-
-
     }
 
     public class BarLabel : IBarLabel

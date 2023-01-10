@@ -7,8 +7,6 @@ namespace AntDesign.Charts
 {
     public interface ICatAxis : IBaseAxis
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
     }
 
     public class CatAxis : ICatAxis

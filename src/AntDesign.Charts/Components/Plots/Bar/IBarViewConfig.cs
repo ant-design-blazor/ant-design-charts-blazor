@@ -15,15 +15,13 @@ namespace AntDesign.Charts
         [JsonPropertyName("barStyle")]
         public GraphicStyle BarStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("xAxis")]
-        public ValueAxis XAxis { get; set; }
+        public new ValueAxis XAxis { get; set; }
         [JsonPropertyName("yAxis")]
-        public CatAxis YAxis { get; set; }
+        public new CatAxis YAxis { get; set; }
         [JsonPropertyName("label")]
-        public BarViewConfigLabel Label { get; set; }//OneOf <IBarLabel, IBarAutoLabel>
+        public new BarViewConfigLabel Label { get; set; }//OneOf <IBarLabel, IBarAutoLabel>
         [JsonPropertyName("conversionTag")]
         public ConversionTagOptions ConversionTag { get; set; }
-        [JsonPropertyName("interactions")]
-        public Interaction[] Interactions { get; set; }
         [JsonPropertyName("scrollbar")]
         public IScrollbar Scrollbar { get; set; }
         [JsonPropertyName("slider")]

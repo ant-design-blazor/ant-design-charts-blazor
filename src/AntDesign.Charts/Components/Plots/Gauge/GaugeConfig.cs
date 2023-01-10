@@ -142,8 +142,6 @@ namespace AntDesign.Charts
         public decimal? Percent { get; set; }
         [JsonPropertyName("range")]
         public double[] Range { get; set; }
-        [JsonIgnore]
-        public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
         public object ColorMapping => Color.Value;
         [JsonPropertyName("rangeSize")]

@@ -109,14 +109,6 @@ namespace AntDesign.Charts
         public WaterfallViewConfigDiffLabel DiffLabel { get; set; }
         [JsonPropertyName("leaderLine")]
         public WaterfallViewConfigLeaderLine LeaderLine { get; set; }
-        /// <summary>
-        ///   color?:
-        ///    | string
-        ///    | { rising: string; falling: string; total?: string  }
-        ///    | ((type: string, value: number | null, values: number | number[], index: number) => string);
-        /// </summary>
-        [JsonPropertyName("color")]
-        public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("waterfallStyle")]
         public GraphicStyle WaterfallStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
     }

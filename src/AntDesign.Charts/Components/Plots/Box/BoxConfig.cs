@@ -112,7 +112,7 @@ namespace AntDesign.Charts
         public string GroupField { get; set; }
         public string OutliersField { get; set; }
         public GraphicStyle OutliersStyle { get; set; }
-        public OneOf<string, string[]> YField { get; set; }
+        public new OneOf<string, string[]> YField { get; set; }
     }
 
 }

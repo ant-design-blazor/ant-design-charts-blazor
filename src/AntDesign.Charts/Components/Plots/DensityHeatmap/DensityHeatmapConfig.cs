@@ -113,7 +113,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("point")]
         public DensityHeatmapViewConfigPoint Point { get; set; }
         [JsonPropertyName("legend")]
-        public HeatmapLegendConfig Legend { get; set; }
+        public new HeatmapLegendConfig Legend { get; set; }
         [JsonPropertyName("background")]
         public HeatmapBackgroundConfig Background { get; set; }
 

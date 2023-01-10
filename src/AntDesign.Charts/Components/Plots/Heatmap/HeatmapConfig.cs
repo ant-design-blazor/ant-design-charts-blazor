@@ -130,12 +130,8 @@ namespace AntDesign.Charts
         public string ShapeType { get; set; }
         [JsonPropertyName("shapeStyle")]
         public GraphicStyle ShapeStyle { get; set; }
-        [JsonIgnore]
-        public OneOf<string, string[], object> Color { get; set; }
-        [JsonPropertyName("color")]
-        public object ColorMapping => Color.Value;
         [JsonPropertyName("legend")]
-        public MatrixLegendConfig Legend { get; set; }
+        public new MatrixLegendConfig Legend { get; set; }
         [JsonPropertyName("type")]
         public string HeatMapType { get; set; }
     }

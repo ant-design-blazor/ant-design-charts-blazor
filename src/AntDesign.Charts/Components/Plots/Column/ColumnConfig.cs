@@ -126,9 +126,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("conversionTag")]
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("label")]
-        public ColumnViewConfigLabel Label { get; set; } //OneOf <IColumnLabel, IColumnAutoLabel>
-        [JsonPropertyName("interactions")]
-        public Interaction[] Interactions { get; set; }
+        public new ColumnViewConfigLabel Label { get; set; } //OneOf <IColumnLabel, IColumnAutoLabel>
     }
 
     public class ColumnViewConfigLabel : IColumnLabel, IColumnAutoLabel
@@ -176,12 +174,6 @@ namespace AntDesign.Charts
 
     public interface IColumnLabel : ILabel
     {
-        [JsonPropertyName("position")]
-        public string Position { get; set; }
-        [JsonPropertyName("adjustPosition")]
-        public bool? AdjustPosition { get; set; }
-        [JsonPropertyName("adjustColor")]
-        public bool? AdjustColor { get; set; }
     }
 
     public interface IColumnAutoLabel : ILabel

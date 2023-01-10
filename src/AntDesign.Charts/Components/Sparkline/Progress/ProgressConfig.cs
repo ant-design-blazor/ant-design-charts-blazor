@@ -138,9 +138,6 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("indicator")]
         public object Indicator { get; set; }
-        [JsonIgnore]
-        [Obsolete("No Longer Supported, use annotation instead")]
-        public GuideLineConfig[] GuideLine { get; set; }
     }
 
     public interface IMarkerConfig

@@ -114,30 +114,13 @@ namespace AntDesign.Charts
         [JsonPropertyName("sectorStyle")]
         public GraphicStyle SectorStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("label")]
-        public RoseLabel Label { get; set; }
+        public new RoseLabel Label { get; set; }
     }
 
     public interface IRoseLabel : ILabel
     {
-        /// <summary>
-        /// 'outer','inner'
-        /// </summary>
-        [JsonPropertyName("type")]
-        public string Type { get; set; }// OneOfn<'outer','inner'>
         public static string TypeOuter = "outer";
         public static string TypeInner = "inner";
-
-        /// <summary>
-        ///  自动调整颜色 
-        /// </summary>
-        [JsonPropertyName("adjustColor")]
-        public bool? AdjustColor { get; set; }
-        /// <summary>
-        ///  自动旋转 
-        /// </summary>
-        [JsonPropertyName("autoRotate")]
-        public bool? AutoRotate { get; set; }
-
         /// <summary>
         /// label的内容，如果不配置，读取scale中的第一个field对应的值  G2 4.0 就这样实现的
         /// </summary>
@@ -146,10 +129,19 @@ namespace AntDesign.Charts
     }
     public class RoseLabel : IRoseLabel
     {
+        /// <summary>
+        /// 'outer','inner'
+        /// </summary>
         [JsonPropertyName("type")]
         public string Type { get; set; }
+        /// <summary>
+        ///  自动调整颜色 
+        /// </summary>
         [JsonPropertyName("adjustColor")]
         public bool? AdjustColor { get; set; }
+        /// <summary>
+        ///  自动旋转 
+        /// </summary>
         [JsonPropertyName("autoRotate")]
         public bool? AutoRotate { get; set; }
         [JsonPropertyName("content")]

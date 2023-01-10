@@ -155,11 +155,9 @@ namespace AntDesign.Charts
           })[];
          */
         [JsonPropertyName("xAxis")]
-        public ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
+        public new ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
         [JsonPropertyName("yAxis")]
-        public ValueAxis YAxis { get; set; }
-        [JsonPropertyName("interactions")]
-        public Interaction[] Interactions { get; set; }
+        public new ValueAxis YAxis { get; set; }
         [JsonPropertyName("scrollbar")]
         public IScrollbar Scrollbar { get; set; }
         [JsonPropertyName("slider")]

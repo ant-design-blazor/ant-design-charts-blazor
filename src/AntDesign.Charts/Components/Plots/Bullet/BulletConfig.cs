@@ -108,7 +108,7 @@ namespace AntDesign.Charts
     public interface IBulletViewConfig : IViewConfig
     {
         [JsonPropertyName("data")]
-        public BulletViewConfigData[] Data { get; set; }
+        public new BulletViewConfigData[] Data { get; set; }
         /// <summary>
         ///  进度条的色条范围区间的最大值 
         /// </summary>
