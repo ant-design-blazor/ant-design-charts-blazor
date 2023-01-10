@@ -4,6 +4,7 @@
 
 @using Title = AntDesign.Charts.Title
 
+
 <Tabs>
     <TabPane Key="1" Tab="Sample 1">
         <Bar Data="data1" Config="config1" />
@@ -12,7 +13,7 @@
         <Bar Data="data2" Config="config2" />
     </TabPane>
     <TabPane Key="3" Tab="Sample 3">
-        <Bar Data="data3" Config="config3" />
+        <Bar Data="data2" Config="config3" />
     </TabPane>
     <TabPane Key="4" Tab="Sample 4">
         <Bar Config="config4" OnFirstRender="onChart4_FirstRender" />
@@ -21,7 +22,7 @@
         <Bar Data="data5" Config="config5" />
     </TabPane>
     <TabPane Key="6" Tab="Sample 6">
-        <Bar Data="data6" Config="config6" OtherConfig="otherConfig6" />
+        <Bar Data="data2" Config="config6" OtherConfig="otherConfig6" />
     </TabPane>
 </Tabs>
 
@@ -42,139 +43,142 @@
     }
 
 
-
-
     #region 示例1
-
     readonly object[] data1 =
-{
-        new {地区 = "华东", 销售额 = 4684506.442},
-        new {地区 = "中南", 销售额 = 4137415.0929999948},
-        new {地区 = "东北", 销售额 = 2681567.469000001},
-        new {地区 = "华北", 销售额 = 2447301.017000004},
-        new {地区 = "西南", 销售额 = 1303124.508000002},
-        new {地区 = "西北", 销售额 = 815039.5959999998}
+    {
+        new {year = "1951 年", value = 38},
+        new {year = "1952 年", value = 52},
+        new {year = "1956 年", value = 61},
+        new {year = "1957 年", value = 145},
+        new {year = "1958 年", value = 48}
     };
 
     readonly BarConfig config1 = new BarConfig
     {
-        XField = "销售额",
-        YField = "地区",
-        Label = new BarViewConfigLabel
+        XField = "value",
+        YField = "year",
+        SeriesField = "year",
+        Legend = new Legend
         {
-            Visible = true,
+            Position = "top-left"
         }
     };
-
     #endregion 示例1
 
     #region 示例2
-
-    readonly object[] data2 =
+    object[] data2 = new object[]
     {
-        new {地区 = "华东", 销售额 = 4684506.442},
-        new {地区 = "中南", 销售额 = 4137415.0929999948},
-        new {地区 = "东北", 销售额 = 2681567.469000001},
-        new {地区 = "华北", 销售额 = 2447301.017000004},
-        new {地区 = "西南", 销售额 = 1303124.508000002},
-        new {地区 = "西北", 销售额 = 815039.5959999998}
+        new
+        {
+            type = "家具家电",
+            sales = 38,
+        },
+        new
+        {
+            type = "粮油副食",
+            sales = 52,
+        },
+        new
+        {
+            type = "生鲜水果",
+            sales = 61,
+        },
+        new
+        {
+            type = "美容洗护",
+            sales = 145,
+        },
+        new
+        {
+            type = "母婴用品",
+            sales = 48,
+        },
+        new
+        {
+            type = "进口食品",
+            sales = 38,
+        },
+        new
+        {
+            type = "食品饮料",
+            sales = 38,
+        },
+        new
+        {
+            type = "家庭清洁",
+            sales = 38,
+        },
     };
 
     readonly BarConfig config2 = new BarConfig
     {
-        XField = "销售额",
-        YField = "地区",
-        Label = new BarViewConfigLabel
+        XField = "sales",
+        YField = "type",
+        //todo missing barWidthRatio
+        Meta = new
         {
-            Visible = true,
-            Position = "middle"
+            Type = new
+            {
+                Alias = "类别"
+            },
+            Sales = new
+            {
+                Alia = "销售额",
+            }
         }
     };
-
     #endregion 示例2
 
     #region 示例3
-
-    readonly object[] data3 =
-    {
-        new {year = "1951 年", sales = 38, category = "A"},
-        new {year = "1952 年", sales = 52, category = "A"},
-        new {year = "1956 年", sales = 61, category = "A"},
-        new {year = "1957 年", sales = 145, category = "A"},
-        new {year = "1958 年", sales = 48, category = "B"}
-    };
-
     readonly BarConfig config3 = new BarConfig
     {
         XField = "sales",
-        YField = "year",
-        ColorField = "year",
-        Color = new[] { "#55A6F3", "#CED4DE", "#55A6F3", "#55A6F3", "#55A6F3" },
-        Label = new BarViewConfigLabel
+        YField = "type",
+    //todo missing minBarWidth
+    //todo missing maxBarWidth
+        Meta = new
         {
-            Visible = true,
-            Position = "middle", // options= left / middle / right
-            AdjustColor = true
+            Type = new
+            {
+                Alias = "类别"
+            },
+            Sales = new
+            {
+                Alia = "销售额",
+            }
         }
     };
 
     #endregion 示例3
 
-
     #region 示例4
-
     private async Task onChart4_FirstRender(IChartComponent chart)
     {
         var data4 = await DemoData.SalesAsync(NavigationManager, HttpClient);
         await chart.ChangeData(data4);
     }
 
-
-
     readonly BarConfig config4 = new BarConfig
     {
         XField = "销售额",
         YField = "城市",
-        XAxis = new ValueAxis
-        {
-            Visible = true,
-            Label = new BaseAxisLabel
-            {
-                AutoHide = true,
-            }
-        },
-
         YAxis = new CatAxis
         {
             Visible = true,
             Label = new BaseAxisLabel
             {
-                AutoHide = true,
+                AutoRotate = true,
             }
         },
-
-        Label = new BarViewConfigLabel
+        Scrollbar = new Scrollbar()
         {
-            Visible = false,
-        },
-
-        Interactions = new Interaction[]
-    {
-            new Interaction
-            {
-                Type="scrollbar",
-                Cfg = new
-                {
-                    type ="vertical",
-                }
-            }
-                                                        }
+            Type = "vertical"
+        }
     };
 
     #endregion 示例4
 
     #region 示例5
-
     readonly object[] data5 =
 {
         new {action = "浏览网站", pv = 50000},
@@ -197,39 +201,20 @@
     #endregion 示例5
 
     #region 示例6
-
-    readonly object[] data6 =
-    {
-        new {地区 = "华东", 销售额 = 4684},
-        new {地区 = "中南", 销售额 = 4137},
-        new {地区 = "东北", 销售额 = 2681},
-        new {地区 = "华北", 销售额 = 2447},
-        new {地区 = "西南", 销售额 = 1303},
-        new {地区 = "西北", 销售额 = 815}
-    };
-
     readonly BarConfig config6 = new BarConfig
     {
-        XField = "销售额",
-        YField = "地区",
-
-
+        XField = "sales",
+        YField = "type",
         Legend = new Legend()
         {
             Position = "top-left",
         },
-
-        Interactions = new Interaction[] {
+        Interactions = new Interaction[]
+        {
             new Interaction { Type = "active-region", Enable = false }
         },
-
-        YAxis = new CatAxis
-        {
-            Visible = true,
-            OffsetX = 35,
-            OffsetY = -25
-        },
-        BarSize = 15,
+        BarSize = 15, 
+        //todo missing BarBackground
     };
 
     object otherConfig6 = new
