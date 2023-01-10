@@ -73,7 +73,8 @@ namespace AntDesign.Charts
         public OneOf<string, object> ResponsiveTheme { get; set; }
         [JsonPropertyName("responsiveTheme")]
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
         [JsonIgnore]
         [Obsolete("No longer supported")]
