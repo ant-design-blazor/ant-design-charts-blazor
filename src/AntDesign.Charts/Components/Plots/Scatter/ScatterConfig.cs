@@ -9,9 +9,16 @@ namespace AntDesign.Charts
     public class ScatterConfig : IScatterViewConfig, IPlotConfig
     {
         [JsonIgnore]
+        [Obsolete("No longer supported, use Size instead")]
         public OneOf<int?, int[], object> PointSize { get; set; }
-        [JsonPropertyName("pointSize")]
-        public object PointSizeMapping => PointSize.Value;
+        [JsonIgnore]
+        public OneOf<int?, int[], object> Size { get; set; }
+        [JsonPropertyName("size")]
+        public object SizeMapping => Size.Value;
+        [JsonIgnore]
+        public OneOf<string, string[], object> Shape { get; set; }
+        [JsonPropertyName("shape")]
+        public object ShapeMapping => Shape.Value;
         [JsonPropertyName("pointStyle")]
         public GraphicStyle PointStyle { get; set; }
         [JsonIgnore]
@@ -24,8 +31,11 @@ namespace AntDesign.Charts
         public ValueTimeAxis YAxis { get; set; }
         [JsonPropertyName("quadrant")]
         public QuadrantConfig Quadrant { get; set; }
-        [JsonPropertyName("trendline")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use RegressionLine instead")]
         public TrendlineConfig Trendline { get; set; }
+        [JsonPropertyName("regressionLine")]
+        public RegressionLineConfig RegressionLine { get; set; }
         [JsonPropertyName("renderer")]
         public string Renderer { get; set; }
         [JsonPropertyName("data")]
@@ -114,8 +124,15 @@ namespace AntDesign.Charts
         /// <summary>
         ///  散点大小 
         /// </summary>
-        [JsonPropertyName("pointSize")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use Size instead")]
         public OneOf<int?, int[], object> PointSize { get; set; }
+        [JsonPropertyName("size")]
+        public OneOf<int?, int[], object> Size { get; set; }
+        [JsonPropertyName("shape")]
+        public OneOf<string, string[], object> Shape { get; set; }
+
+
     }
 
     public interface IPointViewConfig : IViewConfig
@@ -142,8 +159,11 @@ namespace AntDesign.Charts
         public new ValueTimeAxis YAxis { get; set; }//OneOf <ITimeAxis, IValueAxis>
         [JsonPropertyName("quadrant")]
         public QuadrantConfig Quadrant { get; set; }
-        [JsonPropertyName("trendline")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use RegressionLine instead")]
         public TrendlineConfig Trendline { get; set; }
+        [JsonPropertyName("regressionLine")]
+        public RegressionLineConfig RegressionLine { get; set; }
     }
 
     public interface IQuadrantConfig
@@ -158,8 +178,8 @@ namespace AntDesign.Charts
         public OneOf<object, object[]> RegionStyle { get; set; }
         [JsonPropertyName("lineStyle")]
         public object LineStyle { get; set; }
-        [JsonPropertyName("label")]
-        public OneOf<Label, object> Label { get; set; }
+        [JsonPropertyName("labels")]
+        public OneOf<Label, Label[], object> Label { get; set; }
     }
 
     public class QuadrantConfig : IQuadrantConfig
@@ -177,8 +197,8 @@ namespace AntDesign.Charts
         [JsonPropertyName("lineStyle")]
         public object LineStyle { get; set; }
         [JsonIgnore]
-        public OneOf<Label, object> Label { get; set; }
-        [JsonPropertyName("label")]
+        public OneOf<Label, Label[], object> Label { get; set; }
+        [JsonPropertyName("labels")]
         public object LabelMapping => Label.Value;
     }
 
@@ -192,7 +212,8 @@ namespace AntDesign.Charts
         public object Style { get; set; }
         [JsonPropertyName("showConfidence")]
         public bool? ShowConfidence { get; set; }
-        [JsonPropertyName("confidenceStyle")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public object ConfidenceStyle { get; set; }
     }
 
@@ -206,8 +227,34 @@ namespace AntDesign.Charts
         public object Style { get; set; }
         [JsonPropertyName("showConfidence")]
         public bool? ShowConfidence { get; set; }
-        [JsonPropertyName("confidenceStyle")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public object ConfidenceStyle { get; set; }
+    }
+
+    public interface IRegressionLineConfig
+    {
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("style")]
+        public IGraphicStyle Style { get; set; }
+        [JsonPropertyName("algorithm")]
+        public OneOf<int[][], object> Algorithm { get; set; }
+        [JsonPropertyName("top")]
+        public bool? Top { get; set; }
+    }
+
+    public class RegressionLineConfig : IRegressionLineConfig
+    {
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        [JsonPropertyName("style")]
+        public IGraphicStyle Style { get; set; }
+        [JsonPropertyName("algorithm")]
+        public OneOf<int[][], object> Algorithm { get; set; }
+        public object AlgorithmMapping => Algorithm.Value;
+        [JsonPropertyName("top")]
+        public bool? Top { get; set; }
     }
 }
 
