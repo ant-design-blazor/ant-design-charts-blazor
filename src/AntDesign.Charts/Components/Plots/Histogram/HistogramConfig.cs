@@ -103,6 +103,12 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonPropertyName("isStack")]
+        public bool? IsStack { get; set; }
+        [JsonPropertyName("isRange")]
+        public bool? IsRange { get; set; }
+        [JsonPropertyName("isPercent")]
+        public bool? IsPercent { get; set; }
     }
 
     public interface IHistogramViewConfig : IColumnViewConfig

@@ -106,6 +106,12 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonPropertyName("isStack")]
+        public bool? IsStack { get; set; }
+        [JsonPropertyName("isRange")]
+        public bool? IsRange { get; set; }
+        [JsonPropertyName("isPercent")]
+        public bool? IsPercent { get; set; }
     }
 
     public interface IColumnViewConfig : IViewConfig
@@ -127,6 +133,13 @@ namespace AntDesign.Charts
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("label")]
         public new ColumnViewConfigLabel Label { get; set; } //OneOf <IColumnLabel, IColumnAutoLabel>
+        [JsonPropertyName("isStack")] 
+        public bool? IsStack { get; set; }
+        [JsonPropertyName("isRange")]
+        public bool? IsRange { get; set; }
+        [JsonPropertyName("isPercent")]
+        public bool? IsPercent { get; set; }
+
     }
 
     public class ColumnViewConfigLabel : IColumnLabel, IColumnAutoLabel
@@ -170,10 +183,23 @@ namespace AntDesign.Charts
         public TextStyle DarkStyle { get; set; }
         [JsonPropertyName("lightStyle")]
         public TextStyle LightStyle { get; set; }
+        [JsonPropertyName("layout")]
+        public LayoutType[] Layout { get; set; }
     }
 
     public interface IColumnLabel : ILabel
     {
+        [JsonPropertyName("layout")]
+        public LayoutType[] Layout { get; set; }
+    }
+
+    public class LayoutType
+    {
+        /// <summary>
+        /// 'interval-adjust-position', 'interval-hide-overlap', 'adjust-color',
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
     }
 
     public interface IColumnAutoLabel : ILabel
