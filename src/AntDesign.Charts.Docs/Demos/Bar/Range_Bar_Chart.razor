@@ -1,13 +1,6 @@
 @page "/Range_Bar_Chart"
 
-<Tabs>
-    <TabPane Key="1" Tab="Sample 1">
-         <Bar Data=data1 Config="config1" />
-    </TabPane>
-    <TabPane Key="2" Tab="Sample 2">
-         <Bar Data=data2 Config="config2" />
-    </TabPane>
-</Tabs>
+<Bar Data=data1.Reverse() Config="config1" />
 
 <Divider>动手实验</Divider>
 <DynamicExample @ref="@example">
@@ -42,32 +35,21 @@
     {
         XField = "values",
         YField = "type",
+        IsRange = true,
+        Label = new BarViewConfigLabel()
+        {
+            Position = "middle",
+            Layout = new []
+            {
+                new LayoutType()
+                {
+                    Type = "adjust-color"
+                }
+            }
+        }
     };
 
     #endregion 示例1
-
-    #region 示例2
-
-
-    object[] data2 = new object[] {
-        new  { type= "分类一", values=new int []{76, 100 } },
-        new  { type= "分类二", values=new int []{56, 108 } },
-        new  { type= "分类三", values=new int []{38, 129 } },
-        new  { type= "分类四", values=new int []{58, 155 } },
-        new  { type= "分类五", values=new int []{45, 120 } },
-        new  { type= "分类六", values=new int []{23, 99 } },
-        new  { type= "分类七", values=new int []{18, 56 } },
-        new  { type= "分类八", values=new int []{18, 34 } },
-};
-
-    BarConfig config2 = new BarConfig()
-    {
-        XField = "values",
-        YField = "type",
-        Color = new string[] { "l(0) 0:#3e5bdb 1:#dd3121" },
-    };
-
-    #endregion 示例2
 
 }
 
