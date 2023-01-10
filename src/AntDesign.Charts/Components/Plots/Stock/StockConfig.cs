@@ -104,7 +104,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("columnWidthRatio")]
         public double ColumnWidthRatio { get; set; }
         [JsonPropertyName("slider")]
-        public object Slider { get; set; }
+        public ISlider Slider { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
     }
@@ -141,7 +141,7 @@ namespace AntDesign.Charts
         public double ColumnWidthRatio { get; set; }
 
         [JsonPropertyName("slider")]
-        public object Slider { get; set; }
+        public ISlider Slider { get; set; }
     }
 
     public class StockViewConfigShowTotal

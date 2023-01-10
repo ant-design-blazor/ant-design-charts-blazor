@@ -101,6 +101,10 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
 
     }
 

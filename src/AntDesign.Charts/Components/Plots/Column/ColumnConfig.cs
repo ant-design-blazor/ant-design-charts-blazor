@@ -22,6 +22,10 @@ namespace AntDesign.Charts
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("label")]
         public ColumnViewConfigLabel Label { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
         [JsonPropertyName("renderer")]
@@ -123,11 +127,6 @@ namespace AntDesign.Charts
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("label")]
         public ColumnViewConfigLabel Label { get; set; } //OneOf <IColumnLabel, IColumnAutoLabel>
-        /// <summary>
-        /// export type ColumnInteraction =
-        ///  | { type: 'slider'; cfg: ISliderInteractionConfig }
-        ///  | { type: 'scrollbar'; cfg?: IScrollbarInteractionConfig };
-        /// </summary>
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
     }

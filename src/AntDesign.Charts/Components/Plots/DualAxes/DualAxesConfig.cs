@@ -99,6 +99,10 @@ namespace AntDesign.Charts
         public object[] GeometryOptions { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
 
     }
 
@@ -110,6 +114,10 @@ namespace AntDesign.Charts
         public object Tooltip { get; set; }
         [JsonPropertyName("lineConfigs")]
         public LineConfig[] LineConfigs { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
     }
 
     public interface IComboViewConfig : IViewConfig

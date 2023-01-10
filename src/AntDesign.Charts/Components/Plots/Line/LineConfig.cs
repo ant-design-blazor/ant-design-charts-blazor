@@ -25,6 +25,10 @@ namespace AntDesign.Charts
         public ValueAxis YAxis { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
         [JsonPropertyName("renderer")]
         public string Renderer { get; set; }
         [JsonPropertyName("data")]
@@ -156,13 +160,10 @@ namespace AntDesign.Charts
         public ValueAxis YAxis { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        /*
-            type LineInteraction =
-              | IInteractions
-              | { type: 'selected-tooltip' }
-              | { type: 'slider'; cfg: ISliderInteractionConfig }
-              | { type: 'scrollbar'; cfg?: IScrollbarInteractionConfig };
-         */
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
     }
 
     /// <summary>

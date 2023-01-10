@@ -24,6 +24,10 @@ namespace AntDesign.Charts
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
     }
 
     public class BarViewConfigLabel : IBarLabel, IBarAutoLabel

@@ -20,6 +20,10 @@ namespace AntDesign.Charts
         public AreaViewConfigPoint Point { get; set; }
         [JsonPropertyName("smooth")]
         public bool? Smooth { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
         [JsonPropertyName("label")]
@@ -97,9 +101,10 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
 
         [JsonPropertyName("isPercent")]
-        public bool IsPercent { get; set; }
+        public bool? IsPercent { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+
     }
 
     public interface IAreaViewConfig : IViewConfig
@@ -118,11 +123,10 @@ namespace AntDesign.Charts
         public AreaViewConfigPoint Point { get; set; }
         [JsonPropertyName("smooth")]
         public bool? Smooth { get; set; }
-        /// <summary>
-        /// export type AreaInteraction =
-        ///  | { type: 'slider'; cfg: ISliderInteractionConfig }
-        ///  | { type: 'scrollbar'; cfg?: IScrollbarInteractionConfig };
-        /// </summary>
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
 
