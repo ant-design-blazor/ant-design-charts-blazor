@@ -31,15 +31,38 @@
     }
 
     ScatterConfig config1 = new ScatterConfig()
-    {
-        XField = "revenue",
-        YField = "rating",
-        XAxis = new ValueTimeAxis()
         {
-            Visible = true,
-            Min = -5,
-        },
-    };
+            XField = "revenue",
+            YField = "rating",
+            Shape = "circle",
+            ColorField = "genre",
+            Size = 4,
+            YAxis = new ValueTimeAxis()
+            {
+                Nice = true,
+                Line = new BaseAxisLine()
+                {
+                    Style = new LineStyle()
+                    {
+                        Stroke = "#aaa"
+                    }
+                }
+            },
+            XAxis = new ValueTimeAxis()
+            {
+                Min = -100,
+                Grid = new BaseAxisGrid()
+                {
+                    Line = new BaseAxisGridLine()
+                    {
+                        Style = new LineStyle()
+                        {
+                            Stroke = "#aaa"
+                        }
+                    }
+                }
+            }
+        };
 
 
     #endregion 示例1
