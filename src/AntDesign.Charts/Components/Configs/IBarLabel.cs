@@ -11,6 +11,9 @@ namespace AntDesign.Charts
         public static string PositionLeft = "left";
         public static string PositionMiddle = "middle";
         public static string PositionRight = "right";
+
+        [JsonPropertyName("layout")]
+        public LayoutType[] Layout { get; set; }
     }
 
     public class BarLabel : IBarLabel
@@ -43,6 +46,8 @@ namespace AntDesign.Charts
         public bool? AutoRotate { get; set; }
         [JsonPropertyName("field")]
         public string Field { get; set; }
+        [JsonPropertyName("layout")]
+        public LayoutType[] Layout { get; set; }
     }
 }
 

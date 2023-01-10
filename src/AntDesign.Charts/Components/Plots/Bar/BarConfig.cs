@@ -105,6 +105,12 @@ namespace AntDesign.Charts
         public IScrollbar Scrollbar { get; set; }
         [JsonPropertyName("slider")]
         public ISlider Slider { get; set; }
+        [JsonPropertyName("isStack")]
+        public bool? IsStack { get; set; }
+        [JsonPropertyName("isRange")]
+        public bool? IsRange { get; set; }
+        [JsonPropertyName("isPercent")]
+        public bool? IsPercent { get; set; }
 
     }
 

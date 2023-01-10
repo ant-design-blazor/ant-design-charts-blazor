@@ -26,6 +26,12 @@ namespace AntDesign.Charts
         public IScrollbar Scrollbar { get; set; }
         [JsonPropertyName("slider")]
         public ISlider Slider { get; set; }
+        [JsonPropertyName("isStack")]
+        public bool? IsStack { get; set; }
+        [JsonPropertyName("isRange")]
+        public bool? IsRange { get; set; }
+        [JsonPropertyName("isPercent")]
+        public bool? IsPercent { get; set; }
     }
 
     public class BarViewConfigLabel : IBarLabel, IBarAutoLabel
@@ -62,6 +68,8 @@ namespace AntDesign.Charts
         public bool? AutoRotate { get; set; }
         [JsonPropertyName("field")]
         public string Field { get; set; }
+        [JsonPropertyName("layout")]
+        public LayoutType[] Layout { get; set; }
     }
 }
 
