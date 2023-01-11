@@ -1,6 +1,22 @@
 @page "/Gauge_Chart"
 
-<Gauge Config="config1" />
+<Tabs>
+<TabPane Key="1" Tab="Sample 1">
+    <Gauge Config="config1" />
+</TabPane>
+<TabPane Key="2" Tab="Sample 2">
+    <Gauge Config="config2" />
+</TabPane>
+<TabPane Key="3" Tab="Sample 3">
+    <Gauge Config="config3" />
+</TabPane>
+<TabPane Key="4" Tab="Sample 4">
+    <Gauge Config="config4" />
+</TabPane>
+<TabPane Key="5" Tab="Sample 5">
+    <Gauge Config="config5" />
+</TabPane>
+</Tabs>
 
 <Divider>动手实验</Divider>
 <DynamicExample @ref="@example">
@@ -22,23 +38,209 @@
 
     GaugeConfig config1 = new GaugeConfig()
     {
-        Width = 400,
-        Height = 400,
-        Percent = (decimal?)0.75,
-        Min = 0,
-        Max = 100,
-        Range = new double[] { 0, 25, 50, 75, 100 },
-        Color = new string[] { "#39B8FF", "#52619B", "#43E089", "#C0EDF3" },
+        Percent = new decimal(0.75),
+        Range = new GaugeRange
+        {
+            Color = "#30BF78"
+        },
+        Indicator = new GaugeIndicator()
+        {
+            Pointer = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            },
+            Pin = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            }
+        },
         Statistic = new GaugeStatistic()
         {
-            Visible = true,
-            Text = "优",
-            Color = "#30bf78",
+            Content = new GaugeStatisticStyle()
+            {
+                Content = "Rate: 75%",
+                Style = new TextStyle()
+                {
+                    FontSize = 48
+                }
+            }
+        }
+    };
+
+    #endregion 
+
+    #region 示例2
+
+    GaugeConfig config2 = new GaugeConfig()
+    {
+        Percent = new decimal(0.75),
+        Radius = 0.75,
+        Range = new GaugeRange
+        {
+            Color = "#30BF78",
+            Width =  12,
+        },
+        Indicator = new GaugeIndicator()
+        {
+            Pointer = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            },
+            Pin = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            }
+        },
+        Statistic = new GaugeStatistic()
+        {
+            Content = new GaugeStatisticStyle()
+            {
+                Content = "Rate: 75%",
+            }
+        },
+        GaugeStyle = new GaugeStyle()
+        {
+            LineCap = "round"
+        }
+    };
+
+    #endregion 
+
+    #region 示例3
+
+    GaugeConfig config3 = new GaugeConfig()
+    {
+        Percent = new decimal(0.75),
+        Range = new GaugeRange
+        {
+            Color = "l(0) 0:#B8E1FF 1:#3D76DD",
+        },
+        StartAngle = Math.PI,
+        EndAngle = 2 * Math.PI,
+        Indicator = false,
+        Statistic = new GaugeStatistic
+        {
+            Title = new GaugeStatisticStyle
+            {
+                OffsetY = -36,
+                Style = new TextStyle
+                {
+                    FontSize = 36,
+                    Color = "#4B535E"
+                },
+                Content = "70%"
+            },
+            Content = new GaugeStatisticStyle
+            {
+                Style = new TextStyle
+                {
+                    FontSize = "24px",
+                    LineHeight = "44px",
+                    Color = "#4B535E"
+                },
+                Content = "加载进度",
+            }
         },
     };
 
-    #endregion 示例1
+    #endregion 
 
+    #region 示例4
 
+    GaugeConfig config4 = new GaugeConfig()
+    {
+        Percent = new decimal(0.75),
+        Range = new GaugeRange
+        {
+            Ticks = new[] { 0.0, 1.0 / 3.0, 2.0 / 3.0, 1.0 },
+            Color = new[] { "#F4664A", "#FAAD14", "#30BF78" }
+        },
+        Indicator = new GaugeIndicator()
+        {
+            Pointer = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            },
+            Pin = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            }
+        },
+        Statistic = new GaugeStatistic
+        {
+            Content = new GaugeStatisticStyle
+            {
+                Style = new TextStyle
+                {
+                    FontSize = "36px",
+                    LineHeight = "36px",
+                },
+            }
+        },
+    };
+
+    #endregion 
+
+    #region 示例5
+
+    GaugeConfig config5 = new GaugeConfig()
+    {
+        Percent = new decimal(0.75),
+        Type = "meter",
+        InnerRadius = 0.75,
+        Range = new GaugeRange
+        {
+            Ticks = new[] { 0.0, 1.0 / 3.0, 2.0 / 3.0, 1.0 },
+            Color = new[] { "#F4664A", "#FAAD14", "#30BF78" }
+        },
+        Indicator = new GaugeIndicator()
+        {
+            Pointer = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            },
+            Pin = new GaugeIndicatorStyle
+            {
+                Style = new GaugeStyle
+                {
+                    Stroke = "#D0D0D0"
+                }
+            }
+        },
+        Statistic = new GaugeStatistic
+        {
+            Content = new GaugeStatisticStyle
+            {
+                Style = new TextStyle
+                {
+                    FontSize = "36px",
+                    LineHeight = "36px",
+                },
+            }
+        },
+    };
+
+    #endregion 
 }
 
