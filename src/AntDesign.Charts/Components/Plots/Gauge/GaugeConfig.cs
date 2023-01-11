@@ -9,9 +9,9 @@ namespace AntDesign.Charts
     public class GaugeConfig : IGaugeLayerConfig, IPlotConfig
     {
         [JsonPropertyName("startAngle")]
-        public int? StartAngle { get; set; }
+        public double? StartAngle { get; set; }
         [JsonPropertyName("endAngle")]
-        public int? EndAngle { get; set; }
+        public double? EndAngle { get; set; }
         [JsonPropertyName("min")]
         public decimal? Min { get; set; }
         [JsonPropertyName("max")]
@@ -123,9 +123,9 @@ namespace AntDesign.Charts
     public interface GaugeViewConfig : IViewConfig
     {
         [JsonPropertyName("startAngle")]
-        public int? StartAngle { get; set; }
+        public double? StartAngle { get; set; }
         [JsonPropertyName("endAngle")]
-        public int? EndAngle { get; set; }
+        public double? EndAngle { get; set; }
         [JsonPropertyName("min")]
         public decimal? Min { get; set; }
         [JsonPropertyName("max")]
