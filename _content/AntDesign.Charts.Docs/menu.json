@@ -291,6 +291,21 @@
         "title": "双折线混合图表",
         "type": "menuItem",
         "url": "DualLine_Combo_Chart"
+      },
+      {
+        "title": "柱线混合图表",
+        "type": "menuItem",
+        "url": "Column_Line_Chart"
+      },
+      {
+        "title": "堆叠柱线图表",
+        "type": "menuItem",
+        "url": "Stacked_Column_Line"
+      },
+      {
+        "title": "分组柱线图表",
+        "type": "menuItem",
+        "url": "Grouped_Column_Line"
       }
     ]
   },
@@ -345,9 +360,9 @@
         "url": "Set_State"
       },
       {
-        "title": "辅助线",
+        "title": "数据标签",
         "type": "menuItem",
-        "url": "Guideline"
+        "url": "Annotation"
       },
       {
         "title": "JS交互",
