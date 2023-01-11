@@ -58,14 +58,22 @@ namespace AntDesign.Charts
         public OneOf<string, object> ResponsiveTheme { get; set; }
         [JsonPropertyName("responsiveTheme")]
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
@@ -91,8 +99,6 @@ namespace AntDesign.Charts
 
     public interface ITreemapViewConfig : IViewConfig
     {
-        [JsonPropertyName("data")]
-        public object Data { get; set; }
         [JsonPropertyName("maxLevel")]
         public int? MaxLevel { get; set; }
         [JsonPropertyName("colorField")]
@@ -102,9 +108,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("rectStyle")]
         public GraphicStyle RectStyle { get; set; }
         [JsonPropertyName("label")]
-        public TreemapLabelConfig Label { get; set; }
-        [JsonPropertyName("interactions")]
-        public Interaction[] Interactions { get; set; }//TreemapInteraction
+        public new TreemapLabelConfig Label { get; set; }
     }
 
     public interface ITreemapLabelConfig

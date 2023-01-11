@@ -2,23 +2,32 @@ using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using OneOf;
 
 namespace AntDesign.Charts
 {
     public interface ITextStyle : IGraphicStyle
     {
-        [JsonPropertyName("fontSize")]
-        public int? FontSize { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string> FontSize { get; set; }
+        [JsonPropertyName("fontSize")] 
+        public object FontSizeMapping => FontSize.Value;
         [JsonPropertyName("fontFamily")]
         public string FontFamily { get; set; }
         [JsonPropertyName("fontWeight")]
         public int? FontWeight { get; set; }
+        [JsonIgnore]
+        public OneOf<int?,string> LineHeight { get; set; }
         [JsonPropertyName("lineHeight")]
-        public int? LineHeight { get; set; }
+        public object LineHeightMapping => LineHeight.Value;
         [JsonPropertyName("textAlign")]
         public string TextAlign { get; set; }
         [JsonPropertyName("textBaseline")]
         public string TextBaseline { get; set; }
+        [JsonPropertyName("radius")]
+        public double? Radius { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
 
         // [field: string]: any;
         //TODO:
@@ -26,14 +35,18 @@ namespace AntDesign.Charts
 
     public class TextStyle : ITextStyle
     {
+        [JsonIgnore]
+        public OneOf<int?, string> FontSize { get; set; }
         [JsonPropertyName("fontSize")]
-        public int? FontSize { get; set; }
+        public object FontSizeMapping => FontSize.Value;
         [JsonPropertyName("fontFamily")]
         public string FontFamily { get; set; }
         [JsonPropertyName("fontWeight")]
         public int? FontWeight { get; set; }
+        [JsonIgnore]
+        public OneOf<int?, string> LineHeight { get; set; }
         [JsonPropertyName("lineHeight")]
-        public int? LineHeight { get; set; }
+        public object LineHeightMapping => LineHeight.Value;
         /// <summary>
         /// 'center','left','right'
         /// </summary>
@@ -50,6 +63,7 @@ namespace AntDesign.Charts
         public static string TextBaselineMiddle = "middle";
         public static string TextBaselineTop = "top";
         public static string TextBaselineRight = "right";
+        public static string TextBaselineBottom = "bottom";
 
         [JsonPropertyName("fill")]
         public string Fill { get; set; }
@@ -75,6 +89,14 @@ namespace AntDesign.Charts
         public int? ShadowOffsetY { get; set; }
         [JsonPropertyName("cursor")]
         public string Cursor { get; set; }
+        [JsonPropertyName("radius")]
+        public double? Radius { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
     }
 }
 

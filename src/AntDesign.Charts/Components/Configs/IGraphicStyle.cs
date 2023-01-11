@@ -5,6 +5,9 @@ using System.Text;
 
 namespace AntDesign.Charts
 {
+    [JsonDerivedType(typeof(TextStyle))]
+    [JsonDerivedType(typeof(LegendMarkerStyle))]
+    [JsonDerivedType(typeof(GraphicStyle))]
     public interface IGraphicStyle
     {
         [JsonPropertyName("fill")]
@@ -31,6 +34,10 @@ namespace AntDesign.Charts
         public int? ShadowOffsetY { get; set; }
         [JsonPropertyName("cursor")]
         public string Cursor { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
         //  [field: string]: any;
     }
 
@@ -60,6 +67,10 @@ namespace AntDesign.Charts
         public int? ShadowOffsetY { get; set; }
         [JsonPropertyName("cursor")]
         public string Cursor { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
     }
 }
 

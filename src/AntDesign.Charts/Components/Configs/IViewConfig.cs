@@ -47,14 +47,20 @@ namespace AntDesign.Charts
         public OneOf<string, object> ResponsiveTheme { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonPropertyName("annotations")]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
         /*
           events?: {
             [k: string]: ((...args: any[]) => any) | boolean;
@@ -85,7 +91,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("type")]
         public string Type { get; set; }
         [JsonPropertyName("visible")]
-        public bool Visible { get; set; }
+        public bool? Visible { get; set; }
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
         [JsonPropertyName("line")]

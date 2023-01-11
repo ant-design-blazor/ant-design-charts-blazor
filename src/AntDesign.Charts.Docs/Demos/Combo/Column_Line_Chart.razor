@@ -1,0 +1,59 @@
+@page "/Column_Line_Chart"
+@inject IJSRuntime JS;
+
+<DualAxes Data="@(new [] { data1, data1 })" Config="config1" />
+
+<Divider>动手实验</Divider>
+<DynamicExample @ref="@example">
+    <DualAxes @ref="@chart" />
+</DynamicExample>
+
+@code{
+
+    public IChartComponent chart;
+    DynamicExample example;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+        example.Chart = chart;
+    }
+
+
+    #region 示例1
+
+    object data1 = new object[]
+    {
+        new { time = "2019-03", value = 350, count = 800 },
+        new { time = "2019-04", value = 900, count = 600 },
+        new { time = "2019-05", value = 300, count = 400 },
+        new { time = "2019-06", value = 450, count = 380 },
+        new { time = "2019-07", value = 470, count = 220 },
+    };
+
+    DualAxesConfig config1 = new DualAxesConfig()
+    {
+        XField = "time",
+        YField = new string[] { "value", "count" },
+        GeometryOptions = new object[]
+        {
+            new
+            {
+                Geometry = "column",
+            },
+            new
+            {
+                Geometry = "line",
+                LineStyle = new
+                {
+                    LineWidth = 2,
+                },
+            },
+        },
+    };
+
+    #endregion 示例1
+
+}
+
+

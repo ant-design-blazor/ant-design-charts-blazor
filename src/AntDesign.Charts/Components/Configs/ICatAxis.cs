@@ -7,8 +7,6 @@ namespace AntDesign.Charts
 {
     public interface ICatAxis : IBaseAxis
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
     }
 
     public class CatAxis : ICatAxis
@@ -20,7 +18,7 @@ namespace AntDesign.Charts
         public string Type { get; set; }
         public static string TypeCat = "cat";
         [JsonPropertyName("visible")]
-        public bool Visible { get; set; }
+        public bool? Visible { get; set; }
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
         [JsonPropertyName("line")]

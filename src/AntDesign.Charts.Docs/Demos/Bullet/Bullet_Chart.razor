@@ -52,16 +52,6 @@
             },
             },
         RangeMax = 100,
-        Title = new Charts.Title()
-        {
-            Visible = true,
-            Text = "基础子弹图",
-        },
-        Description = new Description()
-        {
-            Visible = true,
-            Text = "设定子弹图的目标值(goal)和当前进度(value)，即可展示子弹图进度情况；若没有设置最大值(max)，则最大值等于目标值",
-        },
     };
 
 
@@ -137,16 +127,6 @@
 
     BulletConfig config2 = new BulletConfig()
     {
-        Title = new Charts.Title()
-        {
-            Visible = true,
-            Text = "基础子弹图-带多颜色范围区间",
-        },
-        Description = new Description()
-        {
-            Visible = true,
-            Text = "自定义图例，表示各颜色范围区间代表的含义（如差、良、优）",
-        },
         Data = new BulletViewConfigData[]{
             new BulletViewConfigData
             {

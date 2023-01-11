@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
 {
+    [Obsolete("No longer supported, use HeatMap Instead")]
     public class DensityHeatmapConfig : IDensityHeatmapViewConfig, IPlotConfig
     {
         [JsonPropertyName("colorField")]
@@ -62,14 +63,22 @@ namespace AntDesign.Charts
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
@@ -104,7 +113,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("point")]
         public DensityHeatmapViewConfigPoint Point { get; set; }
         [JsonPropertyName("legend")]
-        public HeatmapLegendConfig Legend { get; set; }
+        public new HeatmapLegendConfig Legend { get; set; }
         [JsonPropertyName("background")]
         public HeatmapBackgroundConfig Background { get; set; }
 

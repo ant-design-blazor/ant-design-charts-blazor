@@ -7,9 +7,6 @@ namespace AntDesign.Charts
 {
     public interface IValueAxis : IBaseAxis
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
         /// <summary>
         ///  tick相关配置 
         /// </summary>
@@ -70,7 +67,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("base")]
         public int? Base { get; set; }
         [JsonPropertyName("visible")]
-        public bool Visible { get; set; }
+        public bool? Visible { get; set; }
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
         [JsonPropertyName("line")]

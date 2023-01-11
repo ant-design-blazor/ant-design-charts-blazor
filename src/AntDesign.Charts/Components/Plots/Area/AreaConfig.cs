@@ -20,6 +20,10 @@ namespace AntDesign.Charts
         public AreaViewConfigPoint Point { get; set; }
         [JsonPropertyName("smooth")]
         public bool? Smooth { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
         [JsonPropertyName("label")]
@@ -58,14 +62,22 @@ namespace AntDesign.Charts
         public OneOf<string, object> ResponsiveTheme { get; set; }
         [JsonPropertyName("responsiveTheme")]
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
@@ -89,9 +101,10 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
 
         [JsonPropertyName("isPercent")]
-        public bool IsPercent { get; set; }
+        public bool? IsPercent { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+
     }
 
     public interface IAreaViewConfig : IViewConfig
@@ -101,25 +114,21 @@ namespace AntDesign.Charts
         [JsonPropertyName("seriesField")]
         public string SeriesField { get; set; }
         [JsonPropertyName("xAxis")]
-        public ValueCatTimeAxis XAxis { get; set; }//OneOf <ICatAxis, ITimeAxis, IValueAxis>
+        public new ValueCatTimeAxis XAxis { get; set; }//OneOf <ICatAxis, ITimeAxis, IValueAxis>
         [JsonPropertyName("yAxis")]
-        public ValueAxis YAxis { get; set; }
+        public new ValueAxis YAxis { get; set; }
         [JsonPropertyName("line")]
         public AreaViewConfigLine Line { get; set; }
         [JsonPropertyName("point")]
         public AreaViewConfigPoint Point { get; set; }
         [JsonPropertyName("smooth")]
         public bool? Smooth { get; set; }
-        /// <summary>
-        /// export type AreaInteraction =
-        ///  | { type: 'slider'; cfg: ISliderInteractionConfig }
-        ///  | { type: 'scrollbar'; cfg?: IScrollbarInteractionConfig };
-        /// </summary>
-        [JsonPropertyName("interactions")]
-        public Interaction[] Interactions { get; set; }
-
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
         [JsonPropertyName("label")]
-        public AreaLabel Label { get; set; }
+        public new AreaLabel Label { get; set; }
 
     }
 
@@ -155,14 +164,10 @@ namespace AntDesign.Charts
 
     public interface IAreaPointLabel : ILabel
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }//'area-point'
     }
 
     public interface IAreaPointAutoLabel : ILabel
     {
-        [JsonPropertyName("type")]
-        public string Type { get; set; }//'area-point-auto'
         /// <summary>
         ///  area-point-auto 暗色配置 
         /// </summary>

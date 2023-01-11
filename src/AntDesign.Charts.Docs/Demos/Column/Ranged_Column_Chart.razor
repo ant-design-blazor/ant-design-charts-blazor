@@ -34,13 +34,20 @@
 
     ColumnConfig config1 = new ColumnConfig()
     {
-        Title = new Charts.Title()
-        {
-            Visible = true,
-            Text = "区间柱状图",
-        },
         XField = "type",
         YField = "values",
+        IsRange = true,
+        Label = new ColumnViewConfigLabel()
+        {
+            Position = "middle",
+            Layout = new []
+            {
+                new LayoutType()
+                {
+                    Type = "adjust-color"
+                }
+            }
+        }
     };
 
     #endregion 示例1

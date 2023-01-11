@@ -16,9 +16,11 @@ namespace AntDesign.Charts
         public object Tooltip { get; set; }
         [JsonPropertyName("lineConfigs")]
         public LineConfig[] LineConfigs { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
         [JsonPropertyName("data")]
         public object Data { get; set; }
@@ -67,10 +69,16 @@ namespace AntDesign.Charts
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
@@ -91,33 +99,29 @@ namespace AntDesign.Charts
         public object[] GeometryOptions { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
 
     }
 
     public interface IDualAxesViewConfig : IComboViewConfig
     {
         [JsonPropertyName("xAxis")]
-        public ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
-        [JsonPropertyName("tooltip")]
-        public object Tooltip { get; set; }
+        public new ValueCatTimeAxis XAxis { get; set; }//OneOf <IValueAxis, ICatAxis, ITimeAxis>
         [JsonPropertyName("lineConfigs")]
         public LineConfig[] LineConfigs { get; set; }
+        [JsonPropertyName("scrollbar")]
+        public IScrollbar Scrollbar { get; set; }
+        [JsonPropertyName("slider")]
+        public ISlider Slider { get; set; }
     }
 
     public interface IComboViewConfig : IViewConfig
     {
-        [JsonPropertyName("title")]
-        public Title Title { get; set; }
-        [JsonPropertyName("description")]
-        public Description Description { get; set; }
-        [JsonPropertyName("data")]
-        public object Data { get; set; }//DataItem[][]
-        [JsonPropertyName("meta")]
-        public object Meta { get; set; }//LooseMap<Meta>
-        [JsonPropertyName("xField")]
-        public string XField { get; set; }
         [JsonPropertyName("yField")]
-        public string[] YField { get; set; }
+        public new string[] YField { get; set; }
     }
 
 

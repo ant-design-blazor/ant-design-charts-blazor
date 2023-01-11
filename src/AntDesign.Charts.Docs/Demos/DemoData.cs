@@ -93,14 +93,33 @@ namespace AntDesign.Charts.Docs.Demos
             return await HttpClient.GetFromJsonAsync<object>("https://gw.alipayobjects.com/os/bmw-prod/b21e7336-0b3e-486c-9070-612ede49284e.json");
         }
 
-        public static async Task<object[]> StockDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        public static async Task<StockItem[]> StockDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
         {
-            return await HttpClient.GetFromJsonAsync<object[]>("https://gw.alipayobjects.com/os/antfincdn/qtQ9nYfYJe/stock-data.json");
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<StockItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/stock-data.json").ToString());
         }
 
         public static async Task<object[]> ViolinDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
         {
             return await HttpClient.GetFromJsonAsync<object[]>("https://gw.alipayobjects.com/os/bmw-prod/6b0a5f1d-5931-42ae-b3ba-3c3cb77d0861.json");
+        }
+
+        public static async Task<HeatMapItem[]> HeadMapDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<HeatMapItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/heatmap.json").ToString());
+        }
+
+        public static async Task<TimePeriodItem[]> TimePeriodDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<TimePeriodItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/timePeriod.json").ToString());
+        }
+
+        public static async Task<StackColumnItem[]> StackColumnDataAsync(NavigationManager NavigationManager, HttpClient HttpClient)
+        {
+            var baseUrl = NavigationManager.ToAbsoluteUri(NavigationManager.BaseUri);
+            return await HttpClient.GetFromJsonAsync<StackColumnItem[]>(new Uri(baseUrl, "_content/AntDesign.Charts.Docs/data/stack-column-data.json").ToString());
         }
     }
 
@@ -228,6 +247,26 @@ namespace AntDesign.Charts.Docs.Demos
 
     }
 
+    // "ts_code": "000001.SH",
+    // "trade_date": "2020-02-19",
+    // "close": 2975.4019,
+    // "open": 2979.5223,
+    // "high": 2998.2718,
+    // "low": 2971.8219,
+    // "vol": 315141151,
+    // "amount": 381331160.4
+    public class StockItem
+    {
+        public string ts_code { get; set; }
+        public string trade_date { get; set; }
+        public double close { get; set; }
+        public double open { get; set; }
+        public double high { get; set; }
+        public double low { get; set; }
+        public double vol { get; set; }
+        public double amount { get; set; }
+    }
+
 
     //"UEFA rank": 9,
     //"country": "Belgium",
@@ -249,5 +288,33 @@ namespace AntDesign.Charts.Docs.Demos
         public double Revenue_per_club { get; set; }
 
         public string revenueGroup { get; set; }
+    }
+
+    // "g": 596,
+    // "l": 320,
+    // "tmp": 718
+    public class HeatMapItem
+    {
+        public int g { get; set; }
+        public int l { get; set; }
+        public int tmp { get; set; }
+    }
+
+    // "timePeriod": "2007 Q1",
+    // "value": 1.17
+    public class TimePeriodItem
+    {
+        public string timePeriod { get; set; }
+        public double value { get; set; }
+    }
+
+    //"year": "1991",
+    //"value": 3,
+    //"type": "Bor"
+    public class StackColumnItem
+    {
+        public string year { get; set; }
+        public double value { get; set; }
+        public string type { get; set; }
     }
 }

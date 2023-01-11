@@ -58,14 +58,22 @@ namespace AntDesign.Charts
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
@@ -90,6 +98,8 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonPropertyName("statistic")]
+        public object Statistic { get; set; }
     }
 
     public interface IPieViewConfig : IViewConfig
@@ -103,41 +113,22 @@ namespace AntDesign.Charts
         [JsonPropertyName("pieStyle")]
         public GraphicStyle PieStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("label")]
-        public PieLabelConfig Label { get; set; }
+        public new PieLabelConfig Label { get; set; }
     }
 
     public interface IPieLabelConfig : ILabel
     {
-        [JsonPropertyName("visible")]
-        public bool? Visible { get; set; }
         [JsonPropertyName("formatter")]
         public object Formatter { get; set; }//OneOf <(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
-        /// <summary>
-        ///  whether 
-        /// </summary>
-        [JsonPropertyName("adjustPosition")]
-        public bool? AdjustPosition { get; set; }
         /// <summary>
         ///  allow label overlap 
         /// </summary>
         [JsonPropertyName("allowOverlap")]
         public bool? AllowOverlap { get; set; }
-        [JsonPropertyName("autoRotate")]
-        public bool? AutoRotate { get; set; }
         [JsonPropertyName("labelHeight")]
         public int? LabelHeight { get; set; }
-        [JsonIgnore]
-        public OneOf<int?, object> Offset { get; set; }
-        [JsonPropertyName("offset")]
-        public object OffsetMapping => Offset.Value;
-        [JsonPropertyName("offsetX")]
-        public int? OffsetX { get; set; }
-        [JsonPropertyName("offsetY")]
-        public int? OffsetY { get; set; }
         [JsonPropertyName("line")]
         public PieLabelConfigLine Line { get; set; }
-        [JsonPropertyName("style")]
-        public TextStyle Style { get; set; }
     }
 
     public interface PieLabelConfigLine

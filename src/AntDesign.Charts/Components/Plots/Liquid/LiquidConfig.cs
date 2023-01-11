@@ -12,9 +12,11 @@ namespace AntDesign.Charts
         public LiquidStatisticStyle Statistic { get; set; }
         [JsonPropertyName("liquidSize")]
         public int? LiquidSize { get; set; }
-        [JsonPropertyName("min")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use percent instead")]
         public decimal? Min { get; set; }
-        [JsonPropertyName("max")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use percent instead")]
         public decimal? Max { get; set; }
         [JsonPropertyName("percent")]
         public decimal? Percent { get; set; }
@@ -64,14 +66,22 @@ namespace AntDesign.Charts
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
@@ -92,6 +102,18 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> Shape { get; set; }
+        [JsonPropertyName("shape")]
+        public object ShapeMapping => Shape.Value;
+        [JsonPropertyName("wave")]
+        public LiquidWave Wave { get; set; }
+        [JsonPropertyName("outline")]
+        public LiquidOutline Outline { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> Pattern { get; set; }
+        [JsonPropertyName("pattern")]
+        public object PatternMapping => Pattern.Value;
     }
 
     public interface ILiquidViewConfig : IViewConfig
@@ -100,14 +122,29 @@ namespace AntDesign.Charts
         public LiquidStatisticStyle Statistic { get; set; }
         [JsonPropertyName("liquidSize")]
         public int? LiquidSize { get; set; }
-        [JsonPropertyName("min")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use percent instead")]
         public decimal? Min { get; set; }
-        [JsonPropertyName("max")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use percent instead")]
         public decimal? Max { get; set; }
         [JsonPropertyName("percent")]
         public decimal? Percent { get; set; }
         [JsonPropertyName("liquidStyle")]
         public object LiquidStyle { get; set; }//OneOf <LiquidStyle, ((...args: any[]) => LiquidStyle)>
+        [JsonIgnore]
+        public OneOf<string,object> Shape { get; set; }
+        [JsonPropertyName("shape")]
+        public object ShapeMapping => Shape.Value;
+        [JsonPropertyName("wave")]
+        public LiquidWave Wave { get; set; }
+        [JsonPropertyName("outline")]
+        public LiquidOutline Outline { get; set; }
+        [JsonIgnore]
+        public OneOf<string, object> Pattern { get; set; }
+        [JsonPropertyName("pattern")]
+        public object PatternMapping => Pattern.Value;
+
 
     }
 
@@ -140,6 +177,31 @@ namespace AntDesign.Charts
         public string HtmlContent { get; set; }
     }
 
+    public class LiquidWave
+    {
+        [JsonPropertyName("count")]
+        public int? Count { get; set; }
+        [JsonPropertyName("length")]
+        public int? Length { get; set; }
+    }
+
+    public class LiquidOutline
+    {
+        [JsonPropertyName("border")]
+        public int? Border { get; set; }
+        [JsonPropertyName("distance")]
+        public int? Distance { get; set; }
+        [JsonPropertyName("style")]
+        public OutlineStyleCfg Style { get; set; }
+    }
+
+    public class OutlineStyleCfg
+    {
+        [JsonPropertyName("stroke")]
+        public string Stroke { get; set; }
+        [JsonPropertyName("strokeOpacity")]
+        public double? StokeOpacity { get; set; }
+    }
 }
 
 

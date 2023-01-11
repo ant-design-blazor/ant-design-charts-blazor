@@ -61,14 +61,22 @@ namespace AntDesign.Charts
         public object ResponsiveThemeMapping => ResponsiveTheme.Value;
         [JsonPropertyName("interactions")]
         public Interaction[] Interactions { get; set; }
-        [JsonPropertyName("responsive")]
+        [JsonIgnore]
+        [Obsolete("No longer supported. Responsive is now built-in by default")]
         public bool? Responsive { get; set; }
-        [JsonPropertyName("title")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Title Title { get; set; }
-        [JsonPropertyName("description")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public Description Description { get; set; }
-        [JsonPropertyName("guideLine")]
+        [JsonIgnore]
+        [Obsolete("No Longer Supported, use annotation instead")]
         public GuideLineConfig[] GuideLine { get; set; }
+        [JsonIgnore]
+        public OneOf<IAnnotation[], object[]> Annotation { get; set; }
+        [JsonPropertyName("annotations")]
+        public object AnnotationMapping => Annotation.Value;
         [JsonPropertyName("defaultState")]
         public ViewConfigDefaultState DefaultState { get; set; }
         [JsonPropertyName("name")]
@@ -96,7 +104,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("columnWidthRatio")]
         public double ColumnWidthRatio { get; set; }
         [JsonPropertyName("slider")]
-        public object Slider { get; set; }
+        public ISlider Slider { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
     }
@@ -133,7 +141,7 @@ namespace AntDesign.Charts
         public double ColumnWidthRatio { get; set; }
 
         [JsonPropertyName("slider")]
-        public object Slider { get; set; }
+        public ISlider Slider { get; set; }
     }
 
     public class StockViewConfigShowTotal

@@ -1,12 +1,13 @@
 @page "/DensityHeatmap_Chart"
+@using OneOf
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
 
-<DensityHeatmap Config="config1" OnFirstRender="onChart1_FirstRender" />
+<Heatmap Config="config1" OnFirstRender="onChart1_FirstRender" />
 
 <Divider>动手实验</Divider>
 <DynamicExample @ref="@example">
-    <DensityHeatmap @ref="@chart" />
+    <Heatmap @ref="@chart"/>
 </DynamicExample>
 
 @code{
@@ -24,30 +25,30 @@
 
     private async Task onChart1_FirstRender(IChartComponent chart)
     {
-        var data1 = await DemoData.JobpayingItemAsync(NavigationManager, HttpClient);
+        var data1 = await DemoData.HeadMapDataAsync(NavigationManager, HttpClient);
         await chart.ChangeData(data1);
     }
 
-    DensityHeatmapConfig config1 = new DensityHeatmapConfig()
+    HeatmapConfig config1 = new HeatmapConfig()
     {
-        XField = "prob",
-        YField = "average_annual_wage",
-        ColorField = "numbEmployed",
-        Color = new string[] { "#295599", "#3e94c0", "#78c6d0", "#b4d9e4", "#fffef0", "#f9cdac", "#ec7d92", "#bc448c" },
-        Radius = 15,
-        Intensity = 2,
-        XAxis = new Axis()
+        HeatMapType = "density",
+        XField = "g",
+        YField = "l",
+        ColorField = "tmp",
+            Color = new string[] { "#F51D27", "#FA541C", "#FF8C12", "#FFC838", "#FAFFA8", "#80FF73", "#12CCCC", "#1890FF", "#6E32C2" },
+        Legend = new MatrixLegendConfig()
         {
-            Visible = true,
-            Min = -0.05,
-            Max = 1.05,
-            Nice = false,
+            Position = "bottom"
         },
-        YAxis = new Axis()
+        Annotation = new []
         {
-            Visible = true,
-            Min = -1000,
-        },
+            new ImageAnnotation()
+            {
+                Start = new[]{"min","max"},
+                End = new[]{"max","min"},
+                Src = "https://gw.alipayobjects.com/zos/rmsportal/NeUTMwKtPcPxIFNTWZOZ.png"
+            }
+        }
     };
 
 
