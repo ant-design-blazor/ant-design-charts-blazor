@@ -1,0 +1,28 @@
+﻿name: Pull Request Checks
+
+on:
+  pull_request:
+    branches:
+      - master
+      - feature
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Setup .NET 7.0
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.100
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "10.x"
+
+      - name: Check Building ⚙
+        run: |
+          npm install
+          dotnet build
