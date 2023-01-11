@@ -12,18 +12,25 @@ namespace AntDesign.Charts
         public double? StartAngle { get; set; }
         [JsonPropertyName("endAngle")]
         public double? EndAngle { get; set; }
-        [JsonPropertyName("min")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public decimal? Min { get; set; }
-        [JsonPropertyName("max")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public decimal? Max { get; set; }
         [JsonPropertyName("percent")]
         public decimal? Percent { get; set; }
-        [JsonPropertyName("range")]
-        public double[] Range { get; set; }
+        [JsonPropertyName("radius")]
+        public double? Radius { get; set; }
+        [JsonPropertyName("innerRadius")]
+        public double? InnerRadius { get; set; }
         [JsonIgnore]
+        public OneOf<GaugeRange, double[]> Range { get; set; }
+        [JsonPropertyName("range")]
+        public object RangeMapping => Range.Value;
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public OneOf<string, string[], object> Color { get; set; }
-        [JsonPropertyName("color")]
-        public object ColorMapping => Color.Value;
         [JsonPropertyName("rangeSize")]
         public int? RangeSize { get; set; }
         [JsonPropertyName("rangeStyle")]
@@ -34,8 +41,13 @@ namespace AntDesign.Charts
         public string Format { get; set; }
         [JsonPropertyName("axis")]
         public GaugeAxis Axis { get; set; }
-        [JsonPropertyName("pivot")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use Indicator instead")]
         public GaugePivot Pivot { get; set; }
+        [JsonIgnore]
+        public OneOf<GaugeIndicator, bool> Indicator { get; set; }
+        [JsonPropertyName("indicator")]
+        public object IndicatorMapping => Indicator.Value;
         [JsonPropertyName("statistic")]
         public GaugeStatistic Statistic { get; set; }
         [JsonPropertyName("renderer")]
@@ -124,6 +136,11 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+        [JsonPropertyName("gaugeStyle")]
+        public GaugeStyle GaugeStyle { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+
     }
 
     public interface IGaugeLayerConfig : GaugeViewConfig, ILayerConfig { }
@@ -134,16 +151,22 @@ namespace AntDesign.Charts
         public double? StartAngle { get; set; }
         [JsonPropertyName("endAngle")]
         public double? EndAngle { get; set; }
-        [JsonPropertyName("min")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public decimal? Min { get; set; }
-        [JsonPropertyName("max")]
+        [JsonIgnore]
+        [Obsolete("No longer supported")]
         public decimal? Max { get; set; }
         [JsonPropertyName("percent")]
         public decimal? Percent { get; set; }
+        [JsonPropertyName("radius")]
+        public double? Radius { get; set; }
+        [JsonPropertyName("innerRadius")]
+        public double? InnerRadius { get; set; }
+        [JsonIgnore]
+        public OneOf<GaugeRange, double[]> Range { get; set; }
         [JsonPropertyName("range")]
-        public double[] Range { get; set; }
-        [JsonPropertyName("color")]
-        public object ColorMapping => Color.Value;
+        public object RangeMapping => Range.Value;
         [JsonPropertyName("rangeSize")]
         public int? RangeSize { get; set; }
         [JsonPropertyName("rangeStyle")]
@@ -154,11 +177,20 @@ namespace AntDesign.Charts
         public string Format { get; set; }//(...args: any[]) => string
         [JsonPropertyName("axis")]
         public GaugeAxis Axis { get; set; }
-        [JsonPropertyName("pivot")]
+        [JsonIgnore]
+        [Obsolete("No longer supported, use Indicator instead")]
         public GaugePivot Pivot { get; set; }
+        [JsonIgnore]
+        public OneOf<GaugeIndicator, bool> Indicator { get; set; }
+        [JsonPropertyName("indicator")]
+        public object IndicatorMapping => Indicator.Value;
         [JsonPropertyName("statistic")]
         public GaugeStatistic Statistic { get; set; }
-
+        [JsonPropertyName("gaugeStyle")]
+        public GaugeStyle GaugeStyle { get; set; }
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+        
     }
 
     public interface IGaugeAxis
@@ -272,8 +304,77 @@ namespace AntDesign.Charts
         public GaugePivotBase Base { get; set; }
     }
 
+    public class GaugeStyle : IGraphicStyle
+    {
+        [JsonPropertyName("fill")]
+        public string Fill { get; set; }
+        [JsonPropertyName("fillOpacity")]
+        public decimal? FillOpacity { get; set; }
+        [JsonPropertyName("stroke")]
+        public string Stroke { get; set; }
+        [JsonPropertyName("lineWidth")]
+        public int? LineWidth { get; set; }
+        [JsonPropertyName("lineDash")]
+        public int[] LineDash { get; set; }
+        [JsonPropertyName("lineOpacity")]
+        public int? LineOpacity { get; set; }
+        [JsonPropertyName("opacity")]
+        public double? Opacity { get; set; }
+        [JsonPropertyName("shadowColor")]
+        public string ShadowColor { get; set; }
+        [JsonPropertyName("shadowBlur")]
+        public int? ShadowBlur { get; set; }
+        [JsonPropertyName("shadowOffsetX")]
+        public int? ShadowOffsetX { get; set; }
+        [JsonPropertyName("shadowOffsetY")]
+        public int? ShadowOffsetY { get; set; }
+        [JsonPropertyName("cursor")]
+        public string Cursor { get; set; }
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+        [JsonPropertyName("r")]
+        public double? R { get; set; }
+        [JsonPropertyName("lineCap")]
+        public string LineCap { get; set; }
+    }
+
+    public interface IGaugeIndicator
+    {
+        [JsonPropertyName("pointer")]
+        public GaugeIndicatorStyle Pointer { get; set; }
+        
+        [JsonPropertyName("pin")]
+        public GaugeIndicatorStyle Pin { get; set; }
+        
+        [JsonPropertyName("shape")]
+        public GaugeIndicatorStyle Shape { get; set; }
+    }
+
+    public class GaugeIndicator
+    {
+        [JsonPropertyName("pointer")]
+        public GaugeIndicatorStyle Pointer { get; set; }
+
+        [JsonPropertyName("pin")]
+        public GaugeIndicatorStyle Pin { get; set; }
+
+        [JsonPropertyName("shape")]
+        public GaugeIndicatorStyle Shape { get; set; }
+    }
+
+    public class GaugeIndicatorStyle
+    {
+        [JsonIgnore]
+        public OneOf<GaugeStyle, string, object> Style { get; set; }
+        [JsonPropertyName("style")]
+        public object StyleMapping => Style.Value;
+    }
+
     public interface IGaugeStatistic
     {
+        //might be obsolete
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
         [JsonPropertyName("position")]
@@ -284,10 +385,16 @@ namespace AntDesign.Charts
         public string Text { get; set; }
         [JsonPropertyName("color")]
         public string Color { get; set; }
+        //new statistics
+        [JsonPropertyName("title")]
+        public GaugeStatisticStyle Title { get; set; }
+        [JsonPropertyName("content")]
+        public GaugeStatisticStyle Content { get; set; }
     }
 
     public class GaugeStatistic : IGaugeStatistic
     {
+        //might be obsolete
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
         [JsonPropertyName("position")]
@@ -298,6 +405,43 @@ namespace AntDesign.Charts
         public string Text { get; set; }
         [JsonPropertyName("color")]
         public string Color { get; set; }
+        //new statistics
+        [JsonPropertyName("title")]
+        public GaugeStatisticStyle Title { get; set; }
+        [JsonPropertyName("content")]
+        public GaugeStatisticStyle Content { get; set; }
+    }
+
+    public class GaugeStatisticStyle
+    {
+        [JsonPropertyName("style")]
+        public TextStyle Style { get; set; }
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+        [JsonPropertyName("customHtml")]
+        public object CustomHtml { get; set; }
+        [JsonPropertyName("formatter")]
+        public object Formatter { get; set; }
+        [JsonPropertyName("rotate")]
+        public int? Rotate { get; set; }
+        [JsonPropertyName("offsetX")]
+        public int? OffsetX { get; set; }
+        [JsonPropertyName("offsetY")]
+        public int? OffsetY { get; set; }
+    }
+
+    public class GaugeRange
+    {
+        [JsonIgnore]
+        public OneOf<double[], double> Ticks { get; set; }
+        [JsonPropertyName("ticks")]
+        public object TickMapping => Ticks.Value;
+        [JsonIgnore]
+        public OneOf<string[],string> Color { get; set; }
+        [JsonPropertyName("color")]
+        public object ColorMapping => Color.Value;
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
     }
 }
 
