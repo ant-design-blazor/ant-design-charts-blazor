@@ -1,7 +1,5 @@
 using OneOf;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace AntDesign.Charts
@@ -128,19 +126,32 @@ namespace AntDesign.Charts
         [JsonPropertyName("labelHeight")]
         public int? LabelHeight { get; set; }
         [JsonPropertyName("line")]
-        public PieLabelConfigLine Line { get; set; }
+        public IPieLabelConfigLine Line { get; set; }
     }
 
-    public interface PieLabelConfigLine
+    public interface IPieLabelConfigLine
     {
-        [JsonPropertyName("visible")]
-        public bool? Visible { get; set; }
+        [JsonPropertyName("lineWidth")]
+        public int? LineWidth { get; set; }
         [JsonPropertyName("smooth")]
         public bool? Smooth { get; set; }
         [JsonPropertyName("stroke")]
         public string Stroke { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+    }
+
+    public class PieLabelConfigLine : IPieLabelConfigLine
+    {
         [JsonPropertyName("lineWidth")]
         public int? LineWidth { get; set; }
+        [JsonPropertyName("smooth")]
+        public bool? Smooth { get; set; }
+        [JsonPropertyName("stroke")]
+        public string Stroke { get; set; }
+        [JsonPropertyName("visible")]
+        public bool? Visible { get; set; }
+
     }
 
     public class PieLabelConfig : IPieLabelConfig
@@ -166,7 +177,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("offsetY")]
         public int? OffsetY { get; set; }
         [JsonPropertyName("line")]
-        public PieLabelConfigLine Line { get; set; }
+        public IPieLabelConfigLine Line { get; set; }
         [JsonPropertyName("style")]
         public TextStyle Style { get; set; }
         [JsonPropertyName("type")]
