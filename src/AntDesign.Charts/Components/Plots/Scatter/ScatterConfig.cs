@@ -246,14 +246,15 @@ namespace AntDesign.Charts
 
     public class RegressionLineConfig : IRegressionLineConfig
     {
-        [JsonPropertyName("type")]
+        [JsonPropertyName("type")] 
         public string Type { get; set; }
-        [JsonPropertyName("style")]
+        [JsonPropertyName("style")] 
         public IGraphicStyle Style { get; set; }
-        [JsonPropertyName("algorithm")]
+        [JsonIgnore] 
         public OneOf<int[][], object> Algorithm { get; set; }
+        [JsonPropertyName("algorithm")] 
         public object AlgorithmMapping => Algorithm.Value;
-        [JsonPropertyName("top")]
+        [JsonPropertyName("top")] 
         public bool? Top { get; set; }
     }
 }
