@@ -8,6 +8,7 @@ namespace AntDesign.Charts
     [JsonDerivedType(typeof(TextStyle))]
     [JsonDerivedType(typeof(LegendMarkerStyle))]
     [JsonDerivedType(typeof(GraphicStyle))]
+    [JsonDerivedType(typeof(GaugeStyle))]
     public interface IGraphicStyle
     {
         [JsonPropertyName("fill")]
