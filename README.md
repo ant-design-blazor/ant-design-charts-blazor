@@ -18,13 +18,6 @@ English | [简体中文](README-zh_CN.md)
   $ dotnet add package AntDesign.Charts
   ```
   
-  - Link the static files in `wwwroot/index.html` (WebAssembly) or `Pages/_Host.razor` (Server)
-
-  ```html
-  <script src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
-  <script src="_content/AntDesign.Charts/ant-design-charts-blazor.js"></script>
-  ```
-  
   - Add namespace in `_Imports.razor`
 
   ```csharp
@@ -54,12 +47,12 @@ English | [简体中文](README-zh_CN.md)
           title = new Title()
           {
               visible = true,
-              text = "曲线折线图",
+              text = "Line",
           },
           description = new Description()
           {
               visible = true,
-              text = "用平滑的曲线代替折线。",
+              text = "description",
           },
           padding = "auto",
           forceFit = true,
