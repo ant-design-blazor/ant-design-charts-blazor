@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AntDesign.Charts.Docs.WebAssembly",
   "resources": {
-    "hash": "sha256-SyZEPnTAsbb5Dx3D7aw3YF6can4jvciTbMmUCiAxQgw=",
+    "hash": "sha256-3n9GBbPoZ5t3Zm1Oy1yWRhPqMfWqUcTbbJdroKirPVk=",
     "jsModuleNative": {
       "dotnet.native.8.0.1.ahpp78valh.js": "sha256-SGOlISx+3G4kkvpC9Uq3qoPGsnjxGmW61QBev0lyI5U="
     },
@@ -17,9 +17,9 @@
       "icudt_no_CJK.dat": "sha256-L7sV7NEYP37/Qr2FPCePo5cJqRgTXRwGHuwF5Q+0Nfs="
     },
     "assembly": {
-      "AntDesign.Charts.Docs.wasm": "sha256-aGa12hv2ZdSklKtjFcHaOJzKm/4eV72Y3/R/nPy7GyI=",
-      "AntDesign.Charts.Docs.WebAssembly.wasm": "sha256-sTdEar6QxYRbc1J73U0p5rStzGOLDNUh/pa5Ndkk7vk=",
-      "AntDesign.Charts.wasm": "sha256-Ec61dgsJxjggMK3o9LDgauD/v2gZqYDRkOsXme48b6E=",
+      "AntDesign.Charts.Docs.wasm": "sha256-RtdogMu21+dKkBnndLwnt+PaZZyQObu2sZX/u6npmjs=",
+      "AntDesign.Charts.Docs.WebAssembly.wasm": "sha256-XQo081ncKRqovOaxYfsxRTf9FG8AFJlBcSkumBHaDdI=",
+      "AntDesign.Charts.wasm": "sha256-H1RuyWZWeoY679E4m55mYW1tUq7vNi0xtDLYTIeucuU=",
       "AntDesign.wasm": "sha256-f11Dlyv4vhiwNkZa2z5pICe2mePgijq/vSm4ZwoHHlY=",
       "Microsoft.AspNetCore.Components.DataAnnotations.Validation.wasm": "sha256-Mpd98aRLb9cK/TLwAqYub55BwBvzDAyJs18h1O7jIqk=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-r3aXyieEKp1j8romwP4AiIcuQvxmZTMTjlAN9boYYUI=",
@@ -74,11 +74,11 @@
     },
     "libraryInitializers": {
       "_content/AntDesign/AntDesign.lib.module.js": "sha256-ai2JSIonKbybgRY0XJW15qMPcPIDvc5xKvFFgM5fEOo=",
-      "_content/AntDesign.Charts/AntDesign.Charts.lib.module.js": "sha256-wvuVxfzinravpRwxnCeIvX/JgqjMhzNaEBUjNVOxGgU="
+      "_content/AntDesign.Charts/AntDesign.Charts.lib.module.js": "sha256-8mD76Nh6EHnNaLRIKGQVIWOUTePlbKoIqrmAhJP2Nfc="
     },
     "modulesAfterConfigLoaded": {
       "../_content/AntDesign/AntDesign.lib.module.js": "sha256-ai2JSIonKbybgRY0XJW15qMPcPIDvc5xKvFFgM5fEOo=",
-      "../_content/AntDesign.Charts/AntDesign.Charts.lib.module.js": "sha256-wvuVxfzinravpRwxnCeIvX/JgqjMhzNaEBUjNVOxGgU="
+      "../_content/AntDesign.Charts/AntDesign.Charts.lib.module.js": "sha256-8mD76Nh6EHnNaLRIKGQVIWOUTePlbKoIqrmAhJP2Nfc="
     }
   },
   "cacheBootResources": true,
