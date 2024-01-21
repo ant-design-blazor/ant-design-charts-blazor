@@ -16,13 +16,6 @@
   $ dotnet add package AntDesign.Charts
   ```
   
-- 在 `wwwroot/index.html`(WebAssembly) 或 `Pages/_Host.razor`(Server) 中引入静态文件:
-
-  ```html
-  <script src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.min.js"></script>
-  <script src="_content/AntDesign.Charts/ant-design-charts-blazor.js"></script>
-  ```
-  
 - 在 `_Imports.razor` 中加入命名空间
 
   ```csharp
