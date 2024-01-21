@@ -1,34 +1,31 @@
-﻿var beforeStartCalled = false;
-var afterStartedCalled = false;
-
-export function beforeWebStart() {
+﻿export function beforeWebStart() {
     loadScriptAndStyle();
 }
 
 export function beforeStart(options, extensions) {
-   loadScriptAndStyle();
+    loadScriptAndStyle();
 }
 
 function loadScriptAndStyle() {
-    if (beforeStartCalled) {
-        return;
-    }
-
-    beforeStartCalled = true;
-
     const interopJS = "_content/AntDesign.Charts/ant-design-charts-blazor.js";
     const cdnJS = "https://unpkg.com/@antv/g2plot@2.4.31/dist/g2plot.min.js";
     const localJS = "_content/AntDesign.Charts/g2plot.min.js";
     const cdnFlag = document.querySelector('[use-ant-design-charts-cdn]');
 
     if (!document.querySelector(`[src="${interopJS}"]`)) {
-        var chartJS = cdnFlag ? cdnJS : localJS;
-        var chartScript = document.createElement('script');
+        const chartJS = cdnFlag ? cdnJS : localJS;
+        const chartScript = document.createElement('script');
         chartScript.setAttribute('src', chartJS);
 
-        document.body.insertBefore(chartScript, document.body.querySelector("script"));
+        const jsMark = document.querySelector("script");
+        if (jsMark) {
+            jsMark.before(chartScript);
+        }
+        else {
+            document.body.appendChild(chartScript);
+        }
 
-        var interopScript = document.createElement('script');
+        const interopScript = document.createElement('script');
         interopScript.setAttribute('src', interopJS);
         chartScript.after(interopScript);
     }
