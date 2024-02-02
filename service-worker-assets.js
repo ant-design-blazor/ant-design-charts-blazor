@@ -81,19 +81,19 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-DM46\/Qa8yleKY5XxQqsyx9jt2lHEwT5RRxeo85WDlEs=",
+      "hash": "sha256-m07RdkkV\/3SmxzHcLZXcHpC0Lo9sZRE1m\/Ct1mh2JZA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-RtdogMu21+dKkBnndLwnt+PaZZyQObu2sZX\/u6npmjs=",
+      "hash": "sha256-WE4J6qxLdbT79mwJEzhZDX+cUZ+PI1Qg19oZ93Cb+ag=",
       "url": "_framework\/AntDesign.Charts.Docs.wasm"
     },
     {
-      "hash": "sha256-XQo081ncKRqovOaxYfsxRTf9FG8AFJlBcSkumBHaDdI=",
+      "hash": "sha256-QCyZ5PJgvFaks1AaccKJG6GPy3xqMl5XclE6O7HUQBA=",
       "url": "_framework\/AntDesign.Charts.Docs.WebAssembly.wasm"
     },
     {
-      "hash": "sha256-H1RuyWZWeoY679E4m55mYW1tUq7vNi0xtDLYTIeucuU=",
+      "hash": "sha256-3AyzZ7KInrxRFEpQXdEoDi7zGy2a+QeeoPhrc16ekRE=",
       "url": "_framework\/AntDesign.Charts.wasm"
     },
     {
@@ -1865,7 +1865,7 @@
       "url": "_content\/AntDesign.Charts.Docs\/menu.json"
     },
     {
-      "hash": "sha256-sYe0gpz3Ok6kpbwp27+Lp61HOWpg0yoPgoKtL6unlgk=",
+      "hash": "sha256-c\/3ABw57ZMcfpWPzAqNMQLWpBY\/qc+MFlUGbhyJZz7w=",
       "url": "_content\/AntDesign.Charts\/ant-design-charts-blazor.js"
     },
     {
@@ -1877,5 +1877,5 @@
       "url": "_content\/AntDesign.Charts\/g2plot.min.js.map"
     }
   ],
-  "version": "fvtamyt2"
+  "version": "fj+ch0g9"
 };
