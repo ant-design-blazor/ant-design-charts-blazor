@@ -84,6 +84,13 @@ namespace AntDesign.Charts
         /// </summary>
         private bool IsCreated = false;
 
+        protected override void OnInitialized()
+        {
+            chartRef = DotNetObjectReference.Create(this);
+
+            base.OnInitialized();
+        }
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
@@ -96,8 +103,6 @@ namespace AntDesign.Charts
 
                 if (Data != null || IsNoDataRender == true)
                     await Create();
-
-                if (OnFirstRender.HasDelegate) await OnFirstRender.InvokeAsync(this);
             }
         }
 
@@ -129,15 +134,7 @@ namespace AntDesign.Charts
         /// <returns></returns>
         private async Task Create()
         {
-            await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, JsonConfig, JsConfig);
-            IsCreated = true;
-
-            if (OnCreateAfter.HasDelegate)
-                await OnCreateAfter.InvokeAsync(this);
-            chartRef = DotNetObjectReference.Create(this);
-
-            if (OnTitleClick.HasDelegate)
-                await JS.InvokeVoidAsync(InteropSetEvent, Ref.Id, "title:click", chartRef, nameof(JsTitleClick));
+            await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
         }
 
         #region 图表操作
@@ -190,7 +187,7 @@ namespace AntDesign.Charts
             {
                 //更新接口已经不存在了
                 //await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
-                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, Config, OtherConfig, JsonConfig, JsConfig);
+                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
             }
             else if ((csConfig == null || csOtherConfig == null || string.IsNullOrWhiteSpace(jsonConfig) || string.IsNullOrWhiteSpace(jsConfig)) && csData != null)
             {//更新数据
@@ -280,9 +277,23 @@ namespace AntDesign.Charts
         [JSInvokable]
         public async Task JsTitleClick(System.Text.Json.JsonElement ev) { if (OnTitleClick.HasDelegate) await OnTitleClick.InvokeAsync(new ChartEvent(this, ev)); }
 
+        [JSInvokable]
+        public async Task AfterChartRender()
+        {
+            IsCreated = true;
+
+            if (Data != null)
+            {
+                await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, true);
+            }
+
+            if (OnCreateAfter.HasDelegate)
+                await OnCreateAfter.InvokeAsync(this);
+
+            if (OnTitleClick.HasDelegate)
+                await JS.InvokeVoidAsync(InteropSetEvent, Ref.Id, "title:click", chartRef, nameof(JsTitleClick));
+        }
 
         #endregion
-
-
     }
 }
