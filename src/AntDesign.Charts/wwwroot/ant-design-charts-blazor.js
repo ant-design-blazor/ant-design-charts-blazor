@@ -3,7 +3,7 @@
 
 window.AntDesignCharts = {
     interop: {
-        create: (type, domRef, domId, csConfig, others, jsonConfig, jsConfig) => {
+        create: (type, domRef, domId, chartRef, csConfig, others, jsonConfig, jsConfig) => {
             domRef.innerHTML = '';
 
             let config = {}
@@ -28,6 +28,15 @@ window.AntDesignCharts = {
 
             try {
                 const plot = new G2Plot[type](domRef, config);
+
+                plot.on('afterrender', (e) => {
+                    chartRef.invokeMethodAsync('AfterChartRender')
+                });
+
+                plot.on('beforedestroy', (e) => {
+                    chartRef.dispose();
+                });
+
                 plot.render();
                 window.AntDesignCharts.chartsContainer[domId] = plot;
                 console.log("create:" + domId)
