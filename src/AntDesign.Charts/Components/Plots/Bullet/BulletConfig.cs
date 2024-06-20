@@ -225,6 +225,8 @@ namespace AntDesign.Charts
         public bool? Visible { get; set; }
         [JsonPropertyName("stroke")]
         public string Stroke { get; set; }
+        [JsonPropertyName("strokeOpacity")]
+        public double? StrokeOpacity { get; set; }
         [JsonPropertyName("lineWidth")]
         public int? LineWidth { get; set; }
         [JsonPropertyName("lineDash")]
