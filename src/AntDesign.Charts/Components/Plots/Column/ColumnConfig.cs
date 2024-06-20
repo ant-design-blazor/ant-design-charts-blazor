@@ -10,8 +10,13 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("colorField")]
         public string ColorField { get; set; }
+        [Obsolete("No longer supported.  use minColumnWidth and maxColumnWidth instead")]
         [JsonPropertyName("columnSize")]
         public int? ColumnSize { get; set; }
+        [JsonPropertyName("minColumnWidth")]
+        public int? MinColumnWidth { get; set; }
+        [JsonPropertyName("maxColumnWidth")]
+        public int? MaxColumnWidth { get; set; }
         [JsonPropertyName("columnStyle")]
         public GraphicStyle ColumnStyle { get; set; }
         [JsonPropertyName("xAxis")]
@@ -121,8 +126,13 @@ namespace AntDesign.Charts
         /// <summary>
         ///  百分比, 数值, 最小最大宽度
         /// </summary>
+        [Obsolete("No longer supported.  use minColumnWidth and maxColumnWidth instead")]
         [JsonPropertyName("columnSize")]
         public int? ColumnSize { get; set; }
+        [JsonPropertyName("minColumnWidth")]
+        public int? MinColumnWidth { get; set; }
+        [JsonPropertyName("maxColumnWidth")]
+        public int? MaxColumnWidth { get; set; }
         [JsonPropertyName("columnStyle")]
         public GraphicStyle ColumnStyle { get; set; }//OneOf <GraphicStyle, ((...args: any[]) => GraphicStyle)>
         [JsonPropertyName("xAxis")]

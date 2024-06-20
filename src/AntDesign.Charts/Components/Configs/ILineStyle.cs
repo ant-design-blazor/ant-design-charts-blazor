@@ -9,10 +9,13 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("stroke")]
         public string Stroke { get; set; }
+        [JsonPropertyName("strokeOpacity")]
+        public double? StrokeOpacity { get; set; }
         [JsonPropertyName("lineWidth")]
         public int? LineWidth { get; set; }
         [JsonPropertyName("lineDash")]
         public int[] LineDash { get; set; }
+        [Obsolete("No Longer Supported, use strokeOpacity instead")]
         [JsonPropertyName("lineOpacity")]
         public int? LineOpacity { get; set; }
         [JsonPropertyName("shadowColor")]
@@ -32,10 +35,13 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("stroke")]
         public string Stroke { get; set; }
+        [JsonPropertyName("strokeOpacity")]
+        public double? StrokeOpacity { get; set; }
         [JsonPropertyName("lineWidth")]
         public int? LineWidth { get; set; }
         [JsonPropertyName("lineDash")]
         public int[] LineDash { get; set; }
+        [Obsolete("No Longer Supported, use strokeOpacity instead")]
         [JsonPropertyName("lineOpacity")]
         public int? LineOpacity { get; set; }
         [JsonPropertyName("shadowColor")]

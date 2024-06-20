@@ -12,6 +12,10 @@ namespace AntDesign.Charts
         public string ColorField { get; set; }
         [JsonPropertyName("columnSize")]
         public int? ColumnSize { get; set; }
+        [JsonPropertyName("minColumnWidth")]
+        public int? MinColumnWidth { get; set; }
+        [JsonPropertyName("maxColumnWidth")]
+        public int? MaxColumnWidth { get; set; }
         [JsonPropertyName("columnStyle")]
         public GraphicStyle ColumnStyle { get; set; }
         [JsonPropertyName("xAxis")]
