@@ -12,7 +12,7 @@ namespace AntDesign.Charts
         public object FunnelStyle { get; set; }
         [JsonPropertyName("percentage")]
         public object Percentage { get; set; }
-        [JsonPropertyName("transpose")]
+        [JsonPropertyName("isTransposed")]
         public bool? Transpose { get; set; }
         [JsonPropertyName("dynamicHeight")]
         public bool? DynamicHeight { get; set; }
@@ -130,7 +130,7 @@ namespace AntDesign.Charts
                 spacing: number;
               }>;
         */
-        [JsonPropertyName("transpose")]
+        [JsonPropertyName("isTransposed")]
         public bool? Transpose { get; set; }
         [JsonPropertyName("dynamicHeight")]
         public bool? DynamicHeight { get; set; }
