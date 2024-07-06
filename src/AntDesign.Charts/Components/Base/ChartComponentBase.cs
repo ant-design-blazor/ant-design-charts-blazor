@@ -101,6 +101,9 @@ namespace AntDesign.Charts
                 if (Config is IViewConfig viewConfig)
                     SetIViewConfig(viewConfig);
 
+                if (OnFirstRender.HasDelegate)
+                    await OnFirstRender.InvokeAsync(this);
+
                 if (Data != null || IsNoDataRender == true)
                     await Create();
             }
