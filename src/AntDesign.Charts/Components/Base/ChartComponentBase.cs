@@ -285,10 +285,10 @@ namespace AntDesign.Charts
         {
             IsCreated = true;
 
-            if (Data != null)
-            {
-                await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, true);
-            }
+            //if (Data != null)
+            //{
+            //    await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, true);
+            //}
 
             if (OnCreateAfter.HasDelegate)
                 await OnCreateAfter.InvokeAsync(this);
