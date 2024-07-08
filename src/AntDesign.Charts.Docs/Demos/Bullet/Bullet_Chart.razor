@@ -43,15 +43,19 @@
     BulletConfig config1 = new BulletConfig()
     {
         Data = new BulletViewConfigData[]
-{
+        {
             new BulletViewConfigData()
             {
-              Title = "满意度",
-                  Measures = new int[]{83 },
-                  Targets = new int[]{90 },
+                Title = "满意度",
+                Measures = new int[]{83 },
+                Targets = new int[]{90 },
+                Ranges = new double[]{100},
             },
-            },
-        RangeMax = 100,
+        },
+        TargetField = "target",
+        RangeField = "ranges",
+        MeasureField = "measures",
+        XField = "title"
     };
 
 
@@ -136,7 +140,10 @@
                 Ranges = new double[] {0,0.6,0.9,1},
             },
         },
-        RangeMax = 100,
+        TargetField = "target",
+        RangeField = "ranges",
+        MeasureField = "measures",
+        XField = "title",
         RangeColors = new string[] { "#FFB1AC", "#FFDBA2", "#B4EBBF" },
 
 
