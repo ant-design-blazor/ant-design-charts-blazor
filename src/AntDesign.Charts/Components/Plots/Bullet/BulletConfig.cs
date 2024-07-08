@@ -103,6 +103,15 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
+
+        [JsonPropertyName("targetField")]
+        public string TargetField { get; set; }
+
+        [JsonPropertyName("rangeField")]
+        public string RangeField { get; set; }
+
+        [JsonPropertyName("measureField")]
+        public string MeasureField { get; set; }
     }
 
     public interface IBulletViewConfig : IViewConfig
@@ -163,7 +172,7 @@ namespace AntDesign.Charts
         /// <summary>
         ///  目标值，array类型。支持多目标设置 
         /// </summary>
-        [JsonPropertyName("targets")]
+        [JsonPropertyName("target")]
         public int[] Targets { get; set; }
 
         [JsonPropertyName("markerStyle")]
