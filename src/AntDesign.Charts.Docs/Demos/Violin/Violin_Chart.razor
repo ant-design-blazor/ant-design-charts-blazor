@@ -5,16 +5,16 @@
 
 <Tabs>
     <TabPane Key="1" Tab="Sample 1">
-        <Violin Data="Data" Config="_config1" />
+        <Violin Data="Data" Config="_config1" OnFirstRender="onChart1_FirstRender" />
     </TabPane>
     <TabPane Key="2" Tab="Sample 2">
-        <Violin Data="Data" Config="_config2" />
+        <Violin Data="Data" Config="_config2" OnFirstRender="onChart1_FirstRender" />
     </TabPane>
     <TabPane Key="3" Tab="Sample 3">
-        <Violin Data="Data" Config="_config3" />
+        <Violin Data="Data" Config="_config3" OnFirstRender="onChart1_FirstRender" />
     </TabPane>
     <TabPane Key="4" Tab="Sample 4">
-        <Violin Data="Data" Config="_config4" />
+        <Violin Data="Data" Config="_config4" OnFirstRender="onChart1_FirstRender" />
     </TabPane>
 </Tabs>
 
@@ -28,16 +28,16 @@
     private DynamicExample _example;
     private object[] Data { get; set; }
 
+    private async Task onChart1_FirstRender(IChartComponent chart)
+    {
+        var data1 = await DemoData.ViolinDataAsync(NavigationManager, HttpClient);
+        await chart.ChangeData(data1);
+    }
+
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
         _example.Chart = Chart;
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        Data = await DemoData.ViolinDataAsync(NavigationManager, HttpClient);
-        await base.OnInitializedAsync();
     }
 
     #region Basic violin plot
