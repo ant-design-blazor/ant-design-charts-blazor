@@ -12,7 +12,7 @@ function loadScriptAndStyle() {
     const localJS = "_content/AntDesign.Charts/g2plot.min.js";
     const cdnFlag = document.querySelector('[use-ant-design-charts-cdn]');
 
-    if (!document.querySelector(`[src="${interopJS}"]`)) {
+    if (!document.querySelector(`[src="${interopJS}"]`) && !document.querySelector('[no-antblazor-charts-js]')) {
         const chartJS = cdnFlag ? cdnJS : localJS;
         const chartScript = document.createElement('script');
         chartScript.setAttribute('src', chartJS);
