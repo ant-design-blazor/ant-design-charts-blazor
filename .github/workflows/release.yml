@@ -29,7 +29,6 @@ jobs:
         run: |
           VERSION=`git describe --tags`
           echo "Publishing Version: ${VERSION}"
-          echo "::set-env name=VERSION::${VERSION}"
           npm install
           dotnet build -c Release
           dotnet pack src/AntDesign.Charts/AntDesign.Charts.csproj /p:PackageVersion=$VERSION -c Release -o publish --no-build --no-restore
