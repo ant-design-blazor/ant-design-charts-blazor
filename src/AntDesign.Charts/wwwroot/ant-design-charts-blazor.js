@@ -131,7 +131,7 @@ function proccessObject(o) {
         if (o[attr] === null || o[attr] === undefined) delete o[attr];
         else if (typeof o[attr] == 'object') {
             removeNullItem(o[attr]);
-            if (isEmptyObj(o[attr]) && attr!="data") delete o[attr];
+            if (isEmptyObj(o[attr]) && attr != "data") delete o[attr];
         }
     }
 }
@@ -153,6 +153,11 @@ function deepObjectMerge(source, target) {
     for (var key in target) {
         if (source[key] && source[key].toString() === "[object Object]") {
             deepObjectMerge(source[key], target[key])
+        } else if (typeof target[key] == 'object' && !Array.isArray(target[key])) {
+            source[key] = {};
+            deepObjectMerge(source[key], target[key])
+        } else if (key == 'formatter') {
+            source[key] = eval(target[key]);
         } else {
             source[key] = target[key]
         }
