@@ -18,7 +18,13 @@ namespace AntDesign.Charts
         public bool? ShowTitle { get; set; }
         [JsonPropertyName("titleField")]
         public string TitleField { get; set; }
-        //  formatter?: (...args: any) => { name: string; value: number };
+
+        /// <summary>
+        /// The funcion of formatter. Such as: (datum: Datum) => {  return { name: datum.x, value: datum.y + '%' }; },
+        /// </summary>
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
+
         [JsonPropertyName("showCrosshairs")]
         public bool? ShowCrosshairs { get; set; }
         [JsonPropertyName("crosshairs")]
@@ -46,6 +52,12 @@ namespace AntDesign.Charts
             onChange?: (tooltipDom: HTMLElement, cfg: CustomTooltipConfig) => void;
           };
          */
+
+        /// <summary>
+        /// custom content. (title, data) => string | void;
+        /// </summary>
+        [JsonPropertyName("customContent")]
+        public string CustomContent { get; set; }
     }
 
     public class Tooltip : ITooltip
@@ -72,6 +84,15 @@ namespace AntDesign.Charts
         public bool? ShowMarkers { get; set; }
         [JsonPropertyName("follow")]
         public bool? Follow { get; set; }
+        
+        /// <summary>
+        /// The funcion of formatter. Such as: (datum: Datum) => {  return { name: datum.x, value: datum.y + '%' }; },
+        /// </summary>
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
+
+        [JsonPropertyName("customContent")]
+        public string CustomContent { get; set; }
     }
 }
 

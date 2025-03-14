@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/src/AntDesign.Charts.Docs.Server/bin/Debug/net5.0/AntDesign.Charts.Docs.Server.dll",
+            "program": "${workspaceFolder}/src/AntDesign.Charts.Docs.Server/bin/Debug/net9.0/AntDesign.Charts.Docs.Server.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/AntDesign.Charts.Docs.Server",
             "stopAtEntry": false,
