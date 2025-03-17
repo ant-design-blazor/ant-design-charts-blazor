@@ -58,6 +58,9 @@ namespace AntDesign.Charts
         /// </summary>
         [JsonPropertyName("customContent")]
         public string CustomContent { get; set; }
+
+        [JsonPropertyName("itemtpl")]
+        public string Itemtpl {get;set;}
     }
 
     public class Tooltip : ITooltip
@@ -93,6 +96,9 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("customContent")]
         public string CustomContent { get; set; }
+
+        [JsonPropertyName("itemtpl")]
+        public string Itemtpl {get;set;}
     }
 }
 
