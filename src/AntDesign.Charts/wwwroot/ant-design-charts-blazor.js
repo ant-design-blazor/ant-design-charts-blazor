@@ -148,6 +148,8 @@ function removeNullItem(o, arr, i) {
     }
 }
 
+const evalableKeys = ['formatter', 'customContent'];
+
 // 深度合并对象
 function deepObjectMerge(source, target) {
     for (var key in target) {
@@ -156,7 +158,7 @@ function deepObjectMerge(source, target) {
         } else if (typeof target[key] == 'object' && !Array.isArray(target[key])) {
             source[key] = {};
             deepObjectMerge(source[key], target[key])
-        } else if (key == 'formatter') {
+        } else if (evalableKeys.includes(key)) {
             source[key] = eval(target[key]);
         } else {
             source[key] = target[key]
