@@ -55,6 +55,11 @@ namespace AntDesign.Charts
         public OneOf<string, string[], object> Color { get; set; }
         [JsonPropertyName("color")]
         public object ColorMapping => Color.Value;
+
+
+        [JsonPropertyName("colorFunc")]
+        public string ColorFunction { get; set; }
+        
         [JsonPropertyName("tooltip")]
         public Tooltip Tooltip { get; set; }
         [JsonPropertyName("legend")]

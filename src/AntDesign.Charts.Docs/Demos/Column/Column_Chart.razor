@@ -104,6 +104,8 @@
                 Alias = "销售额(万)",
             },
         },
+        SeriesField="sales",
+        ColorFunction ="({sales})=>{ console.log(sales); return sales > 50 ? '#5B8FF9' : '#5AD8A6'; }"
     };
     #endregion 示例1
 

@@ -160,6 +160,8 @@ function deepObjectMerge(source, target) {
             deepObjectMerge(source[key], target[key])
         } else if (evalableKeys.includes(key)) {
             source[key] = eval(target[key]);
+        } else if (key.endsWith('Func')) {
+            source[key.replace('Func','')] = eval(target[key]);
         } else {
             source[key] = target[key]
         }
