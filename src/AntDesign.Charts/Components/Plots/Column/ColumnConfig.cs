@@ -10,6 +10,10 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("colorField")]
         public string ColorField { get; set; }
+
+        [JsonPropertyName("colorFunc")]
+        public string ColorFunction { get; set; }
+        
         [Obsolete("No longer supported.  use minColumnWidth and maxColumnWidth instead")]
         [JsonPropertyName("columnSize")]
         public int? ColumnSize { get; set; }
