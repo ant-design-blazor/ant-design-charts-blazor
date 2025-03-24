@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "cB+f4pWe",
+  "version": "AztCKgPd",
   "assets": [
     {
       "hash": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
@@ -94,7 +94,7 @@ self.assetsManifest = {
       "url": "_content/AntDesign.Charts/AntDesign.Charts.av4k20dzh2.lib.module.js"
     },
     {
-      "hash": "sha256-9CSksFn6Hon09E45HW3R1yspJCJLA/txi1qhZ0QElrw=",
+      "hash": "sha256-hUyu2YyVzDMDTvjtsok33sveOcB3LlrXdLAt3DgdTM4=",
       "url": "_content/AntDesign.Charts/ant-design-charts-blazor.js"
     },
     {
@@ -1590,15 +1590,15 @@ self.assetsManifest = {
       "url": "_content/AntDesign/less/upload/style/rtl.less"
     },
     {
-      "hash": "sha256-KcHX6Mp4zHKREaEH0jdswLcwMhzWeGhVWBVcj/u4HAI=",
+      "hash": "sha256-to4wfNFw+O8jjmdNvIJ1nzRacenpGzDL22LBvGcxgcE=",
       "url": "_framework/AntDesign.Charts.Docs.WebAssembly.wasm"
     },
     {
-      "hash": "sha256-RPyMxrXS3anRYYjs04BuBUf031Q4Fu3u+CEwIoawFbg=",
+      "hash": "sha256-BYy8ecoOfrYayiJ+BlL0nKeuYN7W3gmyVVO+yW4YH3w=",
       "url": "_framework/AntDesign.Charts.Docs.wasm"
     },
     {
-      "hash": "sha256-/AcP5YYdjG97/i6z41C781S17Wr5EM+434N5QWhISb4=",
+      "hash": "sha256-+yuWK9/9jVD8AmjLsPcppVH2rpMdCrseTQQa+ljYavg=",
       "url": "_framework/AntDesign.Charts.wasm"
     },
     {
@@ -1802,7 +1802,7 @@ self.assetsManifest = {
       "url": "_framework/System.wasm"
     },
     {
-      "hash": "sha256-ocQBSzeZQt1EmaYWMIlOq8MgThM2hhfGCqGxt9GaexE=",
+      "hash": "sha256-ASOsHJ0LpW/X1qEwCDWZys1W0fpxW4X1OfRwxhek2og=",
       "url": "_framework/blazor.boot.json"
     },
     {
