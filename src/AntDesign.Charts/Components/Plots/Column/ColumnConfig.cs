@@ -199,6 +199,10 @@ namespace AntDesign.Charts
         public TextStyle LightStyle { get; set; }
         [JsonPropertyName("layout")]
         public LayoutType[] Layout { get; set; }
+
+
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
     }
 
     public interface IColumnLabel : ILabel

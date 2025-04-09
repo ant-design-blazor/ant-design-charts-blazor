@@ -54,6 +54,9 @@ namespace AntDesign.Charts
         public bool? AutoRotate { get; set; }
         [JsonPropertyName("field")]
         public string Field { get; set; }
+
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
     }
 }
 

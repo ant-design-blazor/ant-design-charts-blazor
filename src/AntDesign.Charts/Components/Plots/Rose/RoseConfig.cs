@@ -168,6 +168,9 @@ namespace AntDesign.Charts
         public bool? AdjustPosition { get; set; }
         [JsonPropertyName("field")]
         public string Field { get; set; }
+
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
     }
 }
 
