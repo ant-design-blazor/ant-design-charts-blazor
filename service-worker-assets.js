@@ -1,5 +1,5 @@
 self.assetsManifest = {
-  "version": "/tR8eWYH",
+  "version": "jibGUpru",
   "assets": [
     {
       "hash": "sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=",
@@ -1590,15 +1590,15 @@ self.assetsManifest = {
       "url": "_content/AntDesign/less/upload/style/rtl.less"
     },
     {
-      "hash": "sha256-lH6xBuYZNeF2vspEGD8ILGMEPM230bz3s4Bsa27sJA0=",
+      "hash": "sha256-G/24HasLdYUJA9bOJpRfspl2acQ/iHPS+ZU1YUtqvls=",
       "url": "_framework/AntDesign.Charts.Docs.WebAssembly.wasm"
     },
     {
-      "hash": "sha256-tYUo2O9K5YeVb3l11gFprFoq678YR1pxqRqXFGxVz6Y=",
+      "hash": "sha256-QT5vPUz5o+UdkD4KPDgmliWwxr5YV3F4z1I4mcqZfic=",
       "url": "_framework/AntDesign.Charts.Docs.wasm"
     },
     {
-      "hash": "sha256-kl71qK/wgF9Kp0ZJkbhxaQ31AnYfrdSdBj8NrFhMYQU=",
+      "hash": "sha256-SnF5njbJXiSJUtDI6TO9toLkvGl34L5cvpAFWGogBNI=",
       "url": "_framework/AntDesign.Charts.wasm"
     },
     {
@@ -1802,7 +1802,7 @@ self.assetsManifest = {
       "url": "_framework/System.wasm"
     },
     {
-      "hash": "sha256-Y4/ticszYHOze+9D75MSIFbTBzWxW5ZQoy0dSpKaiRg=",
+      "hash": "sha256-J/YVBbNR9dm+ZJxZf5MWkEx6A5rHBl0M33z3uZsWDMA=",
       "url": "_framework/blazor.boot.json"
     },
     {
