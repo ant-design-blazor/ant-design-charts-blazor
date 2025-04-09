@@ -117,7 +117,7 @@ namespace AntDesign.Charts
     public interface IPieLabelConfig : ILabel
     {
         [JsonPropertyName("formatter")]
-        public object Formatter { get; set; }//OneOf <(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
+        public string Formatter { get; set; }//OneOf <(text: string, int?, undefined,null, item: any, idx: number, ...extras: any[]) => string>
         /// <summary>
         ///  allow label overlap 
         /// </summary>
@@ -159,7 +159,7 @@ namespace AntDesign.Charts
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
         [JsonPropertyName("formatter")]
-        public object Formatter { get; set; }
+        public string Formatter { get; set; }
         [JsonPropertyName("adjustPosition")]
         public bool? AdjustPosition { get; set; }
         [JsonPropertyName("allowOverlap")]

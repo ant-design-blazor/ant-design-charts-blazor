@@ -43,6 +43,9 @@ namespace AntDesign.Charts
         /// </summary>
         [JsonPropertyName("field")]
         public string Field { get; set; }
+
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
     }
 
     public class Label : ILabel
@@ -78,6 +81,9 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("text")]
         public string[] Text { get; set; }
+
+        [JsonPropertyName("formatter")]
+        public string Formatter { get; set; }
     }
 }
 

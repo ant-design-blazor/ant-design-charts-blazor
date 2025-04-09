@@ -64,6 +64,10 @@
         XAxis = new ValueCatTimeAxis()
         {
             TickCount = 5
+        },
+        Label = new Label
+        {
+            Formatter = @"(a,b,c)=>{  console.log(a,b,c);  return a.scales; }"
         }
     };
 
