@@ -42,6 +42,7 @@ window.AntDesignCharts = {
                 console.log("create:" + domId)
                 console.log("type:" + type);
                 console.log("config:" + JSON.stringify(config, null, 2));
+                console.log(config)
             } catch (err) {
                 console.error(err, config);
             }
@@ -158,10 +159,21 @@ function deepObjectMerge(source, target) {
         } else if (typeof target[key] == 'object' && !Array.isArray(target[key])) {
             source[key] = {};
             deepObjectMerge(source[key], target[key])
+        } else if (Array.isArray(target[key])) {
+            source[key] = [];
+            for (var i = 0; i < target[key].length; i++) {
+                if (typeof target[key][i] == 'object') {
+                    let o = {};
+                    deepObjectMerge(o, target[key][i])
+                    source[key].push(o);
+                } else {
+                    source[key].push(target[key][i])
+                }
+            }
         } else if (evalableKeys.includes(key)) {
             source[key] = eval(target[key]);
         } else if (key.endsWith('Func')) {
-            source[key.replace('Func','')] = eval(target[key]);
+            source[key.replace('Func', '')] = eval(target[key]);
         } else {
             source[key] = target[key]
         }

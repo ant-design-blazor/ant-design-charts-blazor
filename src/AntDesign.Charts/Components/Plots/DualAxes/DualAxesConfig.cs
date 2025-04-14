@@ -96,6 +96,7 @@ namespace AntDesign.Charts
         public int? AppendPadding { get; set; }
 
         [JsonPropertyName("geometryOptions")]
+        [JsonConverter(typeof(CamelCaseObjectArrayConverter))]
         public object[] GeometryOptions { get; set; }
         [JsonPropertyName("autoFit")]
         public bool? AutoFit { get; set; }
