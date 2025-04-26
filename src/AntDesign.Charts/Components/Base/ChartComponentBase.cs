@@ -177,9 +177,13 @@ namespace AntDesign.Charts
             OtherConfig = csOtherConfig;
 
             if (csData != null && Config is IViewConfig viewConfig)
-            {//更新数据
-                Data = csData;
+            {
                 SetIViewConfig(viewConfig);
+            }
+
+            if (csData != null && Config is ScatterConfig scatterConfig)
+            {
+                scatterConfig.Data = csData;
             }
 
             if (IsCreated == false)
