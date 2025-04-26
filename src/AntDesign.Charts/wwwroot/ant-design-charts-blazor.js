@@ -21,11 +21,12 @@ window.AntDesignCharts = {
             }
 
             if (jsConfig != undefined) {
-                let jsConfigObj = eval("(" + jsConfig + ")");
+                let jsConfigObj = new Function('return ' + jsConfig)();
                 removeNullItem(jsConfigObj);
                 deepObjectMerge(config, jsConfigObj);
             }
 
+            console.log(domRef,config)
             try {
                 const plot = new G2Plot[type](domRef, config);
 
@@ -42,7 +43,6 @@ window.AntDesignCharts = {
                 console.log("create:" + domId)
                 console.log("type:" + type);
                 console.log("config:" + JSON.stringify(config, null, 2));
-                console.log(config)
             } catch (err) {
                 console.error(err, config);
             }
@@ -105,7 +105,8 @@ window.AntDesignCharts = {
         },
 
         getEvalJson(jsCode) {
-            let jsObj = eval("(" + jsCode + ")");
+            // Use Function constructor instead of eval - safer approach
+            let jsObj = new Function('return ' + jsCode)();
             return JSON.stringify(jsObj);
         }
     },
@@ -151,6 +152,34 @@ function removeNullItem(o, arr, i) {
 
 const evalableKeys = ['formatter', 'customContent'];
 
+// Helper function to create function from string
+function createFunctionFromString(str) {
+    // Match function parameters and body
+    const arrowFuncMatch = str.match(/^\s*\(([^)]*)\)\s*=>\s*(.+)$/s);
+    const regularFuncMatch = str.match(/^\s*function\s*\(([^)]*)\)\s*{(.+)}$/s);
+    
+    let params = '';
+    let body = '';
+    
+    if (arrowFuncMatch) {
+        params = arrowFuncMatch[1];
+        body = arrowFuncMatch[2];
+        // If the body doesn't have explicit return and isn't wrapped in curly braces, add return
+        if (!body.includes('return') && !body.trim().startsWith('{')) {
+            body = 'return ' + body;
+        }
+    } else if (regularFuncMatch) {
+        params = regularFuncMatch[1];
+        body = regularFuncMatch[2];
+    } else {
+        // Fallback for other patterns
+        return new Function('return ' + str)();
+    }
+    
+    // Create the function using Function constructor (safer than eval)
+    return new Function(...params.split(',').map(p => p.trim()), body);
+}
+
 // 深度合并对象
 function deepObjectMerge(source, target) {
     for (var key in target) {
@@ -171,9 +200,10 @@ function deepObjectMerge(source, target) {
                 }
             }
         } else if (evalableKeys.includes(key)) {
-            source[key] = eval(target[key]);
+            console.log(source)
+            source[key] = createFunctionFromString(target[key]);
         } else if (key.endsWith('Func')) {
-            source[key.replace('Func', '')] = eval(target[key]);
+            source[key.replace('Func', '')] = createFunctionFromString(target[key]);
         } else {
             source[key] = target[key]
         }
