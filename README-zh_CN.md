@@ -1,5 +1,6 @@
 # ant-design-charts-blazor
-基于G2Plot的Blazor图表库
+
+基于 G2Plot 的 Blazor 图表库
 
 [English](./README.md) | 简体中文
 
@@ -15,13 +16,13 @@
   ```bash
   $ dotnet add package AntDesign.Charts
   ```
-  
+
 - 在 `_Imports.razor` 中加入命名空间
 
   ```csharp
   @using AntDesign.Charts
   ```
-  
+
 - 最后就可以在`.razor`组件中引用啦！
 
   ```razor
@@ -60,7 +61,55 @@
       };
   }
   ```
-  
+
+## 🔧 在配置中使用 JavaScript 函数
+
+在配置图表时，你可以为 `formatter` 等属性或以 `Func` 结尾的属性定义 JavaScript 函数。这些函数会被正确地从字符串表示转换为实际的 JavaScript 函数。
+
+### 支持的函数语法
+
+支持以下 JavaScript 函数语法：
+
+1. **标准函数声明**：
+
+   ```csharp
+   config.Tooltip.Formatter = "function(datum) { return { name: datum.year, value: '¥' + datum.value.toFixed(2) }; }";
+   ```
+
+2. **箭头函数**：
+
+   ```csharp
+   config.Tooltip.Formatter = "(datum) => { return { name: datum.year, value: '¥' + datum.value.toFixed(2) }; }";
+   ```
+
+3. **简洁箭头函数**（隐式返回）：
+
+   ```csharp
+   config.Tooltip.Formatter = "datum => '¥' + datum.value.toFixed(2)";
+   ```
+
+4. **简单表达式**：
+   ```csharp
+   config.Meta.Value.Formatter = "'¥' + datum * 100";
+   ```
+
+### 在数组属性中使用函数
+
+JavaScript 函数也可以在数组内的对象中定义：
+
+```csharp
+config.Annotations = new[]
+{
+    new
+    {
+        type = "text",
+        position = new[] { "min", "median" },
+        content = "中间点",
+        formatter = "function(item) { return item.value.toFixed(2); }"
+    }
+};
+```
+
 ## 🔗 链接
 
 - [Blazor 官方文档](https://blazor.net)
@@ -80,7 +129,6 @@
 - [支付宝](https://yangshunjie.com/images/qrcode/alipay.jpg)
 
 我们会把详细的捐赠记录登记在 [捐赠者名单](https://github.com/ant-design-blazor/ant-design-blazor/issues/62)。
-
 
 ## ❓ 社区互助
 
