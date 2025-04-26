@@ -12,6 +12,25 @@ namespace AntDesign.Charts
     {
         [JsonPropertyName("xAxis")]
         public ValueCatTimeAxis XAxis { get; set; }
+
+        /// <summary>
+        /// <para>
+        /// {
+        ///   yField: ['pv', 'uv'],
+        ///   yAxis: {
+        ///     pv: {
+        ///       tickCount: 5
+        ///     },
+        ///     uv: {
+        ///       tickCount: 5
+        ///     }
+        ///   }
+        /// }
+        /// https://g2plot.antv.antgroup.com/en/api/plots/dual-axes#axis
+        /// </summary>
+        [JsonPropertyName("yAxis")]
+        public object YAxis { get; set; }
+
         [JsonPropertyName("tooltip")]
         public object Tooltip { get; set; }
         [JsonPropertyName("lineConfigs")]

@@ -41,7 +41,8 @@ window.AntDesignCharts = {
                 window.AntDesignCharts.chartsContainer[domId] = plot;
                 console.log("create:" + domId)
                 console.log("type:" + type);
-                console.log("config:" + JSON.stringify(config, null, 2));
+                console.log(config);
+                // console.log("config:" + JSON.stringify(config, null, 2));
             } catch (err) {
                 console.error(err, config);
             }
@@ -172,17 +173,51 @@ function safeStringToFunction(str) {
     // Check if it's an arrow function
     if (str.includes('=>')) {
         try {
-            // For arrow functions
-            const arrowMatch = str.match(/(?:\(([^)]*)\)|([^=>]+))\s*=>\s*{?([\s\S]*?)}/);
-            if (arrowMatch) {
-                const params = arrowMatch[1] || arrowMatch[2] || '';
+            // For arrow functions - more careful parsing to handle nested braces
+            // First capture the parameters part
+            const arrowParamsMatch = str.match(/^\s*(?:\(([^)]*)\)|([^=>\s]+))\s*=>/);
+            if (arrowParamsMatch) {
+                const params = arrowParamsMatch[1] || arrowParamsMatch[2] || '';
                 const paramsList = params.split(',').map(p => p.trim());
-                const body = arrowMatch[3];
-                const isBlock = str.includes('=>{');
                 
-                // If it's a block body, we need the return statement, otherwise it's an implicit return
-                const processedBody = isBlock ? body : `return ${body}`;
-                return new Function(...paramsList, processedBody);
+                // Get the body part (everything after the =>)
+                const bodyStartIndex = str.indexOf('=>') + 2;
+                let bodyContent = str.substring(bodyStartIndex).trim();
+                
+                // Check if it's a block body (has { })
+                if (bodyContent.startsWith('{')) {
+                    // It's a block body, need to find the matching closing brace
+                    // accounting for nested objects/braces
+                    let openBraces = 1;
+                    let closingBraceIndex = -1;
+                    
+                    // Skip the opening brace
+                    for (let i = 1; i < bodyContent.length; i++) {
+                        if (bodyContent[i] === '{') {
+                            openBraces++;
+                        } else if (bodyContent[i] === '}') {
+                            openBraces--;
+                            if (openBraces === 0) {
+                                closingBraceIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    // Extract the body without outer braces
+                    if (closingBraceIndex !== -1) {
+                        bodyContent = bodyContent.substring(1, closingBraceIndex);
+                    } else {
+                        // If we couldn't find the matching brace, just remove the first {
+                        bodyContent = bodyContent.substring(1);
+                    }
+                    
+                    // For block bodies, use the content as is
+                    return new Function(...paramsList, bodyContent);
+                } else {
+                    // For expression bodies, add 'return'
+                    return new Function(...paramsList, `return ${bodyContent}`);
+                }
             }
         } catch (e) {
             console.error('Error converting arrow function:', e);
