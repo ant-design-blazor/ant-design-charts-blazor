@@ -151,89 +151,7 @@ function removeNullItem(o, arr, i) {
 
 const evalableKeys = ['formatter', 'customContent'];
 
-// 将字符串转换为函数的安全方法
-function safeStringToFunction(str) {
-    if (!str) return null;
-    
-    // Check if it's a function declaration with parameters
-    if (str.trim().startsWith('function')) {
-        try {
-            // For function declaration, extract parameters and body
-            const funcMatch = str.match(/function\s*\(([^)]*)\)\s*{([\s\S]*)}/);
-            if (funcMatch) {
-                const params = funcMatch[1].split(',').map(p => p.trim());
-                const body = funcMatch[2];
-                return new Function(...params, body);
-            }
-        } catch (e) {
-            console.error('Error converting function declaration:', e);
-        }
-    } 
-    
-    // Check if it's an arrow function
-    if (str.includes('=>')) {
-        try {
-            // For arrow functions - more careful parsing to handle nested braces
-            // First capture the parameters part
-            const arrowParamsMatch = str.match(/^\s*(?:\(([^)]*)\)|([^=>\s]+))\s*=>/);
-            if (arrowParamsMatch) {
-                const params = arrowParamsMatch[1] || arrowParamsMatch[2] || '';
-                const paramsList = params.split(',').map(p => p.trim());
-                
-                // Get the body part (everything after the =>)
-                const bodyStartIndex = str.indexOf('=>') + 2;
-                let bodyContent = str.substring(bodyStartIndex).trim();
-                
-                // Check if it's a block body (has { })
-                if (bodyContent.startsWith('{')) {
-                    // It's a block body, need to find the matching closing brace
-                    // accounting for nested objects/braces
-                    let openBraces = 1;
-                    let closingBraceIndex = -1;
-                    
-                    // Skip the opening brace
-                    for (let i = 1; i < bodyContent.length; i++) {
-                        if (bodyContent[i] === '{') {
-                            openBraces++;
-                        } else if (bodyContent[i] === '}') {
-                            openBraces--;
-                            if (openBraces === 0) {
-                                closingBraceIndex = i;
-                                break;
-                            }
-                        }
-                    }
-                    
-                    // Extract the body without outer braces
-                    if (closingBraceIndex !== -1) {
-                        bodyContent = bodyContent.substring(1, closingBraceIndex);
-                    } else {
-                        // If we couldn't find the matching brace, just remove the first {
-                        bodyContent = bodyContent.substring(1);
-                    }
-                    
-                    // For block bodies, use the content as is
-                    return new Function(...paramsList, bodyContent);
-                } else {
-                    // For expression bodies, add 'return'
-                    return new Function(...paramsList, `return ${bodyContent}`);
-                }
-            }
-        } catch (e) {
-            console.error('Error converting arrow function:', e);
-        }
-    }
-    
-    // For simple expressions, wrap them in a function
-    try {
-        return new Function('...args', `return ${str}`);
-    } catch (e) {
-        console.error('Error converting expression to function:', e);
-        return null;
-    }
-}
-
-// 深度合并对象 - 精简版
+// 深度合并对象 - 简化版本
 function deepObjectMerge(source, target) {
     if (!target || typeof target !== 'object') return source;
     
@@ -245,7 +163,25 @@ function deepObjectMerge(source, target) {
             source[key] = value.map(item => {
                 if (item && typeof item === 'object') {
                     // Process objects in arrays (copy to avoid reference issues)
-                    return processObjectProps(Array.isArray(item) ? [...item] : {...item});
+                    const copy = Array.isArray(item) ? [...item] : {...item};
+                    
+                    // Convert formatter properties in objects within arrays
+                    Object.keys(copy).forEach(prop => {
+                        if ((evalableKeys.includes(prop) || prop.endsWith('Func')) && typeof copy[prop] === 'string') {
+                            try {
+                                if (prop.endsWith('Func')) {
+                                    copy[prop.replace('Func', '')] = eval('(' + copy[prop] + ')');
+                                    delete copy[prop];
+                                } else {
+                                    copy[prop] = eval('(' + copy[prop] + ')');
+                                }
+                            } catch (e) {
+                                console.error(`Error evaluating ${prop}:`, e);
+                            }
+                        }
+                    });
+                    
+                    return copy;
                 }
                 return item;
             });
@@ -255,16 +191,20 @@ function deepObjectMerge(source, target) {
                 source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) ? source[key] : {}, 
                 value
             );
-        } else if ((evalableKeys.includes(key) || key.endsWith('Func')) && typeof value === 'string') {
-            // Convert string to function safely
+        } else if (evalableKeys.includes(key) && typeof value === 'string') {
+            // Convert formatter strings to functions
             try {
-                if (key.endsWith('Func')) {
-                    source[key.replace('Func', '')] = safeStringToFunction(value);
-                } else {
-                    source[key] = safeStringToFunction(value);
-                }
+                source[key] = eval('(' + value + ')');
             } catch (e) {
-                console.error(`Error converting ${key} to function:`, e);
+                console.error(`Error evaluating ${key}:`, e);
+                source[key] = value;
+            }
+        } else if (key.endsWith('Func') && typeof value === 'string') {
+            // Convert function strings ending with 'Func'
+            try {
+                source[key.replace('Func', '')] = eval('(' + value + ')');
+            } catch (e) {
+                console.error(`Error evaluating ${key}:`, e);
                 source[key] = value;
             }
         } else {
@@ -274,31 +214,4 @@ function deepObjectMerge(source, target) {
     });
     
     return source;
-}
-
-// Process object properties recursively
-function processObjectProps(obj) {
-    Object.keys(obj).forEach(key => {
-        const value = obj[key];
-        
-        if (value && typeof value === 'object') {
-            // Recursively process nested objects and arrays
-            obj[key] = Array.isArray(value) 
-                ? value.map(item => typeof item === 'object' && item ? processObjectProps({...item}) : item)
-                : deepObjectMerge({}, value);
-        } else if ((evalableKeys.includes(key) || key.endsWith('Func')) && typeof value === 'string') {
-            try {
-                if (key.endsWith('Func')) {
-                    obj[key.replace('Func', '')] = safeStringToFunction(value);
-                    delete obj[key];
-                } else {
-                    obj[key] = safeStringToFunction(value);
-                }
-            } catch (e) {
-                console.error(`Error converting ${key} to function:`, e);
-            }
-        }
-    });
-    
-    return obj;
 }
