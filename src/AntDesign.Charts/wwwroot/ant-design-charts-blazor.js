@@ -8,24 +8,20 @@ window.AntDesignCharts = {
 
             let config = {}
 
-            removeNullItem(csConfig);
-            deepObjectMerge(config, csConfig);
-
-            removeNullItem(others);
-            deepObjectMerge(config, others);
+            if (csConfig) deepObjectMerge(config, csConfig);
+            if (others) deepObjectMerge(config, others);
 
             if (jsonConfig != undefined) {
                 let jsonConfigObj = JSON.parse(jsonConfig);
-                removeNullItem(jsonConfigObj);
                 deepObjectMerge(config, jsonConfigObj);
             }
 
             if (jsConfig != undefined) {
                 let jsConfigObj = eval("(" + jsConfig + ")");
-                removeNullItem(jsConfigObj);
                 deepObjectMerge(config, jsConfigObj);
             }
 
+            console.log(config);
             try {
                 const plot = new G2Plot[type](domRef, config);
 
@@ -41,14 +37,11 @@ window.AntDesignCharts = {
                 window.AntDesignCharts.chartsContainer[domId] = plot;
                 console.log("create:" + domId)
                 console.log("type:" + type);
-                console.log(config);
-                // console.log("config:" + JSON.stringify(config, null, 2));
             } catch (err) {
                 console.error(err, config);
             }
         },
         destroy(domId) {
-            //console.log("destroy:" + domId);
             if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
             window.AntDesignCharts.chartsContainer[domId].destroy();
             delete window.AntDesignCharts.chartsContainer[domId];
@@ -63,8 +56,7 @@ window.AntDesignCharts = {
         },
         updateConfig(domId, config, others, all) {
             if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            removeNullItem(config)
-            deepObjectMerge(config, others)
+            deepObjectMerge(config, others);
             window.AntDesignCharts.chartsContainer[domId].updateConfig(config, all);
             window.AntDesignCharts.chartsContainer[domId].render();
         },
@@ -112,116 +104,115 @@ window.AntDesignCharts = {
     chartsContainer: {}
 }
 
-
-//清除没有赋值的项
+// 判断对象是否为空
 function isEmptyObj(o) {
-    for (let attr in o) return !1;
-    return !0
-}
-
-function processArray(arr) {
-    for (let i = arr.length - 1; i >= 0; i--) {
-        if (arr[i] === null || arr[i] === undefined) arr.splice(i, 1);
-        else if (typeof arr[i] == 'object') removeNullItem(arr[i], arr, i);
-    }
-    return arr.length == 0
-}
-
-function proccessObject(o) {
-    for (let attr in o) {
-        if (o[attr] === null || o[attr] === undefined) delete o[attr];
-        else if (typeof o[attr] == 'object') {
-            removeNullItem(o[attr]);
-            if (isEmptyObj(o[attr]) && attr != "data") delete o[attr];
-        }
-    }
-}
-
-function removeNullItem(o, arr, i) {
-    let s = ({}).toString.call(o);
-    if (s == '[object Array]') {
-        if (processArray(o) === true) { //o也是数组，并且删除完子项，从所属数组中删除
-            if (arr) arr.splice(i, 1);
-        }
-    } else if (s == '[object Object]') {
-        proccessObject(o);
-        if (arr && isEmptyObj(o)) arr.splice(i, 1);
-    }
+    for (let attr in o) return false;
+    return true;
 }
 
 const evalableKeys = ['formatter', 'customContent'];
 
-// 安全地将字符串转换为函数
-function evalToFunction(str) {
-    try {
-        return eval('(' + str + ')');
-    } catch (e) {
-        console.error('Error evaluating string to function:', e);
-        return str;
-    }
-}
+// 深度合并对象 - 简化版
+function deepObjectMerge(source, target, visited = new WeakMap()) {
+    if (!target || typeof target !== 'object' || visited.has(target)) return source;
+    visited.set(target, true);
 
-// 深度合并对象 - 简化版本
-function deepObjectMerge(source, target) {
-    if (!target || typeof target !== 'object') return source;
-    
     Object.keys(target).forEach(key => {
         const value = target[key];
-        if (value == null) return;
         
+        // 跳过 null 和 undefined
+        if (value == null) {
+            if (source[key] !== undefined) delete source[key];
+            return;
+        }
+
+        // 处理数组
         if (Array.isArray(value)) {
-            source[key] = value.map(item => {
-                if (item && typeof item === 'object') {
-                    // Process objects in arrays (copy to avoid reference issues)
-                    const copy = Array.isArray(item) ? [...item] : {...item};
+            source[key] = value
+                .filter(item => item != null)
+                .map(item => {
+                    // 简单值直接返回
+                    if (!item || typeof item !== 'object') return item;
                     
-                    // Convert formatter properties in objects within arrays
+                    // 如果是数组，直接返回数组的副本
+                    if (Array.isArray(item)) return [...item];
+                    
+                    // 处理对象
+                    const copy = {...item};
+                    
+                    // 处理对象中属性
                     Object.keys(copy).forEach(prop => {
-                        if ((evalableKeys.includes(prop) || prop.endsWith('Func')) && typeof copy[prop] === 'string') {
+                        // 移除null值
+                        if (copy[prop] == null) {
+                            delete copy[prop];
+                            return;
+                        }
+                        
+                        // 转换函数字符串
+                        if (evalableKeys.includes(prop) && typeof copy[prop] === 'string') {
+                            try { copy[prop] = eval('(' + copy[prop] + ')'); } 
+                            catch (e) { console.error(`Error in ${prop}:`, e); }
+                        } else if (prop.endsWith('Func') && typeof copy[prop] === 'string') {
                             try {
-                                if (prop.endsWith('Func')) {
-                                    copy[prop.replace('Func', '')] = evalToFunction(copy[prop]);
-                                    delete copy[prop];
+                                copy[prop.replace('Func', '')] = eval('(' + copy[prop] + ')');
+                                delete copy[prop];
+                            } catch (e) { console.error(`Error in ${prop}:`, e); }
+                        }
+                        
+                        // 递归处理嵌套对象
+                        if (typeof copy[prop] === 'object' && copy[prop] !== null && !visited.has(copy[prop])) {
+                            if (Array.isArray(copy[prop])) {
+                                // 如果是数组，保持数组结构
+                                copy[prop] = [...copy[prop]];
+                            } else {
+                                const nested = {};
+                                deepObjectMerge(nested, copy[prop], visited);
+                                // 保留非空对象
+                                if (!isEmptyObj(nested)) {
+                                    copy[prop] = nested;
                                 } else {
-                                    copy[prop] = evalToFunction(copy[prop]);
+                                    delete copy[prop];
                                 }
-                            } catch (e) {
-                                console.error(`Error evaluating ${prop}:`, e);
                             }
                         }
                     });
-                    
                     return copy;
-                }
-                return item;
-            });
-        } else if (typeof value === 'object') {
-            // For objects, merge recursively
-            source[key] = deepObjectMerge(
-                source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) ? source[key] : {}, 
-                value
-            );
-        } else if (evalableKeys.includes(key) && typeof value === 'string') {
-            // Convert formatter strings to functions
-            try {
-                source[key] = evalToFunction(value);
-            } catch (e) {
-                console.error(`Error evaluating ${key}:`, e);
+                });
+            return;
+        }
+        // 处理对象
+        else if (typeof value === 'object') {
+            if (!source[key] || typeof source[key] !== 'object' || Array.isArray(source[key])) {
+                source[key] = {};
+            }
+            deepObjectMerge(source[key], value, visited);
+            // 移除空对象(但保留data属性)
+            if (isEmptyObj(source[key]) && key !== 'data') {
+                delete source[key];
+            }
+        }
+        // 处理formatter等特殊属性
+        else if (evalableKeys.includes(key) && typeof value === 'string') {
+            try { source[key] = eval('(' + value + ')'); } 
+            catch (e) { 
+                console.error(`Error in ${key}:`, e);
                 source[key] = value;
             }
-        } else if (key.endsWith('Func') && typeof value === 'string') {
-            // Convert function strings ending with 'Func'
+        }
+        // 处理以Func结尾的属性
+        else if (key.endsWith('Func') && typeof value === 'string') {
             try {
-                source[key.replace('Func', '')] = evalToFunction(value);
+                source[key.replace('Func', '')] = eval('(' + value + ')');
             } catch (e) {
-                console.error(`Error evaluating ${key}:`, e);
+                console.error(`Error in ${key}:`, e);
                 source[key] = value;
             }
-        } else {
-            // Default: copy value
+        }
+        // 普通值直接赋值
+        else {
             source[key] = value;
         }
     });
-    
+
     return source;
 }
