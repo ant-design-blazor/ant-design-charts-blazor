@@ -178,12 +178,8 @@ namespace AntDesign.Charts
 
             if (csData != null && Config is IViewConfig viewConfig)
             {
+                Data = csData;
                 SetIViewConfig(viewConfig);
-            }
-
-            if (csData != null && Config is ScatterConfig scatterConfig)
-            {
-                scatterConfig.Data = csData;
             }
 
             if (IsCreated == false)
