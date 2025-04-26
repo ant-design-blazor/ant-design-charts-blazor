@@ -50,6 +50,9 @@
     {
         XField = "year",
         YField = new string[] { "value", "count" },
+        YAxis = new {
+            count= new { max= 300}
+        },
         GeometryOptions = new object[] {
         new {
             Geometry= "line",
@@ -61,10 +64,10 @@
                 Color= "#5AD8A6",
                 Label=new Label{
                     Formatter = "(a)=>{ console.log(a); return a.count; }",
-                }
+                },
+                LineStyleFunc= "(a)=>{ console.log(a);  return { lineWidth: 2, stroke: '#5AD8A6' } }",
             },
         },
-
     };
 
     #endregion 示例1
