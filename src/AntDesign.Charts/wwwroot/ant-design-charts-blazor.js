@@ -151,6 +151,16 @@ function removeNullItem(o, arr, i) {
 
 const evalableKeys = ['formatter', 'customContent'];
 
+// 安全地将字符串转换为函数
+function evalToFunction(str) {
+    try {
+        return eval('(' + str + ')');
+    } catch (e) {
+        console.error('Error evaluating string to function:', e);
+        return str;
+    }
+}
+
 // 深度合并对象 - 简化版本
 function deepObjectMerge(source, target) {
     if (!target || typeof target !== 'object') return source;
@@ -170,10 +180,10 @@ function deepObjectMerge(source, target) {
                         if ((evalableKeys.includes(prop) || prop.endsWith('Func')) && typeof copy[prop] === 'string') {
                             try {
                                 if (prop.endsWith('Func')) {
-                                    copy[prop.replace('Func', '')] = eval('(' + copy[prop] + ')');
+                                    copy[prop.replace('Func', '')] = evalToFunction(copy[prop]);
                                     delete copy[prop];
                                 } else {
-                                    copy[prop] = eval('(' + copy[prop] + ')');
+                                    copy[prop] = evalToFunction(copy[prop]);
                                 }
                             } catch (e) {
                                 console.error(`Error evaluating ${prop}:`, e);
@@ -194,7 +204,7 @@ function deepObjectMerge(source, target) {
         } else if (evalableKeys.includes(key) && typeof value === 'string') {
             // Convert formatter strings to functions
             try {
-                source[key] = eval('(' + value + ')');
+                source[key] = evalToFunction(value);
             } catch (e) {
                 console.error(`Error evaluating ${key}:`, e);
                 source[key] = value;
@@ -202,7 +212,7 @@ function deepObjectMerge(source, target) {
         } else if (key.endsWith('Func') && typeof value === 'string') {
             // Convert function strings ending with 'Func'
             try {
-                source[key.replace('Func', '')] = eval('(' + value + ')');
+                source[key.replace('Func', '')] = evalToFunction(value);
             } catch (e) {
                 console.error(`Error evaluating ${key}:`, e);
                 source[key] = value;
