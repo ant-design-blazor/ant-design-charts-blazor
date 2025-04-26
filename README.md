@@ -1,9 +1,8 @@
 # ant-design-charts-blazor
+
 A Blazor chart library, based on G2Plot
 
-
 English | [简体中文](README-zh_CN.md)
-
 
 ## 💿 Current Version
 
@@ -17,13 +16,13 @@ English | [简体中文](README-zh_CN.md)
   ```bash
   $ dotnet add package AntDesign.Charts
   ```
-  
+
   - Add namespace in `_Imports.razor`
 
   ```csharp
   @using AntDesign.Charts
   ```
-  
+
 - Finally, it can be referenced in the `.razor' component!
 
   ```razor
@@ -51,8 +50,56 @@ English | [简体中文](README-zh_CN.md)
           };
   }
   ```
-  
-  ## 🔗 Links
+
+## 🔧 Using JavaScript Functions in Configuration
+
+When configuring charts, you can define JavaScript functions for properties like `formatter` or properties ending with `Func`. These functions will be properly converted from string representations to actual JavaScript functions.
+
+### Supported Function Syntax
+
+The following JavaScript function syntaxes are supported:
+
+1. **Standard function declarations**:
+
+   ```csharp
+   config.Tooltip.Formatter = "function(datum) { return { name: datum.year, value: '$' + datum.value.toFixed(2) }; }";
+   ```
+
+2. **Arrow functions**:
+
+   ```csharp
+   config.Tooltip.Formatter = "(datum) => { return { name: datum.year, value: '$' + datum.value.toFixed(2) }; }";
+   ```
+
+3. **Concise arrow functions** (implicit return):
+
+   ```csharp
+   config.Tooltip.Formatter = "datum => '$' + datum.value.toFixed(2)";
+   ```
+
+4. **Simple expressions**:
+   ```csharp
+   config.Meta.Value.Formatter = "'$' + datum * 100";
+   ```
+
+### Using Functions with Array Properties
+
+JavaScript functions can also be defined within objects inside arrays:
+
+```csharp
+config.Annotations = new[]
+{
+    new
+    {
+        type = "text",
+        position = new[] { "min", "median" },
+        content = "Middle point",
+        formatter = "function(item) { return item.value.toFixed(2); }"
+    }
+};
+```
+
+## 🔗 Links
 
 - [Official Blazor Documentation](https://blazor.net)
 

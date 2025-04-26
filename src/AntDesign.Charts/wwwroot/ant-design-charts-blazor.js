@@ -150,21 +150,120 @@ function removeNullItem(o, arr, i) {
 
 const evalableKeys = ['formatter', 'customContent'];
 
-// 深度合并对象
-function deepObjectMerge(source, target) {
-    for (var key in target) {
-        if (source[key] && source[key].toString() === "[object Object]") {
-            deepObjectMerge(source[key], target[key])
-        } else if (typeof target[key] == 'object' && !Array.isArray(target[key])) {
-            source[key] = {};
-            deepObjectMerge(source[key], target[key])
-        } else if (evalableKeys.includes(key)) {
-            source[key] = eval(target[key]);
-        } else if (key.endsWith('Func')) {
-            source[key.replace('Func','')] = eval(target[key]);
-        } else {
-            source[key] = target[key]
+// 将字符串转换为函数的安全方法
+function safeStringToFunction(str) {
+    if (!str) return null;
+    
+    // Check if it's a function declaration with parameters
+    if (str.trim().startsWith('function')) {
+        try {
+            // For function declaration, extract parameters and body
+            const funcMatch = str.match(/function\s*\(([^)]*)\)\s*{([\s\S]*)}/);
+            if (funcMatch) {
+                const params = funcMatch[1].split(',').map(p => p.trim());
+                const body = funcMatch[2];
+                return new Function(...params, body);
+            }
+        } catch (e) {
+            console.error('Error converting function declaration:', e);
+        }
+    } 
+    
+    // Check if it's an arrow function
+    if (str.includes('=>')) {
+        try {
+            // For arrow functions
+            const arrowMatch = str.match(/(?:\(([^)]*)\)|([^=>]+))\s*=>\s*{?([\s\S]*?)}/);
+            if (arrowMatch) {
+                const params = arrowMatch[1] || arrowMatch[2] || '';
+                const paramsList = params.split(',').map(p => p.trim());
+                const body = arrowMatch[3];
+                const isBlock = str.includes('=>{');
+                
+                // If it's a block body, we need the return statement, otherwise it's an implicit return
+                const processedBody = isBlock ? body : `return ${body}`;
+                return new Function(...paramsList, processedBody);
+            }
+        } catch (e) {
+            console.error('Error converting arrow function:', e);
         }
     }
+    
+    // For simple expressions, wrap them in a function
+    try {
+        return new Function('...args', `return ${str}`);
+    } catch (e) {
+        console.error('Error converting expression to function:', e);
+        return null;
+    }
+}
+
+// 深度合并对象 - 精简版
+function deepObjectMerge(source, target) {
+    if (!target || typeof target !== 'object') return source;
+    
+    Object.keys(target).forEach(key => {
+        const value = target[key];
+        if (value == null) return;
+        
+        if (Array.isArray(value)) {
+            source[key] = value.map(item => {
+                if (item && typeof item === 'object') {
+                    // Process objects in arrays (copy to avoid reference issues)
+                    return processObjectProps(Array.isArray(item) ? [...item] : {...item});
+                }
+                return item;
+            });
+        } else if (typeof value === 'object') {
+            // For objects, merge recursively
+            source[key] = deepObjectMerge(
+                source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) ? source[key] : {}, 
+                value
+            );
+        } else if ((evalableKeys.includes(key) || key.endsWith('Func')) && typeof value === 'string') {
+            // Convert string to function safely
+            try {
+                if (key.endsWith('Func')) {
+                    source[key.replace('Func', '')] = safeStringToFunction(value);
+                } else {
+                    source[key] = safeStringToFunction(value);
+                }
+            } catch (e) {
+                console.error(`Error converting ${key} to function:`, e);
+                source[key] = value;
+            }
+        } else {
+            // Default: copy value
+            source[key] = value;
+        }
+    });
+    
     return source;
+}
+
+// Process object properties recursively
+function processObjectProps(obj) {
+    Object.keys(obj).forEach(key => {
+        const value = obj[key];
+        
+        if (value && typeof value === 'object') {
+            // Recursively process nested objects and arrays
+            obj[key] = Array.isArray(value) 
+                ? value.map(item => typeof item === 'object' && item ? processObjectProps({...item}) : item)
+                : deepObjectMerge({}, value);
+        } else if ((evalableKeys.includes(key) || key.endsWith('Func')) && typeof value === 'string') {
+            try {
+                if (key.endsWith('Func')) {
+                    obj[key.replace('Func', '')] = safeStringToFunction(value);
+                    delete obj[key];
+                } else {
+                    obj[key] = safeStringToFunction(value);
+                }
+            } catch (e) {
+                console.error(`Error converting ${key} to function:`, e);
+            }
+        }
+    });
+    
+    return obj;
 }
