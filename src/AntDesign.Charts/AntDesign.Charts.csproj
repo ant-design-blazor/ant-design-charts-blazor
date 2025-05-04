@@ -33,4 +33,20 @@
 	<ItemGroup Condition="$(TargetFramework) == 'net9.0'">
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.0" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Exclude development and test files -->
+		<Content Remove="wwwroot\node_modules\**" />
+		<Content Remove="wwwroot\tests\**" />
+		<Content Remove="wwwroot\package.json" />
+		<Content Remove="wwwroot\package-lock.json" />
+		<Content Remove="wwwroot\.gitignore" />
+		
+		<!-- Ensure these files don't get packed -->
+		<None Include="wwwroot\node_modules\**" Pack="false" />
+		<None Include="wwwroot\tests\**" Pack="false" />
+		<None Include="wwwroot\package.json" Pack="false" />
+		<None Include="wwwroot\package-lock.json" Pack="false" />
+		<None Include="wwwroot\.gitignore" Pack="false" />
+	</ItemGroup>
 </Project>

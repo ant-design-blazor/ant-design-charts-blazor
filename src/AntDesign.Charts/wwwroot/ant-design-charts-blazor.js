@@ -138,25 +138,35 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
 
     // 收集需要处理的函数属性
     const funcProps = {};
-    Object.keys(target).forEach(key => {
-        const value = target[key];
-        if (typeof value === 'string') {
-            try {
-                if (key.endsWith('Func')) {
-                    const newKey = key.replace('Func', '');
-                    funcProps[newKey] = eval('(' + value + ')');
-                    delete target[key];
-                } else if (evalableKeys.includes(key) && value.trim().startsWith('(')) {
-                    funcProps[key] = eval('(' + value + ')');
+    
+    // 处理普通属性和Symbol属性
+    const processProperties = (props) => {
+        props.forEach(key => {
+            const value = target[key];
+            if (typeof value === 'string') {
+                try {
+                    if (key.toString().endsWith('Func')) {
+                        const newKey = key.toString().replace('Func', '');
+                        funcProps[newKey] = eval('(' + value + ')');
+                        delete target[key];
+                    } else if (evalableKeys.includes(key.toString()) && value.trim().startsWith('(')) {
+                        funcProps[key] = eval('(' + value + ')');
+                    }
+                } catch (e) {
+                    console.error(`Error evaluating function for ${key}:`, e);
                 }
-            } catch (e) {
-                console.error(`Error evaluating function for ${key}:`, e);
             }
-        }
-    });
+        });
+    };
 
-    // 处理对象
-    Object.keys(target).forEach(key => {
+    // 处理普通属性
+    processProperties(Object.keys(target));
+    // 处理Symbol属性
+    processProperties(Object.getOwnPropertySymbols(target));
+
+    // 处理对象的所有属性（包括Symbol）
+    const allProps = [...Object.keys(target), ...Object.getOwnPropertySymbols(target)];
+    allProps.forEach(key => {
         const value = target[key];
         
         // 处理null和undefined
@@ -191,4 +201,13 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
     Object.assign(source, funcProps);
 
     return source;
+}
+
+// 导出函数和变量供测试使用
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        isEmptyObj,
+        evalableKeys,
+        deepObjectMerge
+    };
 }
