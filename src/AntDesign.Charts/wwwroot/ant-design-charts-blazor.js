@@ -5,8 +5,7 @@ window.AntDesignCharts = {
     interop: {
         create: (type, domRef, domId, chartRef, csConfig, others, jsonConfig, jsConfig) => {
             domRef.innerHTML = '';
-
-            let config = {}
+            let config = {};
 
             if (csConfig) deepObjectMerge(config, csConfig);
             if (others) deepObjectMerge(config, others);
@@ -25,11 +24,11 @@ window.AntDesignCharts = {
             try {
                 const plot = new G2Plot[type](domRef, config);
 
-                plot.on('afterrender', (e) => {
+                plot.on('afterrender', () => {
                     chartRef.invokeMethodAsync('AfterChartRender')
                 });
 
-                plot.on('beforedestroy', (e) => {
+                plot.on('beforedestroy', () => {
                     chartRef.dispose();
                 });
 
@@ -42,50 +41,52 @@ window.AntDesignCharts = {
             }
         },
         destroy(domId) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].destroy();
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (!chart) return;
+            chart.destroy();
             delete window.AntDesignCharts.chartsContainer[domId];
         },
         render(domId) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].render();
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (chart) chart.render();
         },
         repaint(domId) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].repaint();
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (chart) chart.repaint();
         },
         updateConfig(domId, config, others, all) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (!chart) return;
             deepObjectMerge(config, others);
-            window.AntDesignCharts.chartsContainer[domId].updateConfig(config, all);
-            window.AntDesignCharts.chartsContainer[domId].render();
+            chart.updateConfig(config, all);
+            chart.render();
         },
         changeData(domId, data, all) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].changeData(data, all);
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (chart) chart.changeData(data, all);
         },
         setActive(domId, condition, style) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].setActive(condition, style);
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (chart) chart.setActive(condition, style);
         },
         setSelected(domId, condition, style) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].setSelected(condition, style);
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (chart) chart.setSelected(condition, style);
         },
         setDisable(domId, condition, style) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].setDisable(condition, style);
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (chart) chart.setDisable(condition, style);
         },
         setDefault(domId, condition, style) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
-            window.AntDesignCharts.chartsContainer[domId].setDefault(condition, style);
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (chart) chart.setDefault(condition, style);
         },
-
         setEvent(domId, event, dotnetHelper, func) {
-            if (window.AntDesignCharts.chartsContainer[domId] == undefined) return;
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (!chart) return;
 
             console.log("setEvent");
-            window.AntDesignCharts.chartsContainer[domId].on(event, ev => {
+            chart.on(event, ev => {
                 let e = {};
                 for (let attr in ev) {
                     if (typeof ev[attr] !== "function" && typeof ev[attr] !== "object") {
@@ -95,7 +96,6 @@ window.AntDesignCharts = {
                 dotnetHelper.invokeMethodAsync(func, e);
             })
         },
-
         getEvalJson(jsCode) {
             let jsObj = eval("(" + jsCode + ")");
             return JSON.stringify(jsObj);
@@ -112,107 +112,83 @@ function isEmptyObj(o) {
 
 const evalableKeys = ['formatter', 'customContent'];
 
-// 深度合并对象 - 简化版
+/**
+ * 深度合并对象，同时处理函数属性
+ * @param {Object} source - 源对象
+ * @param {Object} target - 目标对象
+ * @param {WeakMap} visited - 已访问对象的WeakMap，用于处理循环引用
+ * @returns {Object} - 合并后的对象
+ */
 function deepObjectMerge(source, target, visited = new WeakMap()) {
-    if (!target || typeof target !== 'object' || visited.has(target)) return source;
+    if (!target || typeof target !== 'object') return source;
+    if (visited.has(target)) return source;
     visited.set(target, true);
 
+    // 处理数组
+    if (Array.isArray(target)) {
+        return target
+            .filter(item => item != null)
+            .map(item => {
+                if (!item || typeof item !== 'object') return item;
+                if (Array.isArray(item)) return [...item];
+                if (visited.has(item)) return {...item};
+                return deepObjectMerge({}, item, visited);
+            });
+    }
+
+    // 收集需要处理的函数属性
+    const funcProps = {};
+    Object.keys(target).forEach(key => {
+        const value = target[key];
+        if (typeof value === 'string') {
+            try {
+                if (key.endsWith('Func')) {
+                    const newKey = key.replace('Func', '');
+                    funcProps[newKey] = eval('(' + value + ')');
+                    delete target[key];
+                } else if (evalableKeys.includes(key) && value.trim().startsWith('(')) {
+                    funcProps[key] = eval('(' + value + ')');
+                }
+            } catch (e) {
+                console.error(`Error evaluating function for ${key}:`, e);
+            }
+        }
+    });
+
+    // 处理对象
     Object.keys(target).forEach(key => {
         const value = target[key];
         
-        // 跳过 null 和 undefined
+        // 处理null和undefined
         if (value == null) {
-            if (source[key] !== undefined) delete source[key];
+            delete source[key];
             return;
         }
 
-        // 处理数组
-        if (Array.isArray(value)) {
-            source[key] = value
-                .filter(item => item != null)
-                .map(item => {
-                    // 简单值直接返回
-                    if (!item || typeof item !== 'object') return item;
-                    
-                    // 如果是数组，直接返回数组的副本
-                    if (Array.isArray(item)) return [...item];
-                    
-                    // 处理对象
-                    const copy = {...item};
-                    
-                    // 处理对象中属性
-                    Object.keys(copy).forEach(prop => {
-                        // 移除null值
-                        if (copy[prop] == null) {
-                            delete copy[prop];
-                            return;
-                        }
-                        
-                        // 转换函数字符串
-                        if (evalableKeys.includes(prop) && typeof copy[prop] === 'string') {
-                            try { copy[prop] = eval('(' + copy[prop] + ')'); } 
-                            catch (e) { console.error(`Error in ${prop}:`, e); }
-                        } else if (prop.endsWith('Func') && typeof copy[prop] === 'string') {
-                            try {
-                                copy[prop.replace('Func', '')] = eval('(' + copy[prop] + ')');
-                                delete copy[prop];
-                            } catch (e) { console.error(`Error in ${prop}:`, e); }
-                        }
-                        
-                        // 递归处理嵌套对象
-                        if (typeof copy[prop] === 'object' && copy[prop] !== null && !visited.has(copy[prop])) {
-                            if (Array.isArray(copy[prop])) {
-                                // 如果是数组，保持数组结构
-                                copy[prop] = [...copy[prop]];
-                            } else {
-                                const nested = {};
-                                deepObjectMerge(nested, copy[prop], visited);
-                                // 保留非空对象
-                                if (!isEmptyObj(nested)) {
-                                    copy[prop] = nested;
-                                } else {
-                                    delete copy[prop];
-                                }
-                            }
-                        }
-                    });
-                    return copy;
-                });
-            return;
-        }
-        // 处理对象
-        else if (typeof value === 'object') {
-            if (!source[key] || typeof source[key] !== 'object' || Array.isArray(source[key])) {
-                source[key] = {};
+        // 处理嵌套对象
+        if (typeof value === 'object') {
+            if (visited.has(value)) {
+                source[key] = Array.isArray(value) ? [...value] : {...value};
+                return;
             }
-            deepObjectMerge(source[key], value, visited);
-            // 移除空对象(但保留data属性)
+            source[key] = deepObjectMerge(
+                (!source[key] || typeof source[key] !== 'object' || Array.isArray(source[key])) ? {} : source[key],
+                value,
+                visited
+            );
+            // 移除空对象（但保留data属性）
             if (isEmptyObj(source[key]) && key !== 'data') {
                 delete source[key];
             }
+            return;
         }
-        // 处理formatter等特殊属性
-        else if (evalableKeys.includes(key) && typeof value === 'string') {
-            try { source[key] = eval('(' + value + ')'); } 
-            catch (e) { 
-                console.error(`Error in ${key}:`, e);
-                source[key] = value;
-            }
-        }
-        // 处理以Func结尾的属性
-        else if (key.endsWith('Func') && typeof value === 'string') {
-            try {
-                source[key.replace('Func', '')] = eval('(' + value + ')');
-            } catch (e) {
-                console.error(`Error in ${key}:`, e);
-                source[key] = value;
-            }
-        }
-        // 普通值直接赋值
-        else {
-            source[key] = value;
-        }
+
+        // 处理基础类型
+        source[key] = value;
     });
+
+    // 合并函数属性
+    Object.assign(source, funcProps);
 
     return source;
 }
