@@ -63,7 +63,7 @@ describe('deepObjectMerge', () => {
     test('should handle function properties', () => {
         const source = {};
         const target = {
-            colorFunc: "()=>{ return '#ff0000'; }",
+            colorFunction: "()=>{ return '#ff0000'; }",
             label: {
                 formatter: "(val)=>{ return val + '%'; }"
             }
@@ -74,7 +74,7 @@ describe('deepObjectMerge', () => {
         expect(result.color()).toBe('#ff0000');
         expect(typeof result.label.formatter).toBe('function');
         expect(result.label.formatter('100')).toBe('100%');
-        expect(result.colorFunc).toBeUndefined();
+        expect(result.colorFunction).toBeUndefined();
     });
 
     // 循环引用测试
@@ -160,7 +160,7 @@ describe('deepObjectMerge', () => {
     test('should handle invalid function strings', () => {
         const source = {};
         const target = {
-            colorFunc: "this is not a function",
+            colorFunction: "this is not a function",
             label: {
                 formatter: "also not a function"
             }
@@ -174,11 +174,11 @@ describe('deepObjectMerge', () => {
         const source = {};
         const target = {
             chart: {
-                colorFunc: "()=>{ return '#ff0000'; }",
+                colorFunction: "()=>{ return '#ff0000'; }",
                 style: {
-                    fillFunc: "()=>{ return '#00ff00'; }",
+                    fillFunction: "()=>{ return '#00ff00'; }",
                     stroke: {
-                        colorFunc: "()=>{ return '#0000ff'; }"
+                        colorFunction: "()=>{ return '#0000ff'; }"
                     }
                 },
                 label: {
@@ -186,7 +186,7 @@ describe('deepObjectMerge', () => {
                 }
             },
             series: [{
-                colorFunc: "()=>{ return '#999999'; }",
+                colorFunction: "()=>{ return '#999999'; }",
                 label: {
                     formatter: "(val)=>{ return '$' + val; }"
                 }
@@ -197,7 +197,7 @@ describe('deepObjectMerge', () => {
         
         // 测试第一层函数属性
         expect(typeof result.chart.color).toBe('function');
-        expect(result.chart.colorFunc).toBeUndefined();
+        expect(result.chart.colorFunction).toBeUndefined();
         expect(result.chart.color()).toBe('#ff0000');
 
         // 测试嵌套对象中的函数属性
@@ -207,7 +207,7 @@ describe('deepObjectMerge', () => {
 
         // 测试深层嵌套的函数属性
         expect(typeof result.chart.style.stroke.color).toBe('function');
-        expect(result.chart.style.stroke.colorFunc).toBeUndefined();
+        expect(result.chart.style.stroke.colorFunction).toBeUndefined();
         expect(result.chart.style.stroke.color()).toBe('#0000ff');
 
         // 测试formatter属性
@@ -216,7 +216,7 @@ describe('deepObjectMerge', () => {
 
         // 测试数组中的函数属性
         expect(typeof result.series[0].color).toBe('function');
-        expect(result.series[0].colorFunc).toBeUndefined();
+        expect(result.series[0].colorFunction).toBeUndefined();
         expect(result.series[0].color()).toBe('#999999');
         expect(typeof result.series[0].label.formatter).toBe('function');
         expect(result.series[0].label.formatter('100')).toBe('$100');

@@ -145,8 +145,8 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
             const value = target[key];
             if (typeof value === 'string') {
                 try {
-                    if (key.toString().endsWith('Func')) {
-                        const newKey = key.toString().replace('Func', '');
+                    if (key.toString().endsWith('Function')) {
+                        const newKey = key.toString().replace('Function', '');
                         funcProps[newKey] = eval('(' + value + ')');
                         delete target[key];
                     } else if (evalableKeys.includes(key.toString()) && value.trim().startsWith('(')) {
