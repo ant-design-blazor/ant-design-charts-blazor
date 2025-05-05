@@ -42,6 +42,9 @@ namespace AntDesign.Charts
             'g2-tooltip-value'?: any;
           };
          */
+        [JsonPropertyName("domStyles")]
+        public TooltipDomStyles DomStyles { get; set; }
+
         [JsonPropertyName("follow")]
         public bool? Follow { get; set; }
 
@@ -85,6 +88,13 @@ namespace AntDesign.Charts
         public object OffsetMapping => Offset.Value;
         [JsonPropertyName("showMarkers")]
         public bool? ShowMarkers { get; set; }
+
+        /// <summary>
+        /// The dom styles of tooltip
+        /// </summary>
+        [JsonPropertyName("domStyles")]
+        public TooltipDomStyles DomStyles { get; set; }
+
         [JsonPropertyName("follow")]
         public bool? Follow { get; set; }
         
@@ -99,6 +109,53 @@ namespace AntDesign.Charts
 
         [JsonPropertyName("itemtpl")]
         public string Itemtpl {get;set;}
+
+        
+    }
+
+    public class TooltipDomStyles
+    {
+        /// <summary>
+        /// The dom styles of tooltip, the value type is CSSProperties.
+        /// </summary>
+        [JsonPropertyName("g2-tooltip")]
+        public object G2Tooltip { get; set; }
+
+        /// <summary>
+        /// The dom styles of tooltip title, the value type is CSSProperties.
+        /// </summary>
+        [JsonPropertyName("g2-tooltip-title")]
+        public object G2TooltipTitle { get; set; }
+
+        /// <summary>
+        /// The dom styles of tooltip list, the value type is CSSProperties.
+        /// </summary>
+        [JsonPropertyName("g2-tooltip-list")]
+        public object G2TooltipList { get; set; }
+
+        /// <summary>
+        /// The dom styles of tooltip list item, the value type is CSSProperties.
+        /// </summary>
+        [JsonPropertyName("g2-tooltip-list-item")]
+        public object G2TooltipListItem { get; set; }
+
+        /// <summary>
+        /// The dom styles of tooltip marker, the value type is CSSProperties.
+        /// </summary>
+        [JsonPropertyName("g2-tooltip-marker")]
+        public object G2TooltipMarker { get; set; }
+
+        /// <summary>
+        /// The dom styles of tooltip value, the value type is CSSProperties.
+        /// </summary>
+        [JsonPropertyName("g2-tooltip-value")]
+        public object G2TooltipValue { get; set; }
+
+        /// <summary>
+        /// The dom styles of tooltip name, the value type is CSSProperties.
+        /// </summary>
+        [JsonPropertyName("g2-tooltip-name")]
+        public object G2TooltipName { get; set; }
     }
 }
 
