@@ -11,9 +11,9 @@ namespace AntDesign.Charts
         [JsonPropertyName("colorField")]
         public string ColorField { get; set; }
 
-        [JsonPropertyName("colorFunc")]
+        [JsonPropertyName("colorFunction")]
         public string ColorFunction { get; set; }
-        
+
         [Obsolete("No longer supported.  use minColumnWidth and maxColumnWidth instead")]
         [JsonPropertyName("columnSize")]
         public int? ColumnSize { get; set; }
@@ -104,7 +104,7 @@ namespace AntDesign.Charts
         public bool? LocalRefresh { get; set; }
         Axis IViewConfig.XAxis { get; set; }
         Axis IViewConfig.YAxis { get; set; }
-        OneOf<Label, object> IViewConfig.Label { get ; set ; }
+        OneOf<Label, object> IViewConfig.Label { get; set; }
 
         [JsonPropertyName("isGroup")]
         public bool? IsGroup { get; set; }
@@ -147,7 +147,7 @@ namespace AntDesign.Charts
         public ConversionTagOptions ConversionTag { get; set; }
         [JsonPropertyName("label")]
         public new ColumnViewConfigLabel Label { get; set; } //OneOf <IColumnLabel, IColumnAutoLabel>
-        [JsonPropertyName("isStack")] 
+        [JsonPropertyName("isStack")]
         public bool? IsStack { get; set; }
         [JsonPropertyName("isRange")]
         public bool? IsRange { get; set; }
