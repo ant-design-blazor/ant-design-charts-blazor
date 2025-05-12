@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "AntDesign.Charts.Docs.WebAssembly",
   "resources": {
-    "hash": "sha256-/B7N52AtGFmw5AW4GsV6a8JdGntojD50w5huOX8EL2g=",
+    "hash": "sha256-PzSyulwvMAoFI2MYlmyuOF/YQdinzwUbiC5zkPpLE00=",
     "jsModuleNative": {
       "dotnet.native.js": "sha256-ftpNqtARtVNE8ku5eB/jXoklb41UQ+EutUHfwmbNTBY="
     },
@@ -18,9 +18,9 @@
     },
     "coreAssembly": {},
     "assembly": {
-      "AntDesign.Charts.Docs.wasm": "sha256-S4saAin2+hm7a+VCfCgDX51fbJ2EEjpwSjiIoN2iNlc=",
-      "AntDesign.Charts.Docs.WebAssembly.wasm": "sha256-2le5J6KKn9xrAjGuS8JnFTEUvJsW7Telh6hFe5Dzisc=",
-      "AntDesign.Charts.wasm": "sha256-RxYtKZ/S5R/Kl755WspyhVJ9bpi/31c9mz7OKIXzQYs=",
+      "AntDesign.Charts.Docs.wasm": "sha256-4IFy0r1y558x7tdxNneH/JEVTht9AC30IUH6ie2xfrI=",
+      "AntDesign.Charts.Docs.WebAssembly.wasm": "sha256-S3k/Zx5mkaUDiyzwU2NmJ5VvLqG8WqtRYw30+JPTuTw=",
+      "AntDesign.Charts.wasm": "sha256-qkhQf/y+9eCZxpLhbwJLW9HJZp6KQ7azzhpPZSBLcbs=",
       "AntDesign.wasm": "sha256-f11Dlyv4vhiwNkZa2z5pICe2mePgijq/vSm4ZwoHHlY=",
       "Microsoft.AspNetCore.Components.DataAnnotations.Validation.wasm": "sha256-Mpd98aRLb9cK/TLwAqYub55BwBvzDAyJs18h1O7jIqk=",
       "Microsoft.AspNetCore.Components.Forms.wasm": "sha256-PwNZj6iudT6XUhLjf3o6d8voHGPB2ASnmuwigdOWIHg=",
