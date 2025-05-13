@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: '18.x'
           cache: 'npm'
+          cache-dependency-path: './src/AntDesign.Charts/wwwroot/package-lock.json'
 
       - name: Install Dependencies 📦
         working-directory: ./src/AntDesign.Charts/wwwroot
