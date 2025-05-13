@@ -37,7 +37,6 @@ namespace AntDesign.Charts
         protected const string InteropSetSelected = "AntDesignCharts.interop.setSelected";
         protected const string InteropSetDisable = "AntDesignCharts.interop.setDisable";
         protected const string InteropSetDefault = "AntDesignCharts.interop.setDefault";
-        protected const string InteropSetEvent = "AntDesignCharts.interop.setEvent";
 
         private DotNetObjectReference<ComponentBase> chartRef;
 
@@ -145,7 +144,7 @@ namespace AntDesign.Charts
         /// </summary>
         private async Task Create()
         {
-            if (!IsCreated)  // Add null check for Ref.Id
+            if (!IsCreated)
             {
                 await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
                 IsCreated = true;
@@ -302,6 +301,54 @@ namespace AntDesign.Charts
         public void On(string eventName, Action handler)
         {
             _eventHandler.On(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (async with data)
+        /// </summary>
+        public void Once(string eventName, Func<JsonElement, Task> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (sync with data)
+        /// </summary>
+        public void Once(string eventName, Action<JsonElement> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (async without data)
+        /// </summary>
+        public void Once(string eventName, Func<Task> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (sync without data)
+        /// </summary>
+        public void Once(string eventName, Action handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Unregister a specific handler for an event
+        /// </summary>
+        public void Off(string eventName, Delegate handler)
+        {
+            _eventHandler.Off(eventName, handler);
+        }
+
+        /// <summary>
+        /// Unregister all handlers for a specific event, or all events if eventName is null
+        /// </summary>
+        public Task Off(string eventName = null)
+        {
+            return _eventHandler.Off(eventName);
         }
 
         [JSInvokable]

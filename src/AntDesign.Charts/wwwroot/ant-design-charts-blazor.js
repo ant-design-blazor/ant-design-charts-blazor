@@ -136,6 +136,21 @@ window.AntDesignCharts = {
             }
         },
 
+        offEvent: (domId, event) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                if (event) {
+                    console.log(`Unregistering event handler - Event: ${event}`);
+                    chart.off(event);
+                } else {
+                    console.log('Unregistering all event handlers');
+                    chart.off();
+                }
+            } catch (err) {
+                console.error('Error removing event handler:', err);
+            }
+        },
+
         setActive: (domId, condition, style) => {
             try {
                 const chart = window.AntDesignCharts.interop.getChartInstance(domId);

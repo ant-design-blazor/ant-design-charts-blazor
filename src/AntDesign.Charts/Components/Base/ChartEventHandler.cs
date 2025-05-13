@@ -16,6 +16,8 @@ namespace AntDesign.Charts
         private readonly IJSRuntime _js;
         private readonly DotNetObjectReference<ComponentBase> _chartRef;
         private readonly ElementReference _elementRef;
+        private const string InteropSetEvent = "AntDesignCharts.interop.setEvent";
+        private const string InteropOffEvent = "AntDesignCharts.interop.offEvent";
 
         public ChartEventHandler(
             ComponentBase component,
@@ -73,6 +75,130 @@ namespace AntDesign.Charts
             TryRegisterJsEvent(eventName);
         }
 
+        private Func<JsonElement, Task> WrapOnce<T>(string eventName, T handler, Func<T, JsonElement, Task> invoker) where T : Delegate
+        {
+            return async (JsonElement data) =>
+            {
+                await invoker(handler, data);
+                Off(eventName, handler);
+            };
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (async with data)
+        /// </summary>
+        public void Once(string eventName, Func<JsonElement, Task> handler)
+        {
+            RegisterEventHandlerInternal(eventName, WrapOnce(eventName, handler, (h, data) => h(data)));
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (sync with data)
+        /// </summary>
+        public void Once(string eventName, Action<JsonElement> handler)
+        {
+            RegisterEventHandlerInternal(eventName, WrapOnce(eventName, handler, (h, data) =>
+            {
+                h(data);
+                return Task.CompletedTask;
+            }));
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (async without data)
+        /// </summary>
+        public void Once(string eventName, Func<Task> handler)
+        {
+            RegisterEventHandlerInternal(eventName, WrapOnce(eventName, handler, (h, _) => h()));
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (sync without data)
+        /// </summary>
+        public void Once(string eventName, Action handler)
+        {
+            RegisterEventHandlerInternal(eventName, WrapOnce(eventName, handler, (h, _) =>
+            {
+                h();
+                return Task.CompletedTask;
+            }));
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Unregister a specific handler for an event
+        /// </summary>
+        public void Off(string eventName, Delegate handler)
+        {
+            if (eventName != null && _eventHandlers.ContainsKey(eventName))
+            {
+                switch (handler)
+                {
+                    case Func<JsonElement, Task> asyncDataHandler:
+                        _eventHandlers[eventName].Remove(asyncDataHandler);
+                        break;
+                    case Action<JsonElement> syncDataHandler:
+                        var syncDataWrapper = (Func<JsonElement, Task>)(data =>
+                        {
+                            syncDataHandler(data);
+                            return Task.CompletedTask;
+                        });
+                        _eventHandlers[eventName].RemoveAll(h => h.Method == syncDataWrapper.Method);
+                        break;
+                    case Func<Task> asyncHandler:
+                        var asyncWrapper = (Func<JsonElement, Task>)(_ => asyncHandler());
+                        _eventHandlers[eventName].RemoveAll(h => h.Method == asyncWrapper.Method);
+                        break;
+                    case Action syncHandler:
+                        var syncWrapper = (Func<JsonElement, Task>)(_ =>
+                        {
+                            syncHandler();
+                            return Task.CompletedTask;
+                        });
+                        _eventHandlers[eventName].RemoveAll(h => h.Method == syncWrapper.Method);
+                        break;
+                }
+
+                // If no handlers left for this event, remove the event entirely
+                if (_eventHandlers[eventName].Count == 0)
+                {
+                    _eventHandlers.Remove(eventName);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Unregister all handlers for a specific event, or all events if eventName is null
+        /// </summary>
+        public async Task Off(string eventName = null)
+        {
+            if (eventName == null)
+            {
+                // Remove all event handlers
+                _eventHandlers.Clear();
+                // Remove all JS event listeners
+                foreach (var registeredEvent in _registeredJsEvents.ToList())
+                {
+                    await _js.InvokeVoidAsync(InteropOffEvent, _elementRef.Id, registeredEvent);
+                }
+                _registeredJsEvents.Clear();
+            }
+            else if (_eventHandlers.ContainsKey(eventName))
+            {
+                // Remove specific event handlers
+                _eventHandlers.Remove(eventName);
+                if (_registeredJsEvents.Contains(eventName))
+                {
+                    // Remove JS event listener
+                    await _js.InvokeVoidAsync(InteropOffEvent, _elementRef.Id, eventName);
+                    _registeredJsEvents.Remove(eventName);
+                }
+            }
+        }
+
         private void RegisterEventHandlerInternal(string eventName, Func<JsonElement, Task> handler)
         {
             if (!_eventHandlers.ContainsKey(eventName))
@@ -98,7 +224,7 @@ namespace AntDesign.Charts
         {
             if (!_registeredJsEvents.Contains(eventName))
             {
-                await _js.InvokeVoidAsync("AntDesignCharts.interop.setEvent", _elementRef.Id, eventName, _chartRef, eventName);
+                await _js.InvokeVoidAsync(InteropSetEvent, _elementRef.Id, eventName, _chartRef, eventName);
                 _registeredJsEvents.Add(eventName);
             }
         }
