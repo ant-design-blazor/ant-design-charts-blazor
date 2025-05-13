@@ -12,7 +12,6 @@ namespace AntDesign.Charts
     {
         private readonly Dictionary<string, List<Func<JsonElement, Task>>> _eventHandlers = new Dictionary<string, List<Func<JsonElement, Task>>>();
         private readonly HashSet<string> _registeredJsEvents = new HashSet<string>();
-        private readonly ComponentBase _component;
         private readonly IJSRuntime _js;
         private readonly DotNetObjectReference<ComponentBase> _chartRef;
         private readonly ElementReference _elementRef;
@@ -20,12 +19,10 @@ namespace AntDesign.Charts
         private const string InteropOffEvent = "AntDesignCharts.interop.offEvent";
 
         public ChartEventHandler(
-            ComponentBase component,
             IJSRuntime js,
             DotNetObjectReference<ComponentBase> chartRef,
             ElementReference elementRef)
         {
-            _component = component;
             _js = js;
             _chartRef = chartRef;
             _elementRef = elementRef;

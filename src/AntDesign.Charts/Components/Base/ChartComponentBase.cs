@@ -108,7 +108,7 @@ namespace AntDesign.Charts
                     SetIViewConfig(viewConfig);
 
                 // Initialize event handler after Ref is available
-                _eventHandler = new ChartEventHandler(this, JS, chartRef, Ref);
+                _eventHandler = new ChartEventHandler(JS, chartRef, Ref);
 
                 if (OnFirstRender.HasDelegate)
                     await OnFirstRender.InvokeAsync(this);
@@ -211,7 +211,6 @@ namespace AntDesign.Charts
             if (!IsCreated)
             {
                 await Create();
-                IsCreated = true;
             }
             else if (csConfig != null || csOtherConfig != null || !string.IsNullOrWhiteSpace(jsonConfig) || !string.IsNullOrWhiteSpace(jsConfig))
             {
