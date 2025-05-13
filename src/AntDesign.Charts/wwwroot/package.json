@@ -1,9 +1,14 @@
 {
   "name": "ant-design-charts-blazor",
   "version": "1.0.0",
-  "description": "Tests for ant-design-charts-blazor",
+  "description": "JavaScript tests for AntDesign Charts Blazor",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage",
+    "test:update": "jest --updateSnapshot",
+    "test:clear": "jest --clearCache"
   },
   "devDependencies": {
     "jest": "^29.7.0",
@@ -11,8 +16,31 @@
   },
   "jest": {
     "testEnvironment": "jsdom",
-    "moduleDirectories": ["node_modules", "src"],
-    "testMatch": ["**/tests/**/*.test.js"],
-    "setupFiles": ["./tests/setup.js"]
+    "setupFiles": [
+      "./tests/setup.js"
+    ],
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "ant-design-charts-blazor.js",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+      }
+    },
+    "coverageReporters": [
+      "text",
+      "lcov",
+      "json-summary"
+    ],
+    "verbose": true,
+    "testTimeout": 10000
   }
 } 

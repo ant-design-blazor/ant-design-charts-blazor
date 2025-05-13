@@ -1,6 +1,7 @@
 @page "/Line_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
+@inject MessageService Message
 
 <Tabs>
     <TabPane Key="1" Tab="Sample 1">
@@ -54,6 +55,10 @@
     {
         var data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
         await chart.ChangeData(data1);
+
+        chart.On("plot:click", (data) => {
+            Message.Info($"{data}");
+        });
     }
 
     LineConfig config1 = new LineConfig()

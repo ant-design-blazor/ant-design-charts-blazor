@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace AntDesign.Charts
 {
     public abstract class ChartComponentBase<TConfig> : ComponentBase, IChartComponent, IDisposable where TConfig : class, new()
     {
         protected string ChartType { get; set; }
+        private ChartEventHandler _eventHandler;
 
         public ChartComponentBase(string chartType, bool isNoDataRender = false)
         {
@@ -35,9 +37,8 @@ namespace AntDesign.Charts
         protected const string InteropSetSelected = "AntDesignCharts.interop.setSelected";
         protected const string InteropSetDisable = "AntDesignCharts.interop.setDisable";
         protected const string InteropSetDefault = "AntDesignCharts.interop.setDefault";
-        protected const string InteropSetEvent = "AntDesignCharts.interop.setEvent";
 
-        private DotNetObjectReference<ChartComponentBase<TConfig>> chartRef;
+        private DotNetObjectReference<ComponentBase> chartRef;
 
         #endregion
 
@@ -77,6 +78,12 @@ namespace AntDesign.Charts
         [Parameter]
         public EventCallback<IChartComponent> OnFirstRender { get; set; }
 
+        /// <summary>
+        /// 标题点击事件
+        /// </summary>
+        [Parameter]
+        public EventCallback<ChartEvent> OnTitleClick { get; set; }
+
         #endregion
 
         /// <summary>
@@ -86,8 +93,7 @@ namespace AntDesign.Charts
 
         protected override void OnInitialized()
         {
-            chartRef = DotNetObjectReference.Create(this);
-
+            chartRef = DotNetObjectReference.Create((ComponentBase)this);
             base.OnInitialized();
         }
 
@@ -100,6 +106,9 @@ namespace AntDesign.Charts
                 if (Config == null) Config = new TConfig();
                 if (Config is IViewConfig viewConfig)
                     SetIViewConfig(viewConfig);
+
+                // Initialize event handler after Ref is available
+                _eventHandler = new ChartEventHandler(JS, chartRef, Ref);
 
                 if (OnFirstRender.HasDelegate)
                     await OnFirstRender.InvokeAsync(this);
@@ -118,26 +127,43 @@ namespace AntDesign.Charts
             config.Data = Data;
         }
 
-        public async void Dispose()
+        public void Dispose()
         {
             try
             {
-                await JS.InvokeVoidAsync(InteropDestroy, Ref.Id);
+                _ = JS.InvokeVoidAsync(InteropDestroy, Ref.Id);
                 chartRef?.Dispose();
             }
             catch (Exception)
             {
             }
-
         }
 
         /// <summary>
-        /// 创建图表控件
+        /// Creates the chart control
         /// </summary>
-        /// <returns></returns>
         private async Task Create()
         {
-            await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
+            if (!IsCreated)
+            {
+                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
+                IsCreated = true;
+            }
+        }
+
+        [JSInvokable]
+        public async Task AfterChartRender()
+        {
+            await _eventHandler.OnChartCreated();
+
+            // Register title click event if it has a delegate
+            if (OnTitleClick.HasDelegate)
+            {
+                On("title:click", async (data) => await OnTitleClick.InvokeAsync(new ChartEvent(this, data)));
+            }
+
+            if (OnCreateAfter.HasDelegate)
+                await OnCreateAfter.InvokeAsync(this);
         }
 
         #region 图表操作
@@ -171,7 +197,7 @@ namespace AntDesign.Charts
         {
             if (csConfig != null) Config = (TConfig)csConfig;
 
-            if (Config == null) Config = new TConfig();//如果没有配置，那么构造一个默认配置，用于解决传入数据的问题
+            if (Config == null) Config = new TConfig();
             JsonConfig = jsonConfig;
             JsConfig = jsConfig;
             OtherConfig = csOtherConfig;
@@ -182,49 +208,20 @@ namespace AntDesign.Charts
                 SetIViewConfig(viewConfig);
             }
 
-            if (IsCreated == false)
+            if (!IsCreated)
             {
                 await Create();
             }
-            else if (csConfig != null || csOtherConfig != null || string.IsNullOrWhiteSpace(jsonConfig) == false || string.IsNullOrWhiteSpace(jsConfig) == false)
+            else if (csConfig != null || csOtherConfig != null || !string.IsNullOrWhiteSpace(jsonConfig) || !string.IsNullOrWhiteSpace(jsConfig))
             {
-                //更新接口已经不存在了
-                //await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
                 await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
             }
-            else if ((csConfig == null || csOtherConfig == null || string.IsNullOrWhiteSpace(jsonConfig) || string.IsNullOrWhiteSpace(jsConfig)) && csData != null)
-            {//更新数据
+            else if (csData != null)
+            {
                 await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, all);
             }
         }
 
-        /// <summary>
-        /// 仅更新配置
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="otherConfig"></param>
-        /// <param name="all"></param>
-        /// <returns></returns>
-        [Obsolete(message: "请使用UpdateChart代替")]
-        public async Task UpdateConfig(object config = null, object otherConfig = null, bool all = false)
-        {
-            await UpdateChart(config, otherConfig, all: all);
-            //if (Config != null) Config = (TConfig)config;
-            //if (string.IsNullOrWhiteSpace(jsonConfig) == false) JsonConfig = jsonConfig;
-            //OtherConfig = otherConfig;
-            //await JS.InvokeVoidAsync(InteropUpdateConfig, Ref.Id, Config, OtherConfig, all);
-        }
-        /// <summary>
-        /// 仅更新数据
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="all"></param>
-        /// <returns></returns>
-        [Obsolete(message: "请使用UpdateChart代替")]
-        public async Task ChangeData(object data, bool all = false)
-        {
-            await UpdateChart(csData: data, all: all);
-        }
         /// <summary>
         /// 设置激活
         /// </summary>
@@ -235,6 +232,7 @@ namespace AntDesign.Charts
         {
             await JS.InvokeVoidAsync(InteropSetActive, Ref.Id, condition, style);
         }
+
         /// <summary>
         /// 设置选中
         /// </summary>
@@ -245,6 +243,7 @@ namespace AntDesign.Charts
         {
             await JS.InvokeVoidAsync(InteropSetSelected, Ref.Id, condition, style);
         }
+
         /// <summary>
         /// 设置禁用
         /// </summary>
@@ -255,6 +254,7 @@ namespace AntDesign.Charts
         {
             await JS.InvokeVoidAsync(InteropSetDisable, Ref.Id, condition, style);
         }
+
         /// <summary>
         /// 设置默认
         /// </summary>
@@ -263,40 +263,112 @@ namespace AntDesign.Charts
         /// <returns></returns>
         public async Task SetDefault(object condition, object style)
         {
-            await JS.InvokeVoidAsync(InteropSetDisable, Ref.Id, condition, style);
+            await JS.InvokeVoidAsync(InteropSetDefault, Ref.Id, condition, style);
         }
 
         #endregion
-
 
         #region 图表交互事件
 
         /// <summary>
-        /// 标题点击事件
+        /// Register an event handler for the chart (async with data)
         /// </summary>
-        [Parameter]
-        public EventCallback<ChartEvent> OnTitleClick { get; set; }
-
-        [JSInvokable]
-        public async Task JsTitleClick(System.Text.Json.JsonElement ev) { if (OnTitleClick.HasDelegate) await OnTitleClick.InvokeAsync(new ChartEvent(this, ev)); }
-
-        [JSInvokable]
-        public async Task AfterChartRender()
+        public void On(string eventName, Func<JsonElement, Task> handler)
         {
-            IsCreated = true;
-
-            //if (Data != null)
-            //{
-            //    await JS.InvokeVoidAsync(InteropChangeData, Ref.Id, Data, true);
-            //}
-
-            if (OnCreateAfter.HasDelegate)
-                await OnCreateAfter.InvokeAsync(this);
-
-            if (OnTitleClick.HasDelegate)
-                await JS.InvokeVoidAsync(InteropSetEvent, Ref.Id, "title:click", chartRef, nameof(JsTitleClick));
+            _eventHandler.On(eventName, handler);
         }
 
+        /// <summary>
+        /// Register an event handler for the chart (sync with data)
+        /// </summary>
+        public void On(string eventName, Action<JsonElement> handler)
+        {
+            _eventHandler.On(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register an event handler for the chart (async without data)
+        /// </summary>
+        public void On(string eventName, Func<Task> handler)
+        {
+            _eventHandler.On(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register an event handler for the chart (sync without data)
+        /// </summary>
+        public void On(string eventName, Action handler)
+        {
+            _eventHandler.On(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (async with data)
+        /// </summary>
+        public void Once(string eventName, Func<JsonElement, Task> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (sync with data)
+        /// </summary>
+        public void Once(string eventName, Action<JsonElement> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (async without data)
+        /// </summary>
+        public void Once(string eventName, Func<Task> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Register a one-time event handler for the chart (sync without data)
+        /// </summary>
+        public void Once(string eventName, Action handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        /// <summary>
+        /// Unregister a specific handler for an event
+        /// </summary>
+        public void Off(string eventName, Delegate handler)
+        {
+            _eventHandler.Off(eventName, handler);
+        }
+
+        /// <summary>
+        /// Unregister all handlers for a specific event, or all events if eventName is null
+        /// </summary>
+        public Task Off(string eventName = null)
+        {
+            return _eventHandler.Off(eventName);
+        }
+
+        [JSInvokable]
+        public Task InvokeEventHandler(string eventName, JsonElement data) => _eventHandler.InvokeEventHandler(eventName, data);
+
         #endregion
+
+        /// <summary>
+        /// Updates configuration only
+        /// </summary>
+        public Task UpdateConfig(object config = null, object otherConfig = null, bool all = false)
+        {
+            return UpdateChart(config, otherConfig, all: all);
+        }
+
+        /// <summary>
+        /// Updates data only
+        /// </summary>
+        public Task ChangeData(object data, bool all = false)
+        {
+            return UpdateChart(csData: data, all: all);
+        }
     }
 }
