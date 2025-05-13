@@ -1,20 +1,32 @@
-// 导入原始函数
+// Import original code
 const originalCode = require('../ant-design-charts-blazor.js');
 
-// 导出所需的函数和变量
+// Export required functions and variables for tests
 global.isEmptyObj = originalCode.isEmptyObj;
 global.evalableKeys = originalCode.evalableKeys;
 global.deepObjectMerge = originalCode.deepObjectMerge;
 
-// 模拟 window 对象
-global.window = {
-    AntDesignCharts: {
-        chartsContainer: {}
-    }
+// Setup window object if not exists
+if (typeof window === 'undefined') {
+    global.window = {};
+}
+
+// Setup AntDesignCharts global object
+window.AntDesignCharts = originalCode.default || {
+    chartsContainer: {},
+    interop: originalCode.interop || {}
 };
 
-// 模拟 console
-global.console = {
+// Mock console methods
+const mockConsole = {
     log: jest.fn(),
-    error: jest.fn()
-}; 
+    error: jest.fn(),
+    warn: jest.fn()
+};
+
+// Only mock console methods if they haven't been mocked yet
+Object.keys(mockConsole).forEach(method => {
+    if (!console[method]?.mock) {
+        jest.spyOn(console, method).mockImplementation(mockConsole[method]);
+    }
+}); 

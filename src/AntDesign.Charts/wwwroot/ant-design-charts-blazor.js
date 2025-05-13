@@ -2,109 +2,183 @@
 // wrapped in a .NET API
 
 window.AntDesignCharts = {
+    chartsContainer: {},
     interop: {
+        /**
+         * Gets a chart instance by its ID
+         * @param {string} domId - The DOM ID of the chart
+         * @returns {Object|null} The chart instance or null if not found
+         * @throws {Error} If the chart instance is not found
+         */
+        getChartInstance: (domId) => {
+            const chart = window.AntDesignCharts.chartsContainer[domId];
+            if (!chart) {
+                console.warn(`No chart found with ID: ${domId}`);
+                throw new Error(`Chart not found: ${domId}`);
+            }
+            return chart;
+        },
+
         create: (type, domRef, domId, chartRef, csConfig, others, jsonConfig, jsConfig) => {
-            domRef.innerHTML = '';
-            let config = {};
-
-            if (csConfig) deepObjectMerge(config, csConfig);
-            if (others) deepObjectMerge(config, others);
-
-            if (jsonConfig != undefined) {
-                let jsonConfigObj = JSON.parse(jsonConfig);
-                deepObjectMerge(config, jsonConfigObj);
-            }
-
-            if (jsConfig != undefined) {
-                let jsConfigObj = eval("(" + jsConfig + ")");
-                deepObjectMerge(config, jsConfigObj);
-            }
-
-            console.log(config);
             try {
+                domRef.innerHTML = '';
+                let config = {};
+
+                if (csConfig) deepObjectMerge(config, csConfig);
+                if (others) deepObjectMerge(config, others);
+
+                if (jsonConfig != undefined) {
+                    let jsonConfigObj = JSON.parse(jsonConfig);
+                    deepObjectMerge(config, jsonConfigObj);
+                }
+
+                if (jsConfig != undefined) {
+                    let jsConfigObj = eval("(" + jsConfig + ")");
+                    deepObjectMerge(config, jsConfigObj);
+                }
+
+                console.log('Creating chart with config:', config);
+                
                 const plot = new G2Plot[type](domRef, config);
 
                 plot.on('afterrender', () => {
-                    chartRef.invokeMethodAsync('AfterChartRender')
+                    try {
+                        chartRef.invokeMethodAsync('AfterChartRender');
+                    } catch (err) {
+                        console.error('Error in afterrender callback:', err);
+                    }
                 });
 
                 plot.on('beforedestroy', () => {
-                    chartRef.dispose();
+                    try {
+                        chartRef.dispose();
+                    } catch (err) {
+                        console.error('Error in beforedestroy callback:', err);
+                    }
                 });
 
                 plot.render();
                 window.AntDesignCharts.chartsContainer[domId] = plot;
-                console.log("create:" + domId)
-                console.log("type:" + type);
+                console.log(`Chart created - ID: ${domId}, Type: ${type}`);
             } catch (err) {
-                console.error(err, config);
+                console.error('Error creating chart:', err);
+                throw err;
             }
         },
-        destroy(domId) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (!chart) return;
-            chart.destroy();
-            delete window.AntDesignCharts.chartsContainer[domId];
-        },
-        render(domId) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (chart) chart.render();
-        },
-        repaint(domId) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (chart) chart.repaint();
-        },
-        updateConfig(domId, config, others, all) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (!chart) return;
-            deepObjectMerge(config, others);
-            chart.updateConfig(config, all);
-            chart.render();
-        },
-        changeData(domId, data, all) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (chart) chart.changeData(data, all);
-        },
-        setActive(domId, condition, style) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (chart) chart.setActive(condition, style);
-        },
-        setSelected(domId, condition, style) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (chart) chart.setSelected(condition, style);
-        },
-        setDisable(domId, condition, style) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (chart) chart.setDisable(condition, style);
-        },
-        setDefault(domId, condition, style) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (chart) chart.setDefault(condition, style);
-        },
-        setEvent(domId, event, dotnetHelper, func) {
-            const chart = window.AntDesignCharts.chartsContainer[domId];
-            if (!chart) return;
 
-            console.log("setEvent");
-            chart.on(event, ev => {
-                let e = {};
-                for (let attr in ev) {
-                    if (typeof ev[attr] !== "function" && typeof ev[attr] !== "object") {
-                        e[attr] = ev[attr];
+        destroy: (domId) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.destroy();
+                delete window.AntDesignCharts.chartsContainer[domId];
+                console.log(`Chart destroyed - ID: ${domId}`);
+            } catch (err) {
+                console.error('Error destroying chart:', err);
+            }
+        },
+
+        render: (domId) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.render();
+            } catch (err) {
+                console.error('Error rendering chart:', err);
+            }
+        },
+
+        repaint: (domId) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.repaint();
+            } catch (err) {
+                console.error('Error repainting chart:', err);
+            }
+        },
+
+        changeData: (domId, data, all = false) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.changeData(data, all);
+            } catch (err) {
+                console.error('Error changing chart data:', err);
+            }
+        },
+
+        setEvent: (domId, event, dotnetHelper, eventName) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                console.log(`Registering event handler - Event: ${event}, Name: ${eventName}`);
+                
+                chart.on(event, ev => {
+                    try {
+                        // Create a serializable event object
+                        const eventData = {};
+                        for (let attr in ev) {
+                            if (typeof ev[attr] !== "function" && typeof ev[attr] !== "object") {
+                                eventData[attr] = ev[attr];
+                            } else if (ev[attr] && typeof ev[attr] === "object") {
+                                // Handle special cases for certain object types
+                                if (ev[attr] instanceof Date) {
+                                    eventData[attr] = ev[attr].toISOString();
+                                } else if (Array.isArray(ev[attr])) {
+                                    eventData[attr] = ev[attr];
+                                }
+                            }
+                        }
+                        
+                        dotnetHelper.invokeMethodAsync('InvokeEventHandler', eventName, eventData);
+                    } catch (err) {
+                        console.error(`Error in event handler for ${event}:`, err);
                     }
-                }
-                dotnetHelper.invokeMethodAsync(func, e);
-            })
+                });
+            } catch (err) {
+                console.error('Error setting event handler:', err);
+            }
         },
-        getEvalJson(jsCode) {
-            let jsObj = eval("(" + jsCode + ")");
-            return JSON.stringify(jsObj);
-        }
-    },
-    chartsContainer: {}
-}
 
-// 判断对象是否为空
+        setActive: (domId, condition, style) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.setActive(condition, style);
+            } catch (err) {
+                console.error('Error setting active state:', err);
+            }
+        },
+
+        setSelected: (domId, condition, style) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.setSelected(condition, style);
+            } catch (err) {
+                console.error('Error setting selected state:', err);
+            }
+        },
+
+        setDisable: (domId, condition, style) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.setDisable(condition, style);
+            } catch (err) {
+                console.error('Error setting disable state:', err);
+            }
+        },
+
+        setDefault: (domId, condition, style) => {
+            try {
+                const chart = window.AntDesignCharts.interop.getChartInstance(domId);
+                chart.setDefault(condition, style);
+            } catch (err) {
+                console.error('Error setting default state:', err);
+            }
+        }
+    }
+};
+
+/**
+ * Check if an object is empty
+ * @param {Object} o - The object to check
+ * @returns {boolean} True if the object is empty
+ */
 function isEmptyObj(o) {
     for (let attr in o) return false;
     return true;
@@ -113,18 +187,18 @@ function isEmptyObj(o) {
 const evalableKeys = ['formatter', 'customContent'];
 
 /**
- * 深度合并对象，同时处理函数属性
- * @param {Object} source - 源对象
- * @param {Object} target - 目标对象
- * @param {WeakMap} visited - 已访问对象的WeakMap，用于处理循环引用
- * @returns {Object} - 合并后的对象
+ * Deep merge objects with special handling for functions and arrays
+ * @param {Object} source - Source object
+ * @param {Object} target - Target object
+ * @param {WeakMap} visited - WeakMap to track visited objects (for circular references)
+ * @returns {Object} Merged object
  */
 function deepObjectMerge(source, target, visited = new WeakMap()) {
     if (!target || typeof target !== 'object') return source;
     if (visited.has(target)) return source;
     visited.set(target, true);
 
-    // 处理数组
+    // Handle arrays
     if (Array.isArray(target)) {
         return target
             .filter(item => item != null)
@@ -136,10 +210,10 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
             });
     }
 
-    // 收集需要处理的函数属性
+    // Collect function properties
     const funcProps = {};
     
-    // 处理普通属性和Symbol属性
+    // Process properties (both regular and Symbol)
     const processProperties = (props) => {
         props.forEach(key => {
             const value = target[key];
@@ -159,23 +233,22 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
         });
     };
 
-    // 处理普通属性
+    // Process both regular and Symbol properties
     processProperties(Object.keys(target));
-    // 处理Symbol属性
     processProperties(Object.getOwnPropertySymbols(target));
 
-    // 处理对象的所有属性（包括Symbol）
+    // Process all properties (including Symbol)
     const allProps = [...Object.keys(target), ...Object.getOwnPropertySymbols(target)];
     allProps.forEach(key => {
         const value = target[key];
         
-        // 处理null和undefined
+        // Handle null/undefined
         if (value == null) {
             delete source[key];
             return;
         }
 
-        // 处理嵌套对象
+        // Handle nested objects
         if (typeof value === 'object') {
             if (visited.has(value)) {
                 source[key] = Array.isArray(value) ? [...value] : {...value};
@@ -186,24 +259,24 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
                 value,
                 visited
             );
-            // 移除空对象（但保留data属性）
+            // Remove empty objects (except data property)
             if (isEmptyObj(source[key]) && key !== 'data') {
                 delete source[key];
             }
             return;
         }
 
-        // 处理基础类型
+        // Handle primitive values
         source[key] = value;
     });
 
-    // 合并函数属性
+    // Merge function properties
     Object.assign(source, funcProps);
 
     return source;
 }
 
-// 导出函数和变量供测试使用
+// Export for testing
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         isEmptyObj,

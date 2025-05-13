@@ -18,11 +18,19 @@ jobs:
         with:
           dotnet-version: 9.0.x
 
-      - uses: actions/setup-node@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: "10.x"
+          node-version: '18.x'
+          cache: 'npm'
 
-      - name: Check Building ⚙
-        run: |
-          npm install
-          dotnet build
+      - name: Install Dependencies 📦
+        working-directory: ./src/AntDesign.Charts/wwwroot
+        run: npm install
+
+      - name: Run JavaScript Tests 🧪
+        working-directory: ./src/AntDesign.Charts/wwwroot
+        run: npm run test:ci
+
+      - name: Build Project 🏗
+        run: dotnet build
