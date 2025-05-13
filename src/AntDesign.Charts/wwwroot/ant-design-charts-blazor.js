@@ -28,13 +28,21 @@ window.AntDesignCharts = {
                 if (others) deepObjectMerge(config, others);
 
                 if (jsonConfig != undefined) {
-                    let jsonConfigObj = JSON.parse(jsonConfig);
-                    deepObjectMerge(config, jsonConfigObj);
+                    try {
+                        let jsonConfigObj = JSON.parse(jsonConfig);
+                        deepObjectMerge(config, jsonConfigObj);
+                    } catch (err) {
+                        console.error('Error parsing JSON config:', err);
+                    }
                 }
 
                 if (jsConfig != undefined) {
-                    let jsConfigObj = eval("(" + jsConfig + ")");
-                    deepObjectMerge(config, jsConfigObj);
+                    try {
+                        let jsConfigObj = eval("(" + jsConfig + ")");
+                        deepObjectMerge(config, jsConfigObj);
+                    } catch (err) {
+                        console.error('Error evaluating JS config:', err);
+                    }
                 }
 
                 console.log('Creating chart with config:', config);
@@ -296,6 +304,7 @@ if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         isEmptyObj,
         evalableKeys,
-        deepObjectMerge
+        deepObjectMerge,
+        interop: window.AntDesignCharts.interop
     };
 }
