@@ -12,12 +12,14 @@ namespace AntDesign.Charts
     public abstract class ChartComponentBase<TConfig> : ComponentBase, IChartComponent, IDisposable where TConfig : class, new()
     {
         protected string ChartType { get; set; }
-        private ChartEventHandler _eventHandler;
+        private readonly ChartEventHandler _eventHandler;
+        private DotNetObjectReference<ComponentBase> _chartRef;
 
         public ChartComponentBase(string chartType, bool isNoDataRender = false)
         {
             ChartType = chartType;
             IsNoDataRender = isNoDataRender;
+            _eventHandler = new ChartEventHandler();
         }
 
         #region JS交互
@@ -37,8 +39,6 @@ namespace AntDesign.Charts
         protected const string InteropSetSelected = "AntDesignCharts.interop.setSelected";
         protected const string InteropSetDisable = "AntDesignCharts.interop.setDisable";
         protected const string InteropSetDefault = "AntDesignCharts.interop.setDefault";
-
-        private DotNetObjectReference<ComponentBase> chartRef;
 
         #endregion
 
@@ -93,7 +93,7 @@ namespace AntDesign.Charts
 
         protected override void OnInitialized()
         {
-            chartRef = DotNetObjectReference.Create((ComponentBase)this);
+            _chartRef = DotNetObjectReference.Create((ComponentBase)this);
             base.OnInitialized();
         }
 
@@ -103,12 +103,12 @@ namespace AntDesign.Charts
 
             if (firstRender)
             {
+                // Initialize event handler after Ref is available
+                _eventHandler.Initialize(JS, _chartRef, Ref);
+
                 if (Config == null) Config = new TConfig();
                 if (Config is IViewConfig viewConfig)
                     SetIViewConfig(viewConfig);
-
-                // Initialize event handler after Ref is available
-                _eventHandler = new ChartEventHandler(JS, chartRef, Ref);
 
                 if (OnFirstRender.HasDelegate)
                     await OnFirstRender.InvokeAsync(this);
@@ -132,10 +132,11 @@ namespace AntDesign.Charts
             try
             {
                 _ = JS.InvokeVoidAsync(InteropDestroy, Ref.Id);
-                chartRef?.Dispose();
+                _chartRef?.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine($"Error disposing chart: {ex.Message}");
             }
         }
 
@@ -146,7 +147,7 @@ namespace AntDesign.Charts
         {
             if (!IsCreated)
             {
-                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
+                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, _chartRef, Config, OtherConfig, JsonConfig, JsConfig);
                 IsCreated = true;
             }
         }
@@ -214,7 +215,7 @@ namespace AntDesign.Charts
             }
             else if (csConfig != null || csOtherConfig != null || !string.IsNullOrWhiteSpace(jsonConfig) || !string.IsNullOrWhiteSpace(jsConfig))
             {
-                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, chartRef, Config, OtherConfig, JsonConfig, JsConfig);
+                await JS.InvokeVoidAsync(InteropCreate, ChartType, Ref, Ref.Id, _chartRef, Config, OtherConfig, JsonConfig, JsConfig);
             }
             else if (csData != null)
             {
@@ -268,88 +269,78 @@ namespace AntDesign.Charts
 
         #endregion
 
-        #region 图表交互事件
+        #region Event Handlers
 
-        /// <summary>
-        /// Register an event handler for the chart (async with data)
-        /// </summary>
         public void On(string eventName, Func<JsonElement, Task> handler)
         {
             _eventHandler.On(eventName, handler);
         }
 
-        /// <summary>
-        /// Register an event handler for the chart (sync with data)
-        /// </summary>
         public void On(string eventName, Action<JsonElement> handler)
         {
             _eventHandler.On(eventName, handler);
         }
 
-        /// <summary>
-        /// Register an event handler for the chart (async without data)
-        /// </summary>
         public void On(string eventName, Func<Task> handler)
         {
             _eventHandler.On(eventName, handler);
         }
 
-        /// <summary>
-        /// Register an event handler for the chart (sync without data)
-        /// </summary>
         public void On(string eventName, Action handler)
         {
             _eventHandler.On(eventName, handler);
         }
 
-        /// <summary>
-        /// Register a one-time event handler for the chart (async with data)
-        /// </summary>
+        public void On<T>(string eventName, Func<T, Task> handler)
+        {
+            _eventHandler.On(eventName, handler);
+        }
+
+        public void On<T>(string eventName, Action<T> handler)
+        {
+            _eventHandler.On(eventName, handler);
+        }
+
         public void Once(string eventName, Func<JsonElement, Task> handler)
         {
             _eventHandler.Once(eventName, handler);
         }
 
-        /// <summary>
-        /// Register a one-time event handler for the chart (sync with data)
-        /// </summary>
         public void Once(string eventName, Action<JsonElement> handler)
         {
             _eventHandler.Once(eventName, handler);
         }
 
-        /// <summary>
-        /// Register a one-time event handler for the chart (async without data)
-        /// </summary>
         public void Once(string eventName, Func<Task> handler)
         {
             _eventHandler.Once(eventName, handler);
         }
 
-        /// <summary>
-        /// Register a one-time event handler for the chart (sync without data)
-        /// </summary>
         public void Once(string eventName, Action handler)
         {
             _eventHandler.Once(eventName, handler);
         }
 
-        /// <summary>
-        /// Unregister a specific handler for an event
-        /// </summary>
+        public void Once<T>(string eventName, Func<T, Task> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
+        public void Once<T>(string eventName, Action<T> handler)
+        {
+            _eventHandler.Once(eventName, handler);
+        }
+
         public void Off(string eventName, Delegate handler)
         {
             _eventHandler.Off(eventName, handler);
         }
 
-        /// <summary>
-        /// Unregister all handlers for a specific event, or all events if eventName is null
-        /// </summary>
         public Task Off(string eventName = null)
         {
             return _eventHandler.Off(eventName);
         }
-
+        
         [JSInvokable]
         public Task InvokeEventHandler(string eventName, JsonElement data) => _eventHandler.InvokeEventHandler(eventName, data);
 

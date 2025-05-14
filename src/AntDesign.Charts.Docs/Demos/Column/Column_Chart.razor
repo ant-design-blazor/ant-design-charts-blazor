@@ -1,12 +1,13 @@
 @page "/Column_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
+@inject MessageService Message
 
 <Tabs>
     <TabPane Key="1" Tab="Sample 1">
-        <AntDesign.Charts.Column Data=data1 Config="config1" />
+        <AntDesign.Charts.Column Data=data1 Config="config1" @ref="chart" />
     </TabPane>
-    <TabPane Key="2" Tab="Sample 2">
+    @*     <TabPane Key="2" Tab="Sample 2">
         <AntDesign.Charts.Column Data=data1 Config="config2" />
     </TabPane>
     <TabPane Key="3" Tab="Sample 3">
@@ -23,14 +24,14 @@
     </TabPane>
     <TabPane Key="7" Tab="Sample 7">
         <AntDesign.Charts.Column Data=data7 Config="config7" />
-    </TabPane>
+    </TabPane> *@
 </Tabs>
 
-<Divider>动手实验</Divider>
+@* <Divider>动手实验</Divider>
 <DynamicExample @ref="@example">
     <AntDesign.Charts.Column @ref="@chart" />
 </DynamicExample>
-
+ *@
 @code{
 
     public IChartComponent chart;
@@ -39,7 +40,7 @@
     protected override void OnAfterRender(bool firstRender)
     {
         base.OnAfterRender(firstRender);
-        example.Chart = chart;
+        // example.Chart = chart;
     }
 
 
@@ -286,6 +287,24 @@
         data5 = await DemoData.SalesAsync(NavigationManager, HttpClient);
 
         await base.OnInitializedAsync();
+
+
+        chart?.On("element:click", (Event e) =>
+        {
+            Message.Info($"Type: {e.Data.Type} Sales: {e.Data.Sales}");
+        });
+    }
+
+    class Event
+    {
+        public EventData Data { get; set; }
+    }
+
+    class EventData
+    {
+        public string Type{ get; set; }
+
+        public int Sales{ get; set; }
     }
 
 }

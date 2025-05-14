@@ -10,15 +10,26 @@ namespace AntDesign.Charts
 {
     internal class ChartEventHandler
     {
+        private static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = false,
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+            DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+            WriteIndented = true
+        };
+
         private readonly Dictionary<string, List<Func<JsonElement, Task>>> _eventHandlers = new Dictionary<string, List<Func<JsonElement, Task>>>();
         private readonly HashSet<string> _registeredJsEvents = new HashSet<string>();
-        private readonly IJSRuntime _js;
-        private readonly DotNetObjectReference<ComponentBase> _chartRef;
-        private readonly ElementReference _elementRef;
+        private readonly HashSet<string> _pendingJsEvents = new HashSet<string>();
+        private IJSRuntime _js;
+        private DotNetObjectReference<ComponentBase> _chartRef;
+        private ElementReference _elementRef;
         private const string InteropSetEvent = "AntDesignCharts.interop.setEvent";
         private const string InteropOffEvent = "AntDesignCharts.interop.offEvent";
+        private bool _rendered;
+        private bool _initialized;
 
-        public ChartEventHandler(
+        public void Initialize(
             IJSRuntime js,
             DotNetObjectReference<ComponentBase> chartRef,
             ElementReference elementRef)
@@ -26,6 +37,19 @@ namespace AntDesign.Charts
             _js = js;
             _chartRef = chartRef;
             _elementRef = elementRef;
+            _initialized = true;
+
+            // Try to register any pending events that were added before initialization
+            if (_rendered)
+            {
+                foreach (var eventName in _pendingJsEvents.ToList())
+                {
+                    if (_eventHandlers.ContainsKey(eventName))
+                    {
+                        _ = RegisterJsEventAsync(eventName);
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -67,6 +91,33 @@ namespace AntDesign.Charts
             RegisterEventHandlerInternal(eventName, (_) =>
             {
                 handler();
+                return Task.CompletedTask;
+            });
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Register a generic event handler for the chart (async with data)
+        /// </summary>
+        public void On<T>(string eventName, Func<T, Task> handler)
+        {
+            RegisterEventHandlerInternal(eventName, async (data) =>
+            {
+                var typedData = data.Deserialize<T>(JsonOptions);
+                await handler(typedData);
+            });
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Register a generic event handler for the chart (sync with data)
+        /// </summary>
+        public void On<T>(string eventName, Action<T> handler)
+        {
+            RegisterEventHandlerInternal(eventName, (data) =>
+            {
+                var typedData = data.Deserialize<T>(JsonOptions);
+                handler(typedData);
                 return Task.CompletedTask;
             });
             TryRegisterJsEvent(eventName);
@@ -122,6 +173,34 @@ namespace AntDesign.Charts
                 h();
                 return Task.CompletedTask;
             }));
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Register a generic one-time event handler for the chart (async with data)
+        /// </summary>
+        public void Once<T>(string eventName, Func<T, Task> handler)
+        {
+            RegisterEventHandlerInternal(eventName, async (data) =>
+            {
+                var typedData = data.Deserialize<T>(JsonOptions);
+                await handler(typedData);
+                Off(eventName, handler);
+            });
+            TryRegisterJsEvent(eventName);
+        }
+
+        /// <summary>
+        /// Register a generic one-time event handler for the chart (sync with data)
+        /// </summary>
+        public void Once<T>(string eventName, Action<T> handler)
+        {
+            RegisterEventHandlerInternal(eventName, async (data) =>
+            {
+                var typedData = data.Deserialize<T>(JsonOptions);
+                handler(typedData);
+                Off(eventName, handler);
+            });
             TryRegisterJsEvent(eventName);
         }
 
@@ -213,16 +292,29 @@ namespace AntDesign.Charts
         {
             if (!_registeredJsEvents.Contains(eventName))
             {
-                _ = RegisterJsEventAsync(eventName);
+                if (_rendered && _initialized)
+                {
+                    _ = RegisterJsEventAsync(eventName);
+                }
+                else
+                {
+                    _pendingJsEvents.Add(eventName);
+                }
             }
         }
 
         private async Task RegisterJsEventAsync(string eventName)
         {
+            if (!_initialized)
+            {
+                return;
+            }
+
             if (!_registeredJsEvents.Contains(eventName))
             {
-                await _js.InvokeVoidAsync(InteropSetEvent, _elementRef.Id, eventName, _chartRef, eventName);
+                await _js.InvokeVoidAsync(InteropSetEvent, _elementRef.Id, eventName, _chartRef);
                 _registeredJsEvents.Add(eventName);
+                _pendingJsEvents.Remove(eventName);
             }
         }
 
@@ -244,14 +336,28 @@ namespace AntDesign.Charts
 
         public async Task OnChartCreated()
         {
-            // Register all JS events for handlers that were added before chart creation
-            foreach (var eventName in _eventHandlers.Keys.ToList())
+            if (!_initialized || _rendered)
             {
-                if (!_registeredJsEvents.Contains(eventName))
+                return;
+            }
+
+            _rendered = true;
+            
+            // Register all pending JS events
+            var pendingEvents = _pendingJsEvents.ToList();
+            
+            foreach (var eventName in pendingEvents)
+            {
+                if (_eventHandlers.ContainsKey(eventName))
                 {
                     await RegisterJsEventAsync(eventName);
                 }
             }
+        }
+
+        public async Task Dispose()
+        {
+            await Off();
         }
     }
 } 

@@ -112,29 +112,18 @@ window.AntDesignCharts = {
             }
         },
 
-        setEvent: (domId, event, dotnetHelper, eventName) => {
+        setEvent: (domId, event, dotnetHelper) => {
             try {
                 const chart = window.AntDesignCharts.interop.getChartInstance(domId);
-                console.log(`Registering event handler - Event: ${event}, Name: ${eventName}`);
-                
+                console.log(`Registering event handler - Event: ${event}`);
+
                 chart.on(event, ev => {
                     try {
                         // Create a serializable event object
-                        const eventData = {};
-                        for (let attr in ev) {
-                            if (typeof ev[attr] !== "function" && typeof ev[attr] !== "object") {
-                                eventData[attr] = ev[attr];
-                            } else if (ev[attr] && typeof ev[attr] === "object") {
-                                // Handle special cases for certain object types
-                                if (ev[attr] instanceof Date) {
-                                    eventData[attr] = ev[attr].toISOString();
-                                } else if (Array.isArray(ev[attr])) {
-                                    eventData[attr] = ev[attr];
-                                }
-                            }
-                        }
+                        const eventData = createSerializableObject(ev);
+                        console.log(`Event data for ${event}:`, eventData);
                         
-                        dotnetHelper.invokeMethodAsync('InvokeEventHandler', eventName, eventData);
+                        dotnetHelper.invokeMethodAsync('InvokeEventHandler', event, eventData);
                     } catch (err) {
                         console.error(`Error in event handler for ${event}:`, err);
                     }
@@ -299,12 +288,107 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
     return source;
 }
 
+/**
+ * Creates a serializable version of an object by recursively processing its properties
+ * @param {*} obj - The object to make serializable
+ * @returns {*} A serializable version of the object
+ */
+function createSerializableObject(obj) {
+    const seen = new Set();
+
+    function serialize(obj, path = '') {
+        if (!obj || typeof obj !== 'object') {
+            return obj;
+        }
+
+        // Handle special cases
+        if (obj instanceof Date) {
+            return obj.toISOString();
+        }
+
+        // Skip DOM elements and window
+        if (obj instanceof Element || obj instanceof Window) {
+            return `[${obj.constructor.name}]`;
+        }
+
+        // Generate a unique path for this object
+        const currentPath = path ? `${path}.${obj.constructor.name}` : obj.constructor.name;
+        
+        // Check for circular references
+        if (seen.has(obj)) {
+            return `[Circular Reference to ${currentPath}]`;
+        }
+        seen.add(obj);
+
+        try {
+            // Handle arrays
+            if (Array.isArray(obj)) {
+                const result = obj.map((item, index) => 
+                    serialize(item, `${currentPath}[${index}]`));
+                seen.delete(obj);
+                return result;
+            }
+
+            // Handle regular objects
+            const result = {};
+            for (const key of Object.keys(obj)) {
+                try {
+                    const value = obj[key];
+                    
+                    // Skip functions and symbols
+                    if (typeof value === 'function' || typeof value === 'symbol') {
+                        continue;
+                    }
+
+                    // Skip parent references (common source of circular refs)
+                    if (key === 'parent' || key === '_parent') {
+                        result[key] = '[Parent Reference]';
+                        continue;
+                    }
+
+                    // Handle null
+                    if (value === null) {
+                        result[key] = null;
+                        continue;
+                    }
+
+                    // Recursively serialize object properties
+                    result[key] = serialize(value, `${currentPath}.${key}`);
+                } catch (err) {
+                    console.warn(`Error serializing property ${key}:`, err);
+                    result[key] = '[Error]';
+                }
+            }
+            seen.delete(obj);
+            return result;
+        } catch (err) {
+            seen.delete(obj);
+            console.error('Error in serialization:', err);
+            return '[Error]';
+        }
+    }
+
+    try {
+        // Extract only the essential properties we need
+        const eventData = obj.data || obj;
+        const result = serialize(eventData);
+
+        // Verify the result can be stringified
+        JSON.stringify(result);
+        return result;
+    } catch (err) {
+        console.error('Failed to create serializable object:', err);
+        return { error: 'Failed to serialize event data' };
+    }
+}
+
 // Export for testing
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         isEmptyObj,
         evalableKeys,
         deepObjectMerge,
+        createSerializableObject,
         interop: window.AntDesignCharts.interop
     };
 }

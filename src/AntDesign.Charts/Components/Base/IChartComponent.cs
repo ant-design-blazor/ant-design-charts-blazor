@@ -29,6 +29,16 @@ namespace AntDesign.Charts
         void On(string eventName, Action handler);
 
         /// <summary>
+        /// Register a generic event handler for the chart (async with data)
+        /// </summary>
+        void On<T>(string eventName, Func<T, Task> handler);
+
+        /// <summary>
+        /// Register a generic event handler for the chart (sync with data)
+        /// </summary>
+        void On<T>(string eventName, Action<T> handler);
+
+        /// <summary>
         /// Register a one-time event handler for the chart (async with data)
         /// </summary>
         void Once(string eventName, Func<JsonElement, Task> handler);
@@ -47,6 +57,16 @@ namespace AntDesign.Charts
         /// Register a one-time event handler for the chart (sync without data)
         /// </summary>
         void Once(string eventName, Action handler);
+
+        /// <summary>
+        /// Register a generic one-time event handler for the chart (async with data)
+        /// </summary>
+        void Once<T>(string eventName, Func<T, Task> handler);
+
+        /// <summary>
+        /// Register a generic one-time event handler for the chart (sync with data)
+        /// </summary>
+        void Once<T>(string eventName, Action<T> handler);
 
         /// <summary>
         /// Unregister a specific handler for an event
