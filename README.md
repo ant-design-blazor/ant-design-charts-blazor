@@ -99,6 +99,164 @@ config.Annotations = new[]
 };
 ```
 
+## 🎯 Event Handling
+
+Charts support various events that you can handle in your Blazor code. You can use the `On<T>` and `Once<T>` methods to subscribe to chart events.
+
+### Basic Event Usage
+
+```csharp
+<Line @ref="chartRef" Data="data" Config="config" />
+
+@code {
+    IChartComponent chartRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Using JsonElement directly
+            chartRef.On("plot:click", (JsonElement data) =>
+            {
+                Console.WriteLine($"Raw click data: {data}");
+            });
+
+            // Using strongly typed model
+            chartRef.On<PlotEvent>("plot:click", (data) =>
+            {
+                Console.WriteLine($"Clicked at x: {data.X}, y: {data.Y}");
+            });
+        }
+    }
+
+    class PlotEvent
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public object Data { get; set; }
+    }
+}
+```
+
+### Available Events
+
+Common chart events include:
+
+- `plot:click` - Triggered when clicking on the chart
+- `plot:dblclick` - Triggered when double-clicking on the chart
+- `plot:mousemove` - Triggered when moving the mouse over the chart
+- `plot:mouseenter` - Triggered when the mouse enters the chart area
+- `plot:mouseleave` - Triggered when the mouse leaves the chart area
+- `element:click` - Triggered when clicking on a chart element (e.g., line, bar)
+- `legend-item:click` - Triggered when clicking on a legend item
+
+### One-time Event Handling
+
+Use `Once<T>` to subscribe to an event that should only be handled once:
+
+```csharp
+await chartRef.Once<PlotEvent>("plot:click", (data) =>
+{
+    // This handler will only be called once
+    Console.WriteLine($"First click at x: {data.X}, y: {data.Y}");
+});
+```
+
+### Event Data
+
+The event data is passed as `System.Text.Json.JsonElement` by default, which you can handle directly or deserialize into a specific type using the generic methods. The actual structure of the event data depends on the event type and chart type.
+
+Example of handling raw event data:
+
+```csharp
+chartRef.On("element:click", (JsonElement data) =>
+{
+    // Access data using JsonElement methods
+    if (data.TryGetProperty("data", out JsonElement dataElement))
+    {
+        var value = dataElement.GetProperty("value").GetDouble();
+        var category = dataElement.GetProperty("category").GetString();
+        Console.WriteLine($"Clicked element: {category} = {value}");
+    }
+});
+```
+
+### Unsubscribing from Events
+
+You can unsubscribe from events using the `Off` method. There are two ways to use it:
+
+1. Unsubscribe from a specific event handler:
+```csharp
+@code {
+    IChartComponent chartRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Subscribe to the event with a method
+            chartRef.On("plot:click", HandleChartClick);
+
+            // Later, unsubscribe this specific handler
+            chartRef.Off("plot:click", HandleChartClick);
+        }
+    }
+
+    private void HandleChartClick(JsonElement data)
+    {
+        Console.WriteLine($"Clicked: {data}");
+    }
+}
+```
+
+2. Unsubscribe from all handlers of a specific event or all events:
+```csharp
+// Unsubscribe from all handlers of a specific event
+await chartRef.Off("plot:click");
+
+// Unsubscribe from all event handlers
+await chartRef.Off();
+```
+
+It's good practice to unsubscribe from events when they are no longer needed or when the component is being disposed:
+
+```csharp
+@implements IDisposable
+
+@code {
+    IChartComponent chartRef;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Subscribe to multiple events
+            chartRef.On("plot:click", HandleChartClick);
+            chartRef.On("element:click", HandleElementClick);
+        }
+    }
+
+    private void HandleChartClick(JsonElement data)
+    {
+        Console.WriteLine($"Chart clicked: {data}");
+    }
+
+    private void HandleElementClick(JsonElement data)
+    {
+        Console.WriteLine($"Element clicked: {data}");
+    }
+    
+    public async void Dispose()
+    {
+        // Unsubscribe from all events when the component is disposed
+        if (chartRef != null)
+        {
+            await chartRef.Off();
+        }
+    }
+}
+```
+
 ## 🔗 Links
 
 - [Official Blazor Documentation](https://blazor.net)

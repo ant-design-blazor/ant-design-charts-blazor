@@ -110,6 +110,164 @@ config.Annotations = new[]
 };
 ```
 
+## 🎯 事件处理
+
+图表支持多种事件，你可以在 Blazor 代码中处理这些事件。你可以使用 `On<T>` 和 `Once<T>` 方法来订阅图表事件。
+
+### 基本事件用法
+
+```csharp
+<Line @ref="chartRef" Data="data" Config="config" />
+
+@code {
+    IChartComponent chartRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // 直接使用 JsonElement
+            chartRef.On("plot:click", (JsonElement data) =>
+            {
+                Console.WriteLine($"原始点击数据：{data}");
+            });
+
+            // 使用强类型模型
+            chartRef.On<PlotEvent>("plot:click", (data) =>
+            {
+                Console.WriteLine($"点击坐标：x: {data.X}, y: {data.Y}");
+            });
+        }
+    }
+
+    class PlotEvent
+    {
+        public double X { get; set; }
+        public double Y { get; set; }
+        public object Data { get; set; }
+    }
+}
+```
+
+### 可用事件
+
+常用的图表事件包括：
+
+- `plot:click` - 点击图表时触发
+- `plot:dblclick` - 双击图表时触发
+- `plot:mousemove` - 鼠标在图表上移动时触发
+- `plot:mouseenter` - 鼠标进入图表区域时触发
+- `plot:mouseleave` - 鼠标离开图表区域时触发
+- `element:click` - 点击图表元素时触发（如折线、柱状等）
+- `legend-item:click` - 点击图例项时触发
+
+### 一次性事件处理
+
+使用 `Once<T>` 订阅只需处理一次的事件：
+
+```csharp
+await chartRef.Once<PlotEvent>("plot:click", (data) =>
+{
+    // 此处理程序只会被调用一次
+    Console.WriteLine($"首次点击坐标：x: {data.X}, y: {data.Y}");
+});
+```
+
+### 事件数据
+
+事件数据默认以 `System.Text.Json.JsonElement` 类型传递，你可以直接处理它或使用泛型方法将其反序列化为特定类型。实际的事件数据结构取决于事件类型和图表类型。
+
+原始事件数据处理示例：
+
+```csharp
+chartRef.On("element:click", (JsonElement data) =>
+{
+    // 使用 JsonElement 方法访问数据
+    if (data.TryGetProperty("data", out JsonElement dataElement))
+    {
+        var value = dataElement.GetProperty("value").GetDouble();
+        var category = dataElement.GetProperty("category").GetString();
+        Console.WriteLine($"点击的元素：{category} = {value}");
+    }
+});
+```
+
+### 取消事件订阅
+
+你可以使用 `Off` 方法取消事件订阅。有两种使用方式：
+
+1. 取消特定的事件处理程序：
+```csharp
+@code {
+    IChartComponent chartRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // 使用方法订阅事件
+            chartRef.On("plot:click", HandleChartClick);
+
+            // 之后，取消这个特定的处理程序
+            chartRef.Off("plot:click", HandleChartClick);
+        }
+    }
+
+    private void HandleChartClick(JsonElement data)
+    {
+        Console.WriteLine($"点击事件：{data}");
+    }
+}
+```
+
+2. 取消特定事件或所有事件的所有处理程序：
+```csharp
+// 取消特定事件的所有处理程序
+await chartRef.Off("plot:click");
+
+// 取消所有事件的处理程序
+await chartRef.Off();
+```
+
+在不再需要事件处理程序或组件即将销毁时取消订阅是一个好习惯：
+
+```csharp
+@implements IDisposable
+
+@code {
+    IChartComponent chartRef;
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // 订阅多个事件
+            chartRef.On("plot:click", HandleChartClick);
+            chartRef.On("element:click", HandleElementClick);
+        }
+    }
+
+    private void HandleChartClick(JsonElement data)
+    {
+        Console.WriteLine($"图表点击：{data}");
+    }
+
+    private void HandleElementClick(JsonElement data)
+    {
+        Console.WriteLine($"元素点击：{data}");
+    }
+    
+    public async void Dispose()
+    {
+        // 在组件销毁时取消所有事件订阅
+        if (chartRef != null)
+        {
+            await chartRef.Off();
+        }
+    }
+}
+```
+
 ## 🔗 链接
 
 - [Blazor 官方文档](https://blazor.net)
