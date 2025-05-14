@@ -294,10 +294,21 @@ function deepObjectMerge(source, target, visited = new WeakMap()) {
  * @returns {*} A serializable version of the object
  */
 function createSerializableObject(obj) {
+    // Handle null and undefined directly
+    if (obj === null || obj === undefined) {
+        return obj;
+    }
+
     const seen = new Set();
 
     function serialize(obj, path = '') {
-        if (!obj || typeof obj !== 'object') {
+        // Handle null and undefined
+        if (obj === null || obj === undefined) {
+            return obj;
+        }
+
+        // Handle primitive types
+        if (typeof obj !== 'object') {
             return obj;
         }
 
@@ -369,13 +380,8 @@ function createSerializableObject(obj) {
     }
 
     try {
-        // Extract only the essential properties we need
-        const eventData = obj.data || obj;
-        const result = serialize(eventData);
-
-        // Verify the result can be stringified
-        JSON.stringify(result);
-        return result;
+        // Return the original object structure with serialized values
+        return serialize(obj);
     } catch (err) {
         console.error('Failed to create serializable object:', err);
         return { error: 'Failed to serialize event data' };
