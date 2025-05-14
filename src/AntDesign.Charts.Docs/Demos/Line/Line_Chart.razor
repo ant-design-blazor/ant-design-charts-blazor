@@ -55,10 +55,6 @@
     {
         var data1 = await DemoData.FireworksSalesAsync(NavigationManager, HttpClient);
         await chart.ChangeData(data1);
-
-        chart.On("plot:click", (data) => {
-            Message.Info($"{data}");
-        });
     }
 
     LineConfig config1 = new LineConfig()

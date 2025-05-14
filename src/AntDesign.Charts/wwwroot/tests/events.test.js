@@ -82,28 +82,28 @@ describe('AntDesignCharts Events', () => {
 
     describe('setEvent', () => {
         it('should register event handler successfully', () => {
-            window.AntDesignCharts.interop.setEvent(domId, 'click', mockDotNetHelper, 'onClick');
+            window.AntDesignCharts.interop.setEvent(domId, 'click', mockDotNetHelper);
             expect(mockChart.on).toHaveBeenCalled();
         });
 
         it('should handle event data correctly', () => {
-            window.AntDesignCharts.interop.setEvent(domId, 'click', mockDotNetHelper, 'onClick');
+            window.AntDesignCharts.interop.setEvent(domId, 'click', mockDotNetHelper);
             
             // Get the event handler function
             const handler = mockChart.on.mock.calls[0][1];
 
             // Test with primitive data
             handler({ x: 10, y: 20 });
-            expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'onClick', { x: 10, y: 20 });
+            expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { x: 10, y: 20 });
 
             // Test with Date object
             const date = new Date('2024-01-01');
             handler({ date: date });
-            expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'onClick', { date: date.toISOString() });
+            expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { date: date.toISOString() });
 
             // Test with array
             handler({ data: [1, 2, 3] });
-            expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'onClick', { data: [1, 2, 3] });
+            expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { data: [1, 2, 3] });
         });
     });
 

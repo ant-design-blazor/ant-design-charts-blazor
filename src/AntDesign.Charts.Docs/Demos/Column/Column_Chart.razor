@@ -1,10 +1,11 @@
 @page "/Column_Chart"
 @inject NavigationManager NavigationManager
 @inject HttpClient HttpClient
+@inject MessageService Message
 
 <Tabs>
     <TabPane Key="1" Tab="Sample 1">
-        <AntDesign.Charts.Column Data=data1 Config="config1" />
+        <AntDesign.Charts.Column Data=data1 Config="config1" @ref="chart1" />
     </TabPane>
     <TabPane Key="2" Tab="Sample 2">
         <AntDesign.Charts.Column Data=data1 Config="config2" />
@@ -30,9 +31,9 @@
 <DynamicExample @ref="@example">
     <AntDesign.Charts.Column @ref="@chart" />
 </DynamicExample>
-
+ 
 @code{
-
+    public IChartComponent chart1;
     public IChartComponent chart;
     DynamicExample example;
 
@@ -286,6 +287,23 @@
         data5 = await DemoData.SalesAsync(NavigationManager, HttpClient);
 
         await base.OnInitializedAsync();
+
+        chart1?.On("element:click", (Event e) =>
+        {
+            Message.Info($"Type: {e.Data.Type} Sales: {e.Data.Sales}");
+        });
+    }
+
+    class Event
+    {
+        public EventData Data { get; set; }
+    }
+
+    class EventData
+    {
+        public string Type{ get; set; }
+
+        public int Sales{ get; set; }
     }
 
 }
