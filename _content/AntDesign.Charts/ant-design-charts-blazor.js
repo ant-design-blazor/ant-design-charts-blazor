@@ -119,8 +119,8 @@ window.AntDesignCharts = {
 
                 chart.on(event, ev => {
                     try {
-                        // Create a serializable event object
-                        const eventData = createSerializableObject(ev);
+                        // Create a serializable event object, only passing the data property
+                        const eventData = createSerializableObject({ data: ev.data });
                         console.log(`Event data for ${event}:`, eventData);
                         
                         dotnetHelper.invokeMethodAsync('InvokeEventHandler', event, eventData);
@@ -299,9 +299,17 @@ function createSerializableObject(obj) {
         return obj;
     }
 
-    const seen = new Set();
+    const MAX_DEPTH = 10; // Maximum depth limit
+    
+    // Properties to ignore
+    const IGNORED_PROPS = new Set(['prototype', '__proto__', 'constructor', '_parent', 'parent']);
 
-    function serialize(obj, path = '') {
+    function serialize(obj, depth = 0) {
+        // Handle maximum depth
+        if (depth > MAX_DEPTH) {
+            return '[Max Depth Exceeded]';
+        }
+
         // Handle null and undefined
         if (obj === null || obj === undefined) {
             return obj;
@@ -322,38 +330,27 @@ function createSerializableObject(obj) {
             return `[${obj.constructor.name}]`;
         }
 
-        // Generate a unique path for this object
-        const currentPath = path ? `${path}.${obj.constructor.name}` : obj.constructor.name;
-        
-        // Check for circular references
-        if (seen.has(obj)) {
-            return `[Circular Reference to ${currentPath}]`;
-        }
-        seen.add(obj);
-
         try {
             // Handle arrays
             if (Array.isArray(obj)) {
-                const result = obj.map((item, index) => 
-                    serialize(item, `${currentPath}[${index}]`));
-                seen.delete(obj);
-                return result;
+                return obj.map(item => serialize(item, depth + 1));
             }
 
             // Handle regular objects
             const result = {};
+            
+            // Only process own properties and skip ignored properties
             for (const key of Object.keys(obj)) {
                 try {
+                    // Skip ignored properties
+                    if (IGNORED_PROPS.has(key)) {
+                        continue;
+                    }
+
                     const value = obj[key];
                     
                     // Skip functions and symbols
                     if (typeof value === 'function' || typeof value === 'symbol') {
-                        continue;
-                    }
-
-                    // Skip parent references (common source of circular refs)
-                    if (key === 'parent' || key === '_parent') {
-                        result[key] = '[Parent Reference]';
                         continue;
                     }
 
@@ -364,23 +361,20 @@ function createSerializableObject(obj) {
                     }
 
                     // Recursively serialize object properties
-                    result[key] = serialize(value, `${currentPath}.${key}`);
+                    result[key] = serialize(value, depth + 1);
                 } catch (err) {
                     console.warn(`Error serializing property ${key}:`, err);
                     result[key] = '[Error]';
                 }
             }
-            seen.delete(obj);
             return result;
         } catch (err) {
-            seen.delete(obj);
             console.error('Error in serialization:', err);
             return '[Error]';
         }
     }
 
     try {
-        // Return the original object structure with serialized values
         return serialize(obj);
     } catch (err) {
         console.error('Failed to create serializable object:', err);
