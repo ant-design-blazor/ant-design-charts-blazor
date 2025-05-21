@@ -166,18 +166,60 @@ await chartRef.Once<PlotEvent>("plot:click", (data) =>
 
 The event data is passed as `System.Text.Json.JsonElement` by default, which you can handle directly or deserialize into a specific type using the generic methods. The actual structure of the event data depends on the event type and chart type.
 
-Example of handling raw event data:
+A typical event data structure looks like this:
 
 ```csharp
-chartRef.On("element:click", (JsonElement data) =>
+public class ChartEventData
 {
-    // Access data using JsonElement methods
-    if (data.TryGetProperty("data", out JsonElement dataElement))
-    {
-        var value = dataElement.GetProperty("value").GetDouble();
-        var category = dataElement.GetProperty("category").GetString();
-        Console.WriteLine($"Clicked element: {category} = {value}");
-    }
+    public MappingData MappingData { get; set; }
+    public ChartData Data { get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
+    public string Color { get; set; }
+    public bool IsInCircle { get; set; }
+    public string Shape { get; set; }
+    public Style DefaultStyle { get; set; }
+    public Point[] Points { get; set; }
+    public Point[] NextPoints { get; set; }
+}
+
+public class MappingData
+{
+    public ChartData Origin { get; set; }
+    public Point[] Points { get; set; }
+    public Point[] NextPoints { get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
+    public string Color { get; set; }
+}
+
+public class ChartData
+{
+    public string Type { get; set; }
+    public int Sales { get; set; }
+}
+
+public class Point
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+}
+
+public class Style
+{
+    public string Fill { get; set; }
+    public double FillOpacity { get; set; }
+}
+```
+
+Example of handling event data:
+
+```csharp
+chartRef.On<ChartEventData>("element:click", (data) =>
+{
+    Console.WriteLine($"Clicked element: Type={data.Data.Type}, Sales={data.Data.Sales}");
+    Console.WriteLine($"Position: X={data.X}, Y={data.Y}");
+    Console.WriteLine($"Style: Color={data.Color}, Shape={data.Shape}");
 });
 ```
 
