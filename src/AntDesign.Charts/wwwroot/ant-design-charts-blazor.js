@@ -119,7 +119,7 @@ window.AntDesignCharts = {
 
                 chart.on(event, ev => {
                     try {
-                        // Create a serializable event object
+                        // Create a serializable event object, only passing the data property
                         const eventData = createSerializableObject({ data: ev.data });
                         console.log(`Event data for ${event}:`, eventData);
                         

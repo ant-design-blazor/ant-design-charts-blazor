@@ -310,16 +310,26 @@ describe('AntDesignCharts Interop', () => {
 
             it('should handle event data correctly', () => {
                 window.AntDesignCharts.interop.setEvent(domId, 'click', mockDotNetHelper);
-                
+
+                // Get the event handler function from the mock
                 const handler = mockChart.on.mock.calls[0][1];
 
-                handler({ x: 10, y: 20 });
-                expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { x: 10, y: 20 });
+                const eventData = {
+                    data: {
+                        type: "美容洗护",
+                        sales: 145
+                    }
+                };
 
+                handler(eventData);
+                expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { data: eventData.data });
+
+                // Test with Date object
                 const date = new Date('2024-01-01');
-                handler({ date: date });
-                expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { date: date.toISOString() });
+                handler({ data: { date: date } });
+                expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { data: { date: date.toISOString() } });
 
+                // Test with array
                 handler({ data: [1, 2, 3] });
                 expect(mockDotNetHelper.invokeMethodAsync).toHaveBeenCalledWith('InvokeEventHandler', 'click', { data: [1, 2, 3] });
             });
