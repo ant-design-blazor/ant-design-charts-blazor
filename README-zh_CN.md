@@ -177,18 +177,60 @@ await chartRef.Once<PlotEvent>("plot:click", (data) =>
 
 事件数据默认以 `System.Text.Json.JsonElement` 类型传递，你可以直接处理它或使用泛型方法将其反序列化为特定类型。实际的事件数据结构取决于事件类型和图表类型。
 
-原始事件数据处理示例：
+典型的事件数据结构如下：
 
 ```csharp
-chartRef.On("element:click", (JsonElement data) =>
+public class ChartEventData
 {
-    // 使用 JsonElement 方法访问数据
-    if (data.TryGetProperty("data", out JsonElement dataElement))
-    {
-        var value = dataElement.GetProperty("value").GetDouble();
-        var category = dataElement.GetProperty("category").GetString();
-        Console.WriteLine($"点击的元素：{category} = {value}");
-    }
+    public MappingData MappingData { get; set; }
+    public ChartData Data { get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
+    public string Color { get; set; }
+    public bool IsInCircle { get; set; }
+    public string Shape { get; set; }
+    public Style DefaultStyle { get; set; }
+    public Point[] Points { get; set; }
+    public Point[] NextPoints { get; set; }
+}
+
+public class MappingData
+{
+    public ChartData Origin { get; set; }
+    public Point[] Points { get; set; }
+    public Point[] NextPoints { get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
+    public string Color { get; set; }
+}
+
+public class ChartData
+{
+    public string Type { get; set; }
+    public int Sales { get; set; }
+}
+
+public class Point
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+}
+
+public class Style
+{
+    public string Fill { get; set; }
+    public double FillOpacity { get; set; }
+}
+```
+
+事件数据处理示例：
+
+```csharp
+chartRef.On<ChartEventData>("element:click", (data) =>
+{
+    Console.WriteLine($"点击的元素：类型={data.Data.Type}, 销量={data.Data.Sales}");
+    Console.WriteLine($"位置：X={data.X}, Y={data.Y}");
+    Console.WriteLine($"样式：颜色={data.Color}, 形状={data.Shape}");
 });
 ```
 
