@@ -19,8 +19,16 @@ namespace AntDesign.Charts
         public static string TypeCat = "cat";
         [JsonPropertyName("visible")]
         public bool? Visible { get; set; }
+
+        /// <summary>
+        ///  scale 自定义 tickMethod 
+        /// </summary>
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
+
+        [JsonPropertyName("tickMethodFunction")]
+        public string TickMethodFunction { get; set; }
+
         [JsonPropertyName("line")]
         public BaseAxisLine Line { get; set; }
         [JsonPropertyName("grid")]
