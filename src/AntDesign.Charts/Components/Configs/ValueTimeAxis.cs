@@ -30,6 +30,8 @@ namespace AntDesign.Charts
         public bool? Visible { get; set; }
         [JsonPropertyName("tickMethod")]
         public string TickMethod { get; set; }
+        [JsonPropertyName("tickMethodFunction")]
+        public string TickMethodFunction { get; set; }
         [JsonPropertyName("line")]
         public BaseAxisLine Line { get; set; }
         [JsonPropertyName("grid")]

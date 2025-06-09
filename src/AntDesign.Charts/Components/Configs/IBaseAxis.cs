@@ -26,10 +26,14 @@ namespace AntDesign.Charts
         public static string TypeLog = "log";
 
         /// <summary>
-        ///  scale 自定义 tickMethod 
+        ///  scale 自定义 tickMethod, perset: cat、time-cat、 wilkinson-extended、r-pretty、time、time-pretty、log、pow、quantile、d3-linear
         /// </summary>
         [JsonPropertyName("tickMethod")]
-        public string TickMethod { get; set; }//OneOf <string, ((cfg: any) => number[])>
+        public string TickMethod { get; set; }
+
+        [JsonPropertyName("tickMethodFunction")]
+        public string TickMethodFunction { get; set; }//OneOf <string, ((cfg: any) => number[])>
+
         /// <summary>
         /// 轴位置，默认下和左
         /// </summary>

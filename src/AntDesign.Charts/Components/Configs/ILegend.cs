@@ -50,8 +50,21 @@ namespace AntDesign.Charts
 
     public class LegendMarker
     {
+        /// <summary>
+        /// preset symbols: "circle" | "square" | "line" | "diamond" | "triangle" | "triangle-down" | "hexagon" | "bowtie" | "cross" | "tick" | "plus" | "hyphen"
+        /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
+
+        /// <summary>
+        /// (x: number, y: number, r: number) => PathCommand
+        /// <para>
+        /// DEMO: https://g2plot.antv.antgroup.com/zh/examples/component/legend#legend-marker-customize
+        /// </para>
+        /// </summary>
+        [JsonPropertyName("symbolFunction")]
+        public string SymbolFunction { get; set; }
+
         [JsonPropertyName("style")]
         public LegendMarkerStyle Style { get; set; }
     }
