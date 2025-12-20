@@ -21,6 +21,10 @@ window.AntDesignCharts = {
 
         create: (type, domRef, domId, chartRef, csConfig, others, jsonConfig, jsConfig) => {
             try {
+                if (window.AntDesignCharts.chartsContainer[domId]) {
+                    window.AntDesignCharts.interop.destroy(domId);
+                }
+                
                 domRef.innerHTML = '';
                 let config = {};
 
